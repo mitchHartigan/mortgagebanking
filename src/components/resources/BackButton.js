@@ -34,7 +34,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  padding-left: 10%;
+  padding-left: 5%;
 `;
 
 const Text = styled.div`

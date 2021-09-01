@@ -6,6 +6,7 @@ import "./index.css";
 
 import Homepage from "pages/homepage/index";
 import Calculator from "pages/resources/uli-calculator/index";
+import Resources from "pages/resources/Resources";
 
 function App() {
   return (
@@ -16,7 +17,10 @@ function App() {
             <Homepage />
           </Route>
           <Route path="/resources">
-            <Calculator />
+            <Resources />
+          </Route>
+          <Route path="/check-digit-calculator">
+            <p>Calculate this, dude</p>
           </Route>
           <Route path="/initiatives">
             <p>Initiatives</p>

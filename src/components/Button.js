@@ -7,7 +7,7 @@ export const Button = (props) => {
 
 const _Button = styled.button`
   min-width: 200px;
-  padding: 10px 30px 10px 30px;
+  padding: 5px 40px 5px 40px;
   background-color: ${(props) => props.theme.colors.mainGold};
   color: ${(props) => props.theme.colors.darkGray};
   font-family: ${(props) => props.theme.textFont};
