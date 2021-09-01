@@ -16,7 +16,7 @@ export default function SeachCard() {
         <Subtext
           size="xxs"
           alignment="center"
-          styles="margin-bottom: -10px; margin-top: -20px; max-width: 350px;"
+          styles="margin-bottom: -10px; margin-top: -20px; max-width: 350px; line-height: 28px;"
         >
           Search across our database of acronyms precisely and seamlessly.
         </Subtext>

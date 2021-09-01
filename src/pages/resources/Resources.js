@@ -29,12 +29,13 @@ export default function Resources() {
 const Container = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
 `;
 
 const CardContainer = styled.div`
   display: flex;
   flex-direction: row;
-  width: 100%;
+  width: 90%;
   justify-content: space-around;
-  margin-top: 5vh;
+  margin-top: 8vh;
 `;

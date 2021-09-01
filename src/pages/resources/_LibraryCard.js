@@ -16,7 +16,7 @@ export default function LibraryCard() {
         <Subtext
           size="xxs"
           alignment="center"
-          styles="margin-bottom: -10px; margin-top: -20px; max-width: 350px;"
+          styles="margin-bottom: -10px; margin-top: -20px; max-width: 350px; line-height: 28px;"
         >
           View and utilize our vast collection of mortgage banking documents.
         </Subtext>

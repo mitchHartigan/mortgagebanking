@@ -10,15 +10,16 @@ export default function CalculatorCard() {
     <Container>
       <Image src="calculator_icon.png" alt="A book, open and bookmarked." />
       <Title size="lg" align="center" alignItems="center">
-        Document Library
+        ULI Check Digit Calculator
       </Title>
       <CenterBlock>
         <Subtext
           size="xxs"
           alignment="center"
-          styles="margin-bottom: -10px; margin-top: -20px; max-width: 350px;"
+          styles="margin-bottom: -10px; margin-top: -20px; max-width: 350px; line-height: 28px"
         >
-          View and utilize our vast collection of mortgage banking documents.
+          Calculate and verify check digits for HMDA’s Universal Loan
+          Identifier.
         </Subtext>
       </CenterBlock>
       <CenterBlock>
