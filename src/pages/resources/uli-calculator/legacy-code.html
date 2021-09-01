@@ -1,0 +1,166 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+p {
+style=“font-family: play, sans-serif;color:#003366;line-heigh:1.25em;test-align:justify;”;
+font-size: 14px;
+}
+</style>
+</head>
+<body>
+
+<hr></hr>
+<p>Enter an LEI and Loan Number of up to 43 total characters to append ULI check digits.</p>
+  <input id="LEI" size="45">
+
+  <button type="button" onclick="UliAppendCheckDigit()">Append</button>
+<p id="uliAppendCheckDigit" style="font-family:jura"; font-size: 24px></p>
+
+
+<hr></hr>
+<p>Enter a ULI of 45 characters to validate its ULI check digits.</p>
+<input id="ULI" size="45">
+
+<button type="button" onclick="UliCheckDigitValidator()">Validate</button>
+<p id="uliCheckDigitValidator"></p>
+
+<hr></hr>
+<p>Additional Calculation Details:</p>
+<p id="uliReplaceAlphaText"></p> <p id="uliReplaceAlpha"></p>
+<p id="longMod97"></p>
+<p id="uliCheckDigits"></p>
+
+<script>
+//CFPB supplied sample LEI + Loan Id in Reg. C Appendix C describing method of calculation: "10Bx939c5543TqA1144M999143X" which should result in "38" as check digits appended at end to be "10Bx939c5543TqA1144M999143X38" and 549300410TULSMMGDX9251506124 should have check digit of "58".
+
+function UliReplaceAlpha(strULIToCheck) {
+var toRemove = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+var toReplace = ["10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35"];
+try {
+  var strValToCheck = strULIToCheck;
+  for (i = 0; i < 52; i++) {
+      strValToCheck = strValToCheck.split(toRemove[i]).join(toReplace[i]);
+  }
+ 
+ if (isNaN(strValToCheck)) throw "Invalid characters. The HMDA ULI may only contain numbers and letters. No special characters. Letters may be any case.";
+  
+  document.getElementById("uliReplaceAlphaText").innerHTML = "The tested value with alpha characters replaced was: " + strValToCheck;
+     
+}
+catch(err) {
+	document.getElementById("uliReplaceAlphaText").innerHTML = "Error: " + err;
+}
+return strValToCheck;
+}
+
+function LongMod97(numToCheck) {
+var longMod97;
+var valTest = 0;
+
+try {
+//if (isNaN(strNumToCheck)) throw "Value tested is not numeric. Mod 97 must be run on numeric values only.";
+	var strNumToCheck = String(numToCheck);
+     while (Number(strNumToCheck) >= 97) {
+     	if (strNumToCheck.length > 7) {
+          valTest = Number(strNumToCheck.slice(0, 7));
+		  strNumToCheck = strNumToCheck.slice(7 - strNumToCheck.length);
+          }
+      	else {
+          valTest = Number(strNumToCheck);
+          strNumToCheck = "";
+			}
+	    longMod97 = valTest % 97; 
+	strNumToCheck = String(longMod97) + strNumToCheck;
+      }    
+    
+    document.getElementById("longMod97").innerHTML = "The mod 97 result of the tested value is: " + strNumToCheck;
+
+}
+catch(err) {
+	document.getElementById("longMod97").innerHTML = "Error: " + err;
+}
+return strNumToCheck;
+}
+
+
+function UliCheckDigit(strULIToCheck) {
+
+  var uliCheckDigit;
+  try {
+  uliCheckDigit = String(98 - LongMod97(UliReplaceAlpha(strULIToCheck) + "00"));
+  
+  if (uliCheckDigit < 10) {
+  	var strULICheckDigit = "0" + uliCheckDigit;
+  	}
+  else {
+    strULICheckDigit = String(uliCheckDigit);
+    }
+
+   document.getElementById("uliCheckDigits").innerHTML = "The ULI check digits for the tested value are: " + strULICheckDigit;
+  
+}
+catch(err) {
+	document.getElementById("uliCheckDigits").innerHTML = "Error: " + err;
+}
+return strULICheckDigit;
+}
+
+
+function UliAppendCheckDigit() {
+var errAdd = "";  document.getElementById("uliReplaceAlphaText").innerHTML = "";
+  document.getElementById("longMod97").innerHTML = "";
+  document.getElementById("uliCheckDigits").innerHTML = "";
+  document.getElementById("uliAppendCheckDigit").innerHTML = "";
+  document.getElementById("uliCheckDigitValidator").innerHTML = "";
+  document.getElementById("ULI").value = "";
+try {  
+  strLEIToCheck = document.getElementById("LEI").value;
+if (strLEIToCheck.indexOf(" ") != -1) {
+  strLEIToCheck = strLEIToCheck.replace(/ /g,"");
+  errAdd = "<br>WARNING: Value entered was stripped of spaces.";
+  }  
+if (strLEIToCheck.length > 43) throw "Value entered is more than 43 characters. It is too long!";
+ // if (strLEIToCheck.length < 43) throw "Value entered is not 43 characters. It is too short!";
+    
+  var strULICheckDigitAppended = strLEIToCheck + UliCheckDigit(strLEIToCheck);
+  
+  document.getElementById("uliAppendCheckDigit").innerHTML = "ULI with appended check digits is: " + strULICheckDigitAppended + errAdd;
+
+}
+catch(err) {
+	document.getElementById("uliAppendCheckDigit").innerHTML = "Error: " + err + errAdd;
+}
+return strULICheckDigitAppended;
+}
+
+function UliCheckDigitValidator() {
+  document.getElementById("uliReplaceAlphaText").innerHTML = "";
+  document.getElementById("longMod97").innerHTML = "";
+  document.getElementById("uliCheckDigits").innerHTML = "";
+  document.getElementById("uliAppendCheckDigit").innerHTML = "";
+  document.getElementById("uliCheckDigitValidator").innerHTML = "";
+  document.getElementById("LEI").value = "";
+  try {  
+  strULIToCheck = document.getElementById("ULI").value;
+  if (strULIToCheck.indexOf(" ") != -1) throw "Tested ULI's check digits are: INVALID! <br>Value entered contained spaces.";
+  if (strULIToCheck.length > 45) throw "Value entered is more than 45 characters. It is too long!";
+ // if (strULIToCheck.length < 29) throw "Value entered is less than 45 characters. It is too short!";
+  
+  strChkDig = strULIToCheck.slice(-2);
+  if (LongMod97(UliReplaceAlpha(strULIToCheck)) == 1 && strChkDig !== "99" && strChkDig !== "00" && strChkDig !== "01") {
+  document.getElementById("uliCheckDigitValidator").innerHTML = "Tested ULI's check digits are: VALID";
+  }
+  else {
+  	document.getElementById("uliCheckDigitValidator").innerHTML = "Tested ULI's check digits are: INVALID";
+	}
+ }
+ catch(err) {
+	document.getElementById("uliCheckDigitValidator").innerHTML = "Error: " + err;
+ }
+}
+</script>
+
+</body>
+</html>

@@ -5,6 +5,7 @@ import { ThemeProvider } from "styled-components";
 import "./index.css";
 
 import Homepage from "pages/homepage/index";
+import Calculator from "pages/resources/uli-calculator/index";
 
 function App() {
   return (
@@ -15,7 +16,7 @@ function App() {
             <Homepage />
           </Route>
           <Route path="/resources">
-            <p>Resources</p>
+            <Calculator />
           </Route>
           <Route path="/initiatives">
             <p>Initiatives</p>
