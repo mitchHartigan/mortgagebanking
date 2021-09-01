@@ -1,18 +1,18 @@
 export const globalStyles = {
-  font: "Asap",
+  titleFont: "Neuton",
+  textFont: "Lato",
   text: {
-    xxs: "14px",
-    xs: "16px",
-    sm: "18px",
+    xxs: "16px",
+    xs: "18px",
+    sm: "20px",
     md: "22px",
     lg: "28px",
     xl: "40px",
     xxl: "45px",
   },
   colors: {
-    mainBlue: "#007fff",
-    darkBlue: "#17224d",
-    brightBlue: "#17e9e1",
-    paleBlue: "#f5fafa",
+    mainGold: "#e1a915",
+    offWhite: "#f7f7f2",
+    darkGray: "#202020",
   },
 };

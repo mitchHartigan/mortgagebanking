@@ -6,25 +6,26 @@ export const SubmitButton = (props) => {
   const { submitted, onClick } = props;
 
   if (!submitted) {
-    return <Button onClick={onClick}>Send</Button>;
+    return <Button onClick={onClick}>Submit</Button>;
   }
   return <Spinner />;
 };
 
 const Button = styled.button`
-  min-width: 200px;
+  min-width: 180px;
   padding: 10px 30px 10px 30px;
-  background-color: ${(props) => props.theme.colors.mainBlue};
-  color: white;
-  font-family: ${(props) => props.theme.font};
+  background-color: ${(props) => props.theme.colors.mainGold};
+  color: ${(props) => props.theme.colors.darkGray};
+  font-family: ${(props) => props.theme.textFont};
   font-size: ${(props) => props.theme.text.xs};
+  font-weight: 400;
   cursor: pointer;
   border: none;
   outline: none;
-  border-radius: 5px;
-  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+  border-radius: 3px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.6);
   &: hover {
-    box-shadow: 0px 2px 3px 1px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.75);
     transform: translate(0px, -1px);
   }
   transition: box-shadow 100ms ease;

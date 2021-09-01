@@ -8,9 +8,9 @@ export const Button = (props) => {
 const _Button = styled.button`
   min-width: 200px;
   padding: 10px 30px 10px 30px;
-  background-color: ${(props) => props.theme.colors.mainBlue};
-  color: white;
-  font-family: ${(props) => props.theme.font};
+  background-color: ${(props) => props.theme.colors.mainGold};
+  color: ${(props) => props.theme.colors.darkGray};
+  font-family: ${(props) => props.theme.textFont};
   font-size: ${(props) => props.theme.text.xs};
   cursor: pointer;
   border: none;

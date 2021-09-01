@@ -27,16 +27,16 @@ const Container = styled.div`
 `;
 
 const Message = styled.p`
-  font-family: ${(props) => props.theme.font};
+  font-family: ${(props) => props.theme.textFont};
   font-size: ${(props) => props.theme.text.md};
   text-align: ${(props) => props.alignment};
-  color: ${(props) => props.theme.colors.darkBlue};
+  color: ${(props) => props.theme.colors.darkGray};
   margin-top: 10%;
 `;
 
 const Circle = styled.div`
   width: 175px;
-  background-color: ${(props) => props.theme.colors.mainBlue};
+  background-color: ${(props) => props.theme.colors.mainGold};
   height: 175px;
   display: flex;
   flex-direction: column;

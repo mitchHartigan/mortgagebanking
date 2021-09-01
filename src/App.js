@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { globalStyles } from "./globalStyles";
 import { ThemeProvider } from "styled-components";
+import "./index.css";
 
 import Homepage from "pages/homepage/index";
 

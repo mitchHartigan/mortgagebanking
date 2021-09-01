@@ -77,17 +77,17 @@ export default class ContactForm extends Component {
     if (!success) {
       return (
         <Form>
-          {/* <Subtext alignment="center" styles="margin-bottom: 0px;">
-            Or, send us a message directly:
-          </Subtext> */}
+          <Subtext alignment="center" styles="margin-bottom: 30px;" size="xs">
+            Or, send us a message and we'll get in touch:
+          </Subtext>
           <Input
-            label="Full Name *"
+            label="Full Name"
             name="name"
             onChange={this.handleUpdate}
             invalid={invalidName}
           />
           <Input
-            label="Email *"
+            label="Email"
             name="email"
             onChange={this.handleUpdate}
             invalid={invalidEmail}
@@ -98,7 +98,7 @@ export default class ContactForm extends Component {
             onChange={this.handleUpdate}
           />
           <TextArea
-            label="Message *"
+            label="Message"
             name="message"
             onChange={this.handleUpdate}
             invalid={invalidMessage}
