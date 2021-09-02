@@ -8,7 +8,7 @@ export const globalStyles = {
     md: "22px",
     lg: "30px",
     xl: "40px",
-    xxl: "45px",
+    xxl: "52px",
   },
   colors: {
     mainGold: "#e1a915",

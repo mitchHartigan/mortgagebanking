@@ -12,7 +12,7 @@ export default function Resources() {
       <Title
         align="center"
         alignTitle="center"
-        size="xl"
+        size="xxl"
         styles="margin-top: 10vh"
       >
         Resources
