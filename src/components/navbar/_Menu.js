@@ -8,36 +8,48 @@ export const Menu = (props) => {
   return (
     <Container>
       <HeaderContainer>
-        <Title>Big Wave Water</Title>
+        <Title>MortgageBanking.Law</Title>
         <CancelButton onClick={toggleMenu}>x</CancelButton>
       </HeaderContainer>
 
       <Span></Span>
 
       <LinkContainer>
-        <NavLink route="/" align="flex-start" styles={LinkMarginOverride}>
-          Contact Us
-        </NavLink>
         <NavLink
-          route="/casestudies"
+          route="/"
           align="flex-start"
           styles={LinkMarginOverride}
+          dark
+          size="sm"
         >
-          Case Studies
+          Contact
         </NavLink>
         <NavLink
-          route="/tidalwavemixer"
+          route="/practice-areas"
           align="flex-start"
           styles={LinkMarginOverride}
+          dark
+          size="sm"
         >
-          Tidal Wave Mixer
+          Practice Areas
         </NavLink>
         <NavLink
-          route="/chloramineboostingsystem"
+          route="/resources"
           align="flex-start"
           styles={LinkMarginOverride}
+          dark
+          size="sm"
         >
-          Chloramine Boosting System
+          Resources
+        </NavLink>
+        <NavLink
+          route="/initiatives"
+          align="flex-start"
+          styles={LinkMarginOverride}
+          dark
+          size="sm"
+        >
+          Initiatives
         </NavLink>
       </LinkContainer>
     </Container>
@@ -45,7 +57,7 @@ export const Menu = (props) => {
 };
 
 const LinkMarginOverride = {
-  margin: "10px 0px 10px 0px;",
+  margin: "15px 0px 15px 0px;",
 };
 
 const BlurContainer = styled.div`
@@ -62,7 +74,7 @@ const Container = styled.div`
   align-items: flex-start;
   z-index: 10;
   height: 100%;
-  width: 35%;
+  width: 40%;
   box-sizing: border-box;
   background-color: white;
   min-width: 250px;
@@ -75,7 +87,7 @@ const Container = styled.div`
 `;
 
 const CancelButton = styled.p`
-  font-family: ${(props) => props.theme.font};
+  font-family: ${(props) => props.theme.textFont};
   font-size: 25pt;
   font-weight: normal;
   margin: 0px;
@@ -99,16 +111,16 @@ const LinkContainer = styled.div`
 const Span = styled.div`
   height: 3px;
   width: 100px;
-  background-color: ${(props) => props.theme.colors.mainBlue};
+  background-color: ${(props) => props.theme.colors.mainGold};
   margin-left: 15px;
   margin-top: 5px;
   margin-bottom: 15px;
 `;
 
 const Title = styled.h1`
-  font-family: ${(props) => props.theme.font};
+  font-family: ${(props) => props.theme.titleFont};
   font-size: ${(props) => props.theme.text.md};
-  color: ${(props) => props.theme.colors.darkBlue};
+  color: ${(props) => props.theme.colors.darkGray};
   font-weight: normal;
   text-align: left;
   margin: 0px 0px 0px 15px;

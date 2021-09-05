@@ -38,9 +38,9 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
-  background-color: white;
+  width: 45px;
+  height: 45px;
+  background-color: ${(props) => props.theme.colors.darkGray};
   position: fixed;
   z-index: 10;
   box-sizing: border-box;
@@ -55,8 +55,8 @@ const Container = styled.div`
 `;
 
 const Line = styled.div`
-  width: 80%;
+  width: 70%;
   min-height: 3px;
-  background-color: ${(props) => props.theme.colors.darkBlue};
+  background-color: ${(props) => props.theme.colors.offWhite};
   margin: 4px 0px 4px 0px;
 `;

@@ -39,6 +39,10 @@ const Container = styled.div`
   width: 380px;
   box-shadow: 1px 4px 4px rgba(0, 0, 0, 0.3);
   height: 400px;
+
+  @media (max-width: 1200px) {
+    margin-bottom: 5vh;
+  }
 `;
 
 const Image = styled.img`

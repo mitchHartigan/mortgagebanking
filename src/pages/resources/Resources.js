@@ -5,6 +5,7 @@ import { Title } from "components/Title";
 import LibraryCard from "./_LibraryCard";
 import SeachCard from "./_SearchCard";
 import CalculatorCard from "./_CalculatorCard";
+import Navbar from "components/navbar";
 
 export default function Resources() {
   return (
@@ -13,7 +14,7 @@ export default function Resources() {
         align="center"
         alignTitle="center"
         size="xxl"
-        styles="margin-top: 10vh"
+        styles="margin-top: 15vh"
       >
         Resources
       </Title>
@@ -22,6 +23,7 @@ export default function Resources() {
         <LibraryCard />
         <CalculatorCard />
       </CardContainer>
+      <Navbar alwaysDisplay />
     </Container>
   );
 }
@@ -38,4 +40,10 @@ const CardContainer = styled.div`
   width: 90%;
   justify-content: space-around;
   margin-top: 8vh;
+
+  @media (max-width: 1200px) {
+    flex-direction: column;
+    width: auto;
+    justify-content: space-between;
+  }
 `;

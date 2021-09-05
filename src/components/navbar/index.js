@@ -34,21 +34,26 @@ export default class Navbar extends React.Component {
           scrollPos={this.state.scrollPos}
           alwaysDisplay={this.props.alwaysDisplay}
         >
-          <NavLink route="/" exact width="20%">
-            Contact Us
-          </NavLink>
-          <NavLink route="/casestudies" width="20%">
-            Case Studies
-          </NavLink>
+          {""}
           <LogoLink route="/" exact>
             <Logo />
           </LogoLink>
-          <NavLink route="/chloramineboostingsystem" width="20%">
-            Chloramine Boosting System
-          </NavLink>
-          <NavLink route="/tidalwavemixer" width="20%">
-            Tidal Wave Mixer
-          </NavLink>
+          {""}
+          <NavLinkContainer>
+            <NavLink route="/" exact width="20%">
+              Contact
+            </NavLink>
+            <NavLink route="/practice-areas" width="20%">
+              Practice Areas
+            </NavLink>
+            <NavLink route="/resources" width="20%">
+              Resources
+            </NavLink>
+            <NavLink route="/initiatives" width="20%">
+              Initiatives
+            </NavLink>
+          </NavLinkContainer>
+          {""}
         </Navbar_>
       </Container>
     );
@@ -70,25 +75,16 @@ const Navbar_ = styled.div.attrs((props) => ({
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 0.5vh 2vw 0.5vh 2vw;
-  margin-top: 1.5vh;
+  padding: 1.5vh 2vw 1.5vh 2vw;
+  margin-top: 0px;
   transition: opacity 150ms ease-in;
   border-radius: 3px;
-  background-color: white;
+  background-color: ${(props) => props.theme.colors.darkGray};
   box-sizing: border-box;
-  width: 80%;
-  box-shadow: 2px 2px 7px 1px rgba(0, 0, 0, 0.25);
+  width: 100%;
   z-index: 10;
 
-  @media (max-width: 1700px) {
-    padding: 0.5vh 4vw 0.5vh 5vw;
-  }
-
-  @media (max-width: 1600px) {
-    width: 90%;
-  }
-
-  @media (max-width: 1230px) {
+  @media (max-width: 900px) {
     display: none;
   }
 `;
@@ -103,4 +99,11 @@ const Container = styled.div`
   @media (max-width: 1230px) {
     justify-content: flex-start;
   }
+`;
+
+const NavLinkContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 45%;
 `;
