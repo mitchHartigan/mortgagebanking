@@ -39,7 +39,12 @@ const Container = styled.div`
   box-shadow: 1px 4px 4px rgba(0, 0, 0, 0.3);
   height: 400px;
 
-  @media (max-width: 1200px) {
+  @media (max-width: 1800px) {
+    height: 380px;
+    width: 340px;
+  }
+
+  @media (max-width: 1350px) {
     margin-bottom: 5vh;
   }
 `;
@@ -50,5 +55,7 @@ const Image = styled.img`
 
   @media (max-width: 1800px) {
     height: auto;
+    width: 158px;
+    margin-top: 10px;
   }
 `;

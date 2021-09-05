@@ -41,7 +41,11 @@ const CardContainer = styled.div`
   justify-content: space-around;
   margin-top: 8vh;
 
-  @media (max-width: 1200px) {
+  @media (max-width: 1800px) {
+    width: 100%;
+  }
+
+  @media (max-width: 1350px) {
     flex-direction: column;
     width: auto;
     justify-content: space-between;
