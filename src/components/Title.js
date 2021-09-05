@@ -43,7 +43,7 @@ const Header = styled.h2`
   text-align: ${(props) => props.align};
   ${(props) => props.styles};
 
-  @media (max-width: 1300px) {
+  @media (max-width: 1100px) {
     font-size: ${(props) =>
       props.size === "xl" || props.size === "xxl"
         ? props.theme.text.lg
