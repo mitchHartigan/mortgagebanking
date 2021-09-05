@@ -78,7 +78,6 @@ const Navbar_ = styled.div.attrs((props) => ({
   padding: 1.5vh 2vw 1.5vh 2vw;
   margin-top: 0px;
   transition: opacity 150ms ease-in;
-  border-radius: 3px;
   background-color: ${(props) => props.theme.colors.darkGray};
   box-sizing: border-box;
   width: 100%;

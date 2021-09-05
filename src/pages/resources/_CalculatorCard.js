@@ -36,13 +36,13 @@ const Container = styled.div`
   padding: 30px 50px 30px 50px;
   background-color: white;
   border-radius: 3px;
-  width: 380px;
+  height: 380px;
+  width: 340px;
   box-shadow: 1px 4px 4px rgba(0, 0, 0, 0.3);
-  height: 400px;
 
   @media (max-width: 1800px) {
-    height: 380px;
-    width: 340px;
+    height: 350px;
+    width: 300px;
   }
 
   @media (max-width: 1350px) {
@@ -53,9 +53,10 @@ const Container = styled.div`
 const Image = styled.img`
   align-self: center;
   margin-top: 10px;
+  height: auto;
+  width: 115px;
 
   @media (max-width: 1800px) {
-    height: auto;
-    width: 115px;
+    width: 95px;
   }
 `;

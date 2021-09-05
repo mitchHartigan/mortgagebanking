@@ -14,7 +14,12 @@ export default function Resources() {
         align="center"
         alignTitle="center"
         size="xxl"
-        styles="margin-top: 15vh"
+        styles={`
+          margin-top: 17vh;
+          @media (max-width: 900px) {
+            margin-top: 2vh;
+          }
+        `}
       >
         Resources
       </Title>

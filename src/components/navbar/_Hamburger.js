@@ -48,7 +48,7 @@ const Container = styled.div`
   border-radius: 2px;
   box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.25);
 
-  @media (max-width: 1230px) {
+  @media (max-width: 900px) {
     display: flex;
   }
   margin: 15px 0vw 0vh 15px;
