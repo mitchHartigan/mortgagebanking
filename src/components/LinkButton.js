@@ -12,7 +12,7 @@ export default function LinkButton(props) {
   const history = useHistory();
 
   const _redirect = () => {
-    history.push("/check-digit-calculator");
+    history.push(props.to);
   };
 
   return <Button onClick={_redirect}>{props.children}</Button>;
