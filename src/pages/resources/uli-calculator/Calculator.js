@@ -19,10 +19,10 @@ export default class Calculator extends Component {
           ULI check digits.
         </p>
         <input id="LEI" size="45" />
+        <p id="uliAppendCheckDigit"></p>
         <button type="button" onClick={UliAppendCheckDigit}>
           Append
         </button>
-        <p id="uliAppendCheckDigit"></p>
         {""}
         <p>Enter a ULI of 45 characters to validate its ULI check digits.</p>
         <input id="ULI" size="45" />
@@ -31,7 +31,7 @@ export default class Calculator extends Component {
         </button>
         <p id="uliCheckDigitValidator"></p>
         <p>Additional Calculation Details:</p>
-        <p id="uliReplaceAlphaText"></p> <p id="uliReplaceAlpha"></p>
+        <p id="uliReplaceAlphaText"></p>
         <p id="longMod97"></p>
         <p id="uliCheckDigits"></p>
       </Container>
@@ -39,7 +39,11 @@ export default class Calculator extends Component {
   }
 }
 
-const Container = styled.div``;
+const Container = styled.div`
+  margin-top: 5vh;
+  display: flex;
+  flex-direction: column;
+`;
 
 function UliReplaceAlpha(strULIToCheck) {
   var toRemove = [
