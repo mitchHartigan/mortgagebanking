@@ -20,7 +20,7 @@ function App() {
             <Resources />
           </Route>
           <Route path="/check-digit-calculator">
-            <p>Calculate this, dude</p>
+            <Calculator />
           </Route>
           <Route path="/initiatives">
             <p>Initiatives</p>

@@ -31,10 +31,13 @@ export class BackButton extends React.Component {
 }
 
 const Container = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  padding-left: 5%;
+  padding-left: 4vw;
+  box-sizing: border-box;
+  margin-top: 10vh;
 `;
 
 const Text = styled.div`

@@ -2,9 +2,9 @@ export const globalStyles = {
   titleFont: "Neuton",
   textFont: "Lato",
   text: {
-    xxs: "16px",
-    xs: "18px",
-    sm: "20px",
+    xxs: "14px",
+    xs: "16px",
+    sm: "18px",
     md: "22px",
     lg: "30px",
     xl: "40px",
@@ -14,5 +14,7 @@ export const globalStyles = {
     mainGold: "#e1a915",
     offWhite: "#f7f7f2",
     darkGray: "#202020",
+    darkBlue: "#1D2A4A",
+    linkBlue: "#227C9D",
   },
 };
