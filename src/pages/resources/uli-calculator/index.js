@@ -44,8 +44,9 @@ export default class ULICalculator extends Component {
               click here.
             </AnchorLink>
           </Subtext>
+
+          <Calculator />
         </ContentContainer>
-        <Calculator />
         <Navbar alwaysDisplay />
       </Container>
     );

@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import styled from "styled-components";
+import { Button } from "components/Button";
+import { Subtext } from "components/Subtext";
+import { Title } from "components/Title";
 
 export default class Calculator extends Component {
   constructor(props) {
@@ -14,37 +17,114 @@ export default class Calculator extends Component {
   render() {
     return (
       <Container>
-        <p>
-          Enter an LEI and Loan Number of up to 43 total characters to append
-          ULI check digits.
-        </p>
-        <input id="LEI" size="45" />
-        <p id="uliAppendCheckDigit"></p>
-        <button type="button" onClick={UliAppendCheckDigit}>
-          Append
-        </button>
         {""}
-        <p>Enter a ULI of 45 characters to validate its ULI check digits.</p>
-        <input id="ULI" size="45" />
-        <button type="button" onClick={UliCheckDigitValidator}>
-          Validate
-        </button>
-        <p id="uliCheckDigitValidator"></p>
-        <p>Additional Calculation Details:</p>
-        <p id="uliReplaceAlphaText"></p>
-        <p id="longMod97"></p>
-        <p id="uliCheckDigits"></p>
+        <CardContainer>
+          <Subtext alignment="center" styles="margin: -10px 0px 10px 0px;">
+            Enter an LEI and Loan Number to append ULI check digits.
+          </Subtext>
+          <Card>
+            <Input
+              id="LEI"
+              size="45"
+              placeholder="Enter LEI and Loan Number..."
+            />
+            <Subtext
+              id="uliAppendCheckDigit"
+              color="offWhite"
+              alignment="center"
+              styles="margin: 10px 0px 0px 0px;"
+            ></Subtext>
+          </Card>
+          <Button onClick={UliAppendCheckDigit} styles="width: 400px;">
+            Append Check Digits
+          </Button>
+        </CardContainer>
+        {""}
+        <CardContainer>
+          <Subtext alignment="center" styles="margin-bottom: 10px;">
+            Enter a ULI of 45 characters to validate its ULI check digits.
+          </Subtext>
+          <Card>
+            <Input id="ULI" size="45" placeholder="Enter ULI..." />
+            <Subtext
+              id="uliCheckDigitValidator"
+              alignment="center"
+              color="offWhite"
+              styles="margin: 10px 0px 0px 0px;"
+            ></Subtext>
+          </Card>
+          <Button onClick={UliCheckDigitValidator} styles="width: 400px;">
+            Validate
+          </Button>
+        </CardContainer>
+        {""}
+        <DetailsContainer>
+          <Title size="md">Additional Calculation Details:</Title>
+          <Subtext
+            id="uliReplaceAlphaText"
+            alignment="center"
+            styles="margin: 10px 0px 10px 0px"
+          ></Subtext>
+          <Subtext
+            id="longMod97"
+            alignment="center"
+            styles="margin: 10px 0px 10px 0px"
+          ></Subtext>
+          <Subtext
+            id="uliCheckDigits"
+            alignment="center"
+            styles="margin: 10px 0px 10px 0px"
+          ></Subtext>
+        </DetailsContainer>
       </Container>
     );
   }
 }
 
 const Container = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+const CardContainer = styled.div`
   margin-top: 5vh;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
 
+const Card = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 40vw;
+  margin-bottom: 20px;
+  padding: 20px 40px 20px 40px;
+  box-sizing: border-box;
+  background-color: ${(props) => props.theme.colors.darkGray};
+`;
+
+const DetailsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 5vh;
+`;
+
+const Input = styled.input`
+  height: 35px;
+  font-family: ${(props) => props.theme.textFont};
+  font-size: ${(props) => props.theme.text.xs};
+  box-sizing: border-box;
+  padding: 0px;
+  text-align: center;
+`;
+
+// Legacy Code.
 function UliReplaceAlpha(strULIToCheck) {
   var toRemove = [
     "A",

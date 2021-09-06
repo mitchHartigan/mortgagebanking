@@ -2,7 +2,13 @@ import React from "react";
 import styled from "styled-components";
 
 export const Button = (props) => {
-  return <_Button onClick={props.onClick}>{props.children}</_Button>;
+  const { onClick, children, styles } = props;
+
+  return (
+    <_Button styles={styles} onClick={onClick}>
+      {children}
+    </_Button>
+  );
 };
 
 const _Button = styled.button`
@@ -23,4 +29,5 @@ const _Button = styled.button`
   }
   transition: box-shadow 100ms ease;
   transition: transform 100ms ease;
+  ${(props) => props.styles}
 `;

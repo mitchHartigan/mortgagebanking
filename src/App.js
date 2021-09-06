@@ -5,7 +5,7 @@ import { ThemeProvider } from "styled-components";
 import "./index.css";
 
 import Homepage from "pages/homepage/index";
-import Calculator from "pages/resources/uli-calculator/index";
+import ULICalculator from "pages/resources/uli-calculator/index";
 import Resources from "pages/resources/Resources";
 
 function App() {
@@ -20,7 +20,7 @@ function App() {
             <Resources />
           </Route>
           <Route path="/check-digit-calculator">
-            <Calculator />
+            <ULICalculator />
           </Route>
           <Route path="/initiatives">
             <p>Initiatives</p>

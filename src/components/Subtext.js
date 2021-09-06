@@ -10,10 +10,17 @@ import styled from "styled-components";
  */
 
 export const Subtext = (props) => {
-  const { alignment, children, size, styles } = props;
+  const { alignment, children, size, color, styles, id } = props;
 
   return (
-    <_Subtext alignment={alignment} styles={styles} size={size}>
+    <_Subtext
+      id={id}
+      alignment={alignment}
+      styles={styles}
+      size={size}
+      color={color}
+      text={children}
+    >
       {children}
     </_Subtext>
   );
@@ -24,7 +31,10 @@ const _Subtext = styled.p`
   font-family: ${(props) => props.theme.textFont};
   font-size: ${(props) => props.theme.text[props.size]};
   text-align: ${(props) => props.alignment};
-  color: ${(props) => props.theme.colors.darkGray};
+  color: ${(props) =>
+    props.color
+      ? props.theme.colors[props.color]
+      : props.theme.colors.darkGray};
   width: 100%;
   line-height: 30px;
   -webkit-font-smoothing: antialiased;
