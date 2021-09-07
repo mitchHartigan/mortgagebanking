@@ -18,6 +18,6 @@ const rotate = keyframes`
 const Block = styled.div`
   width: 25px;
   height: 25px;
-  background-color: ${(props) => props.theme.colors.mainBlue};
+  background-color: ${(props) => props.theme.colors.mainGold};
   animation: ${rotate} 2s linear infinite;
 `;

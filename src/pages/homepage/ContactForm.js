@@ -6,7 +6,7 @@ import { Subtext } from "components/Subtext";
 import { TextArea } from "components/form/TextArea";
 import { CenterBlock } from "components/CenterBlock";
 import { SubmitButton } from "components/form/SubmitButton";
-// import { POST_CONTACT_FORM } from "components/API";
+import { POST_CONTACT_FORM } from "components/API";
 import { Success } from "components/form/Success";
 
 export default class ContactForm extends Component {
@@ -53,8 +53,7 @@ export default class ContactForm extends Component {
           };
 
           this.setState({ submitted: true });
-          // const submission = await POST_CONTACT_FORM(payload);
-          const submission = "success";
+          const submission = await POST_CONTACT_FORM(payload);
           console.log("submission", submission);
 
           if (submission === "success") {
@@ -66,13 +65,8 @@ export default class ContactForm extends Component {
   };
 
   render() {
-    const {
-      invalidEmail,
-      invalidMessage,
-      invalidName,
-      submitted,
-      success,
-    } = this.state;
+    const { invalidEmail, invalidMessage, invalidName, submitted, success } =
+      this.state;
 
     if (!success) {
       return (

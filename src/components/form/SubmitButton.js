@@ -13,7 +13,7 @@ export const SubmitButton = (props) => {
 
 const Button = styled.button`
   min-width: 180px;
-  padding: 10px 30px 10px 30px;
+  padding: 8px 30px 8px 30px;
   background-color: ${(props) => props.theme.colors.mainGold};
   color: ${(props) => props.theme.colors.darkGray};
   font-family: ${(props) => props.theme.textFont};
