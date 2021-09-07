@@ -9,4 +9,6 @@ export const Logo = () => {
 
 const Image = styled.img`
   align-self: center;
+  width: 40px;
+  height: auto;
 `;

@@ -14,7 +14,10 @@ export default class ULICalculator extends Component {
       <Container>
         <BackButton location="/resources" text="< Resources" />
         <ContentContainer>
-          <Title size="xl" styles="margin-bottom: 2vh; margin-top: 2vh;">
+          <Title
+            size="xl"
+            styles="margin-bottom: 2vh; @media (max-width: 900px) { margin-top: 80px };"
+          >
             ULI Check Digit Calculator
           </Title>
           <Subtext styles={SubtextParagraphStyles} size="xs">
@@ -63,6 +66,14 @@ const ContentContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+
+  @media (max-width: 1200px) {
+    width: 70%;
+  }
+
+  @media (max-width: 900px) {
+    width: 90%;
+  }
 `;
 
 const Container = styled.div`

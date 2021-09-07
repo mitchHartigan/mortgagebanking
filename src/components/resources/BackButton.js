@@ -37,7 +37,11 @@ const Container = styled.div`
   justify-content: flex-start;
   padding-left: 4vw;
   box-sizing: border-box;
-  margin-top: 10vh;
+  margin-top: 9vh;
+
+  @media (max-width: 900px) {
+    display: none;
+  }
 `;
 
 const Text = styled.div`

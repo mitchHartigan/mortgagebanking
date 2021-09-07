@@ -14,7 +14,7 @@ export default function LibraryCard() {
       </Title>
       <CenterBlock>
         <Subtext
-          size="xxs"
+          size="xs"
           alignment="center"
           styles="margin-bottom: -10px; margin-top: -20px; max-width: 350px; line-height: 28px;"
         >

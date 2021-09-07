@@ -75,7 +75,7 @@ const Navbar_ = styled.div.attrs((props) => ({
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 1.5vh 2vw 1.5vh 2vw;
+  padding: 10px 2vw 10px 2vw;
   margin-top: 0px;
   transition: opacity 150ms ease-in;
   background-color: ${(props) => props.theme.colors.darkGray};

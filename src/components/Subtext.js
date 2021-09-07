@@ -36,7 +36,7 @@ const _Subtext = styled.p`
       ? props.theme.colors[props.color]
       : props.theme.colors.darkGray};
   width: 100%;
-  line-height: 30px;
+  line-height: 28px;
   -webkit-font-smoothing: antialiased;
   ${(props) => props.styles}
 `;

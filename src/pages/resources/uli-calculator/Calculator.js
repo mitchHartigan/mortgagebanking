@@ -35,7 +35,10 @@ export default class Calculator extends Component {
               styles="margin: 10px 0px 0px 0px;"
             ></Subtext>
           </Card>
-          <Button onClick={UliAppendCheckDigit} styles="width: 400px;">
+          <Button
+            onClick={UliAppendCheckDigit}
+            styles="width: 400px; @media (max-width: 900px){ width: 100%; };"
+          >
             Append Check Digits
           </Button>
         </CardContainer>
@@ -53,13 +56,18 @@ export default class Calculator extends Component {
               styles="margin: 10px 0px 0px 0px;"
             ></Subtext>
           </Card>
-          <Button onClick={UliCheckDigitValidator} styles="width: 400px;">
+          <Button
+            onClick={UliCheckDigitValidator}
+            styles="width: 400px; @media (max-width: 900px){ width: 100%; };"
+          >
             Validate
           </Button>
         </CardContainer>
         {""}
         <DetailsContainer>
-          <Title size="md">Additional Calculation Details:</Title>
+          <Title size="md" styles="margin-bottom: 10px;">
+            Additional Calculation Details:
+          </Title>
           <Subtext
             id="uliReplaceAlphaText"
             alignment="center"
@@ -95,6 +103,10 @@ const CardContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  @media (max-width: 1200px) {
+    width: 100%;
+  }
 `;
 
 const Card = styled.div`
@@ -106,6 +118,12 @@ const Card = styled.div`
   padding: 20px 40px 20px 40px;
   box-sizing: border-box;
   background-color: ${(props) => props.theme.colors.darkGray};
+  border-radius: 3px;
+  box-shadow: 1px 3px 3px rgba(0, 0, 0, 0.35);
+
+  @media (max-width: 1200px) {
+    width: 100%;
+  }
 `;
 
 const DetailsContainer = styled.div`
@@ -113,6 +131,7 @@ const DetailsContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   margin-top: 5vh;
+  margin-bottom: 5vh;
 `;
 
 const Input = styled.input`
@@ -122,6 +141,10 @@ const Input = styled.input`
   box-sizing: border-box;
   padding: 0px;
   text-align: center;
+  outline: none;
+  &:focus {
+    border: 1px solid ${(props) => props.theme.colors.mainGold};
+  }
 `;
 
 // Legacy Code.

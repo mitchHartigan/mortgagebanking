@@ -20,7 +20,7 @@ const Text = styled.button`
   padding: ${(props) => (props.logo ? "0px" : "5px 10px 5px 10px")};
   font-family: ${(props) => props.theme.titleFont};
   font-size: ${(props) =>
-    props.size ? props.theme.text[props.size] : props.theme.text.xs} !important;
+    props.size ? props.theme.text[props.size] : props.theme.text.sm} !important;
   color: ${(props) => (props.dark ? props.theme.colors.darkGray : "white")};
   cursor: pointer;
   outline: none;
