@@ -62,12 +62,10 @@ export default class Navbar extends React.Component {
 
 const Navbar_ = styled.div.attrs((props) => ({
   style: {
-    opacity: `${props.scrollPos > 0 || props.alwaysDisplay ? "1" : "0"}`,
-    pointerEvents: `${
-      props.scrollPos || props.alwaysDisplay > 0 ? "initial" : "none"
-    }`,
-    userSelect: `${
-      props.scrollPos > 0 || props.alwaysDisplay ? "initial" : "none"
+    backgroundColor: `${
+      props.scrollPos > 0 || props.alwaysDisplay
+        ? props.theme.colors.darkGray
+        : "transparent"
     }`,
   },
 }))`
@@ -77,11 +75,9 @@ const Navbar_ = styled.div.attrs((props) => ({
   align-items: center;
   padding: 10px 2vw 10px 2vw;
   margin-top: 0px;
-  transition: opacity 150ms ease-in;
-  background-color: ${(props) => props.theme.colors.darkGray};
   box-sizing: border-box;
+  transition: background-color 150ms ease-in;
   width: 100%;
-  z-index: 10;
 
   @media (max-width: 900px) {
     display: none;
@@ -94,6 +90,7 @@ const Container = styled.div`
   flex-direction: row;
   justify-content: center;
   width: 100%;
+  z-index: 999;
 
   @media (max-width: 1230px) {
     justify-content: flex-start;

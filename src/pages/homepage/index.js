@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 
+import Navbar from "components/navbar/index";
 import Summary from "./Summary";
 import { ResourcesImage } from "./_ResourcesImage";
 import { PracticeAreasImage } from "./_PracticeAreasImage";
@@ -62,6 +63,7 @@ export default class index extends Component {
           <AboutUs />
           <ContactUs />
         </DarkBlueContainer>
+        <Navbar />
       </Container>
     );
   }

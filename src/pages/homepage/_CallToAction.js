@@ -38,8 +38,12 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  z-index: 10;
+  z-index: 1;
   width: 35%;
+
+  @media (max-width: 900px) {
+    width: 70%;
+  }
 `;
 
 const Image = styled.img``;
