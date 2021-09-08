@@ -6,7 +6,7 @@ export function PracticeAreasImage() {
 }
 
 const Image = styled.img`
-  width: 275px;
+  width: 260px;
   height: auto;
   margin-bottom: -9px;
 `;
