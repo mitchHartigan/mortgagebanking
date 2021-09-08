@@ -23,20 +23,20 @@ export class ExpandableBulletPoint extends Component {
 
   render() {
     const { title, children } = this.props;
-    const { expanded, showAnimation } = this.state;
-
-    console.log("expanded", expanded);
+    const { expanded } = this.state;
 
     return (
-      <Container onClick={this._toggle}>
-        <ContentContainer>
-          <TitleContainer>
+      <Container>
+        <ContentContainer expanded={expanded}>
+          <TitleContainer onClick={this._toggle}>
             <Plus
               src="plus_button.svg"
               alt="Plus Button."
               expanded={expanded}
             />
-            <Subtext size="xs">{title}</Subtext>
+            <Subtext size="xs" styles={SubtextStyleOverride}>
+              {title}
+            </Subtext>
           </TitleContainer>
           <ExpandedCard expanded={expanded}>{children}</ExpandedCard>
         </ContentContainer>
@@ -45,19 +45,38 @@ export class ExpandableBulletPoint extends Component {
   }
 }
 
-const ContentContainer = styled.div``;
+const SubtextStyleOverride = `
+  font-weight: bold;
+  margin: 0px;
+`;
+
+const ContentContainer = styled.div`
+  width: 100%;
+  background-color: ${(props) =>
+    props.expanded ? props.theme.colors.offWhite : "white"};
+  box-shadow: ${(props) =>
+    props.expanded ? "0px 3px 3px rgba(0, 0, 0, 0.25)" : ""};
+  padding: 0px 0px 0px 10px;
+  box-sizing: border-box;
+`;
 
 const TitleContainer = styled.div`
   display: flex;
   flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 10px 0px 10px 0px;
+  cursor: pointer;
+
+  &: hover {
+    background-color: ${(props) => props.theme.colors.offWhite};
+  }
 `;
 
 const Container = styled.div`
   display: flex;
-
-  &:hover {
-    background-color: lightblue;
-  }
+  width: 100%;
+  margin: 20px 0px 20px 0px;
 `;
 
 const RotateForwards = keyframes`
@@ -81,13 +100,13 @@ const RotateBackwards = keyframes`
 `;
 
 const ExpandedCard = styled.div`
-  background-color: ${(props) => props.theme.colors.offWhite};
   display: ${(props) => (props.expanded ? "block" : "none")};
 `;
 
 const Plus = styled.img`
-  width: 14px;
-  height: 14px;
+  margin: 0px 10px 0px 10px;
+  width: 16px;
+  height: 16px;
   animation-delay: 0.2s;
   animation: ${(props) => {
       if (props.expanded === undefined) {
@@ -98,7 +117,7 @@ const Plus = styled.img`
         return RotateBackwards;
       }
     }}
-    0.2s linear;
+    150ms linear;
 
   animation-fill-mode: forwards;
 `;

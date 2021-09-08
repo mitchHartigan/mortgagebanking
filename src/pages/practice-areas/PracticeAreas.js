@@ -20,7 +20,7 @@ export default function PracticeAreas() {
             networks, lead providers, real estate companies, finance companies
             and more. We have represented top ten banks and sole proprietors.
           </Subtext>
-          <Subtext size="xs">
+          <Subtext size="xs" styles="margin-top: 10px">
             Clients appreciate an outside counsel perspective, but also value
             the experience of a former mortgage company CEO and the functional
             architect of loan origination systems of three top ten mortgage
@@ -45,6 +45,7 @@ const TextContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: 1vh 0vw 2vh 0vw;
 `;
 
 const ContentContainer = styled.div`

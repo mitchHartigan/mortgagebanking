@@ -10,7 +10,7 @@ import styled from "styled-components";
  */
 
 export const Subtext = (props) => {
-  const { alignment, children, size, color, styles, id } = props;
+  const { alignment, children, size, color, styles, id, onClick } = props;
 
   return (
     <_Subtext
@@ -20,6 +20,7 @@ export const Subtext = (props) => {
       size={size}
       color={color}
       text={children}
+      onClick={onClick}
     >
       {children}
     </_Subtext>
