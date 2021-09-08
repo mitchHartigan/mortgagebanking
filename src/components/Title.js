@@ -55,7 +55,6 @@ const Header = styled.h2`
   }
 
   @media (max-width: 800px) {
-    text-align: center;
     line-height: 1.2em;
   }
 `;
@@ -74,4 +73,8 @@ const Container = styled.div`
   justify-content: space-between;
   align-items: ${(props) => (props.alignTitle ? props.alignTitle : "center")};
   ${(props) => props.styles}
+
+  @media (max-width: 800px) {
+    align-items: center;
+  }
 `;

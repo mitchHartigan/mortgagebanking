@@ -51,13 +51,17 @@ const SubtextStyleOverride = `
 `;
 
 const ContentContainer = styled.div`
-  width: 100%;
+  width: 90%;
   background-color: ${(props) =>
     props.expanded ? props.theme.colors.offWhite : "white"};
   box-shadow: ${(props) =>
     props.expanded ? "0px 3px 3px rgba(0, 0, 0, 0.25)" : ""};
   padding: 0px 0px 0px 10px;
   box-sizing: border-box;
+
+  @media (max-width: 900px) {
+    padding: 0px;
+  }
 `;
 
 const TitleContainer = styled.div`
@@ -76,7 +80,7 @@ const TitleContainer = styled.div`
 const Container = styled.div`
   display: flex;
   width: 100%;
-  margin: 20px 0px 20px 0px;
+  margin: 10px 0px 10px 0px;
 `;
 
 const RotateForwards = keyframes`

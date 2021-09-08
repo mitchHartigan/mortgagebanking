@@ -51,6 +51,16 @@ const TextContainer = styled.div`
 const ContentContainer = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
   width: 45%;
   margin-top: 10vh;
+
+  @media (max-width: 1400px) {
+    width: 70%;
+  }
+
+  @media (max-width: 900px) {
+    width: 90%;
+    margin-top: 2.5vh;
+  }
 `;
