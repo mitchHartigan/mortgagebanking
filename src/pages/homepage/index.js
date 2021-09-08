@@ -1,20 +1,68 @@
 import React, { Component } from "react";
+import styled from "styled-components";
+
 import ContactForm from "./ContactForm";
+import Summary from "./Summary";
+import { ResourcesImage } from "./_ResourcesImage";
+import { PracticeAreasImage } from "./_PracticeAreasImage";
+import { InitiativesImage } from "./_InitiativesImage";
+
+const resourcesData = {
+  title: "Resources",
+  image: <ResourcesImage />,
+  descriptionText: `
+    Tools and materials for compliance management.
+    Glossary of Acronyms that keeps growing to the
+    popular ULI Check Digit calculator. 
+    Even more tools are in the works... `,
+  buttonText: "View Resources",
+  linkTarget: "/resources",
+};
+
+const practiceAreasData = {
+  title: "Practice Areas",
+  image: <PracticeAreasImage />,
+  descriptionText: `
+    At Shirk Law, we have extensive experience
+    representing mortgage bankers, brokers, credit unions,
+    top ten banks, and more. Our clients appreciate the
+    perspective we have as outside counsel, and we regularly
+    engage with both state and federal regulators.
+  `,
+  buttonText: "View Practice Areas",
+  linkTarget: "/practice-areas",
+};
+
+const initiativesData = {
+  title: "Initiatives",
+  image: <InitiativesImage />,
+  descriptionText: `
+    We make mortgage banking law more accessible through
+    workshops, cost sharing conversations, and projects sponsored
+    by multiple clients. We’re committed to sharing our knowledge,
+    creating valuable conversations, and providing educational
+    services and materials through these initiatives.
+  `,
+  buttonText: "View Initiatives",
+  linkTarget: "/initiatives",
+};
 
 export default class index extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      formSubmitted: false,
-    };
-  }
-
   render() {
     return (
-      <div>
-        <ContactForm></ContactForm>
-      </div>
+      <Container>
+        <Summary data={resourcesData} />
+        <Summary data={practiceAreasData} swap />
+        <Summary data={initiativesData} />
+        <ContactForm />
+      </Container>
     );
   }
 }
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%:
+  justify-content: center; 
+`;
