@@ -1,11 +1,13 @@
 import React from "react";
 import styled, { keyframes } from "styled-components";
 import CallToAction from "./_CallToAction";
+import { Chevron } from "./_Chevron";
 
 export default function Hero() {
   return (
     <Container>
       <CallToAction />
+      <Chevron />
       <Filter />
     </Container>
   );
@@ -23,6 +25,8 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
+
+  margin-bottom: 5vh;
 `;
 
 const backgroundFade = keyframes`
