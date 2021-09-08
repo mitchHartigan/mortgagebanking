@@ -7,6 +7,7 @@ import "./index.css";
 import Homepage from "pages/homepage/index";
 import ULICalculator from "pages/resources/uli-calculator/index";
 import Resources from "pages/resources/Resources";
+import PracticeAreas from "pages/practice-areas/PracticeAreas";
 
 function App() {
   return (
@@ -26,7 +27,7 @@ function App() {
             <p>Initiatives</p>
           </Route>
           <Route path="/practice-areas">
-            <p>Practice Areas</p>
+            <PracticeAreas />
           </Route>
         </Switch>
       </BrowserRouter>

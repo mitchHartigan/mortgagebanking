@@ -102,4 +102,5 @@ const NavLinkContainer = styled.div`
   flex-direction: row;
   justify-content: space-between;
   width: 45%;
+  margin-top: -3px;
 `;
