@@ -38,5 +38,10 @@ const _Subtext = styled.p`
   width: 100%;
   line-height: 28px;
   -webkit-font-smoothing: antialiased;
+
+  @media (max-width: 1200px) {
+    font-size: ${(props) => props.theme.text.xxs};
+  }
+
   ${(props) => props.styles}
 `;

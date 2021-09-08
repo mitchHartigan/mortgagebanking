@@ -16,6 +16,7 @@ export const Title = (props) => {
     spanWidth,
     spanColor,
     size,
+    color,
     children,
     align,
     alignTitle,
@@ -24,7 +25,7 @@ export const Title = (props) => {
 
   return (
     <Container styles={styles} alignTitle={alignTitle}>
-      <Header size={size} align={align}>
+      <Header size={size} align={align} color={color}>
         {children}
       </Header>
       <Underline spanWidth={spanWidth} spanColor={spanColor}></Underline>
@@ -36,7 +37,10 @@ const Header = styled.h2`
   margin: 0px;
   font-family: ${(props) => props.theme.titleFont};
   font-size: ${(props) => props.theme.text[props.size]};
-  color: ${(props) => props.theme.colors.darkGray};
+  color: ${(props) =>
+    props.color
+      ? props.theme.colors[props.color]
+      : props.theme.colors.darkGray};
   -webkit-font-smoothing: antialiased;
   margin-bottom: 7px;
   font-weight: normal;

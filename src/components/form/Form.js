@@ -13,10 +13,10 @@ const _Form = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 45vw;
+  width: 43vw;
   min-width: 600px;
   background-color: ${(props) => props.theme.colors.offWhite};
-  padding: 10px 40px 30px 40px;
+  padding: 3.5vh 3vw 3.5vh 3vw;
   border-radius: 2px;
   box-sizing: border-box;
 
@@ -29,7 +29,7 @@ const _Form = styled.div`
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 40px 0px 40px 0px;
+  margin: 10px 0px 40px 0px;
   box-sizing: border-box;
   width: 100%;
   align-items: center;

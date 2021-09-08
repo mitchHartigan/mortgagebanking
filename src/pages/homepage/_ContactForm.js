@@ -71,9 +71,6 @@ export default class ContactForm extends Component {
     if (!success) {
       return (
         <Form>
-          <Subtext alignment="center" styles="margin-bottom: 30px;" size="xs">
-            Or, send us a message and we'll get in touch:
-          </Subtext>
           <Input
             label="Full Name"
             name="name"

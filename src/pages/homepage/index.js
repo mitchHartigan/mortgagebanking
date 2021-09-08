@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 
-import ContactForm from "./ContactForm";
 import Summary from "./Summary";
 import { ResourcesImage } from "./_ResourcesImage";
 import { PracticeAreasImage } from "./_PracticeAreasImage";
 import { InitiativesImage } from "./_InitiativesImage";
+import AboutUs from "./AboutUs";
+import { ContactUs } from "./ContactUs";
 
 const resourcesData = {
   title: "Resources",
@@ -54,7 +55,11 @@ export default class index extends Component {
         <Summary data={resourcesData} />
         <Summary data={practiceAreasData} swap />
         <Summary data={initiativesData} />
-        <ContactForm />
+
+        <DarkBlueContainer>
+          <AboutUs />
+          <ContactUs />
+        </DarkBlueContainer>
       </Container>
     );
   }
@@ -65,4 +70,9 @@ const Container = styled.div`
   flex-direction: column;
   width: 100%:
   justify-content: center; 
+`;
+
+const DarkBlueContainer = styled.div`
+  margin-top: 8vh;
+  background-color: ${(props) => props.theme.colors.darkBlue};
 `;
