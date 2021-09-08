@@ -18,7 +18,7 @@ export const TextArea = (props) => {
 };
 
 const _TextArea = styled.textarea`
-  height: 160px;
+  height: 215px;
   padding: 10px 5px 5px 15px;
   background-color: ${(props) => props.theme.colors.offWhite};
   font-family: ${(props) => props.theme.textFont};

@@ -7,6 +7,7 @@ import { PracticeAreasImage } from "./_PracticeAreasImage";
 import { InitiativesImage } from "./_InitiativesImage";
 import AboutUs from "./AboutUs";
 import { ContactUs } from "./ContactUs";
+import Hero from "./_Hero.js";
 
 const resourcesData = {
   title: "Resources",
@@ -52,6 +53,7 @@ export default class index extends Component {
   render() {
     return (
       <Container>
+        <Hero />
         <Summary data={resourcesData} />
         <Summary data={practiceAreasData} swap />
         <Summary data={initiativesData} />
