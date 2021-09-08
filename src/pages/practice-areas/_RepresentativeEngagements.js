@@ -40,9 +40,33 @@ export default function RepresentativeEngagements() {
         </GoldBulletPoint>
       </ExpandableBulletPoint>
 
+      <BulletPoint>Website Compliance Reviews</BulletPoint>
+
+      <BulletPoint>Marketing Materials Compliance reviews</BulletPoint>
+
+      <ExpandableBulletPoint title="Drafting Documents">
+        <GoldBulletPoint>Policies and Procedures</GoldBulletPoint>
+        <GoldBulletPoint>
+          Loan originator compensation agreements
+        </GoldBulletPoint>
+        <GoldBulletPoint>
+          Correspondent and Wholesale lending agreements
+        </GoldBulletPoint>
+      </ExpandableBulletPoint>
+
+      <BulletPoint>Appraisal Management Requirements</BulletPoint>
+      <BulletPoint>State examination support</BulletPoint>
+      <BulletPoint>Mock examinations</BulletPoint>
+      <BulletPoint>Pre-litigation file reviews</BulletPoint>
+      <BulletPoint>Negotiating software liscense agreements</BulletPoint>
+      <BulletPoint>Negotiating sub-servicing agreements</BulletPoint>
       <BulletPoint>
-        CFPB Civil Investigative Demand and ensuing enforcement action
+        Reviewing contracts for key risk/performance indicators
       </BulletPoint>
+      <BulletPoint>
+        Software and Servicing agreement exit strategies
+      </BulletPoint>
+      <BulletPoint>HUD Post Endorsement Technical Reviews</BulletPoint>
     </Container>
   );
 }

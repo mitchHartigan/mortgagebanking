@@ -26,7 +26,7 @@ const Container = styled.div`
 
 const Bullet = styled.div`
   height: 10px;
-  width: 10px;
+  width: 12px;
   margin: 0px 20px 0px 40px;
   background-color: ${(props) => props.theme.colors.mainGold};
 `;

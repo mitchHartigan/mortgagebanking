@@ -54,6 +54,7 @@ const ContentContainer = styled.div`
   align-items: center;
   width: 45%;
   margin-top: 10vh;
+  margin-bottom: 7vh;
 
   @media (max-width: 1400px) {
     width: 70%;
