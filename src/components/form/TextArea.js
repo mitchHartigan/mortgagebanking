@@ -7,7 +7,7 @@ export const TextArea = (props) => {
   let interestAreaMessage = "";
 
   if (interestArea) {
-    interestAreaMessage = `Hey! I'm interested in the ${interestArea} and I'd like some more information.`;
+    interestAreaMessage = `Hey! I'm interested in the ${interestArea} initiative and I'd like some more information.`;
   }
 
   return (
