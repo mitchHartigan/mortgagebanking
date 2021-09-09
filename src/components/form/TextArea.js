@@ -52,7 +52,7 @@ const _TextArea = styled.textarea`
 
 const ErrorMessage = styled.p`
   color: red;
-  font-family: ${(props) => props.theme.font};
+  font-family: ${(props) => props.theme.textFont};
   font-size: ${(props) => props.theme.text.xs};
   margin-top: 10px;
   visibility: ${(props) => (props.invalid ? "visible" : "hidden")};
