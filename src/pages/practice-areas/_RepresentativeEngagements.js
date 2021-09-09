@@ -17,7 +17,7 @@ export default function RepresentativeEngagements() {
         <GoldBulletPoint>Transaction support desk</GoldBulletPoint>
       </ExpandableBulletPoint>
 
-      <ExpandableBulletPoint title="Liscensing">
+      <ExpandableBulletPoint title="Licensing">
         <GoldBulletPoint>Requirement Analysis</GoldBulletPoint>
         <GoldBulletPoint>Filing Assistance</GoldBulletPoint>
         <GoldBulletPoint>Renewal Assitance</GoldBulletPoint>
