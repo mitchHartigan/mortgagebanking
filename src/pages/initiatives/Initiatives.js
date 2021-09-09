@@ -3,7 +3,9 @@ import styled from "styled-components";
 import { Title } from "components/Title";
 import { Subtext } from "components/Subtext";
 import Navbar from "components/navbar/index";
-import { ContactPrefillButton } from "./ContactPrefillButton";
+import { ComplianceCard } from "./_ComplianceCard";
+import { ConversationsCard } from "./_ConversationsCard";
+import { ProjectsCard } from "./_ProjectsCard";
 
 export default function Initiatives() {
   return (
@@ -12,13 +14,16 @@ export default function Initiatives() {
         <Title size="xl" alignment="center">
           Our Initiatives
         </Title>
-        <Subtext size="xs">
+        <Subtext size="xs" alignment="center">
           We make experienced mortgage banking lawyers more accessible through
           workshops, cost sharing conversations, and projects sponsored by
           multiple clients. We are in this together.
         </Subtext>
+
+        <ComplianceCard />
+        <ConversationsCard />
+        <ProjectsCard />
       </ContentContainer>
-      <ContactPrefillButton interestArea={"Compliance Workshops"} />
       <Navbar alwaysDisplay />
     </Container>
   );
@@ -47,3 +52,5 @@ const ContentContainer = styled.div`
     margin-top: 2.5vh;
   }
 `;
+
+const Image = styled.img``;

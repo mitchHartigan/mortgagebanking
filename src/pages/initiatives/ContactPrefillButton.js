@@ -13,8 +13,9 @@ export function ContactPrefillButton(props) {
           interestArea: interestArea,
         },
       }}
+      style={{ width: "100%" }}
     >
-      <Button>Get Involved</Button>
+      <Button styles="width: 100%;">Get Involved</Button>
     </Link>
   );
 }

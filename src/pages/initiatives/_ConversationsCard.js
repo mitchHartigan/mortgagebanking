@@ -6,35 +6,34 @@ import { CenterBlock } from "components/CenterBlock";
 import { GoldBulletPoint } from "pages/practice-areas/_GoldBulletPoint";
 import { ContactPrefillButton } from "./ContactPrefillButton";
 
-export function ComplianceCard() {
+export function ConversationsCard() {
   return (
     <Container>
-      <Image src="compliance_graphic.png" alt="A screwdriver and wrench." />
+      <Image src="conversations_graphic.png" alt="A screwdriver and wrench." />
       <Title size="xl" align="center" styles="margin: 20px 0px 10px 0px;">
-        Compliance Workshops
+        Shared Conversations
       </Title>
       <Subtext size="xs" styles={SubtextStylesOverride}>
-        Engage in an intensive online interactive Compliance Workshop. Practical
-        operational topics that provide in-depth analysis and hands on scenarios
-        to present and assess compliance issues clients face every day.
+        Join with other lenders in Shared Conversations with a mortgage banking
+        lawyer. Enhance your compliance management with quarterly guidance on
+        agenda topics you influence. Shared Conversations expand perspective
+        exposing participants to questions they didn’t even know to ask.
       </Subtext>
 
       <CenterBlock>
         <BulletContainer>
-          <GoldBulletPoint>
-            Take home work aids, tools, and checklists
-          </GoldBulletPoint>
+          <GoldBulletPoint>Participants influence the agenda</GoldBulletPoint>
           <GoldBulletPoint>
             Significant savings over hourly rates
           </GoldBulletPoint>
           <GoldBulletPoint>Valuable feedback and guidance</GoldBulletPoint>
           <GoldBulletPoint>
-            Suggest a topic for a future workshop
+            A mini conference on the topics of your choosing
           </GoldBulletPoint>
         </BulletContainer>
       </CenterBlock>
 
-      <ContactPrefillButton interestArea={"Compliance Workshops"} />
+      <ContactPrefillButton interestArea={"Shared Conversations"} />
     </Container>
   );
 }
@@ -60,7 +59,7 @@ const Container = styled.div`
   padding: 30px 10% 30px 10%;
   box-shadow: 1px 4px 4px rgba(0, 0, 0, 0.35);
   box-sizing: border-box;
-  margin: 30px 0px 5vh 0px;
+  margin: 2vh 0px 5vh 0px;
 
   @media (max-width: 1200px) {
     width: 100%;
