@@ -117,7 +117,7 @@ const Card = styled.div`
   margin-bottom: 20px;
   padding: 20px 40px 20px 40px;
   box-sizing: border-box;
-  background-color: ${(props) => props.theme.colors.darkGray};
+  background-color: ${(props) => props.theme.colors.darkBlue};
   border-radius: 3px;
   box-shadow: 1px 3px 3px rgba(0, 0, 0, 0.35);
 

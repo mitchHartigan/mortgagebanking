@@ -75,7 +75,7 @@ const Navbar_ = styled.div.attrs((props) => ({
   style: {
     backgroundColor: `${
       props.scrollPos > 0 || props.alwaysDisplay
-        ? props.theme.colors.darkGray
+        ? props.theme.colors.darkBlue
         : "transparent"
     }`,
   },
