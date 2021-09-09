@@ -39,5 +39,5 @@ const Bullet = styled.div`
   height: 10px;
   background-color: ${(props) => props.theme.colors.darkGray};
   border-radius: 50%;
-  margin-right: 11px;
+  margin-right: 20px;
 `;

@@ -113,7 +113,7 @@ const ExpandedCard = styled.div`
 `;
 
 const Plus = styled.img`
-  margin: 0px 10px 0px 10px;
+  margin: 0px 15px 0px 10px;
   width: 16px;
   height: 16px;
   animation-delay: 0.2s;
