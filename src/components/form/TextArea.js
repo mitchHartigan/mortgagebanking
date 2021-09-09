@@ -2,7 +2,13 @@ import React from "react";
 import styled from "styled-components";
 
 export const TextArea = (props) => {
-  const { label, onChange, invalid, name, value, interestArea } = props;
+  const { label, onChange, invalid, name, interestArea } = props;
+
+  let interestAreaMessage = "";
+
+  if (interestArea) {
+    interestAreaMessage = `Hey! I'm interested in the ${interestArea} and I'd like some more information.`;
+  }
 
   return (
     <Container>
@@ -10,7 +16,7 @@ export const TextArea = (props) => {
         name={name}
         onChange={onChange}
         invalid={invalid}
-        defaultValue={interestArea}
+        defaultValue={interestAreaMessage}
         placeholder={label}
       />
       <ErrorMessage invalid={invalid}>Please complete this field.</ErrorMessage>

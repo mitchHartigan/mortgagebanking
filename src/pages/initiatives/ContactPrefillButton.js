@@ -10,7 +10,7 @@ export function ContactPrefillButton(props) {
       to={{
         pathname: "/",
         state: {
-          interestArea: `Hey! I'm interested in the ${interestArea} and I'd like some more information.`,
+          interestArea: interestArea,
         },
       }}
     >
