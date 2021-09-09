@@ -6,11 +6,11 @@ import { Subtext } from "components/Subtext";
 import { FadeIn } from "components/FadeIn";
 import { CenterBlock } from "components/CenterBlock";
 
-export default function CallToAction() {
+export default function CallToAction(props) {
   return (
     <Container>
       <Image src="shirklaw.png" alt="Shirk Law PLLC Logo." />
-      <FadeIn visible delay="1000">
+      <FadeIn firstLoad={props.firstLoad} delay="1000">
         <Subtext
           size="sm"
           alignment="center"
@@ -23,7 +23,7 @@ export default function CallToAction() {
           cooperative initiatives.{" "}
         </Subtext>
       </FadeIn>
-      <FadeIn visible delay="1400">
+      <FadeIn firstLoad={props.firstLoad} delay="1400">
         <Link
           to="scrollTarget"
           spy={true}

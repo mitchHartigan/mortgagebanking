@@ -8,10 +8,10 @@ import styled, { keyframes } from "styled-components";
  */
 
 export const FadeIn = (props) => {
-  const { children, delay, visible } = props;
+  const { children, delay, firstLoad } = props;
 
   return (
-    <FadeWrapper visible={visible} delay={delay}>
+    <FadeWrapper delay={delay} firstLoad={firstLoad}>
       {children}
     </FadeWrapper>
   );
@@ -29,8 +29,8 @@ const fadeIn = keyframes`
 `;
 
 const FadeWrapper = styled.div`
-  opacity: 0;
-  animation: ${(props) => (props.visible ? fadeIn : "")};
+  opacity: ${(props) => (props.firstLoad ? "0" : "1")};
+  animation: ${(props) => (props.firstLoad ? fadeIn : "")};
   animation-duration: 1s;
   animation-fill-mode: forwards;
   animation-delay: ${(props) => props.delay}ms;

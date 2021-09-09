@@ -56,30 +56,51 @@ export default class Homepage extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {};
+    this.state = {
+      firstLoad: true,
+    };
   }
 
-  componentDidMount() {
+  _handleInterestArea = () => {
     try {
       const { interestArea } = this.props.location.state;
 
       if (interestArea) {
         this.setState({ interestArea: interestArea }, () => {
-          console.log("state from Homepage", this.state);
           document.getElementById("scrollTarget").scrollIntoView();
         });
       }
     } catch {
       console.log("No state in link.");
     }
+  };
 
+  _clearLinkStateOnRefresh() {
     window.history.replaceState({}, document.title);
   }
 
+  _preventFadeAnimRecurrence() {
+    const firstLoad = sessionStorage.getItem("firstLoad");
+
+    if (firstLoad == null) {
+      sessionStorage.setItem("firstLoad", "false");
+    } else {
+      this.setState({ firstLoad: false });
+    }
+  }
+
+  componentDidMount() {
+    this._handleInterestArea();
+    this._clearLinkStateOnRefresh();
+    this._preventFadeAnimRecurrence();
+  }
+
   render() {
+    const { firstLoad } = this.state;
+
     return (
       <Container>
-        <Hero />
+        <Hero firstLoad={firstLoad} />
         <Summary data={resourcesData} />
         <Summary data={practiceAreasData} swap />
         <Summary data={initiativesData} />
@@ -89,7 +110,7 @@ export default class Homepage extends Component {
           <ContactUs interestArea={this.state.interestArea} />
           <Footer />
         </DarkBlueContainer>
-        <Navbar fadeIn />
+        <Navbar fadeIn={firstLoad} />
       </Container>
     );
   }

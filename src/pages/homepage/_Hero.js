@@ -2,14 +2,15 @@ import React from "react";
 import styled, { keyframes } from "styled-components";
 import CallToAction from "./_CallToAction";
 import { Chevron } from "./_Chevron";
-import { FadeIn } from "components/FadeIn";
 
-export default function Hero() {
+export default function Hero(props) {
+  const { firstLoad } = props;
+
   return (
     <Container>
-      <CallToAction />
-      <Chevron />
-      <Filter />
+      <CallToAction firstLoad={firstLoad} />
+      <Chevron firstLoad={firstLoad} />
+      <Filter firstLoad={firstLoad} />
     </Container>
   );
 }
@@ -47,10 +48,14 @@ const Filter = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: ${(props) => props.theme.colors.darkBlue};
   width: 100%;
   height: 100%;
-  animation: ${backgroundFade} 0.7s ease-out;
+  background-color: ${(props) =>
+    props.firstLoad ? props.theme.colors.darkBlue : "#1E3755"};
+  opacity: ${(props) => (props.firstLoad ? "1" : "0.7")};
+  animation: ${(props) => (props.firstLoad ? backgroundFade : "")};
+  animation-duration: 600ms;
+  animation-timing-function: linear;
   animation-fill-mode: forwards;
   animation-delay: 1900ms;
 `;
