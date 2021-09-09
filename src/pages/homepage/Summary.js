@@ -13,7 +13,7 @@ export default function Summary(props) {
     <Container swap={swap}>
       <ImageContainer swap={swap}>{image}</ImageContainer>
       <DescriptionContainer swap={swap}>
-        <Title size="xxl" alignTitle="flex-start" spanWidth="200px">
+        <Title size="xxl" alignTitle="flex-start" spanWidth="8vw">
           {title}
         </Title>
         <Subtext size="xs" styles={SubtextStylesOverride}>
