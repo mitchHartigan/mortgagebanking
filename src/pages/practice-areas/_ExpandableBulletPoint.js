@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import styled, { keyframes } from "styled-components";
-import { Subtext } from "components/Subtext";
+import { ExpandableTitleText } from "./ExpandableTitleText";
 
 export class ExpandableBulletPoint extends Component {
   constructor(props) {
@@ -34,9 +34,9 @@ export class ExpandableBulletPoint extends Component {
               alt="Plus Button."
               expanded={expanded}
             />
-            <Subtext size="xs" styles={SubtextStyleOverride}>
+            <ExpandableTitleText expanded={expanded}>
               {title}
-            </Subtext>
+            </ExpandableTitleText>
           </TitleContainer>
           <ExpandedCard expanded={expanded}>{children}</ExpandedCard>
         </ContentContainer>
@@ -46,8 +46,17 @@ export class ExpandableBulletPoint extends Component {
 }
 
 const SubtextStyleOverride = `
+  padding-top: 3px;
   font-weight: bold;
   margin: 0px;
+  width: auto;
+  border-bottom: 3px solid transparent;
+
+  &:hover {
+    border-bottom: 3px solid #202020;
+  }
+
+  transition: border-color 120ms linear;
 `;
 
 const ContentContainer = styled.div`
@@ -71,10 +80,6 @@ const TitleContainer = styled.div`
   align-items: center;
   margin: 10px 0px 10px 0px;
   cursor: pointer;
-
-  &: hover {
-    background-color: ${(props) => props.theme.colors.offWhite};
-  }
 `;
 
 const Container = styled.div`
