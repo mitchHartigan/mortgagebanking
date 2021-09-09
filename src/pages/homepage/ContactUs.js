@@ -9,7 +9,7 @@ export class ContactUs extends React.Component {
     console.log("props from ContactUs", this.props);
     return (
       <Container>
-        <Title size="xxl" color="offWhite">
+        <Title id="scrollTarget" size="xxl" color="offWhite">
           Contact
         </Title>
         <Subtext

@@ -1,15 +1,18 @@
 import React from "react";
 import styled from "styled-components";
+
 import { Title } from "components/Title";
 import { Subtext } from "components/Subtext";
 import Navbar from "components/navbar/index";
 import { ComplianceCard } from "./_ComplianceCard";
 import { ConversationsCard } from "./_ConversationsCard";
 import { ProjectsCard } from "./_ProjectsCard";
+import { ScrollToTopOnMount } from "components/ScrollToTopOnMount";
 
 export default function Initiatives() {
   return (
     <Container>
+      <ScrollToTopOnMount />
       <ContentContainer>
         <Title size="xl" alignment="center">
           Our Initiatives

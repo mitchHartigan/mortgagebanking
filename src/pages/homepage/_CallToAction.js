@@ -27,7 +27,7 @@ export default function CallToAction() {
         <Link
           to="scrollTarget"
           spy={true}
-          offset={-150}
+          offset={-60}
           delay={0}
           duration={1300}
           smooth={true}

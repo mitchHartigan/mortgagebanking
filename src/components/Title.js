@@ -21,10 +21,11 @@ export const Title = (props) => {
     align,
     alignTitle,
     styles,
+    id,
   } = props;
 
   return (
-    <Container styles={styles} alignTitle={alignTitle}>
+    <Container id={id} styles={styles} alignTitle={alignTitle}>
       <Header size={size} align={align} color={color}>
         {children}
       </Header>

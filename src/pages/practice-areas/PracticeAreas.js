@@ -1,13 +1,16 @@
 import React from "react";
 import styled from "styled-components";
+
 import { Title } from "components/Title";
 import { Subtext } from "components/Subtext";
 import Navbar from "components/navbar/index";
 import RepresentativeEngagements from "./_RepresentativeEngagements";
+import { ScrollToTopOnMount } from "components/ScrollToTopOnMount";
 
 export default function PracticeAreas() {
   return (
     <Container>
+      <ScrollToTopOnMount />
       <ContentContainer>
         <Title size="xl" aligmnent="center">
           Our Practice Areas

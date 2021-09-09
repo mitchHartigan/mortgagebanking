@@ -4,7 +4,7 @@ import styled from "styled-components";
 export const Form = (props) => {
   return (
     <Container>
-      <_Form id="scrollTarget">{props.children}</_Form>
+      <_Form>{props.children}</_Form>
     </Container>
   );
 };
