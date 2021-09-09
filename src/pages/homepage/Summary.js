@@ -7,10 +7,10 @@ import { Subtext } from "components/Subtext";
 
 export default function Summary(props) {
   const { title, image, descriptionText, buttonText, linkTarget } = props.data;
-  const { swap } = props;
+  const { swap, id } = props;
 
   return (
-    <Container swap={swap}>
+    <Container swap={swap} id={id}>
       <ImageContainer swap={swap}>{image}</ImageContainer>
       <DescriptionContainer swap={swap}>
         <Title size="xxl" alignTitle="flex-start" spanWidth="8vw">

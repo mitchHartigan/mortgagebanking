@@ -1,9 +1,25 @@
 import React from "react";
 import styled, { keyframes } from "styled-components";
+import { Link } from "react-scroll";
 
 export function Chevron(props) {
   const { firstLoad } = props;
-  return <Image src="chevron.png" alt="Chevron icon." firstLoad={firstLoad} />;
+
+  return (
+    <Container>
+      <Link
+        to="chevronScrollTarget"
+        spy={true}
+        offset={-60}
+        delay={0}
+        duration={1300}
+        smooth={true}
+        style={{ margin: "0px", padding: "0px" }}
+      >
+        <Image src="chevron.png" alt="Chevron icon." firstLoad={firstLoad} />
+      </Link>
+    </Container>
+  );
 }
 
 const fadeIn = keyframes`
@@ -17,7 +33,7 @@ const fadeIn = keyframes`
   }
 `;
 
-const Image = styled.img`
+const Container = styled.div`
   position: absolute;
   opacity: ${(props) => (props.firstLoad ? "0" : "1")};
   bottom: 30px;
@@ -27,4 +43,12 @@ const Image = styled.img`
   animation-duration: 1s;
   animation-fill-mode: forwards;
   animation-delay: 1700ms;
+  cursor: pointer;
+
+  &: hover {
+    transform: translate(0, -2px);
+  }
+  transition: transform 100ms linear;
 `;
+
+const Image = styled.img``;

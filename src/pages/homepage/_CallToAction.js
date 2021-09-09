@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-scroll";
+
 import { Button } from "components/Button";
 import { Subtext } from "components/Subtext";
 import { FadeIn } from "components/FadeIn";

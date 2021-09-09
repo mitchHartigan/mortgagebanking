@@ -101,7 +101,7 @@ export default class Homepage extends Component {
     return (
       <Container>
         <Hero firstLoad={firstLoad} />
-        <Summary data={resourcesData} />
+        <Summary id="chevronScrollTarget" data={resourcesData} />
         <Summary data={practiceAreasData} swap />
         <Summary data={initiativesData} />
 
