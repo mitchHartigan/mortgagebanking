@@ -50,7 +50,26 @@ const initiativesData = {
   linkTarget: "/initiatives",
 };
 
-export default class index extends Component {
+export default class Homepage extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {};
+  }
+
+  componentDidMount() {
+    try {
+      const { interestArea } = this.props.location.state;
+
+      if (interestArea) {
+        this.setState({ interestArea: interestArea });
+        document.getElementById("scrollTarget").scrollIntoView();
+      }
+    } catch {
+      console.log("No state in link.");
+    }
+  }
+
   render() {
     return (
       <Container>
@@ -61,7 +80,7 @@ export default class index extends Component {
 
         <DarkBlueContainer>
           <AboutUs />
-          <ContactUs />
+          <ContactUs interestArea={this.state.interestArea} />
         </DarkBlueContainer>
         <Navbar />
       </Container>

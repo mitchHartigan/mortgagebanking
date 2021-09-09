@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 export const TextArea = (props) => {
-  const { label, onChange, invalid, name } = props;
+  const { label, onChange, invalid, name, interestArea } = props;
 
   return (
     <Container>
@@ -10,6 +10,7 @@ export const TextArea = (props) => {
         name={name}
         onChange={onChange}
         invalid={invalid}
+        defaultValue={interestArea}
         placeholder={label}
       />
       <ErrorMessage invalid={invalid}>Please complete this field.</ErrorMessage>

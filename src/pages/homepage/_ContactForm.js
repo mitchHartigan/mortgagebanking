@@ -22,6 +22,7 @@ export default class ContactForm extends Component {
       invalidMessage: false,
       submitted: false,
       success: false,
+      interestAreaMessage: "",
     };
   }
 
@@ -65,8 +66,14 @@ export default class ContactForm extends Component {
   };
 
   render() {
-    const { invalidEmail, invalidMessage, invalidName, submitted, success } =
-      this.state;
+    const {
+      interestAreaMessage,
+      invalidEmail,
+      invalidMessage,
+      invalidName,
+      submitted,
+      success,
+    } = this.state;
 
     if (!success) {
       return (
@@ -92,6 +99,7 @@ export default class ContactForm extends Component {
             label="Message"
             name="message"
             onChange={this.handleUpdate}
+            interestArea={this.props.interestArea}
             invalid={invalidMessage}
           />
           <CenterBlock>

@@ -4,19 +4,18 @@ import { globalStyles } from "./globalStyles";
 import { ThemeProvider } from "styled-components";
 import "./index.css";
 
-import Homepage from "pages/homepage/index";
+import Homepage from "pages/homepage/Homepage";
 import ULICalculator from "pages/resources/uli-calculator/index";
 import Resources from "pages/resources/Resources";
 import PracticeAreas from "pages/practice-areas/PracticeAreas";
+import Initiatives from "pages/initiatives/Initiatives";
 
 function App() {
   return (
     <ThemeProvider theme={globalStyles}>
       <BrowserRouter>
         <Switch>
-          <Route path="/" exact>
-            <Homepage />
-          </Route>
+          <Route path="/" exact component={Homepage} />
           <Route path="/resources">
             <Resources />
           </Route>
@@ -24,7 +23,7 @@ function App() {
             <ULICalculator />
           </Route>
           <Route path="/initiatives">
-            <p>Initiatives</p>
+            <Initiatives />
           </Route>
           <Route path="/practice-areas">
             <PracticeAreas />

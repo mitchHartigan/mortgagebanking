@@ -4,7 +4,7 @@ import { Title } from "components/Title";
 import { Subtext } from "components/Subtext";
 import ContactForm from "./_ContactForm";
 
-export function ContactUs() {
+export function ContactUs(props) {
   return (
     <Container>
       <Title size="xxl" color="offWhite">
@@ -16,9 +16,9 @@ export function ContactUs() {
         alignment="center"
         styles="margin: 30px 0px 30px 0px"
       >
-        We'd love to hear from you. Send us a message and we'll get in touch:
+        We'd love to hear from you. Send us a message and we'll get in touch:{" "}
       </Subtext>
-      <ContactForm />
+      <ContactForm interestArea={props.interestArea} />
     </Container>
   );
 }
