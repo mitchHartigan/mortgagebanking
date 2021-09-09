@@ -42,6 +42,7 @@ export default function CallToAction() {
 }
 
 const Container = styled.div`
+  margin-bottom: -8.5vh;
   position: absolute;
   display: flex;
   flex-direction: column;
