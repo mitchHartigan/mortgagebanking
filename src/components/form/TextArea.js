@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 export const TextArea = (props) => {
-  const { label, onChange, invalid, name, interestArea } = props;
+  const { label, onChange, invalid, name, value, interestArea } = props;
 
   return (
     <Container>

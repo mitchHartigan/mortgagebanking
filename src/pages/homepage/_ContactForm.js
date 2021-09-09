@@ -17,14 +17,19 @@ export default class ContactForm extends Component {
       name: "",
       email: "",
       message: "",
+      phone: "",
       invalidName: false,
       invalidEmail: false,
       invalidMessage: false,
+      invalidPhone: false,
       submitted: false,
       success: false,
-      interestAreaMessage: "",
     };
   }
+
+  _updateMessage = (message) => {
+    this.setState({ message: message });
+  };
 
   handleUpdate = (evt) => {
     const { name, value } = evt.target;
@@ -33,18 +38,27 @@ export default class ContactForm extends Component {
   };
 
   validateForm = () => {
-    const { name, email, phone, message } = this.state;
+    let { name, email, phone, message } = this.state;
+
+    // The message can be empty, but still displaying the placeholder value
+    // with the interest area message. So, if the interest area is filled out, we
+    // replace the empty message with that value.
+    if (message === "" && this.props.interestArea) {
+      message = this.props.interestArea;
+    }
 
     this.setState(
       {
         invalidName: name === "",
         invalidEmail: email === "",
-        invalidMessage: message === "",
+        invalidMessage: message === "" || message === undefined,
+        invalidPhone: phone === "",
       },
       async () => {
-        const { invalidName, invalidEmail, invalidMessage } = this.state;
+        const { invalidName, invalidEmail, invalidMessage, invalidPhone } =
+          this.state;
 
-        if ((!invalidName, !invalidEmail, !invalidMessage)) {
+        if (!invalidName && !invalidEmail && !invalidMessage && !invalidPhone) {
           // post form.
           const payload = {
             name: name,
@@ -52,6 +66,8 @@ export default class ContactForm extends Component {
             phone: phone,
             message: message,
           };
+
+          console.log("payload", payload);
 
           this.setState({ submitted: true });
           const submission = await POST_CONTACT_FORM(payload);
@@ -67,10 +83,10 @@ export default class ContactForm extends Component {
 
   render() {
     const {
-      interestAreaMessage,
       invalidEmail,
       invalidMessage,
       invalidName,
+      invalidPhone,
       submitted,
       success,
     } = this.state;
@@ -94,6 +110,7 @@ export default class ContactForm extends Component {
             label="Phone Number"
             name="phone"
             onChange={this.handleUpdate}
+            invalid={invalidPhone}
           />
           <TextArea
             label="Message"

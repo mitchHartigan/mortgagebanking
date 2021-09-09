@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 export const Input = (props) => {
-  const { label, onChange, invalid, name } = props;
+  const { label, onChange, invalid, name, value } = props;
 
   return (
     <Container>
@@ -11,6 +11,7 @@ export const Input = (props) => {
         name={name}
         onChange={onChange}
         invalid={invalid}
+        value={value}
         placeholder={label}
       />
       <ErrorMessage invalid={invalid}>Please complete this field.</ErrorMessage>

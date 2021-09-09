@@ -62,12 +62,16 @@ export default class Homepage extends Component {
       const { interestArea } = this.props.location.state;
 
       if (interestArea) {
-        this.setState({ interestArea: interestArea });
-        document.getElementById("scrollTarget").scrollIntoView();
+        this.setState({ interestArea: interestArea }, () => {
+          console.log("state from Homepage", this.state);
+          document.getElementById("scrollTarget").scrollIntoView();
+        });
       }
     } catch {
       console.log("No state in link.");
     }
+
+    window.history.replaceState({}, document.title);
   }
 
   render() {
