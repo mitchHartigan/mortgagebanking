@@ -1,22 +1,31 @@
 import React from "react";
 import styled from "styled-components";
+
 import { Title } from "components/Title";
 import LinkButton from "components/LinkButton";
 import { CenterBlock } from "components/CenterBlock";
 import { Subtext } from "components/Subtext";
+import { LinkWrapper } from "components/LinkWrapper";
 
 export default function CalculatorCard() {
   return (
     <Container>
-      <Image src="calculator_icon.png" alt="A book, open and bookmarked." />
-      <Title size="lg" align="center" alignItems="center">
+      <LinkWrapper to="/check-digit-calculator">
+        <Image src="calculator_icon.png" alt="A book, open and bookmarked." />
+      </LinkWrapper>
+      <Title
+        size="lg"
+        align="center"
+        alignItems="center"
+        styles="margin-bottom: 7px;"
+      >
         ULI Check Digit Calculator
       </Title>
       <CenterBlock>
         <Subtext
           size="xs"
           alignment="center"
-          styles="margin-bottom: -10px; margin-top: -20px; max-width: 350px; line-height: 28px"
+          styles="margin-bottom: -5px; margin-top: -20px; max-width: 350px; line-height: 28px"
         >
           Calculate and verify check digits for HMDA’s Universal Loan
           Identifier.
