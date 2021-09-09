@@ -23,7 +23,7 @@ export default function CallToAction() {
           cooperative initiatives.{" "}
         </Subtext>
       </FadeIn>
-      <FadeIn visible delay="1300">
+      <FadeIn visible delay="1400">
         <Link
           to="scrollTarget"
           spy={true}
