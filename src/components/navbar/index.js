@@ -42,17 +42,17 @@ export default class Navbar extends React.Component {
           </LogoLink>
           {""}
           <NavLinkContainer>
-            <NavLink route="/" exact width="20%">
+            <NavLink route="/" exact width="auto">
               Contact
             </NavLink>
-            <NavLink route="/practice-areas" width="20%">
+            <NavLink route="/practice-areas" width="auto">
               Practice Areas
             </NavLink>
-            <NavLink route="/resources" width="20%">
-              Resources
-            </NavLink>
-            <NavLink route="/initiatives" width="20%">
+            <NavLink route="/initiatives" width="auto">
               Initiatives
+            </NavLink>
+            <NavLink route="/resources" width="auto">
+              Resources
             </NavLink>
           </NavLinkContainer>
           {""}
@@ -121,7 +121,7 @@ const Container = styled.div`
 const NavLinkContainer = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
   width: 45%;
   margin-top: -3px;
 `;
