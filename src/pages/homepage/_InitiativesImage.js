@@ -13,4 +13,9 @@ export function InitiativesImage() {
 const Image = styled.img`
   width: 285px;
   height: auto;
+
+  @media (max-width: 900px) {
+    width: 200px;
+    height: auto;
+  }
 `;

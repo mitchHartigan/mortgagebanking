@@ -6,6 +6,7 @@ import LibraryCard from "./_LibraryCard";
 import SeachCard from "./_SearchCard";
 import CalculatorCard from "./_CalculatorCard";
 import Navbar from "components/navbar";
+import { Subtext } from "components/Subtext";
 
 export default function Resources() {
   return (
@@ -14,15 +15,17 @@ export default function Resources() {
         align="center"
         alignTitle="center"
         size="xxl"
-        styles={`
-          margin-top: 17vh;
-          @media (max-width: 900px) {
-            margin-top: 2vh;
-          }
-        `}
+        styles={TitleStylesOverride}
       >
         Resources
       </Title>
+      <Subtext size="xs" styles={SubtextStylesOverride}>
+        We’ve developed a set of tools to improve the compliance management
+        workflow, including a ULI check digit calculator, document library, and
+        a glossary of commonly used acronyms. We’re dedicated to improving your
+        experience.
+      </Subtext>
+
       <CardContainer>
         <SeachCard />
         <LibraryCard />
@@ -32,6 +35,26 @@ export default function Resources() {
     </Container>
   );
 }
+
+const TitleStylesOverride = `
+  margin-top: 17vh;
+  @media (max-width: 900px) {
+    margin-top: 2vh;
+  }
+`;
+
+const SubtextStylesOverride = `
+  text-align: center;
+  width: 50%;
+
+  @media (max-width: 1200px) {
+    width: 70%;
+  }
+
+  @media (max-width: 900px) {
+    width: 90%;
+  }
+`;
 
 const Container = styled.div`
   display: flex;
@@ -44,7 +67,7 @@ const CardContainer = styled.div`
   flex-direction: row;
   width: 90%;
   justify-content: space-around;
-  margin-top: 8vh;
+  margin-top: 4vh;
 
   @media (max-width: 1800px) {
     width: 100%;

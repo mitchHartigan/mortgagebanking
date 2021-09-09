@@ -14,10 +14,7 @@ export default class ULICalculator extends Component {
       <Container>
         <BackButton location="/resources" text="< Resources" />
         <ContentContainer>
-          <Title
-            size="xl"
-            styles="margin-bottom: 2vh; @media (max-width: 900px) { margin-top: 80px };"
-          >
+          <Title size="xl" styles={TitleStylesOverride}>
             ULI Check Digit Calculator
           </Title>
           <Subtext styles={SubtextParagraphStyles} size="xs">
@@ -55,6 +52,14 @@ export default class ULICalculator extends Component {
     );
   }
 }
+
+const TitleStylesOverride = `
+  margin-bottom: 2vh; 
+
+  @media (max-width: 900px) {
+     margin-top: 2.5vh
+  };
+`;
 
 const SubtextParagraphStyles = `
   margin-top: 1vh;

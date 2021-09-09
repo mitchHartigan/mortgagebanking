@@ -15,7 +15,7 @@ export default function AboutUs() {
         <Subtext
           size="sm"
           alignment="center"
-          styles="line-height: 35px; margin-top: 30px;"
+          styles={SubtextStylesOverride}
           color="offWhite"
         >
           Our members have focused on mortgage banking for over 25 years and
@@ -30,6 +30,16 @@ export default function AboutUs() {
     </CenterBlock>
   );
 }
+
+const SubtextStylesOverride = `
+  line-height: 35px;
+  margin-top: 30px;
+
+  @media (max-width: 900px) {
+    padding: 0px 10px 0px 10px;
+    line-height: 28px;
+  }
+`;
 
 const Container = styled.div`
   margin: 9vh 0vw 9vh 0vw;

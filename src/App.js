@@ -22,6 +22,9 @@ function App() {
           <Route path="/check-digit-calculator">
             <ULICalculator />
           </Route>
+          <Route path="/single-post/2017/05/28/uli-check-digit-calculator">
+            <ULICalculator />
+          </Route>
           <Route path="/initiatives">
             <Initiatives />
           </Route>

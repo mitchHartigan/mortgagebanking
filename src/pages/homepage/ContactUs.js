@@ -16,7 +16,7 @@ export class ContactUs extends React.Component {
           size="sm"
           color="offWhite"
           alignment="center"
-          styles="margin: 30px 0px 30px 0px"
+          styles={SubtextStylesOverride}
         >
           We'd love to hear from you. Send us a message and we'll get in touch:{" "}
         </Subtext>
@@ -25,6 +25,15 @@ export class ContactUs extends React.Component {
     );
   }
 }
+
+const SubtextStylesOverride = `
+  margin: 30px 0px 30px 0px;
+
+  @media (max-width: 900px){ 
+    padding: 0px 10px 0px 10px;
+    box-sizing: border-box;
+  }
+`;
 
 const Container = styled.div`
   display: flex;

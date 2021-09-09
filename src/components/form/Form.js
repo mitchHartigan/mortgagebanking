@@ -19,7 +19,7 @@ const _Form = styled.div`
   padding: 3.5vh 3vw 3.5vh 3vw;
   border-radius: 2px;
   box-sizing: border-box;
-  box-shadow: 0px 4px 4px #000000;
+  box-shadow: 0px 4px 4px ${(props) => props.theme.colors.darkGray};
 
   @media (max-width: 700px) {
     width: 90%;

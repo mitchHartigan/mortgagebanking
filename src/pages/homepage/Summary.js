@@ -16,7 +16,7 @@ export default function Summary(props) {
         <Title size="xxl" alignTitle="flex-start" spanWidth="200px">
           {title}
         </Title>
-        <Subtext size="xs" styles="margin-bottom: 25px">
+        <Subtext size="xs" styles={SubtextStylesOverride}>
           {descriptionText}
         </Subtext>
         <LinkButton to={linkTarget}>{buttonText}</LinkButton>
@@ -24,6 +24,14 @@ export default function Summary(props) {
     </Container>
   );
 }
+
+const SubtextStylesOverride = `
+  margin-bottom: 25px;
+
+  @media (max-width: 1400px){ 
+    text-align: center;
+  }
+`;
 
 const Container = styled.div`
   display: grid;
@@ -38,7 +46,10 @@ const Container = styled.div`
   @media (max-width: 1400px) {
     display: flex;
     justify-content: center;
+    align-items: center;
     flex-direction: column;
+
+    padding: 10vh 10px 10vh 10px;
   }
 `;
 
@@ -47,6 +58,11 @@ const ImageContainer = styled.div`
   align-self: end;
   justify-self: start;
   grid-row-start: 1;
+
+  @media (max-width: 1400px) {
+    justify-self: center;
+    align-self: center;
+  }
 `;
 
 const DescriptionContainer = styled.div`
@@ -54,4 +70,10 @@ const DescriptionContainer = styled.div`
   align-self: stretch;
   justify-self: center;
   grid-row-start: 1;
+
+  @media (max-width: 1400px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 `;

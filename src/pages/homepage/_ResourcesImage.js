@@ -13,4 +13,9 @@ export function ResourcesImage() {
 const Image = styled.img`
   width: 280px;
   height: auto;
+
+  @media (max-width: 900px) {
+    width: 200px;
+    height: auto;
+  }
 `;
