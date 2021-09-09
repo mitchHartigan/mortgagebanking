@@ -25,7 +25,9 @@ export default class ULICalculator extends Component {
             reported in 2019. The ULI can be composed of letters and numbers but
             no special characters. Letters may be upper or lower case. For more
             information on the capacity of the ULI to support your production,
-            <AnchorLink to="https://www.consumerfinance.gov/compliance/compliance-resources/mortgage-resources/hmda-reporting-requirements/home-mortgage-disclosure-act-faqs/">
+            <AnchorLink
+              to={`https://www.ecfr.gov/cgi-bin/text-idx?SID=6927cd88c645a329312ae8e214123576&mc=true&node=pt12.8.1003&rgn=div5#ap12.8.1003_16.c`}
+            >
               {" "}
               click here.
             </AnchorLink>
@@ -39,7 +41,7 @@ export default class ULICalculator extends Component {
             valid ULI. It also lets you enter up to a 45 character ULI number
             that already has the check digits for validation. For more
             information on obtaining your company's Legal Entity Identifier,
-            <AnchorLink to="https://www.consumerfinance.gov/compliance/compliance-resources/mortgage-resources/hmda-reporting-requirements/home-mortgage-disclosure-act-faqs/">
+            <AnchorLink to="https://www.ecfr.gov/cgi-bin/text-idx?SID=6927cd88c645a329312ae8e214123576&mc=true&node=pt12.8.1003&rgn=div5#ap12.8.1003_16.c">
               {" "}
               click here.
             </AnchorLink>
