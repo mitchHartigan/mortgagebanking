@@ -2,6 +2,7 @@ import React from "react";
 import styled, { keyframes } from "styled-components";
 import CallToAction from "./_CallToAction";
 import { Chevron } from "./_Chevron";
+import { FadeIn } from "components/FadeIn";
 
 export default function Hero() {
   return (
@@ -49,7 +50,7 @@ const Filter = styled.div`
   background-color: ${(props) => props.theme.colors.darkBlue};
   width: 100%;
   height: 100%;
-  animation: ${backgroundFade} 0.5s ease-out;
+  animation: ${backgroundFade} 0.7s ease-out;
   animation-fill-mode: forwards;
-  animation-delay: 1s;
+  animation-delay: 1900ms;
 `;

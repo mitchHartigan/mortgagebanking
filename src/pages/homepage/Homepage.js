@@ -10,6 +10,7 @@ import AboutUs from "./AboutUs";
 import { ContactUs } from "./ContactUs";
 import Hero from "./_Hero.js";
 import { Footer } from "./Footer";
+import { FadeIn } from "components/FadeIn";
 
 const resourcesData = {
   title: "Resources",
@@ -88,7 +89,7 @@ export default class Homepage extends Component {
           <ContactUs interestArea={this.state.interestArea} />
           <Footer />
         </DarkBlueContainer>
-        <Navbar />
+        <Navbar fadeIn />
       </Container>
     );
   }

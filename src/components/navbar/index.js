@@ -1,8 +1,9 @@
 import React from "react";
+import styled, { keyframes, css } from "styled-components";
+
 import { NavLink } from "./NavLink";
 import { LogoLink } from "./LogoLink";
 import { Logo } from "./_Logo";
-import styled from "styled-components";
 import { Hamburger } from "./_Hamburger";
 
 export default class Navbar extends React.Component {
@@ -33,6 +34,7 @@ export default class Navbar extends React.Component {
         <Navbar_
           scrollPos={this.state.scrollPos}
           alwaysDisplay={this.props.alwaysDisplay}
+          fadeIn={this.props.fadeIn}
         >
           {""}
           <LogoLink route="/" exact>
@@ -60,6 +62,15 @@ export default class Navbar extends React.Component {
   }
 }
 
+const fadeInAnimation = keyframes`
+  from { 
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+`;
+
 const Navbar_ = styled.div.attrs((props) => ({
   style: {
     backgroundColor: `${
@@ -75,9 +86,19 @@ const Navbar_ = styled.div.attrs((props) => ({
   align-items: center;
   padding: 10px 10px 10px 15px;
   margin-top: 0px;
+  opacity: ${(props) => (props.fadeIn ? "0" : "1")};
   box-sizing: border-box;
   transition: background-color 150ms ease-in;
   width: 100%;
+  animation: ${(props) =>
+    props.fadeIn
+      ? css`
+          ${fadeInAnimation} 300ms ease-in
+        `
+      : ""};
+
+  animation-delay: 1s;
+  animation-fill-mode: forwards;
 
   @media (max-width: 900px) {
     display: none;
