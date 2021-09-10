@@ -126,4 +126,8 @@ const Container = styled.div`
 const DarkBlueContainer = styled.div`
   margin-top: 8vh;
   background-color: ${(props) => props.theme.colors.darkBlue};
+
+  @media (max-width: 1200px) {
+    margin-top: 40px;
+  }
 `;

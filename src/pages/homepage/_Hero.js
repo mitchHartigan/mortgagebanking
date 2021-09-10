@@ -29,6 +29,10 @@ const Container = styled.div`
   box-sizing: border-box;
 
   margin-bottom: 5vh;
+
+  @media (max-width: 1200px) {
+    margin-bottom: 40px;
+  }
 `;
 
 const backgroundFade = keyframes`

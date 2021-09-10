@@ -64,7 +64,7 @@ const Container = styled.div`
     align-items: center;
     flex-direction: column;
 
-    padding: 10vh 10px 10vh 10px;
+    padding: 50px 10px 50px 10px;
   }
 `;
 
