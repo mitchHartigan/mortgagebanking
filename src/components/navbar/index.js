@@ -5,6 +5,7 @@ import { NavLink } from "./NavLink";
 import { LogoLink } from "./LogoLink";
 import { Logo } from "./_Logo";
 import { Hamburger } from "./_Hamburger";
+import { ScrollLink } from "./ScrollLink";
 
 export default class Navbar extends React.Component {
   constructor(props) {
@@ -28,6 +29,8 @@ export default class Navbar extends React.Component {
   }
 
   render() {
+    const { homepage } = this.props;
+
     return (
       <Container>
         <Hamburger />
@@ -42,9 +45,16 @@ export default class Navbar extends React.Component {
           </LogoLink>
           {""}
           <NavLinkContainer>
-            <NavLink route="/" exact width="auto">
-              Contact
-            </NavLink>
+            {homepage && (
+              <ScrollLink target="scrollTarget" width="auto">
+                Contact
+              </ScrollLink>
+            )}
+            {!homepage && (
+              <NavLink route="/" exact width="auto">
+                Contact
+              </NavLink>
+            )}
             <NavLink route="/practice-areas" width="auto">
               Practice Areas
             </NavLink>

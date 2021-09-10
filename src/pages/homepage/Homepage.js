@@ -110,7 +110,7 @@ export default class Homepage extends Component {
           <ContactUs interestArea={this.state.interestArea} />
           <Footer />
         </DarkBlueContainer>
-        <Navbar fadeIn={firstLoad} />
+        <Navbar fadeIn={firstLoad} homepage />
       </Container>
     );
   }
