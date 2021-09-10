@@ -25,14 +25,7 @@ export default class ULICalculator extends Component {
             mistyped or tampered with. HMDA requires all loans to have a single
             and forever unique ULI beginning with 2018 transactions that will be
             reported in 2019. The ULI can be composed of letters and numbers but
-            no special characters. Letters may be upper or lower case. For more
-            information on the capacity of the ULI to support your production,
-            <AnchorLink
-              to={`https://www.ecfr.gov/cgi-bin/text-idx?SID=6927cd88c645a329312ae8e214123576&mc=true&node=pt12.8.1003&rgn=div5#ap12.8.1003_16.c`}
-            >
-              {" "}
-              click here.
-            </AnchorLink>
+            no special characters. Letters may be upper or lower case.
           </Subtext>
 
           <Subtext styles={SubtextParagraphStyles} size="xs">

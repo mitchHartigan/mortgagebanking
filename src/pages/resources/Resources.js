@@ -39,7 +39,12 @@ export default function Resources() {
 }
 
 const TitleStylesOverride = `
-  margin-top: 110px;
+  margin-top: 150px;
+
+  @media (max-width: 1200px) {
+    margin-top: 120px;
+  }
+
   @media (max-width: 900px) {
   margin-top: 15px;
   }
