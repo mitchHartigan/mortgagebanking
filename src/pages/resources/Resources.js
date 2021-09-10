@@ -7,10 +7,12 @@ import SeachCard from "./_SearchCard";
 import CalculatorCard from "./_CalculatorCard";
 import Navbar from "components/navbar";
 import { Subtext } from "components/Subtext";
+import { ScrollToTopOnMount } from "components/ScrollToTopOnMount";
 
 export default function Resources() {
   return (
     <Container>
+      <ScrollToTopOnMount />
       <Title
         align="center"
         alignTitle="center"
@@ -37,9 +39,9 @@ export default function Resources() {
 }
 
 const TitleStylesOverride = `
-  margin-top: 17vh;
+  margin-top: 110px;
   @media (max-width: 900px) {
-    margin-top: 2vh;
+  margin-top: 15px;
   }
 `;
 

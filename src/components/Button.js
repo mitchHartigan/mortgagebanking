@@ -30,5 +30,6 @@ const _Button = styled.button`
   }
   transition: box-shadow 100ms ease;
   transition: transform 100ms ease;
+
   ${(props) => props.styles}
 `;

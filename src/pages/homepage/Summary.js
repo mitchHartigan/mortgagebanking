@@ -13,7 +13,7 @@ export default function Summary(props) {
     <Container swap={swap} id={id}>
       <ImageContainer swap={swap}>{image}</ImageContainer>
       <DescriptionContainer swap={swap}>
-        <Title size="xxl" alignTitle="flex-start" spanWidth="8vw">
+        <Title size="xxl" spanWidth="8vw" styles={TitleStylesOverride}>
           {title}
         </Title>
         <Subtext size="xs" styles={SubtextStylesOverride}>
@@ -30,6 +30,21 @@ const SubtextStylesOverride = `
 
   @media (max-width: 1400px){ 
     text-align: center;
+    width: 60%;
+  }
+
+  @media (max-width: 800px) {
+    padding: 0px 2vw 0px 2vw;
+    box-sizing: border-box;
+    width: 100%;
+  }
+`;
+
+const TitleStylesOverride = `
+  align-items: flex-start;
+
+  @media (max-width: 1400px) {
+    align-items: center;
   }
 `;
 

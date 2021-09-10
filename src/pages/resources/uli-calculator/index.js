@@ -7,11 +7,13 @@ import { Title } from "components/Title";
 import Navbar from "components/navbar";
 import { AnchorLink } from "components/AnchorLink";
 import Calculator from "./Calculator";
+import { ScrollToTopOnMount } from "components/ScrollToTopOnMount";
 
 export default class ULICalculator extends Component {
   render() {
     return (
       <Container>
+        <ScrollToTopOnMount />
         <BackButton location="/resources" text="< Resources" />
         <ContentContainer>
           <Title size="xl" styles={TitleStylesOverride}>
@@ -59,7 +61,8 @@ const TitleStylesOverride = `
   margin-bottom: 2vh; 
 
   @media (max-width: 900px) {
-     margin-top: 2.5vh
+     margin-top: 80px;
+     text-align: center;
   };
 `;
 
