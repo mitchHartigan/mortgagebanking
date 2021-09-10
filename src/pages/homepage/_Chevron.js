@@ -6,7 +6,7 @@ export function Chevron(props) {
   const { firstLoad } = props;
 
   return (
-    <Container>
+    <Container firstLoad={firstLoad}>
       <Link
         to="chevronScrollTarget"
         spy={true}
@@ -16,7 +16,7 @@ export function Chevron(props) {
         smooth={true}
         style={{ margin: "0px", padding: "0px" }}
       >
-        <Image src="chevron.png" alt="Chevron icon." firstLoad={firstLoad} />
+        <Image src="chevron.png" alt="Chevron icon." />
       </Link>
     </Container>
   );
