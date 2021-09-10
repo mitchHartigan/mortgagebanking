@@ -4,7 +4,7 @@ import { FadeIn } from "components/FadeIn";
 
 export const Success = () => {
   return (
-    <FadeIn visible>
+    <FadeIn visible play>
       <Container>
         <Circle>
           <Check src="form_check.png" alt="Form success check" />

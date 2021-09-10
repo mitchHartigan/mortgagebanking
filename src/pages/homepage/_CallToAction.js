@@ -11,7 +11,7 @@ export default function CallToAction(props) {
   return (
     <Container>
       <Image src="shirklaw.png" alt="Shirk Law PLLC Logo." />
-      <FadeIn firstLoad={props.firstLoad} delay="1000">
+      <FadeIn play={props.firstLoad} delay="1000">
         <Subtext
           size="sm"
           alignment="center"
@@ -24,7 +24,7 @@ export default function CallToAction(props) {
           cooperative initiatives.{" "}
         </Subtext>
       </FadeIn>
-      <FadeIn firstLoad={props.firstLoad} delay="1400">
+      <FadeIn play={props.firstLoad} delay="1400">
         <Link
           to="scrollTarget"
           spy={true}
