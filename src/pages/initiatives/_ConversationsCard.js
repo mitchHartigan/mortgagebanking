@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Title } from "components/Title";
 import { Subtext } from "components/Subtext";
 import { CenterBlock } from "components/CenterBlock";
-import { GoldBulletPoint } from "pages/practice-areas/_GoldBulletPoint";
+import { GoldBulletPoint } from "./GoldBulletPoint";
 import { ContactPrefillButton } from "./ContactPrefillButton";
 
 export function ConversationsCard() {
@@ -14,26 +14,30 @@ export function ConversationsCard() {
         Shared Conversations
       </Title>
       <Subtext size="xs" styles={SubtextStylesOverride}>
-        Join with other lenders in Shared Conversations with a mortgage banking
-        lawyer. Enhance your compliance management with quarterly guidance on
-        agenda topics you influence. Shared Conversations expand perspective
-        exposing participants to questions they didn’t even know to ask.
+        An old fashion telephone call with peers and counsel. Hypothetical
+        scenarios proposed by participants. Collaborative communication with
+        follow-up from counsel.
       </Subtext>
 
       <CenterBlock>
         <BulletContainer>
-          <GoldBulletPoint>Participants influence the agenda</GoldBulletPoint>
           <GoldBulletPoint>
-            Significant savings over hourly rates
+            Timely talks on the CARES Act, Qualified Mortgages, and Online
+            Marketing
           </GoldBulletPoint>
-          <GoldBulletPoint>Valuable feedback and guidance</GoldBulletPoint>
           <GoldBulletPoint>
-            A mini conference on the topics of your choosing
+            Peer interaction expands perspective
+          </GoldBulletPoint>
+          <GoldBulletPoint>A mini conference on a timely topic</GoldBulletPoint>
+          <GoldBulletPoint>
+            Suggest a topic for a future conversation
           </GoldBulletPoint>
         </BulletContainer>
       </CenterBlock>
 
-      <ContactPrefillButton interestArea={"Shared Conversations"} />
+      <ContactPrefillButton interestArea={"Shared Conversations"}>
+        Join a Conversation
+      </ContactPrefillButton>
     </Container>
   );
 }
@@ -66,12 +70,19 @@ const Container = styled.div`
   }
 `;
 
-const BulletContainer = styled.div`
+const BulletContainer = styled.ul`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  margin: 0px 0px 30px -20px;
+  margin: 0px 0px 30px 30px;
+  list-style: none;
+
+  width: 65%;
+
+  @media (max-width: 900px) {
+    width: 90%;
+  }
 `;
 
 const Image = styled.img``;

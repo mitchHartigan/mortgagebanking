@@ -22,10 +22,9 @@ export default function Resources() {
         Resources
       </Title>
       <Subtext size="xs" styles={SubtextStylesOverride}>
-        We’ve developed a set of tools to improve the compliance management
-        workflow, including a ULI check digit calculator, document library, and
-        a glossary of commonly used acronyms. We’re dedicated to improving your
-        experience.
+        Some tools the firm uses that it decided to share. It’s a new site and a
+        few of the tools are being refined, but they’ll be worth the wait. Have
+        an idea for a new tool, let us know, we are working on several.
       </Subtext>
 
       <CardContainer>

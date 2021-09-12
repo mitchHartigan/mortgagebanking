@@ -27,8 +27,7 @@ export default function CalculatorCard() {
           alignment="center"
           styles="margin-bottom: -5px; margin-top: -20px; max-width: 350px; line-height: 28px"
         >
-          Calculate and verify check digits for HMDA’s Universal Loan
-          Identifier.
+          Generate check digits or validate HMDA Universal Loan Identifiers.
         </Subtext>
       </CenterBlock>
       <CenterBlock>
