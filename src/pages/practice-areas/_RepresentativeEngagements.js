@@ -12,61 +12,76 @@ export default function RepresentativeEngagements() {
         Representative Engagements
       </Title>
 
-      <ExpandableBulletPoint title="Representatives Compliance Guidance">
+      <ExpandableBulletPoint title="Compliance Guidance">
         <GoldBulletPoint>Analysis and Opinions</GoldBulletPoint>
-        <GoldBulletPoint>Transaction support desk</GoldBulletPoint>
+        <GoldBulletPoint>Compliance Support Desk</GoldBulletPoint>
       </ExpandableBulletPoint>
 
       <ExpandableBulletPoint title="Licensing">
-        <GoldBulletPoint>Requirement Analysis</GoldBulletPoint>
+        <GoldBulletPoint>
+          License Exemption/Requirements Analysis
+        </GoldBulletPoint>
         <GoldBulletPoint>Filing Assistance</GoldBulletPoint>
-        <GoldBulletPoint>Renewal Assitance</GoldBulletPoint>
+        <GoldBulletPoint>Renewal Assistance</GoldBulletPoint>
       </ExpandableBulletPoint>
 
-      <ExpandableBulletPoint title="Multi-state Charts">
-        <GoldBulletPoint>Mortgage lender licensing</GoldBulletPoint>
-        <GoldBulletPoint>Mortgage broker licensing</GoldBulletPoint>
-        <GoldBulletPoint>Mortgage service licensing</GoldBulletPoint>
-        <GoldBulletPoint>Lead generator licensing</GoldBulletPoint>
-        <GoldBulletPoint>Call center licensing</GoldBulletPoint>
+      <ExpandableBulletPoint title="Typical Charts">
         <GoldBulletPoint>
-          Contract underwriter/processor licensing
+          Licensing of Mortgage Lenders/Brokers/Servicers
+        </GoldBulletPoint>
+        <GoldBulletPoint>Lead Generator Licensing</GoldBulletPoint>
+        <GoldBulletPoint>Call Center Licensing</GoldBulletPoint>
+        <GoldBulletPoint>
+          Contract Underwriter/Processor Licensing
         </GoldBulletPoint>
         <GoldBulletPoint>
-          Spousal signature requirements (not in title)
+          Depository Institution Subsidiary Licensing/Exemption/Registration
         </GoldBulletPoint>
-        <GoldBulletPoint>
-          Depository institution and subsidiary exemptions
-        </GoldBulletPoint>
+        <GoldBulletPoint>Spousal Signature Requirements</GoldBulletPoint>
       </ExpandableBulletPoint>
 
-      <BulletPoint>Website Compliance Reviews</BulletPoint>
+      <ExpandableBulletPoint title="Marketing">
+        <GoldBulletPoint>Advertising Material Reviews</GoldBulletPoint>
+        <GoldBulletPoint>Website Compliance Reviews</GoldBulletPoint>
+      </ExpandableBulletPoint>
 
-      <BulletPoint>Marketing Materials Compliance reviews</BulletPoint>
-
-      <ExpandableBulletPoint title="Drafting Documents">
+      <ExpandableBulletPoint title="Drafting">
+        <GoldBulletPoint>
+          Loan Originator Compensation Agreements
+        </GoldBulletPoint>
+        <GoldBulletPoint>
+          Correspondent and Wholesale Lending Agreements
+        </GoldBulletPoint>
         <GoldBulletPoint>Policies and Procedures</GoldBulletPoint>
+      </ExpandableBulletPoint>
+
+      <ExpandableBulletPoint title="Negotiating Contracts">
+        <GoldBulletPoint>Software License Agreements</GoldBulletPoint>
+        <GoldBulletPoint>Subservicer Agreements</GoldBulletPoint>
+        <GoldBulletPoint>Office Leases</GoldBulletPoint>
         <GoldBulletPoint>
-          Loan originator compensation agreements
+          Reviewing Contracts for Key Risk/Performance Indicators
         </GoldBulletPoint>
         <GoldBulletPoint>
-          Correspondent and Wholesale lending agreements
+          Software and Subservicing Agreement Exit Strategies
         </GoldBulletPoint>
       </ExpandableBulletPoint>
 
-      <BulletPoint>Appraisal Management Requirements</BulletPoint>
-      <BulletPoint>State examination support</BulletPoint>
-      <BulletPoint>Mock examinations</BulletPoint>
-      <BulletPoint>Pre-litigation file reviews</BulletPoint>
-      <BulletPoint>Negotiating software liscense agreements</BulletPoint>
-      <BulletPoint>Negotiating sub-servicing agreements</BulletPoint>
-      <BulletPoint>
-        Reviewing contracts for key risk/performance indicators
-      </BulletPoint>
-      <BulletPoint>
-        Software and Servicing agreement exit strategies
-      </BulletPoint>
-      <BulletPoint>HUD Post Endorsement Technical Reviews</BulletPoint>
+      <ExpandableBulletPoint title="Examination Support">
+        <GoldBulletPoint>State Examination Support</GoldBulletPoint>
+        <GoldBulletPoint>Mock Examinations</GoldBulletPoint>
+        <GoldBulletPoint>
+          HUD Post Endorsement Technical Reviews
+        </GoldBulletPoint>
+        <GoldBulletPoint>File Reviews</GoldBulletPoint>
+      </ExpandableBulletPoint>
+
+      <ExpandableBulletPoint title="Agency Investigations">
+        <GoldBulletPoint>CFPB Civil Investigative Demand</GoldBulletPoint>
+        <GoldBulletPoint>
+          HUD Notice of Violation/Intent to Seek Civil Monetary Penalty
+        </GoldBulletPoint>
+      </ExpandableBulletPoint>
     </Container>
   );
 }
