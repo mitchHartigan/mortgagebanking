@@ -18,7 +18,7 @@ export function Chevron(props) {
         smooth={true}
         style={{ LinkStyleOverride }}
       >
-        <CenterContent>
+        <CenterContent firstLoad={firstLoad}>
           <Subtext styles={LearnMoreTextOverride}>Learn More</Subtext>
 
           <Image src="chevron.png" alt="Chevron icon." firstLoad={firstLoad} />
@@ -66,9 +66,7 @@ const CenterContent = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-`;
 
-const Image = styled.img`
   transform: translate(${(props) => (props.firstLoad ? "0, 20px" : "0, 0")});
   opacity: ${(props) => (props.firstLoad ? "0" : "1")};
   animation: ${(props) => (props.firstLoad ? fadeIn : "")};
@@ -77,3 +75,5 @@ const Image = styled.img`
   animation-fill-mode: forwards;
   animation-delay: 1700ms;
 `;
+
+const Image = styled.img``;
