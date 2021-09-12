@@ -1,6 +1,8 @@
 import React from "react";
 import styled, { keyframes } from "styled-components";
 import { Link } from "react-scroll";
+import { CenterBlock } from "components/CenterBlock";
+import { Subtext } from "components/Subtext";
 
 export function Chevron(props) {
   const { firstLoad } = props;
@@ -14,13 +16,27 @@ export function Chevron(props) {
         delay={0}
         duration={1300}
         smooth={true}
-        style={{ margin: "0px", padding: "0px" }}
+        style={{ LinkStyleOverride }}
       >
-        <Image src="chevron.png" alt="Chevron icon." firstLoad={firstLoad} />
+        <CenterContent>
+          <Subtext styles={LearnMoreTextOverride}>Learn More</Subtext>
+
+          <Image src="chevron.png" alt="Chevron icon." firstLoad={firstLoad} />
+        </CenterContent>
       </Link>
     </Container>
   );
 }
+
+const LearnMoreTextOverride = `
+  color: #F7F7F2;
+  margin-bottom: 10px;
+`;
+
+const LinkStyleOverride = {
+  margin: "0px",
+  padding: "0px",
+};
 
 const fadeIn = keyframes`
   from {
@@ -43,6 +59,13 @@ const Container = styled.div`
     transform: translate(0, -2px);
   }
   transition: transform 100ms linear;
+`;
+
+const CenterContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 `;
 
 const Image = styled.img`

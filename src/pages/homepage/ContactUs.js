@@ -18,7 +18,7 @@ export class ContactUs extends React.Component {
           alignment="center"
           styles={SubtextStylesOverride}
         >
-          We'd love to hear from you. Send us a message and we'll get in touch:{" "}
+          We'd love to hear from you.
         </Subtext>
         <ContactForm interestArea={this.props.interestArea} />
       </Container>

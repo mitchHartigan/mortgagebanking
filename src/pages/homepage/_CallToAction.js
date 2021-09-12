@@ -13,15 +13,12 @@ export default function CallToAction(props) {
       <Image src="shirklaw.png" alt="Shirk Law PLLC Logo." />
       <FadeIn play={props.firstLoad} delay="1000">
         <Subtext
-          size="sm"
+          size="md"
           alignment="center"
           color="offWhite"
           styles="margin: 30px 0px 30px 0px;"
         >
-          A traditional law firm with a non-traditional approach. We offer
-          typical law practice outside counsel but also make experienced
-          mortgage banking lawyers more accessible through cost saving
-          cooperative initiatives.{" "}
+          A traditional law firm with a non-traditional approach.
         </Subtext>
       </FadeIn>
       <FadeIn play={props.firstLoad} delay="1400">
