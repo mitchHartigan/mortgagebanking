@@ -18,7 +18,7 @@ export default function LibraryCard() {
           alignment="center"
           styles="margin-bottom: -10px; margin-top: -20px; max-width: 350px; line-height: 28px;"
         >
-          View and utilize a vast collection of mortgage banking compliance
+          View and utilize this collection of mortgage banking compliance
           documents.
         </Subtext>
       </CenterBlock>

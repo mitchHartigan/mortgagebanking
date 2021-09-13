@@ -10,7 +10,7 @@ export default function AboutUs() {
     <CenterBlock>
       <Container>
         <Title size="xxl" color="offWhite">
-          About Us
+          The Firm
         </Title>
         <Subtext
           size="sm"
@@ -21,11 +21,14 @@ export default function AboutUs() {
           David Shirk entered the mortgage industry in 1987 when some banks
           still used carbon paper and Reg. Z tables to calculate and disclose
           APR. Both the operations and compliance have completely transformed
-          since then. David’s career included 8 years designing loan origination
-          software and workflow engines to automate three top ten mortgage
-          lenders. He brings the same transformative zeal to the firm, helping
-          clients practice better compliance, better productivity, and better
-          understanding of the law.
+          since then. Dedicated to the mortgage industry and related services.
+          Backed by mortgage operations and technology experience, Shirk Law
+          delivers innovative and effective solutions and practical guidance for
+          clients of all sizes. Managing Member David Shirk’s career included 8
+          years designing loan origination software and workflow engines to
+          automate three top ten mortgage lenders. He brings the same
+          transformative zeal to the firm, helping clients practice better
+          compliance, better productivity, and better understanding of the law.
         </Subtext>
       </Container>
     </CenterBlock>

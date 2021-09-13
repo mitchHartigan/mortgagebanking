@@ -18,10 +18,10 @@ export default function Initiatives() {
           Initiatives
         </Title>
         <Subtext size="xs" alignment="center">
-          Compliance is something every company should strive for to ensure a
-          sustainable business model. These initiatives increase awareness and
-          understanding. Workshops and conversations cover timely topics
-          recommended by participants. Projects involve shared deliverables.
+          Compliance is a cornerstone in a sustainable business model. These
+          initiatives increase awareness and understanding. Workshops and
+          conversations cover timely topics recommended by participants.
+          Projects involve shared deliverables.
         </Subtext>
 
         <ComplianceCard />

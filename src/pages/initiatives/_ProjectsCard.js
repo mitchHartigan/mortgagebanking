@@ -16,9 +16,8 @@ export function ProjectsCard() {
       <Subtext size="xs" styles={SubtextStylesOverride}>
         Cooperative Research Projects make larger compliance projects more
         affordable. Clients interested in cooperatively funding projects like
-        drafting model procedures, multi-state charts, and disclosure revisions
-        may choose to collaborate in defining the project scope as sponsors or
-        simply subscribe to receive the deliverables.
+        drafting model procedures - or multi-state charts may choose to sponsor
+        the project or simply subscribe to receive the deliverables.
       </Subtext>
 
       <CenterBlock>

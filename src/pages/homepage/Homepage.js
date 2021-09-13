@@ -16,7 +16,7 @@ const resourcesData = {
   title: "Resources",
   image: <ResourcesImage />,
   descriptionText: `
-    Mortgage compliance tools to make life a little easier.
+    Mortgage compliance tools to make the job easier.
     A powerful acronym glossary, the popular ULI check digit
     verification calculator, and redesigned document library
     for even easier access.
@@ -29,7 +29,7 @@ const practiceAreasData = {
   title: "Practice Areas",
   image: <PracticeAreasImage />,
   descriptionText: `
-    At Shirk Law, we have extensive experience representing mortgage
+    Shirk Law has extensive experience representing mortgage
     bankers, brokers, credit unions, large and small banks, fintech’s
     and more. Clients appreciate the broad perspective.
   `,
@@ -43,7 +43,7 @@ const initiativesData = {
   descriptionText: `
     Cooperative initiatives bring many perspectives to the table and reduce
     the cost for each participant. Workshops and Conversations with peers on 
-    current topics is one way Shirk Law brings non-traditional.
+    current topics is one way Shirk Law brings a non-traditional approach.
   `,
   buttonText: "View Initiatives",
   linkTarget: "/initiatives",

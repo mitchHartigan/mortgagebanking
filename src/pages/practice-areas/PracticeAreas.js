@@ -17,9 +17,8 @@ export default function PracticeAreas() {
         </Title>
         <TextContainer>
           <Subtext size="xs" alignment="center" styles="width: 90%;">
-            Shirk Law’s practice focuses on mortgage lending, lead providers,
-            and fintechs. Within that scope are myriad issues addressed for
-            clients.
+            Law’s practice focuses on mortgage lending, lead providers, and
+            fintechs. Within that scope are myriad issues addressed for clients.
           </Subtext>
         </TextContainer>
 

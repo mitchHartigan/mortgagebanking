@@ -15,6 +15,7 @@ export default function RepresentativeEngagements() {
       <ExpandableBulletPoint title="Compliance Guidance">
         <GoldBulletPoint>Analysis and Opinions</GoldBulletPoint>
         <GoldBulletPoint>Compliance Support Desk</GoldBulletPoint>
+        <GoldBulletPoint>File Reviews</GoldBulletPoint>
       </ExpandableBulletPoint>
 
       <ExpandableBulletPoint title="Licensing">
@@ -34,10 +35,12 @@ export default function RepresentativeEngagements() {
         <GoldBulletPoint>
           Contract Underwriter/Processor Licensing
         </GoldBulletPoint>
+        <GoldBulletPoint>Appraisal Management Requirements</GoldBulletPoint>
         <GoldBulletPoint>
           Depository Institution Subsidiary Licensing/Exemption/Registration
         </GoldBulletPoint>
         <GoldBulletPoint>Spousal Signature Requirements</GoldBulletPoint>
+        <GoldBulletPoint>Marketing Disclosures</GoldBulletPoint>
       </ExpandableBulletPoint>
 
       <ExpandableBulletPoint title="Marketing">
@@ -73,7 +76,6 @@ export default function RepresentativeEngagements() {
         <GoldBulletPoint>
           HUD Post Endorsement Technical Reviews
         </GoldBulletPoint>
-        <GoldBulletPoint>File Reviews</GoldBulletPoint>
       </ExpandableBulletPoint>
 
       <ExpandableBulletPoint title="Agency Investigations">

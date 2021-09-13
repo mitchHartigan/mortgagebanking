@@ -22,13 +22,15 @@ export function ConversationsCard() {
       <CenterBlock>
         <BulletContainer>
           <GoldBulletPoint>
-            Timely talks on the CARES Act, Qualified Mortgages, and Online
-            Marketing
+            Timely talks on topics like the CARES Act, Qualified Mortgages, and
+            Online Marketing
           </GoldBulletPoint>
           <GoldBulletPoint>
             Peer interaction expands perspective
           </GoldBulletPoint>
-          <GoldBulletPoint>A mini conference on a timely topic</GoldBulletPoint>
+          <GoldBulletPoint>
+            A mini conference on a current topic
+          </GoldBulletPoint>
           <GoldBulletPoint>
             Suggest a topic for a future conversation
           </GoldBulletPoint>
