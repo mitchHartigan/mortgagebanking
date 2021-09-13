@@ -16,18 +16,9 @@ export default function PracticeAreas() {
           Our Practice Areas
         </Title>
         <TextContainer>
-          <Subtext size="xs">
-            Shirk Law has experience representing mortgage bankers, mortgage
-            brokers, banks, credit unions, and a variety of service providers
-            including: loan origination software companies, service provider
-            networks, lead providers, real estate companies, finance companies
-            and more. We have represented top ten banks and sole proprietors.
-          </Subtext>
-          <Subtext size="xs" styles="margin-top: 10px">
-            Clients appreciate an outside counsel perspective, but also value
-            the experience of a former mortgage company CEO and the functional
-            architect of loan origination systems of three top ten mortgage
-            lenders.
+          <Subtext size="xs" alignment="center" styles="width: 90%;">
+            Law’s practice focuses on mortgage lending, lead providers, and
+            fintechs. Within that scope are myriad issues addressed for clients.
           </Subtext>
         </TextContainer>
 

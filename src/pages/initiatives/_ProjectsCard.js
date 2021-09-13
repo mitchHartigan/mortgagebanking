@@ -14,29 +14,29 @@ export function ProjectsCard() {
         Research Projects
       </Title>
       <Subtext size="xs" styles={SubtextStylesOverride}>
-        Cooperative Research Projects make large compliance projects more
+        Cooperative Research Projects make larger compliance projects more
         affordable. Clients interested in cooperatively funding projects like
-        drafting model procedures, multi-state charts, and disclosure revisions
-        may choose to collaborate in defining the project scope as sponsors or
-        simply subscribe to receive the deliverables.
+        drafting model procedures or multi-state charts may choose to sponsor
+        the project or simply subscribe to receive the deliverables.
       </Subtext>
 
       <CenterBlock>
         <BulletContainer>
-          <GoldBulletPoint>
-            Subscribe to existing projects, or submit your own
-          </GoldBulletPoint>
+          <GoldBulletPoint>Sponsors establish scope of work</GoldBulletPoint>
+          <GoldBulletPoint>Valuable tools for compliance teams</GoldBulletPoint>
+
           <GoldBulletPoint>
             Significant savings over hourly rates
           </GoldBulletPoint>
-          <GoldBulletPoint>Valuable feedback and guidance</GoldBulletPoint>
           <GoldBulletPoint>
             Propose a topic from your to-do list
           </GoldBulletPoint>
         </BulletContainer>
       </CenterBlock>
 
-      <ContactPrefillButton interestArea={"Research Projects"} />
+      <ContactPrefillButton interestArea={"Research Projects"}>
+        Sponsor Collaborative Research
+      </ContactPrefillButton>
     </Container>
   );
 }

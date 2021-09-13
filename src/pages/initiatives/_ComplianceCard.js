@@ -14,27 +14,27 @@ export function ComplianceCard() {
         Compliance Workshops
       </Title>
       <Subtext size="xs" styles={SubtextStylesOverride}>
-        Engage in an intensive online interactive Compliance Workshop. Practical
-        operational topics that provide in-depth analysis and hands on scenarios
-        to present and assess compliance issues clients face every day.
+        Engage in an online interactive Compliance Workshop. Practical
+        operational topics that present and assess compliance issues clients
+        face every day.
       </Subtext>
 
       <CenterBlock>
         <BulletContainer>
+          <GoldBulletPoint>Take home work aids</GoldBulletPoint>
+          <GoldBulletPoint>Scenario based approach</GoldBulletPoint>
           <GoldBulletPoint>
-            Take home work aids, tools, and checklists
+            Peer interaction expands perspective
           </GoldBulletPoint>
-          <GoldBulletPoint>
-            Significant savings over hourly rates
-          </GoldBulletPoint>
-          <GoldBulletPoint>Valuable feedback and guidance</GoldBulletPoint>
           <GoldBulletPoint>
             Suggest a topic for a future workshop
           </GoldBulletPoint>
         </BulletContainer>
       </CenterBlock>
 
-      <ContactPrefillButton interestArea={"Compliance Workshops"} />
+      <ContactPrefillButton interestArea={"Compliance Workshops"}>
+        Get Involved in a Workshop
+      </ContactPrefillButton>
     </Container>
   );
 }

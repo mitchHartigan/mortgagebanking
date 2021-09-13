@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Button } from "components/Button";
 
 export function ContactPrefillButton(props) {
-  const { interestArea } = props;
+  const { interestArea, children } = props;
 
   return (
     <Link
@@ -15,7 +15,7 @@ export function ContactPrefillButton(props) {
       }}
       style={{ width: "100%" }}
     >
-      <Button styles="width: 100%;">Get Involved</Button>
+      <Button styles="width: 100%;">{children}</Button>
     </Link>
   );
 }

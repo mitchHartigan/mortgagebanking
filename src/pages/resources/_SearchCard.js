@@ -10,7 +10,7 @@ export default function SeachCard() {
     <Container>
       <Image src="acronym_icon.png" alt="A book, open and bookmarked." />
       <Title size="lg" align="center" alignItems="center" spanColor="#e1e1e1">
-        Acronym Search
+        Acronym Glossary
       </Title>
       <CenterBlock>
         <Subtext
@@ -18,7 +18,8 @@ export default function SeachCard() {
           alignment="center"
           styles="margin-bottom: -10px; margin-top: -20px; max-width: 350px; line-height: 28px;"
         >
-          Search across our database of acronyms precisely and seamlessly.
+          Search our extensive glossary of acronyms by the acronym or by any
+          word or phrase.
         </Subtext>
       </CenterBlock>
       <CenterBlock>

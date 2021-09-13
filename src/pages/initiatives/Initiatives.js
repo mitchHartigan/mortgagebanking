@@ -15,12 +15,13 @@ export default function Initiatives() {
       <ScrollToTopOnMount />
       <ContentContainer>
         <Title size="xl" alignment="center">
-          Our Initiatives
+          Initiatives
         </Title>
         <Subtext size="xs" alignment="center">
-          We make experienced mortgage banking lawyers more accessible through
-          workshops, cost sharing conversations, and projects sponsored by
-          multiple clients. We are in this together.
+          Compliance is a cornerstone in a sustainable business model. These
+          initiatives increase awareness and understanding. Workshops and
+          conversations cover timely topics recommended by participants.
+          Projects involve shared deliverables.
         </Subtext>
 
         <ComplianceCard />

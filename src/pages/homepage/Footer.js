@@ -14,7 +14,7 @@ export function Footer() {
       </Subtext>
 
       <Subtext size="xs" styles={SubtextStylesOverride}>
-        {`Admitted to bars of CT, CO, DC, ID, MT, NJ, NM, OR, SC, & WA`}
+        {`Admitted in CT, CO, DC, ID, MT, NJ, NM, OR, SC, & WA`}
       </Subtext>
 
       <Subtext size="xs" styles={SubtextStylesOverride}>

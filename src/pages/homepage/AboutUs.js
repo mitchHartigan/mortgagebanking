@@ -10,7 +10,7 @@ export default function AboutUs() {
     <CenterBlock>
       <Container>
         <Title size="xxl" color="offWhite">
-          About Us
+          The Firm
         </Title>
         <Subtext
           size="sm"
@@ -18,13 +18,14 @@ export default function AboutUs() {
           styles={SubtextStylesOverride}
           color="offWhite"
         >
-          Our members have focused on mortgage banking for over 25 years and
-          recognize that regulatory compliance is more complex than ever.
-          Regulatory risk is compounded with overlapping state and federal
-          liability. Now more than ever, industry participants need access to
-          experienced mortgage banking compliance guidance. The distinctions
-          between retail, wholesale, and correspondent lending are subtle and
-          easily misunderstood. We understand the business as well as the law.
+          Dedicated to the mortgage industry and related services. Backed by
+          mortgage operations and technology experience, Shirk Law delivers
+          innovative and effective solutions and practical guidance for clients
+          of all sizes. Managing Member David Shirk’s career included 8 years
+          designing loan origination software and workflow engines to automate
+          three top ten mortgage lenders. He brings the same transformative zeal
+          to the firm, helping clients practice better compliance, better
+          productivity, and better understanding of the law.
         </Subtext>
       </Container>
     </CenterBlock>
