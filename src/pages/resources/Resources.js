@@ -22,9 +22,9 @@ export default function Resources() {
         Resources
       </Title>
       <Subtext size="xs" styles={SubtextStylesOverride}>
-        Some tools the firm uses that it decided to share. It’s a new site and a
-        few of the tools are being refined, but they’ll be worth the wait. Have
-        an idea for a new tool, let us know, we are working on several.
+        Tools the firm uses that it decided to share. It’s a new site and a few
+        of the tools are being refined, but they’ll be worth the wait. Have an
+        idea for a new tool, let us know, we are working on several.
       </Subtext>
 
       <CardContainer>
