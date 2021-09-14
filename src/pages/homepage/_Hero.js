@@ -3,16 +3,40 @@ import styled, { keyframes } from "styled-components";
 import CallToAction from "./_CallToAction";
 import { Chevron } from "./_Chevron";
 
-export default function Hero(props) {
-  const { firstLoad } = props;
+export default class Hero extends React.Component {
+  constructor(props) {
+    super(props);
 
-  return (
-    <Container>
-      <CallToAction firstLoad={firstLoad} />
-      <Chevron firstLoad={firstLoad} />
-      <Filter firstLoad={firstLoad} />
-    </Container>
-  );
+    this.state = {
+      backgroundImgLoaded: false,
+    };
+  }
+
+  // Check if the image has been loaded. Setting the src below onload was
+  // recommended by stack overflow.
+  componentDidMount() {
+    const img = new Image();
+    img.onload = () => {
+      this.setState({ backgroundImageLoaded: true });
+    };
+    img.src = "homepage_hero.jpg";
+  }
+
+  render() {
+    const { firstLoad } = this.props;
+    const { backgroundImageLoaded } = this.state;
+
+    return (
+      <Container>
+        <CallToAction firstLoad={firstLoad} />
+        <Chevron firstLoad={firstLoad} />
+        <Filter
+          firstLoad={firstLoad}
+          backgroundImageLoaded={backgroundImageLoaded}
+        />
+      </Container>
+    );
+  }
 }
 
 const Container = styled.div`
@@ -46,6 +70,9 @@ const backgroundFade = keyframes`
     opacity: 0.7;
   }
 `;
+// Conditionally begins the fade animation if it's the first time the page
+// has been loaded, and if the image has been loaded. Freezes on the dark blue
+// background if the image fails to load.
 
 const Filter = styled.div`
   display: flex;
@@ -55,9 +82,13 @@ const Filter = styled.div`
   width: 100%;
   height: 100%;
   background-color: ${(props) =>
-    props.firstLoad ? props.theme.colors.darkBlue : "#1E3755"};
-  opacity: ${(props) => (props.firstLoad ? "1" : "0.7")};
-  animation: ${(props) => (props.firstLoad ? backgroundFade : "")};
+    props.firstLoad || !props.backgroundImageLoaded
+      ? props.theme.colors.darkBlue
+      : "#1E3755"};
+  opacity: ${(props) =>
+    props.firstLoad || !props.backgroundImageLoaded ? "1" : "0.7"};
+  animation: ${(props) =>
+    props.firstLoad && props.backgroundImageLoaded ? backgroundFade : ""};
   animation-duration: 600ms;
   animation-timing-function: linear;
   animation-fill-mode: forwards;
