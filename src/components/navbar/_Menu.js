@@ -22,6 +22,16 @@ export const Menu = (props) => {
           dark
           size="sm"
         >
+          Home
+        </NavLink>
+        <NavLink
+          route="/"
+          align="flex-start"
+          styles={LinkMarginOverride}
+          dark
+          size="sm"
+          contactLink
+        >
           Contact
         </NavLink>
         <NavLink
