@@ -3,11 +3,28 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 export const NavLink = (props) => {
-  const { children, route, dark, size, width, align, styles, logo } = props;
+  const {
+    children,
+    route,
+    dark,
+    size,
+    width,
+    align,
+    styles,
+    logo,
+    contactLink,
+  } = props;
+
+  const path = {
+    pathname: route,
+    state: {
+      scrollToForm: contactLink,
+    },
+  };
 
   return (
     <Container width={width} align={align} styles={styles} logo={logo}>
-      <Link to={route} style={{ textDecoration: "none" }}>
+      <Link to={path} style={{ textDecoration: "none" }}>
         <Text dark={dark} size={size}>
           {children}
         </Text>
