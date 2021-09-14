@@ -61,6 +61,10 @@ const Container = styled.div`
     transform: translate(0, -2px);
   }
   transition: transform 100ms linear;
+
+  @media (max-height: 500px) {
+    display: none;
+  }
 `;
 
 const CenterContent = styled.div`
