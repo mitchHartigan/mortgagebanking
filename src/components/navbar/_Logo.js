@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 export const Logo = () => {
   return (
-    <Image src="MortgageBankingLogo_small.png" alt="MortgageBanking Logo" />
+    <Image src="/MortgageBankingLogo_small.png" alt="MortgageBanking Logo" />
   );
 };
 
