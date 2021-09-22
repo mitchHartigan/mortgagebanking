@@ -10,7 +10,6 @@ import AboutUs from "./AboutUs";
 import { ContactUs } from "./ContactUs";
 import Hero from "./_Hero.js";
 import { Footer } from "./Footer";
-import { FadeIn } from "components/FadeIn";
 
 const resourcesData = {
   title: "Resources",
@@ -58,6 +57,18 @@ export default class Homepage extends Component {
     };
   }
 
+  _handleScrollToForm = () => {
+    try {
+      const { scrollToForm } = this.props.location.state;
+
+      if (scrollToForm) {
+        document.getElementById("scrollTarget").scrollIntoView();
+      }
+    } catch {
+      console.log("ContactLink not provided in link.");
+    }
+  };
+
   _handleInterestArea = () => {
     try {
       const { interestArea } = this.props.location.state;
@@ -68,7 +79,7 @@ export default class Homepage extends Component {
         });
       }
     } catch {
-      console.log("No state in link.");
+      console.log("interestArea not provided in link.");
     }
   };
 
@@ -90,6 +101,7 @@ export default class Homepage extends Component {
     this._handleInterestArea();
     this._clearLinkStateOnRefresh();
     this._preventFadeAnimRecurrence();
+    this._handleScrollToForm();
   }
 
   render() {

@@ -28,7 +28,7 @@ export default function Summary(props) {
 const SubtextStylesOverride = `
   margin-bottom: 25px;
 
-  @media (max-width: 1400px){ 
+  @media (max-width: 1000px){ 
     text-align: center;
     width: 60%;
   }
@@ -43,7 +43,7 @@ const SubtextStylesOverride = `
 const TitleStylesOverride = `
   align-items: flex-start;
 
-  @media (max-width: 1400px) {
+  @media (max-width: 1000px) {
     align-items: center;
   }
 `;
@@ -59,6 +59,11 @@ const Container = styled.div`
   padding: 10vh 0vw 10vh 0vw;
 
   @media (max-width: 1400px) {
+    grid-template-columns: ${(props) =>
+      props.swap ? "1fr 40% 10% 24% 1fr" : "1fr 26% 10% 40% 1fr"};
+  }
+
+  @media (max-width: 1000px) {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -74,7 +79,11 @@ const ImageContainer = styled.div`
   justify-self: start;
   grid-row-start: 1;
 
-  @media (max-width: 1400px) {
+  @media (max-width: 1300px) {
+    justify-self: ${(props) => (props.swap ? "end" : "start")};
+  }
+
+  @media (max-width: 1000px) {
     justify-self: center;
     align-self: center;
   }
@@ -86,7 +95,7 @@ const DescriptionContainer = styled.div`
   justify-self: center;
   grid-row-start: 1;
 
-  @media (max-width: 1400px) {
+  @media (max-width: 1000px) {
     display: flex;
     flex-direction: column;
     align-items: center;

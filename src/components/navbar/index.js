@@ -51,7 +51,7 @@ export default class Navbar extends React.Component {
               </ScrollLink>
             )}
             {!homepage && (
-              <NavLink route="/" exact width="auto">
+              <NavLink route="/" width="auto" contactLink={true}>
                 Contact
               </NavLink>
             )}

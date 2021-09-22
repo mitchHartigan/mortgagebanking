@@ -19,7 +19,9 @@ export function Chevron(props) {
         style={{ LinkStyleOverride }}
       >
         <CenterContent firstLoad={firstLoad}>
-          <Subtext styles={LearnMoreTextOverride}>Learn More</Subtext>
+          <Subtext size="xs" styles={LearnMoreTextOverride}>
+            Learn More
+          </Subtext>
 
           <Image src="chevron.png" alt="Chevron icon." firstLoad={firstLoad} />
         </CenterContent>
@@ -59,6 +61,10 @@ const Container = styled.div`
     transform: translate(0, -2px);
   }
   transition: transform 100ms linear;
+
+  @media (max-height: 500px) {
+    display: none;
+  }
 `;
 
 const CenterContent = styled.div`
