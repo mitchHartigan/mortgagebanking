@@ -9,6 +9,7 @@ import ULICalculator from "pages/resources/uli-calculator/index";
 import Resources from "pages/resources/Resources";
 import PracticeAreas from "pages/practice-areas/PracticeAreas";
 import Initiatives from "pages/initiatives/Initiatives";
+import RouteChangeTracker from "GARouteChangeTracker";
 
 function App() {
   return (
