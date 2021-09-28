@@ -10,6 +10,7 @@ import AboutUs from "./AboutUs";
 import { ContactUs } from "./ContactUs";
 import Hero from "./_Hero.js";
 import { Footer } from "./Footer";
+import ReactGA from "react-ga";
 
 const resourcesData = {
   title: "Resources",
@@ -102,6 +103,7 @@ export default class Homepage extends Component {
     this._clearLinkStateOnRefresh();
     this._preventFadeAnimRecurrence();
     this._handleScrollToForm();
+    ReactGA.pageview("Homepage");
   }
 
   render() {

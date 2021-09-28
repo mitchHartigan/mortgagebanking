@@ -8,8 +8,10 @@ import { ComplianceCard } from "./_ComplianceCard";
 import { ConversationsCard } from "./_ConversationsCard";
 import { ProjectsCard } from "./_ProjectsCard";
 import { ScrollToTopOnMount } from "components/ScrollToTopOnMount";
+import ReactGA from "react-ga";
 
 export default function Initiatives() {
+  ReactGA.pageview("Initiatives");
   return (
     <Container>
       <ScrollToTopOnMount />

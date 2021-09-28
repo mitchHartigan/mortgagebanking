@@ -8,8 +8,10 @@ import CalculatorCard from "./_CalculatorCard";
 import Navbar from "components/navbar";
 import { Subtext } from "components/Subtext";
 import { ScrollToTopOnMount } from "components/ScrollToTopOnMount";
+import ReactGA from "react-ga";
 
 export default function Resources() {
+  ReactGA.pageview("Resources");
   return (
     <Container>
       <ScrollToTopOnMount />

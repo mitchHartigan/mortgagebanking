@@ -8,8 +8,12 @@ import Navbar from "components/navbar";
 import { AnchorLink } from "components/AnchorLink";
 import Calculator from "./Calculator";
 import { ScrollToTopOnMount } from "components/ScrollToTopOnMount";
+import ReactGA from "react-ga";
 
 export default class ULICalculator extends Component {
+  componentDidMount() {
+    ReactGA.pageview("ULI Calculator");
+  }
   render() {
     return (
       <Container>

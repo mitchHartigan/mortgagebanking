@@ -6,8 +6,10 @@ import { Subtext } from "components/Subtext";
 import Navbar from "components/navbar/index";
 import RepresentativeEngagements from "./_RepresentativeEngagements";
 import { ScrollToTopOnMount } from "components/ScrollToTopOnMount";
+import ReactGA from "react-ga";
 
 export default function PracticeAreas() {
+  ReactGA.pageview("Practice Areas");
   return (
     <Container>
       <ScrollToTopOnMount />
