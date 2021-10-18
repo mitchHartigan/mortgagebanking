@@ -14,7 +14,7 @@ export const globalStyles = {
     mainGold: "#e1a915",
     offWhite: "#f7f7f2",
     darkGray: "#202020",
-    darkBlue: "#1D2A4A",
+    darkBlue: "#051437",
     linkBlue: "#227C9D",
   },
 };
