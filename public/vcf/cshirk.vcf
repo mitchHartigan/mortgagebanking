@@ -12,6 +12,6 @@ item1.ADR;type=WORK;type=pref:;;1629 K St NW Ste 300;Washington;DC;20006;
 item1.X-ABADR:us
 item2.ADR;type=OTHER:;;PO Box 50252;Eugene;OR;97405;
 item2.X-ABADR:us
-item5.URL;type=pref:https://mortgagebanking.law
+item5.URL;type=pref:https://www.mortgagebanking.law
 item5.X-ABLabel:_$!<HomePage>!$_
 END:VCARD
