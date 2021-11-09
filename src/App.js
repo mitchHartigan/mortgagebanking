@@ -9,7 +9,7 @@ import ULICalculator from "pages/resources/uli-calculator/index";
 import Resources from "pages/resources/Resources";
 import PracticeAreas from "pages/practice-areas/PracticeAreas";
 import Initiatives from "pages/initiatives/Initiatives";
-import RouteChangeTracker from "GARouteChangeTracker";
+import SearchGlossary from 'pages/glossary-search'
 
 function App() {
   return (
@@ -24,6 +24,10 @@ function App() {
 
           <Route path="/check-digit-calculator">
             <ULICalculator />
+          </Route>
+          
+          <Route path="/search-glossary">
+            <SearchGlossary />
           </Route>
 
           <Route path="/single-post/2017/05/28/uli-check-digit-calculator">
