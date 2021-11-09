@@ -42,7 +42,6 @@ const Container = styled.div`
   padding-left: 30px;
 `;
 
-
 const Input = styled.input`
   outline: none;
   border: none;

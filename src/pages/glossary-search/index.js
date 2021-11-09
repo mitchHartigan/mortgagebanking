@@ -5,7 +5,7 @@ import { ScrollToTopOnMount } from 'components/ScrollToTopOnMount';
 import { BackButton } from 'components/resources/BackButton';
 import {Title} from 'components/Title'
 import Navbar from 'components/navbar'
-import SearchBar from './SearchBar';
+import ResultsContainer from './ResultsContainer';
 
 export default function index() {
   return (
@@ -14,7 +14,7 @@ export default function index() {
         <BackButton location="/resources" text="< Resources" />
         <ContentContainer>
           <Title size="xl" styles={TitleStylesOverride}>Acronym Glossary</Title>
-          <SearchBar />
+          <ResultsContainer />
         </ContentContainer>
         <Navbar alwaysDisplay/>
     </Container>
