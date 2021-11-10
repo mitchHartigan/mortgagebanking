@@ -67,11 +67,8 @@ export default class ContactForm extends Component {
             message: message,
           };
 
-          console.log("payload", payload);
-
           this.setState({ submitted: true });
           const submission = await POST_CONTACT_FORM(payload);
-          console.log("submission", submission);
 
           if (submission === "success") {
             this.setState({ success: true });

@@ -11,7 +11,6 @@ export default class SearchBar extends Component {
     }
   }
   
-
   _handleInput = (evt) => {
     this.setState({query: evt.target.value}, ()=> {
       console.log(this.state)
@@ -40,6 +39,7 @@ const Container = styled.div`
   border-radius: 20px;
   box-sizing: border-box;
   padding-left: 30px;
+  z-index: 1;
 `;
 
 const Input = styled.input`
