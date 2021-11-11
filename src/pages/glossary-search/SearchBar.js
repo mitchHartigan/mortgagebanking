@@ -9,7 +9,6 @@ export default class SearchBar extends Component {
     this.state = {
       query: '',
       results: [],
-      cursor: 0,
     }
   }
   
@@ -24,17 +23,19 @@ export default class SearchBar extends Component {
     const { key } = evt;
 
     if (key === "ArrowUp") {
-      let cursorPos = this.state.cursor
+      let cursorPos = this.props.cursorPos;
       if (cursorPos <= 0) return;
-      else this.setState({cursor: cursorPos - 1});
+      else this.props.updateCursor(cursorPos - 1);
       
     } else if (key === "ArrowDown") {
-      let cursorPos = this.state.cursor
+      let cursorPos = this.props.cursorPos;
       if (cursorPos === 2) return//set to 2 here, but this will need to be the length of the results.
-      else this.setState({cursor: cursorPos + 1});
+      else this.props.updateCursor(cursorPos + 1);
+    }
+    else if (key === "Enter") {
+      console.log('time to load a card!');
     }
   }
-
 
   render() {
     return (

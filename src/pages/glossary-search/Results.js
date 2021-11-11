@@ -2,15 +2,15 @@ import React from 'react'
 import styled from 'styled-components'
 import '../../index.css'
 
-export default function Results() {
+export default function Results(props) {
   return (
     <Container>
       {/* We'll .map() the results in here as li's or something... */}
-      <ViewAllResult>
+      <ViewAllResult listPos={1} cursorPos={props.cursorPos}>
         <Acronym>asdlfkjsad</Acronym>
         <Definition><i>{`See all search results >`}</i></Definition>
       </ViewAllResult>
-      <Result>
+      <Result listPos={2} cursorPos={props.cursorPos}>
         <Acronym>ANA</Acronym>
         <Definition>Annual Budget Authority asdfasf asdf asdfasdf asdfasdf asdf asdf asdf asdf asdf as df ASD Asdasdfasdf </Definition>
       </Result>
@@ -31,12 +31,8 @@ const Result = styled.div`
   grid-template-columns: 65px 10% 10% 50% 1fr;
   width: 100%;
 
-  &: hover {
-    background-color: ${props => props.theme.colors.darkBlue};
-    color: white;
-    cursor: pointer;
-    transition: background-color 50ms linear;
-  }
+  background-color: ${props => props.listPos === props.cursorPos ? props.theme.colors.darkBlue : "transparent"};
+  color: ${props => props.listPos === props.cursorPos ? 'white' : "black"};
 `;
 
 const Acronym = styled.p`
@@ -61,9 +57,6 @@ const ViewAllResult = styled.li`
   grid-template-columns: 65px 10% 10% 50% 1fr;
   width: 100%;
 
-  &: hover {
-    background-color: ${props => props.theme.colors.darkBlue};
-    color: white;
-    cursor: pointer;
-  }
+  background-color: ${props => props.listPos === props.cursorPos ? props.theme.colors.darkBlue : "transparent"};
+  color: ${props => props.listPos === props.cursorPos ? 'white' : "black"};
 `;
