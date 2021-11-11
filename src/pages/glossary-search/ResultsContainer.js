@@ -12,6 +12,7 @@ export default class ResultsContainer extends Component {
       cursor: 0,
       results: [],
       searchBarFocused: false,
+      loadingResults: true,
     };
   }
 
@@ -20,7 +21,7 @@ export default class ResultsContainer extends Component {
   // The Results component should take an array of objects (the API results) as a prop.
 
   updateQuery = async (query) => {
-    this.setState({ query: query });
+    this.setState({ query: query, loadingResults: true });
 
     if (query.length > 1) {
       const data = await fetch(
@@ -28,26 +29,25 @@ export default class ResultsContainer extends Component {
       )
         .then((results) => results.json())
         .then((results) => {
-          this.setState({ results: results }, () => console.log(this.state));
+          this.setState({ results: results, loadingResults: false });
         });
     }
   };
 
   updateCursor = (pos) => {
-    this.setState({ cursor: pos }, () => console.log(this.state));
+    this.setState({ cursor: pos });
   };
 
   toggleSearchBarFocused = () => {
-    this.setState(
-      { searchBarFocused: !this.state.searchBarFocused, cursor: 0 },
-      () => {
-        console.log("this.state", this.state);
-      }
-    );
+    this.setState({
+      searchBarFocused: !this.state.searchBarFocused,
+      cursor: 0,
+    });
   };
 
   render() {
-    const { cursor, query, results, searchBarFocused } = this.state;
+    const { cursor, query, results, searchBarFocused, loadingResults } =
+      this.state;
 
     return (
       <Container>
@@ -60,8 +60,10 @@ export default class ResultsContainer extends Component {
         <Results
           query={query}
           cursorPos={cursor}
+          updateCursor={this.updateCursor}
           results={results}
           focused={searchBarFocused}
+          loadingResults={loadingResults}
         />
       </Container>
     );

@@ -1,28 +1,51 @@
 import React from "react";
 import styled from "styled-components";
+import { nanoid } from "nanoid";
+
 import "../../index.css";
 
 export default function Results(props) {
-  const { focused, query, cursorPos, results } = props;
+  const { focused, query, cursorPos, results, loadingResults, updateCursor } =
+    props;
+
+  const mapResults = () => {
+    return results.map((result, i) => {
+      if (i <= 5) {
+        return (
+          <Result
+            key={nanoid()}
+            listPos={i + 2}
+            cursorPos={cursorPos}
+            onMouseEnter={() => updateCursor(i + 2)}
+          >
+            <Acronym>{result.Acronym}</Acronym>
+            <Definition>{result.Text}</Definition>
+          </Result>
+        );
+      }
+    });
+  };
 
   return (
     <Container query={query} focused={focused}>
-      <ViewAllResult listPos={1} cursorPos={cursorPos} query={query}>
+      <ViewAllResult
+        listPos={1}
+        cursorPos={cursorPos}
+        query={query}
+        onMouseEnter={() => updateCursor(1)}
+        results={results}
+      >
         <Acronym>{query}</Acronym>
         <Definition>
           <i>{`See all search results >`}</i>
         </Definition>
       </ViewAllResult>
-      {results.map((result, i) => {
-        if (i <= 5) {
-          return (
-            <Result listPos={i + 2} cursorPos={cursorPos}>
-              <Acronym>{result.Acronym}</Acronym>
-              <Definition>{result.Text}</Definition>
-            </Result>
-          );
-        }
-      })}
+      <NoResultsFound results={results} loadingResults={loadingResults}>
+        <NoResultsMessage>
+          No results found. Please try a different search term.
+        </NoResultsMessage>
+      </NoResultsFound>
+      {mapResults()}
     </Container>
   );
 }
@@ -47,6 +70,7 @@ const Result = styled.div`
       ? props.theme.colors.darkBlue
       : "transparent"};
   color: ${(props) => (props.listPos === props.cursorPos ? "white" : "black")};
+  cursor: pointer;
 `;
 
 const Acronym = styled.p`
@@ -71,7 +95,7 @@ const Definition = styled.p`
 `;
 
 const ViewAllResult = styled.li`
-  display: ${(props) => (props.query !== "" ? "grid" : "none")};
+  display: ${(props) => (props.results.length >= 6 ? "grid" : "none")};
   grid-template-columns: 65px 10% 10% 50% 1fr;
   width: 100%;
 
@@ -80,4 +104,21 @@ const ViewAllResult = styled.li`
       ? props.theme.colors.darkBlue
       : "transparent"};
   color: ${(props) => (props.listPos === props.cursorPos ? "white" : "black")};
+  cursor: pointer;
+`;
+
+const NoResultsFound = styled.div`
+  display: ${(props) =>
+    props.results.length <= 0 && !props.loadingResults ? "flex" : "none"};
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+`;
+
+const NoResultsMessage = styled.p`
+  font-size: ${(props) => props.theme.text.xs};
+  font-family: ${(props) => props.theme.textFont};
+  font-weight: 400;
+  font-style: italic;
+  margin-left: 65px;
 `;
