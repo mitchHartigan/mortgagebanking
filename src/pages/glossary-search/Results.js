@@ -6,6 +6,10 @@ export default function Results() {
   return (
     <Container>
       {/* We'll .map() the results in here as li's or something... */}
+      <ViewAllResult>
+        <Acronym>asdlfkjsad</Acronym>
+        <Definition><i>{`See all search results >`}</i></Definition>
+      </ViewAllResult>
       <Result>
         <Acronym>ANA</Acronym>
         <Definition>Annual Budget Authority asdfasf asdf asdfasdf asdfasdf asdf asdf asdf asdf asdf as df ASD Asdasdfasdf </Definition>
@@ -16,6 +20,7 @@ export default function Results() {
 
 const Container = styled.div`
   display: flex;
+  flex-direction: column;
   background-color: white;
   width: 760px;
   height: 500px;
@@ -25,6 +30,13 @@ const Result = styled.div`
   display: grid;
   grid-template-columns: 65px 10% 10% 50% 1fr;
   width: 100%;
+
+  &: hover {
+    background-color: ${props => props.theme.colors.darkBlue};
+    color: white;
+    cursor: pointer;
+    transition: background-color 50ms linear;
+  }
 `;
 
 const Acronym = styled.p`
@@ -44,6 +56,14 @@ const Definition = styled.p`
   width: 100%;
 `;
 
-const ViewAllResult = styled.div`
+const ViewAllResult = styled.li`
+  display: grid;
+  grid-template-columns: 65px 10% 10% 50% 1fr;
+  width: 100%;
 
+  &: hover {
+    background-color: ${props => props.theme.colors.darkBlue};
+    color: white;
+    cursor: pointer;
+  }
 `;

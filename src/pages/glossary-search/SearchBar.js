@@ -7,21 +7,40 @@ export default class SearchBar extends Component {
     super(props)
   
     this.state = {
-      query: '' 
+      query: '',
+      results: [],
+      cursor: 0,
     }
   }
   
   _handleInput = (evt) => {
+
     this.setState({query: evt.target.value}, ()=> {
       console.log(this.state)
     }) 
   }
 
+  _updateCursorPos = (evt) => {
+    const { key } = evt;
+
+    if (key === "ArrowUp") {
+      let cursorPos = this.state.cursor
+      if (cursorPos <= 0) return;
+      else this.setState({cursor: cursorPos - 1});
+      
+    } else if (key === "ArrowDown") {
+      let cursorPos = this.state.cursor
+      if (cursorPos === 2) return//set to 2 here, but this will need to be the length of the results.
+      else this.setState({cursor: cursorPos + 1});
+    }
+  }
+
+
   render() {
     return (
       <Container>
         <img src="magnifying_glass.svg" alt="magnifying glass" />
-        <Input onChange={this._handleInput} placeholder="Enter acronym or term to search..." />
+        <Input onChange={this._handleInput} onKeyDown={this._updateCursorPos} placeholder="Enter acronym or term to search..." />
       </Container>
     )
   }
