@@ -1,24 +1,28 @@
-import React from 'react'
-import styled from 'styled-components'
+import React from "react";
+import styled from "styled-components";
 
-import { ScrollToTopOnMount } from 'components/ScrollToTopOnMount';
-import { BackButton } from 'components/resources/BackButton';
-import {Title} from 'components/Title'
-import Navbar from 'components/navbar'
-import ResultsContainer from './ResultsContainer';
+import { ScrollToTopOnMount } from "components/ScrollToTopOnMount";
+import { BackButton } from "components/resources/BackButton";
+import { Title } from "components/Title";
+import Navbar from "components/navbar";
+import ResultsContainer from "./ResultsContainer";
+import Card from "./Card";
 
 export default function index() {
   return (
     <Container>
       <ScrollToTopOnMount />
-        <BackButton location="/resources" text="< Resources" />
-        <ContentContainer>
-          <Title size="xl" styles={TitleStylesOverride}>Acronym Glossary</Title>
-          <ResultsContainer />
-        </ContentContainer>
-        <Navbar alwaysDisplay/>
+      <BackButton location="/resources" text="< Resources" />
+      <ContentContainer>
+        <Title size="xl" styles={TitleStylesOverride}>
+          Acronym Glossary
+        </Title>
+        <ResultsContainer />
+        <Card />
+      </ContentContainer>
+      <Navbar alwaysDisplay />
     </Container>
-  )
+  );
 }
 
 const TitleStylesOverride = `
@@ -43,6 +47,7 @@ const ContentContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  align-items: center;
 
   @media (max-width: 1200px) {
     width: 70%;
