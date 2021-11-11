@@ -1,17 +1,17 @@
-import React, { Component } from 'react'
-import styled from 'styled-components'
-import SearchBar from './SearchBar';
-import Results from './Results'
+import React, { Component } from "react";
+import styled from "styled-components";
+import SearchBar from "./SearchBar";
+import Results from "./Results";
 
 export default class ResultsContainer extends Component {
   constructor(props) {
-    super(props)
-  
+    super(props);
+
     this.state = {
-       query: "",
-       cursor: 0,
-       results: [],
-    }
+      query: "",
+      cursor: 0,
+      results: [],
+    };
   }
 
   //this component should query the backend and load the results into its state.
@@ -19,30 +19,36 @@ export default class ResultsContainer extends Component {
   // The Results component should take an array of objects (the API results) as a prop.
 
   updateQuery = async (query) => {
-    this.setState({query: query});
+    this.setState({ query: query });
 
-    const data = await fetch(
-      `https://g92t09z7f4.execute-api.us-east-1.amazonaws.com/search?term=${query}`
-    )
-    .then((results) => results.json())
-    .then((results) => {
-      this.setState({results: results}, ()=> console.log(this.state));
-    })
-  }
+    if (query.length > 1) {
+      const data = await fetch(
+        `https://g92t09z7f4.execute-api.us-east-1.amazonaws.com/search?term=${query}`
+      )
+        .then((results) => results.json())
+        .then((results) => {
+          this.setState({ results: results }, () => console.log(this.state));
+        });
+    }
+  };
 
   updateCursor = (pos) => {
-    this.setState({cursor: pos}, ()=> console.log(this.state));
-  }
+    this.setState({ cursor: pos }, () => console.log(this.state));
+  };
 
   render() {
-    const {cursor, query, results} = this.state;
+    const { cursor, query, results } = this.state;
 
     return (
       <Container>
-        <SearchBar updateCursor={this.updateCursor} updateQuery={this.updateQuery} cursorPos={cursor} />
+        <SearchBar
+          updateCursor={this.updateCursor}
+          updateQuery={this.updateQuery}
+          cursorPos={cursor}
+        />
         <Results query={query} cursorPos={cursor} results={results} />
       </Container>
-    )
+    );
   }
 }
 

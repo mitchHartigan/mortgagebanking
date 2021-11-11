@@ -5,6 +5,8 @@ import "../../index.css";
 export default function Results(props) {
   const { query, cursorPos, results } = props;
 
+  console.log('results', results);
+
   return (
     <Container query={query}>
       <ViewAllResult listPos={1} cursorPos={cursorPos} query={query}>
