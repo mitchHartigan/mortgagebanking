@@ -1,12 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 
-export default function ItemRow(props) {
+export default function CitationRow(props) {
   return (
     <Container>
       <ItemContainer leftAligned>
         <TitleContainer>
-          <ItemTitle>Definition</ItemTitle>
+          <ItemTitle>Date Added</ItemTitle>
           <TitleUnderline />
         </TitleContainer>
         <ItemText>Automated Drafting System</ItemText>
@@ -14,7 +14,7 @@ export default function ItemRow(props) {
 
       <ItemContainer>
         <TitleContainer>
-          <ItemTitle>Acronym</ItemTitle>
+          <ItemTitle>Citation</ItemTitle>
           <TitleUnderline />
         </TitleContainer>
         <ItemText>ADS</ItemText>

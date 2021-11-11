@@ -18,12 +18,25 @@ export default function index() {
           Acronym Glossary
         </Title>
         <ResultsContainer />
-        <Card />
+        <CardContainer>
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+        </CardContainer>
       </ContentContainer>
       <Navbar alwaysDisplay />
     </Container>
   );
 }
+
+const CardContainer = styled.div`
+  overflow: scroll;
+  max-height: 730px;
+  ::-webkit-scrollbar {
+    display: none;
+  }
+`;
 
 const TitleStylesOverride = `
   margin-bottom: 2vh; 

@@ -2,7 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import Description from "./Description";
 
-import ItemRow from "./ItemRow";
+import DefinitionRow from "./DefinitionRow";
+import CitationRow from "./CitationRow";
 import Title from "./Title";
 
 export default function Card(props) {
@@ -14,8 +15,9 @@ export default function Card(props) {
         onClick={props.handleClose}
       />
       <Title />
-      <ItemRow />
+      <DefinitionRow />
       <Description />
+      <CitationRow />
     </Container>
   );
 }
@@ -27,14 +29,15 @@ const Container = styled.div`
   width: 670px;
   background: white;
   box-sizing: border-box;
-  padding: 30px 60px 30px 60px;
+  padding: 30px 60px 10px 60px;
   box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.3);
   border-radius: 10px;
+  margin: 15px 0px 15px 0px;
 `;
 
 const CloseButton = styled.img`
   position: absolute;
-  top: 38px;
-  left: 19px;
+  top: 41px;
+  left: 20px;
   cursor: pointer;
 `;
