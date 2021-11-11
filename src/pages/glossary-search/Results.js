@@ -3,12 +3,10 @@ import styled from "styled-components";
 import "../../index.css";
 
 export default function Results(props) {
-  const { query, cursorPos, results } = props;
-
-  console.log('results', results);
+  const { focused, query, cursorPos, results } = props;
 
   return (
-    <Container query={query}>
+    <Container query={query} focused={focused}>
       <ViewAllResult listPos={1} cursorPos={cursorPos} query={query}>
         <Acronym>{query}</Acronym>
         <Definition>
@@ -30,10 +28,13 @@ export default function Results(props) {
 }
 
 const Container = styled.div`
-  display: ${(props) => (props.query.length > 1 ? "flex" : "none")};
+  display: ${(props) =>
+    props.query.length > 1 && props.focused ? "flex" : "none"};
   flex-direction: column;
   background-color: white;
   width: 760px;
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+  border-radius: 0px 0px 5px 5px;
 `;
 
 const Result = styled.div`

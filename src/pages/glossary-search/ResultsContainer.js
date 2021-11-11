@@ -11,6 +11,7 @@ export default class ResultsContainer extends Component {
       query: "",
       cursor: 0,
       results: [],
+      searchBarFocused: false,
     };
   }
 
@@ -36,8 +37,17 @@ export default class ResultsContainer extends Component {
     this.setState({ cursor: pos }, () => console.log(this.state));
   };
 
+  toggleSearchBarFocused = () => {
+    this.setState(
+      { searchBarFocused: !this.state.searchBarFocused, cursor: 0 },
+      () => {
+        console.log("this.state", this.state);
+      }
+    );
+  };
+
   render() {
-    const { cursor, query, results } = this.state;
+    const { cursor, query, results, searchBarFocused } = this.state;
 
     return (
       <Container>
@@ -45,8 +55,14 @@ export default class ResultsContainer extends Component {
           updateCursor={this.updateCursor}
           updateQuery={this.updateQuery}
           cursorPos={cursor}
+          toggleSearchBarFocused={this.toggleSearchBarFocused}
         />
-        <Results query={query} cursorPos={cursor} results={results} />
+        <Results
+          query={query}
+          cursorPos={cursor}
+          results={results}
+          focused={searchBarFocused}
+        />
       </Container>
     );
   }
