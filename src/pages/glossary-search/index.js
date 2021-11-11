@@ -31,8 +31,10 @@ export default function index() {
 }
 
 const CardContainer = styled.div`
+  position: absolute;
+  top: 130px;
   overflow: scroll;
-  max-height: 730px;
+  max-height: ${window.innerHeight - 250}px;
   ::-webkit-scrollbar {
     display: none;
   }
@@ -56,6 +58,7 @@ const Container = styled.div`
 `;
 
 const ContentContainer = styled.div`
+  position: relative;
   width: 45%;
   display: flex;
   flex-direction: column;

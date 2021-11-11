@@ -50,7 +50,7 @@ export default class ResultsContainer extends Component {
       this.state;
 
     return (
-      <Container>
+      <Container id="resultsContainer">
         <SearchBar
           updateCursor={this.updateCursor}
           updateQuery={this.updateQuery}
@@ -75,4 +75,5 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  z-index: 2;
 `;
