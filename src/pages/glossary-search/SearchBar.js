@@ -13,10 +13,7 @@ export default class SearchBar extends Component {
   }
   
   _handleInput = (evt) => {
-
-    this.setState({query: evt.target.value}, ()=> {
-      console.log(this.state)
-    }) 
+    this.props.updateQuery(evt.target.value);
   }
 
   _updateCursorPos = (evt) => {
@@ -75,10 +72,6 @@ const Input = styled.input`
 
   ::placeholder {
     color: black;
-  }
-
-  &:focus {
-    padding-left: 20px;
   }
   
   transition: padding 10ms ease;

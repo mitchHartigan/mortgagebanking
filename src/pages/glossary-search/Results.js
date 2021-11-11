@@ -3,14 +3,15 @@ import styled from 'styled-components'
 import '../../index.css'
 
 export default function Results(props) {
+  const {query, cursorPos} = props;
+
   return (
-    <Container>
-      {/* We'll .map() the results in here as li's or something... */}
-      <ViewAllResult listPos={1} cursorPos={props.cursorPos}>
-        <Acronym>asdlfkjsad</Acronym>
+    <Container query={query}>
+      <ViewAllResult listPos={1} cursorPos={cursorPos} query={query}>
+        <Acronym>{query}</Acronym>
         <Definition><i>{`See all search results >`}</i></Definition>
       </ViewAllResult>
-      <Result listPos={2} cursorPos={props.cursorPos}>
+      <Result listPos={2} cursorPos={cursorPos}>
         <Acronym>ANA</Acronym>
         <Definition>Annual Budget Authority asdfasf asdf asdfasdf asdfasdf asdf asdf asdf asdf asdf as df ASD Asdasdfasdf </Definition>
       </Result>
@@ -19,7 +20,7 @@ export default function Results(props) {
 }
 
 const Container = styled.div`
-  display: flex;
+  display: ${props => props.query.length > 1 ? 'flex' : "none"};
   flex-direction: column;
   background-color: white;
   width: 760px;
@@ -39,6 +40,10 @@ const Acronym = styled.p`
   grid-column: 2 / 3;
   font-size: ${props => props.theme.text.xs};
   font-family: ${props => props.theme.textFont};
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `;
 
 const Definition = styled.p`
@@ -53,7 +58,7 @@ const Definition = styled.p`
 `;
 
 const ViewAllResult = styled.li`
-  display: grid;
+  display: ${props => props.query !== '' ? 'grid': 'none'};
   grid-template-columns: 65px 10% 10% 50% 1fr;
   width: 100%;
 
