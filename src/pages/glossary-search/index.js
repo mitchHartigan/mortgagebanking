@@ -8,26 +8,79 @@ import Navbar from "components/navbar";
 import ResultsContainer from "./ResultsContainer";
 import Card from "./Card";
 
-export default function index() {
-  return (
-    <Container>
-      <ScrollToTopOnMount />
-      <BackButton location="/resources" text="< Resources" />
-      <ContentContainer>
-        <Title size="xl" styles={TitleStylesOverride}>
-          Acronym Glossary
-        </Title>
-        <ResultsContainer />
-        <CardContainer>
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-        </CardContainer>
-      </ContentContainer>
-      <Navbar alwaysDisplay />
-    </Container>
-  );
+export default class index extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      query: "",
+      cursor: 0,
+      results: [],
+      searchBarFocused: false,
+      loadingResults: false,
+    };
+  }
+
+  updateQuery = async (query) => {
+    this.setState({ query: query, loadingResults: true });
+
+    if (query.length > 1) {
+      const data = await fetch(
+        `https://g92t09z7f4.execute-api.us-east-1.amazonaws.com/search?term=${query}`
+      )
+        .then((results) => results.json())
+        .then((results) => {
+          this.setState({ results: results, loadingResults: false });
+        });
+    }
+  };
+
+  updateCursor = (pos) => {
+    this.setState({ cursor: pos });
+  };
+
+  toggleSearchBarFocused = () => {
+    this.setState({
+      searchBarFocused: !this.state.searchBarFocused,
+      cursor: 0,
+    });
+  };
+
+  render() {
+    const { query, cursor, results, searchBarFocused, loadingResults } =
+      this.state;
+
+    const resultsContainerProps = {
+      query: query,
+      cursor: cursor,
+      results: results,
+      searchBarFocused: searchBarFocused,
+      loadingResults: loadingResults,
+      updateQuery: this.updateQuery,
+      updateCursor: this.updateCursor,
+      toggleSearchBarFocused: this.toggleSearchBarFocused,
+    };
+
+    return (
+      <Container>
+        <ScrollToTopOnMount />
+        <BackButton location="/resources" text="< Resources" />
+        <ContentContainer>
+          <Title size="xl" styles={TitleStylesOverride}>
+            Acronym Glossary
+          </Title>
+          <ResultsContainer {...resultsContainerProps} />
+          <CardContainer>
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+          </CardContainer>
+        </ContentContainer>
+        <Navbar alwaysDisplay />
+      </Container>
+    );
+  }
 }
 
 const CardContainer = styled.div`

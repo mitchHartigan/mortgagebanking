@@ -4,6 +4,17 @@ import { nanoid } from "nanoid";
 
 import "../../index.css";
 
+const data = {
+  Acronym: "CD",
+  Citation: "12 CFR Sec. 1026.19(f)(1)",
+  "Date Entered": "",
+  "Description of use":
+    "Contains terms of transaction and actual closing costs. Substituted for the HUD-1 Settlement Statement effective 10/3/2015.",
+  FIELD6: "",
+  Text: "Closing Disclosure",
+  _id: "614cd65f33c9ad4ea838e8bc",
+};
+
 export default function Results(props) {
   const { focused, query, cursorPos, results, loadingResults, updateCursor } =
     props;
