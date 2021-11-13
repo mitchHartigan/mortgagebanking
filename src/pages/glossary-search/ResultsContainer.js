@@ -13,6 +13,7 @@ export default function ResultsContainer(props) {
       <SearchBar
         updateCursor={props.updateCursor}
         updateQuery={props.updateQuery}
+        query={query}
         cursorPos={cursor}
         toggleSearchBarFocused={props.toggleSearchBarFocused}
         loadCard={loadCard}

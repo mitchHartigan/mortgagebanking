@@ -13,7 +13,7 @@ export default function Card(props) {
       <CloseButton
         src="button_close.svg"
         alt="close button."
-        onClick={props.handleClose}
+        onClick={() => props.handleClose(props.index)}
       />
       <Title cardData={cardData} />
       <DefinitionRow cardData={cardData} />
@@ -33,7 +33,7 @@ const Container = styled.div`
   padding: 30px 60px 10px 60px;
   box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.3);
   border-radius: 10px;
-  margin: 15px 0px 15px 0px;
+  margin: 30px 0px 30px 0px;
 `;
 
 const CloseButton = styled.img`

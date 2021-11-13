@@ -35,6 +35,7 @@ export default class SearchBar extends Component {
         <img src="magnifying_glass.svg" alt="magnifying glass" />
         <Input
           onChange={this._handleInput}
+          value={this.props.query}
           onKeyDown={this._updateCursorPos}
           placeholder="Enter acronym or term to search..."
           onFocus={this.props.toggleSearchBarFocused}

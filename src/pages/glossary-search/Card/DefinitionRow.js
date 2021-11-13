@@ -35,7 +35,7 @@ const Container = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  margin: 25px 0px 25px 0px;
+  margin: 30px 0px 25px 0px;
 `;
 
 const ItemContainer = styled.div`

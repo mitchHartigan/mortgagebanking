@@ -22,11 +22,18 @@ export default class index extends React.Component {
     };
   }
 
+  deleteCard = (index) => {
+    const { cards } = this.state;
+    cards.splice(index, 1);
+
+    this.setState({ cards: cards });
+  };
+
   loadCard = (index) => {
     const { results, cards } = this.state;
 
     cards.push(results[index]);
-    this.setState({ cards: cards });
+    this.setState({ cards: cards, query: "" });
   };
 
   updateQuery = async (query) => {
@@ -80,8 +87,10 @@ export default class index extends React.Component {
           </Title>
           <ResultsContainer {...resultsContainerProps} />
           <CardContainer>
-            {cards.reverse().map((card) => {
-              return <Card cardData={card} />;
+            {cards.reverse().map((card, i) => {
+              return (
+                <Card cardData={card} index={i} handleClose={this.deleteCard} />
+              );
             })}
           </CardContainer>
         </ContentContainer>
