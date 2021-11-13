@@ -17,6 +17,7 @@ export default function ResultsContainer(props) {
         cursorPos={cursor}
         toggleSearchBarFocused={props.toggleSearchBarFocused}
         loadCard={loadCard}
+        results={results}
       />
       <Results
         query={query}

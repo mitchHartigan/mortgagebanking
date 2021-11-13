@@ -19,7 +19,7 @@ export default class SearchBar extends Component {
       }
     } else if (key === "ArrowDown") {
       let cursorPos = this.props.cursorPos;
-      if (cursorPos === 7) return;
+      if (cursorPos === 7 || cursorPos >= this.props.results.length + 1) return;
       // including the search bar (cursor 0) and 'See all results' (cursor 1), and a maximum of 6 results, the max index will be 7.
       else {
         this.props.updateCursor(cursorPos + 1);

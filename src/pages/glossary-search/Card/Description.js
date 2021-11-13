@@ -3,13 +3,13 @@ import styled from "styled-components";
 
 export default function Description(props) {
   let description = props.cardData["Description of use"];
-  if (description === "") description = "N/A";
+  if (description === "") description = "No description provided.";
 
   return (
     <Container>
       <Title>Description of Use</Title>
       <Underline />
-      <Text>{description}</Text>
+      <Text description={description}>{description}</Text>
     </Container>
   );
 }
@@ -34,8 +34,12 @@ const Text = styled.p`
   font-family: ${(props) => props.theme.textFont};
   font-size: ${(props) => props.theme.text.xs};
   font-weight: 500;
+  font-style: ${(props) =>
+    props.description === "No description provided." ? "italic" : "normal"};
   margin: 7px 0px 0px 0px;
   line-height: 25px;
+  color: ${(props) =>
+    props.description === "No description provided." ? "gray" : "black"};
 `;
 
 const Underline = styled.span`

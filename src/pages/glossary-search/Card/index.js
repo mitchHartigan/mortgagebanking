@@ -30,7 +30,7 @@ const Container = styled.div`
   width: 670px;
   background: white;
   box-sizing: border-box;
-  padding: 30px 60px 10px 60px;
+  padding: 20px 60px 10px 60px;
   box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.3);
   border-radius: 10px;
   margin: 30px 0px 30px 0px;
@@ -38,7 +38,7 @@ const Container = styled.div`
 
 const CloseButton = styled.img`
   position: absolute;
-  top: 41px;
-  left: 20px;
+  top: 31px;
+  left: 21px;
   cursor: pointer;
 `;
