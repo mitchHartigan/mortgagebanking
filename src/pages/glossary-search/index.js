@@ -80,7 +80,7 @@ export default class index extends React.Component {
           </Title>
           <ResultsContainer {...resultsContainerProps} />
           <CardContainer>
-            {cards.map((card) => {
+            {cards.reverse().map((card) => {
               return <Card cardData={card} />;
             })}
           </CardContainer>
