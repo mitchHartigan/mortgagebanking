@@ -1,10 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 
-export default function TitleRow() {
+export default function TitleRow(props) {
+  const { Acronym, Text } = props.cardData;
   return (
     <Container>
-      <Title>ADS (Automated Drafting System)</Title>
+      <Title>{`${Acronym} (${Text})`}</Title>
     </Container>
   );
 }

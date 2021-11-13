@@ -2,6 +2,12 @@ import React from "react";
 import styled from "styled-components";
 
 export default function DefinitionRow(props) {
+  let definition = props.cardData.Text;
+  let acronym = props.cardData.Acronym;
+
+  if (definition === "") definition = "N/A";
+  if (acronym === "") acronym = "N/A";
+
   return (
     <Container>
       <ItemContainer leftAligned>
@@ -9,7 +15,7 @@ export default function DefinitionRow(props) {
           <ItemTitle>Definition</ItemTitle>
           <TitleUnderline />
         </TitleContainer>
-        <ItemText>Automated Drafting System</ItemText>
+        <ItemText>{definition}</ItemText>
       </ItemContainer>
 
       <ItemContainer>
@@ -17,7 +23,7 @@ export default function DefinitionRow(props) {
           <ItemTitle>Acronym</ItemTitle>
           <TitleUnderline />
         </TitleContainer>
-        <ItemText>ADS</ItemText>
+        <ItemText>{acronym}</ItemText>
       </ItemContainer>
     </Container>
   );

@@ -16,8 +16,15 @@ const data = {
 };
 
 export default function Results(props) {
-  const { focused, query, cursorPos, results, loadingResults, updateCursor } =
-    props;
+  const {
+    focused,
+    query,
+    cursorPos,
+    results,
+    loadingResults,
+    updateCursor,
+    loadCard,
+  } = props;
 
   const mapResults = () => {
     return results.map((result, i) => {
@@ -28,6 +35,9 @@ export default function Results(props) {
             listPos={i + 2}
             cursorPos={cursorPos}
             onMouseEnter={() => updateCursor(i + 2)}
+            name={result._id}
+            currentIndex={i}
+            onMouseDown={() => loadCard(i)} // this is i, not i+2, because it's the position in the results[] array.
           >
             <Acronym>{result.Acronym}</Acronym>
             <Definition>{result.Text}</Definition>
@@ -51,7 +61,11 @@ export default function Results(props) {
           <i>{`See all search results >`}</i>
         </Definition>
       </ViewAllResult>
-      <NoResultsFound results={results} loadingResults={loadingResults}>
+      <NoResultsFound
+        results={results}
+        loadingResults={loadingResults}
+        loadCard={loadCard}
+      >
         <NoResultsMessage>
           No results found. Please try a different search term.
         </NoResultsMessage>

@@ -1,20 +1,15 @@
 import React from "react";
 import styled from "styled-components";
 
-export default function Description() {
+export default function Description(props) {
+  let description = props.cardData["Description of use"];
+  if (description === "") description = "N/A";
+
   return (
     <Container>
       <Title>Description of Use</Title>
       <Underline />
-      <Text>
-        The system used to process P&I remittances related to MBS pools that
-        have the standard remittance cycle, MBS pools that have the RPM
-        remittance cycle (except for those that have a 6th of the month
-        remittance date), scheduled P&I remittances related to MBS Express
-        pools, MBS guaranty fees and guaranty fee buydown charges for all MBS
-        pools, and commitment-related or mortgage-related fees and charges for
-        portfolio mortgage loans and MBS mortgage loans.
-      </Text>
+      <Text>{description}</Text>
     </Container>
   );
 }
@@ -25,7 +20,7 @@ const Container = styled.div`
   justify-content: center;
   align-items: flex-start;
   width: 100%;
-  margin: 10px 0px 10px 0px;
+  margin: 20px 0px 20px 0px;
 `;
 
 const Title = styled.p`

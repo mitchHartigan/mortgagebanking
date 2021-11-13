@@ -1,18 +1,21 @@
-import React, { Component } from "react";
+import React from "react";
 import styled from "styled-components";
+
 import SearchBar from "./SearchBar";
 import Results from "./Results";
 
 export default function ResultsContainer(props) {
-  const { cursor, query, results, searchBarFocused, loadingResults } = props;
+  const { cursor, query, results, searchBarFocused, loadingResults, loadCard } =
+    props;
 
   return (
-    <Container id="resultsContainer">
+    <Container>
       <SearchBar
         updateCursor={props.updateCursor}
         updateQuery={props.updateQuery}
         cursorPos={cursor}
         toggleSearchBarFocused={props.toggleSearchBarFocused}
+        loadCard={loadCard}
       />
       <Results
         query={query}
@@ -21,6 +24,7 @@ export default function ResultsContainer(props) {
         results={results}
         focused={searchBarFocused}
         loadingResults={loadingResults}
+        loadCard={loadCard}
       />
     </Container>
   );

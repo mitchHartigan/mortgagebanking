@@ -2,6 +2,12 @@ import React from "react";
 import styled from "styled-components";
 
 export default function CitationRow(props) {
+  let dateAdded = props.cardData["Date Entered"];
+  let citation = props.cardData.Citation;
+
+  if (citation === "") citation = "N/A";
+  if (dateAdded === "") dateAdded = "N/A";
+
   return (
     <Container>
       <ItemContainer leftAligned>
@@ -9,7 +15,7 @@ export default function CitationRow(props) {
           <ItemTitle>Date Added</ItemTitle>
           <TitleUnderline />
         </TitleContainer>
-        <ItemText>Automated Drafting System</ItemText>
+        <ItemText>{dateAdded}</ItemText>
       </ItemContainer>
 
       <ItemContainer>
@@ -17,7 +23,7 @@ export default function CitationRow(props) {
           <ItemTitle>Citation</ItemTitle>
           <TitleUnderline />
         </TitleContainer>
-        <ItemText>ADS</ItemText>
+        <ItemText>{citation}</ItemText>
       </ItemContainer>
     </Container>
   );

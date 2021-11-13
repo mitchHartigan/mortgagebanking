@@ -16,10 +16,18 @@ export default class index extends React.Component {
       query: "",
       cursor: 0,
       results: [],
+      cards: [],
       searchBarFocused: false,
       loadingResults: false,
     };
   }
+
+  loadCard = (index) => {
+    const { results, cards } = this.state;
+
+    cards.push(results[index]);
+    this.setState({ cards: cards });
+  };
 
   updateQuery = async (query) => {
     this.setState({ query: query, loadingResults: true });
@@ -47,7 +55,7 @@ export default class index extends React.Component {
   };
 
   render() {
-    const { query, cursor, results, searchBarFocused, loadingResults } =
+    const { query, cursor, results, cards, searchBarFocused, loadingResults } =
       this.state;
 
     const resultsContainerProps = {
@@ -59,6 +67,7 @@ export default class index extends React.Component {
       updateQuery: this.updateQuery,
       updateCursor: this.updateCursor,
       toggleSearchBarFocused: this.toggleSearchBarFocused,
+      loadCard: this.loadCard,
     };
 
     return (
@@ -71,10 +80,9 @@ export default class index extends React.Component {
           </Title>
           <ResultsContainer {...resultsContainerProps} />
           <CardContainer>
-            <Card />
-            <Card />
-            <Card />
-            <Card />
+            {cards.map((card) => {
+              return <Card cardData={card} />;
+            })}
           </CardContainer>
         </ContentContainer>
         <Navbar alwaysDisplay />
