@@ -62,7 +62,6 @@ const ItemText = styled.p`
   font-size: ${(props) => props.theme.text.xs};
   font-weight: 500;
   margin: 7px 0px 0px 0px;
-  color: ${(props) => (props.acronym === "N/A" ? "lightgray" : "black")};
 `;
 
 const TitleUnderline = styled.span`

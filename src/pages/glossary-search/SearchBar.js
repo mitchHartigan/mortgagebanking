@@ -9,6 +9,7 @@ export default class SearchBar extends Component {
 
   _updateCursorPos = (evt) => {
     const { key } = evt;
+    // maybe refactor this with a switch case statement?
 
     if (key === "ArrowUp") {
       evt.preventDefault();
@@ -25,14 +26,22 @@ export default class SearchBar extends Component {
         this.props.updateCursor(cursorPos + 1);
       }
     } else if (key === "Enter") {
-      this.props.loadCard(this.props.cursorPos - 2); // since the first two cursor indexes identify the search bar and view all results elements.
+      if (this.props.cursorPos === 1) {
+        this.props.toggleViewAllResults();
+      } else {
+        this.props.loadCard(this.props.cursorPos - 2); // since the first two cursor indexes identify the search bar and view all results elements.
+      }
     }
   };
 
   render() {
     return (
-      <Container>
-        <img src="magnifying_glass.svg" alt="magnifying glass" />
+      <Container
+        ref={this.containerRef}
+        tabIndex="0"
+        onKeyDown={(evt) => console.log(`evt.key`, evt.key)}
+      >
+        <MagnifyingGlass src="magnifying_glass.svg" alt="magnifying glass" />
         <Input
           onChange={this._handleInput}
           value={this.props.query}
@@ -56,6 +65,7 @@ const Container = styled.div`
   background-color: white;
   box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
   border-radius: 20px;
+  outline: none;
   box-sizing: border-box;
   padding-left: 30px;
   z-index: 1;
@@ -76,5 +86,11 @@ const Input = styled.input`
     color: black;
   }
 
+  display: ${(props) => (props.viewAllResults ? "none" : "inline")};
+
   transition: padding 10ms ease;
+`;
+
+const MagnifyingGlass = styled.img`
+  display: ${(props) => (props.viewAllResults ? "none" : "inline")};
 `;

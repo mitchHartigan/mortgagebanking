@@ -24,6 +24,7 @@ export default function Results(props) {
     loadingResults,
     updateCursor,
     loadCard,
+    toggleViewAllResults,
   } = props;
 
   const mapResults = () => {
@@ -55,6 +56,7 @@ export default function Results(props) {
         query={query}
         onMouseEnter={() => updateCursor(1)}
         results={results}
+        onMouseDown={toggleViewAllResults}
       >
         <Acronym>{query}</Acronym>
         <Definition>
