@@ -10,12 +10,17 @@ export default class ResultsContainer extends React.Component {
     super(props);
 
     this.state = {
-      viewAllResults: true,
+      viewAllResults: false,
     };
   }
 
+  toggleSearch = () => {
+    this.props.toggleSearchBarFocused();
+    this.setState({ viewAllResults: false });
+  };
+
   toggleViewAllResults = () => {
-    this.setState({ viewAllResults: !this.state.viewAllResults });
+    this.setState({ viewAllResults: true });
     // also set the container as focused.
   };
 
@@ -54,14 +59,16 @@ export default class ResultsContainer extends React.Component {
             loadingResults={loadingResults}
             loadCard={loadCard}
             toggleViewAllResults={this.toggleViewAllResults}
+            toggleSearchBarFocused={toggleSearchBarFocused}
           />
         </Container>
       );
     } else {
       return (
         <ViewAllResults
-          toggleViewAllResults={this.toggleViewAllResults}
+          toggleSearch={this.toggleSearch}
           query={query}
+          results={results}
         />
       );
     }

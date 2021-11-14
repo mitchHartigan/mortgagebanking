@@ -55,10 +55,15 @@ export default class index extends React.Component {
   };
 
   toggleSearchBarFocused = () => {
-    this.setState({
-      searchBarFocused: !this.state.searchBarFocused,
-      cursor: 0,
-    });
+    this.setState(
+      {
+        searchBarFocused: !this.state.searchBarFocused,
+        cursor: 0,
+      },
+      () => {
+        console.log(this.state);
+      }
+    );
   };
 
   render() {
@@ -78,7 +83,7 @@ export default class index extends React.Component {
     };
 
     return (
-      <Container>
+      <Container id="state">
         <ScrollToTopOnMount />
         <BackButton location="/resources" text="< Resources" />
         <ContentContainer>

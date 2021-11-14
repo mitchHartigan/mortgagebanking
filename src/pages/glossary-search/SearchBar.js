@@ -3,6 +3,11 @@ import styled from "styled-components";
 import "magnifying_glass.svg";
 
 export default class SearchBar extends Component {
+  constructor(props) {
+    super(props);
+    this.inputRef = React.createRef();
+  }
+
   _handleInput = (evt) => {
     this.props.updateQuery(evt.target.value);
   };
@@ -34,6 +39,10 @@ export default class SearchBar extends Component {
     }
   };
 
+  componentDidMount() {
+    this.inputRef.current.focus();
+  }
+
   render() {
     return (
       <Container
@@ -43,6 +52,7 @@ export default class SearchBar extends Component {
       >
         <MagnifyingGlass src="magnifying_glass.svg" alt="magnifying glass" />
         <Input
+          ref={this.inputRef}
           onChange={this._handleInput}
           value={this.props.query}
           onKeyDown={this._updateCursorPos}

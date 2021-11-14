@@ -25,7 +25,13 @@ export default function Results(props) {
     updateCursor,
     loadCard,
     toggleViewAllResults,
+    toggleSearchBarFocused,
   } = props;
+
+  const _toggleViewAllResults = () => {
+    toggleSearchBarFocused();
+    toggleViewAllResults();
+  };
 
   const mapResults = () => {
     return results.map((result, i) => {
@@ -56,7 +62,7 @@ export default function Results(props) {
         query={query}
         onMouseEnter={() => updateCursor(1)}
         results={results}
-        onMouseDown={toggleViewAllResults}
+        onMouseDown={_toggleViewAllResults}
       >
         <Acronym>{query}</Acronym>
         <Definition>
