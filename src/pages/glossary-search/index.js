@@ -7,6 +7,8 @@ import { Title } from "components/Title";
 import Navbar from "components/navbar";
 import ResultsContainer from "./ResultsContainer";
 import Card from "./Card";
+import Sidebar from "./Sidebar";
+import ResultCards from "./ResultCards";
 
 export default class index extends React.Component {
   constructor(props) {
@@ -90,14 +92,9 @@ export default class index extends React.Component {
           <Title size="xl" styles={TitleStylesOverride}>
             Acronym Glossary
           </Title>
+          <Sidebar cards={cards} />
           <ResultsContainer {...resultsContainerProps} />
-          <CardContainer>
-            {cards.reverse().map((card, i) => {
-              return (
-                <Card cardData={card} index={i} handleClose={this.deleteCard} />
-              );
-            })}
-          </CardContainer>
+          <ResultCards cards={cards} deleteCard={this.deleteCard} />
         </ContentContainer>
         <Navbar alwaysDisplay />
       </Container>

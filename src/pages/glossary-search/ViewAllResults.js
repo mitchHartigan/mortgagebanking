@@ -141,6 +141,7 @@ const TitleContainer = styled.div`
 const ResultsContainer = styled.div`
   overflow-y: scroll;
   height: 550px;
+  outline: none;
 `;
 
 // Copied over from Results.js. We'll make a uniform component later that we can use for both.
