@@ -43,6 +43,15 @@ const Container = styled.div`
   border-radius: 10px;
   margin: 30px 0px 30px 0px;
   opacity: ${(props) => (props.inactive ? "0.4" : "1")};
+
+  @media (max-width: 1330px) {
+    width: 500px;
+  }
+
+  @media (max-width: 500px) {
+    width: 90vw;
+    padding: 20px 20px 5px 20px;
+  }
 `;
 
 const CloseButton = styled.img`
@@ -50,4 +59,9 @@ const CloseButton = styled.img`
   top: 31px;
   left: 21px;
   cursor: pointer;
+
+  @media (max-width: 500px) {
+    top: 30px;
+    left: 30px;
+  }
 `;

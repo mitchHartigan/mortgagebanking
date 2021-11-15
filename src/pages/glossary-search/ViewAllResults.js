@@ -116,6 +116,16 @@ const Container = styled.div`
   z-index: 1;
   box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
   padding: 30px;
+
+  @media (max-width: 1330px) {
+    width: 650px;
+    height: 500px;
+  }
+
+  @media (max-width: 700px) {
+    padding: 15px;
+    width: 90vw;
+  }
 `;
 
 const BackButton = styled.p`
@@ -125,6 +135,10 @@ const BackButton = styled.p`
   cursor: pointer;
   margin: 0px;
   white-space: pre;
+
+  @media (max-width: 700px) {
+    font-size: ${(props) => props.theme.text.xxs};
+  }
 `;
 
 const Title = styled.h4`
@@ -132,6 +146,10 @@ const Title = styled.h4`
   font-size: ${(props) => props.theme.text.xs};
   font-weight: 400;
   margin: 20px 0px 10px 0px;
+
+  @media (max-width: 700px) {
+    font-size: ${(props) => props.theme.text.xxs};
+  }
 `;
 
 const Underline = styled.span`
@@ -143,6 +161,10 @@ const Underline = styled.span`
 
 const TitleContainer = styled.div`
   padding: 0px 25px 0px 25px;
+
+  @media (max-width: 600px) {
+    padding: 0px;
+  }
 `;
 
 const ResultsContainer = styled.div`
@@ -157,6 +179,11 @@ const ResultsContainer = styled.div`
 
   &::-webkit-scrollbar-thumb {
     background: ${(props) => props.theme.colors.darkGray};
+  }
+
+  @media (max-width: 1330px) {
+    height: 380px;
+    margin-right: 0px;
   }
 `;
 
@@ -173,6 +200,11 @@ const Result = styled.div`
       : "transparent"};
   color: ${(props) => (props.listPos === props.cursorPos ? "white" : "black")};
   cursor: pointer;
+
+  @media (max-width: 700px) {
+    grid-template-columns: 15px 10% 10% 1fr 15px;
+    width: 100%;
+  }
 `;
 
 const Acronym = styled.p`
@@ -183,6 +215,10 @@ const Acronym = styled.p`
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+
+  @media (max-width: 700px) {
+    font-size: ${(props) => props.theme.text.xxs};
+  }
 `;
 
 const Definition = styled.p`
@@ -194,4 +230,8 @@ const Definition = styled.p`
   text-overflow: ellipsis;
   white-space: nowrap;
   width: 100%;
+
+  @media (max-width: 700px) {
+    font-size: ${(props) => props.theme.text.xxs};
+  }
 `;

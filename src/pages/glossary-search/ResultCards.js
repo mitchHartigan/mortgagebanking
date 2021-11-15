@@ -80,4 +80,8 @@ const CardContainer = styled.div`
   ::-webkit-scrollbar {
     display: none;
   }
+
+  @media (max-width: 900px) {
+    top: 200px;
+  }
 `;

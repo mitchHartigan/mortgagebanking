@@ -93,6 +93,14 @@ const Container = styled.div`
   width: 760px;
   box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
   border-radius: 0px 0px 5px 5px;
+
+  @media (max-width: 1330px) {
+    width: 560px;
+  }
+
+  @media (max-width: 600px) {
+    width: 85vw;
+  }
 `;
 
 const Result = styled.div`
@@ -106,6 +114,10 @@ const Result = styled.div`
       : "transparent"};
   color: ${(props) => (props.listPos === props.cursorPos ? "white" : "black")};
   cursor: pointer;
+
+  @media (max-width: 600px) {
+    grid-template-columns: 27px 10% 10% 1fr 20px;
+  }
 `;
 
 const Acronym = styled.p`
@@ -116,6 +128,10 @@ const Acronym = styled.p`
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+
+  @media (max-width: 600px) {
+    font-size: ${(props) => props.theme.text.xxs};
+  }
 `;
 
 const Definition = styled.p`
@@ -127,6 +143,10 @@ const Definition = styled.p`
   text-overflow: ellipsis;
   white-space: nowrap;
   width: 100%;
+
+  @media (max-width: 600px) {
+    font-size: ${(props) => props.theme.text.xxs};
+  }
 `;
 
 const ViewAllResult = styled.li`
@@ -140,6 +160,10 @@ const ViewAllResult = styled.li`
       : "transparent"};
   color: ${(props) => (props.listPos === props.cursorPos ? "white" : "black")};
   cursor: pointer;
+
+  @media (max-width: 600px) {
+    grid-template-columns: 27px 10% 10% 1fr 20px;
+  }
 `;
 
 const NoResultsFound = styled.div`
@@ -156,4 +180,9 @@ const NoResultsMessage = styled.p`
   font-weight: 400;
   font-style: italic;
   margin-left: 65px;
+
+  @media (max-width: 600px) {
+    margin-left: 25px;
+    font-size: ${(props) => props.theme.text.xxs};
+  }
 `;

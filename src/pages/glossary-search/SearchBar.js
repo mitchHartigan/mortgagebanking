@@ -75,6 +75,14 @@ const Container = styled.div`
   box-sizing: border-box;
   padding-left: 30px;
   z-index: 1;
+
+  @media (max-width: 1330px) {
+    width: 600px;
+  }
+
+  @media (max-width: 600px) {
+    width: 90vw;
+  }
 `;
 
 const Input = styled.input`
@@ -95,8 +103,16 @@ const Input = styled.input`
   display: ${(props) => (props.viewAllResults ? "none" : "inline")};
 
   transition: padding 10ms ease;
+
+  @media (max-width: 600px) {
+    padding: 10px;
+  }
 `;
 
 const MagnifyingGlass = styled.img`
   display: ${(props) => (props.viewAllResults ? "none" : "inline")};
+
+  @media (max-width: 600px) {
+    display: none;
+  }
 `;

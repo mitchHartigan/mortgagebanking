@@ -10,39 +10,54 @@ export default function CitationRow(props) {
 
   return (
     <Container>
-      <ItemContainer leftAligned>
-        <TitleContainer>
-          <ItemTitle>Date Added</ItemTitle>
-          <TitleUnderline />
-        </TitleContainer>
-        <ItemText>{dateAdded}</ItemText>
-      </ItemContainer>
-
-      <ItemContainer>
+      <CitationContainer>
         <TitleContainer>
           <ItemTitle>Citation</ItemTitle>
           <TitleUnderline />
         </TitleContainer>
         <ItemText>{citation}</ItemText>
-      </ItemContainer>
+      </CitationContainer>
+
+      <DateContainer>
+        <TitleContainer>
+          <ItemTitle>Date Added</ItemTitle>
+          <TitleUnderline />
+        </TitleContainer>
+        <ItemText>{dateAdded}</ItemText>
+      </DateContainer>
     </Container>
   );
 }
 
 const Container = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
+  display: grid;
+  grid-template-columns: 70% 5% 25%;
   width: 100%;
   margin: 25px 0px 25px 0px;
 `;
 
-const ItemContainer = styled.div`
+const CitationContainer = styled.div`
+  grid-column: 1 / 2;
+  align-self: start;
+  justify-self: start;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+`;
+
+const DateContainer = styled.div`
+  grid-column: 3 / 4;
+  align-self: start;
+  justify-self: end;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: ${(props) => (props.leftAligned ? "flex-start" : "flex-end")};
+
+  @media (max-width: 600px) {
+    display: none;
+  }
 `;
 
 const TitleContainer = styled.div`
@@ -55,6 +70,11 @@ const ItemTitle = styled.p`
   font-size: ${(props) => props.theme.text.sm};
   font-weight: 600;
   margin: 0px 0px 2px 0px;
+  white-space: nowrap;
+
+  @media (max-width: 900px) {
+    font-size: ${(props) => props.theme.text.xs};
+  }
 `;
 
 const ItemText = styled.p`
@@ -62,6 +82,12 @@ const ItemText = styled.p`
   font-size: ${(props) => props.theme.text.xs};
   font-weight: 500;
   margin: 7px 0px 0px 0px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  @media (max-width: 900px) {
+    font-size: ${(props) => props.theme.text.xxs};
+  }
 `;
 
 const TitleUnderline = styled.span`

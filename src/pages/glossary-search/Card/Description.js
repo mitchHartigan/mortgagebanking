@@ -21,6 +21,10 @@ const Container = styled.div`
   align-items: flex-start;
   width: 100%;
   margin: 20px 0px 20px 0px;
+
+  @media (max-width: 600px) {
+    margin: 10px 0px 10px 0px;
+  }
 `;
 
 const Title = styled.p`
@@ -28,6 +32,10 @@ const Title = styled.p`
   font-size: ${(props) => props.theme.text.sm};
   font-weight: 600;
   margin: 0px 0px 2px 0px;
+
+  @media (max-width: 900px) {
+    font-size: ${(props) => props.theme.text.xs};
+  }
 `;
 
 const Text = styled.p`
@@ -40,6 +48,10 @@ const Text = styled.p`
   line-height: 25px;
   color: ${(props) =>
     props.description === "No description provided." ? "gray" : "black"};
+
+  @media (max-width: 900px) {
+    font-size: ${(props) => props.theme.text.xxs};
+  }
 `;
 
 const Underline = styled.span`

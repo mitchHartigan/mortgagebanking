@@ -37,7 +37,7 @@ const Container = styled.div`
 
 const Title = styled.p`
   font-family: ${(props) => props.theme.textFont};
-  font-size: 18px;
+  font-size: ${(props) => props.theme.text.sm};
   font-weight: 600;
   margin: 7px 0px 7px 0px;
   white-space: nowrap;
@@ -47,4 +47,8 @@ const Title = styled.p`
     props.index !== props.activeCardIndex || props.inactive
       ? props.theme.colors.offWhite
       : props.theme.colors.darkGray};
+
+  @media (max-width: 900px) {
+    font-size: ${(props) => props.theme.text.xs};
+  }
 `;

@@ -64,6 +64,10 @@ const ItemTitle = styled.p`
   font-size: ${(props) => props.theme.text.sm};
   font-weight: 600;
   margin: 0px 0px 2px 0px;
+
+  @media (max-width: 900px) {
+    font-size: ${(props) => props.theme.text.xs};
+  }
 `;
 
 const ItemText = styled.p`
@@ -71,6 +75,10 @@ const ItemText = styled.p`
   font-size: ${(props) => props.theme.text.xs};
   font-weight: 500;
   margin: 7px 0px 0px 0px;
+
+  @media (max-width: 900px) {
+    font-size: ${(props) => props.theme.text.xxs};
+  }
 `;
 
 const Acronym = styled(ItemText)`

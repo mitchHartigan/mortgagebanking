@@ -40,6 +40,18 @@ const Container = styled.div`
   align-items: flex-end;
   top: 187px;
   left: -175px;
+
+  @media (max-width: 1800px) {
+    left: -250px;
+  }
+
+  @media (max-width: 1565px) {
+    left: -300px;
+  }
+
+  @media (max-width: 1330px) {
+    display: none;
+  }
 `;
 
 const Acronym = styled.p`
