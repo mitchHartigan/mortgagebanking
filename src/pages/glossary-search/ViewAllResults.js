@@ -77,7 +77,9 @@ export default class ViewAllResults extends React.Component {
 
   render() {
     const { query, cursorPos, updateCursor, loadCard } = this.props;
-    let results = this.props.results || [];
+
+    let results = this.props.results;
+    if (results.errorMessage) results = [];
 
     return (
       <Container show>
@@ -147,14 +149,23 @@ const ResultsContainer = styled.div`
   overflow-y: scroll;
   height: 550px;
   outline: none;
+  margin-right: -20px;
+
+  &::-webkit-scrollbar {
+    width: 7px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: ${(props) => props.theme.colors.darkGray};
+  }
 `;
 
 // Copied over from Results.js. We'll make a uniform component later that we can use for both.
 
 const Result = styled.div`
   display: grid;
-  grid-template-columns: 0px 10% 10% 50% 1fr;
-  width: 100%;
+  grid-template-columns: 40px 10% 10% 1fr 40px;
+  width: 95%;
 
   background-color: ${(props) =>
     props.listPos === props.cursorPos

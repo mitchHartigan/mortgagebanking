@@ -75,6 +75,7 @@ const CardContainer = styled.div`
   position: absolute;
   top: 130px;
   overflow: ${(props) => (props.stopScroll ? "hidden" : "scroll")};
+  pointer-events: ${(props) => (props.stopScroll ? "none" : "auto")};
   max-height: ${window.innerHeight - 250}px;
   ::-webkit-scrollbar {
     display: none;
