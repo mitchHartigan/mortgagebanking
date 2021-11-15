@@ -15,11 +15,11 @@ export default class ResultsContainer extends React.Component {
   }
 
   toggleSearch = () => {
-    this.props.toggleSearchBarFocused();
     this.setState({ viewAllResults: false });
   };
 
   toggleViewAllResults = () => {
+    this.props.toggleSearchBarFocused();
     this.setState({ viewAllResults: true });
     // also set the container as focused.
   };
