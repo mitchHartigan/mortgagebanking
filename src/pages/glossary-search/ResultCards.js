@@ -36,7 +36,11 @@ export default class ResultCards extends React.Component {
     }
 
     return (
-      <CardContainer stopScroll={this.props.searchBarFocused}>
+      <CardContainer
+        stopScroll={
+          this.props.searchBarFocused || this.props.viewAllResultsFocused
+        }
+      >
         {reversedCards.map((card, i) => {
           return (
             <VisibilitySensor
@@ -48,7 +52,10 @@ export default class ResultCards extends React.Component {
             >
               <ScrollContainer ref={(element) => (this[card._id] = element)}>
                 <Card
-                  inactive={this.props.searchBarFocused}
+                  inactive={
+                    this.props.searchBarFocused ||
+                    this.props.viewAllResultsFocused
+                  }
                   tabIndex={i}
                   cardData={card}
                   key={card._id}

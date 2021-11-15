@@ -19,6 +19,7 @@ export default class index extends React.Component {
       results: [],
       cards: [],
       searchBarFocused: false,
+      viewAllResultsFocused: false,
       loadingResults: false,
       highlightedCardIndex: 0,
       scrollToCardId: "",
@@ -79,6 +80,10 @@ export default class index extends React.Component {
     });
   };
 
+  toggleViewAllResultsFocused = () => {
+    this.setState({ viewAllResultsFocused: !this.state.viewAllResultsFocused });
+  };
+
   render() {
     const {
       query,
@@ -86,6 +91,7 @@ export default class index extends React.Component {
       results,
       cards,
       searchBarFocused,
+      viewAllResultsFocused,
       loadingResults,
       highlightedCardIndex,
     } = this.state;
@@ -99,6 +105,7 @@ export default class index extends React.Component {
       updateQuery: this.updateQuery,
       updateCursor: this.updateCursor,
       toggleSearchBarFocused: this.toggleSearchBarFocused,
+      toggleViewAllResultsFocused: this.toggleViewAllResultsFocused,
       loadCard: this.loadCard,
     };
 
@@ -119,6 +126,7 @@ export default class index extends React.Component {
             highlightedCardIndex={highlightedCardIndex}
             setScrollToCardId={this.setScrollToCardId}
             searchBarFocused={searchBarFocused}
+            viewAllResultsFocused={viewAllResultsFocused}
           />
           <ResultsContainer {...resultsContainerProps} />
           <ResultCards
@@ -128,6 +136,7 @@ export default class index extends React.Component {
             scrollToCardId={this.state.scrollToCardId}
             clearScrollToCardId={this.clearScrollToCardId}
             searchBarFocused={searchBarFocused}
+            viewAllResultsFocused={viewAllResultsFocused}
           />
         </ContentContainer>
         <Navbar alwaysDisplay />

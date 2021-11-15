@@ -10,7 +10,9 @@ export default class Sidebar extends React.Component {
     return (
       <Container
         cards={this.props.cards}
-        inactive={this.props.searchBarFocused}
+        inactive={
+          this.props.searchBarFocused || this.props.viewAllResultsFocused
+        }
       >
         {newArr.map((card, i) => {
           return (
@@ -18,7 +20,9 @@ export default class Sidebar extends React.Component {
               key={card._id}
               cardID={card._id}
               index={i}
-              inactive={this.props.searchBarFocused}
+              inactive={
+                this.props.searchBarFocused || this.props.viewAllResultsFocused
+              }
               highlightedCardIndex={this.props.highlightedCardIndex}
               onClick={() => this.props.setScrollToCardId(card._id)}
             >
@@ -63,6 +67,10 @@ const Acronym = styled.p`
     props.index !== props.highlightedCardIndex || props.inactive
       ? props.theme.colors.offWhite
       : props.theme.colors.darkGray};
+  pointer-events: ${(props) =>
+    props.index !== props.highlightedCardIndex || props.inactive
+      ? "none"
+      : "auto"};
   min-width: 75px;
   max-width: 200px;
   margin: 7px 0px 7px 0px;
