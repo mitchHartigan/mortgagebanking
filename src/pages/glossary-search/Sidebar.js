@@ -67,10 +67,6 @@ const Acronym = styled.p`
     props.index !== props.highlightedCardIndex || props.inactive
       ? props.theme.colors.offWhite
       : props.theme.colors.darkGray};
-  pointer-events: ${(props) =>
-    props.index !== props.highlightedCardIndex || props.inactive
-      ? "none"
-      : "auto"};
   min-width: 75px;
   max-width: 200px;
   margin: 7px 0px 7px 0px;
