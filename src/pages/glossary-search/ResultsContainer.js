@@ -68,6 +68,7 @@ export default class ResultsContainer extends React.Component {
           toggleSearch={this.toggleSearch}
           query={query}
           results={results}
+          loadCard={loadCard}
         />
       );
     }

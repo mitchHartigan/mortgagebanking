@@ -13,6 +13,11 @@ export default class ViewAllResults extends React.Component {
     this.containerRef = React.createRef();
   }
 
+  _handleLoadCard = (index) => {
+    this.props.loadCard(index);
+    this.props.toggleSearch();
+  };
+
   _focusDropdownContainer = () => {
     this.containerRef.current.focus();
   };
@@ -41,7 +46,7 @@ export default class ViewAllResults extends React.Component {
         this.setState({ cursor: cursorPos + 1 });
       }
     } else if (key === "Enter") {
-      this.props.loadCard(this.state.cursor); // since the first two cursor indexes identify the search bar and view all results elements.
+      this._handleLoadCard(this.state.cursor); // since the first two cursor indexes identify the search bar and view all results elements.
     }
   };
 
@@ -65,7 +70,7 @@ export default class ViewAllResults extends React.Component {
             onMouseEnter={() => this._updateCursorPos(i)}
             name={result._id}
             currentIndex={i}
-            // onMouseDown={() => loadCard(i)} // this is i, not i+2, because it's the position in the results[] array.
+            onMouseDown={() => this._handleLoadCard(i)} // this is i, not i+2, because it's the position in the results[] array.
           >
             <Acronym>{result.Acronym}</Acronym>
             <Definition>{result.Text}</Definition>
