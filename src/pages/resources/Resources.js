@@ -9,34 +9,53 @@ import Navbar from "components/navbar";
 import { Subtext } from "components/Subtext";
 import { ScrollToTopOnMount } from "components/ScrollToTopOnMount";
 import ReactGA from "react-ga";
+import GlossarySearch from "../glossary-search/index";
 
-export default function Resources() {
-  ReactGA.pageview("Resources");
-  return (
-    <Container>
-      <ScrollToTopOnMount />
-      <Title
-        align="center"
-        alignTitle="center"
-        size="xxl"
-        styles={TitleStylesOverride}
-      >
-        Resources
-      </Title>
-      <Subtext size="xs" styles={SubtextStylesOverride}>
-        Tools the firm uses that it decided to share. It’s a new site and a few
-        of the tools are being refined, but they’ll be worth the wait. Have an
-        idea for a new tool, let us know, we are working on several.
-      </Subtext>
+export default class Resources extends React.Component {
+  constructor(props) {
+    super(props);
 
-      <CardContainer>
-        <SeachCard />
-        <LibraryCard />
-        <CalculatorCard />
-      </CardContainer>
-      <Navbar alwaysDisplay />
-    </Container>
-  );
+    this.state = {
+      loadGlossary: false,
+    };
+  }
+
+  toggleGlossary = () => {
+    this.setState({ loadGlossary: !this.state.loadGlossary });
+  };
+
+  render() {
+    ReactGA.pageview("Resources");
+    if (!this.state.loadGlossary) {
+      return (
+        <Container>
+          <ScrollToTopOnMount />
+          <Title
+            align="center"
+            alignTitle="center"
+            size="xxl"
+            styles={TitleStylesOverride}
+          >
+            Resources
+          </Title>
+          <Subtext size="xs" styles={SubtextStylesOverride}>
+            Tools the firm uses that it decided to share. It’s a new site and a
+            few of the tools are being refined, but they’ll be worth the wait.
+            Have an idea for a new tool, let us know, we are working on several.
+          </Subtext>
+
+          <CardContainer>
+            <SeachCard toggleGlossary={this.toggleGlossary} />
+            <LibraryCard />
+            <CalculatorCard />
+          </CardContainer>
+          <Navbar alwaysDisplay />
+        </Container>
+      );
+    } else {
+      return <GlossarySearch toggleGlossary={this.toggleGlossary} />;
+    }
+  }
 }
 
 const TitleStylesOverride = `

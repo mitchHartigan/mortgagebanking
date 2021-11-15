@@ -4,12 +4,13 @@ import { Title } from "components/Title";
 import { DisabledButton } from "./DisabledButton";
 import { CenterBlock } from "components/CenterBlock";
 import { Subtext } from "components/Subtext";
+import { Button } from "components/Button";
 
-export default function SeachCard() {
+export default function SeachCard(props) {
   return (
     <Container>
       <Image src="acronym_icon.png" alt="A book, open and bookmarked." />
-      <Title size="lg" align="center" alignItems="center" spanColor="#e1e1e1">
+      <Title size="lg" align="center" alignItems="center" spanColor="#e1a915">
         Acronym Glossary
       </Title>
       <CenterBlock>
@@ -23,7 +24,7 @@ export default function SeachCard() {
         </Subtext>
       </CenterBlock>
       <CenterBlock>
-        <DisabledButton />
+        <Button onClick={props.toggleGlossary}>Start</Button>
       </CenterBlock>
     </Container>
   );

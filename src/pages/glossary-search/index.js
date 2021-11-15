@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 
 import { ScrollToTopOnMount } from "components/ScrollToTopOnMount";
-import { BackButton } from "components/resources/BackButton";
 import { Title } from "components/Title";
 import Navbar from "components/navbar";
 import ResultsContainer from "./ResultsContainer";
@@ -106,7 +105,11 @@ export default class index extends React.Component {
     return (
       <Container id="state">
         <ScrollToTopOnMount />
-        <BackButton location="/resources" text="< Resources" />
+        <BackButtonContainer>
+          <BackButton
+            onClick={this.props.toggleGlossary}
+          >{`< Resources`}</BackButton>
+        </BackButtonContainer>
         <ContentContainer>
           <Title size="xl" styles={TitleStylesOverride}>
             Acronym Glossary
@@ -141,6 +144,26 @@ const CardContainer = styled.div`
   ::-webkit-scrollbar {
     display: none;
   }
+`;
+
+const BackButtonContainer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  padding-left: 4vw;
+  box-sizing: border-box;
+  margin-top: 9vh;
+
+  @media (max-width: 900px) {
+    display: none;
+  }
+`;
+
+const BackButton = styled.div`
+  font-family: ${(props) => props.theme.textFont};
+  font-size: ${(props) => props.theme.text.sm};
+  cursor: pointer;
 `;
 
 const TitleStylesOverride = `
