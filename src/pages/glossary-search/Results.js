@@ -27,7 +27,8 @@ export default function Results(props) {
     toggleSearchBarFocused,
   } = props;
 
-  const results = props.results || [];
+  let results = props.results;
+  if (results === undefined) results = [];
 
   const _toggleViewAllResults = () => {
     toggleSearchBarFocused();
