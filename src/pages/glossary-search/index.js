@@ -115,6 +115,7 @@ export default class index extends React.Component {
             cards={cards}
             highlightedCardIndex={highlightedCardIndex}
             setScrollToCardId={this.setScrollToCardId}
+            searchBarFocused={searchBarFocused}
           />
           <ResultsContainer {...resultsContainerProps} />
           <ResultCards
@@ -123,6 +124,7 @@ export default class index extends React.Component {
             setHighlightedCardIndex={this.setHighlightedCardIndex}
             scrollToCardId={this.state.scrollToCardId}
             clearScrollToCardId={this.clearScrollToCardId}
+            searchBarFocused={searchBarFocused}
           />
         </ContentContainer>
         <Navbar alwaysDisplay />

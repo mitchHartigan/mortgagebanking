@@ -4,13 +4,20 @@ import styled from "styled-components";
 export default function TitleRow(props) {
   const { Acronym, Text } = props.cardData;
 
-  const { index, activeCardIndex } = props;
+  const { index, activeCardIndex, inactive } = props;
+
+  console.log("inactive?", inactive);
 
   return (
-    <Container index={index} activeCardIndex={activeCardIndex}>
+    <Container
+      index={index}
+      activeCardIndex={activeCardIndex}
+      inactive={inactive}
+    >
       <Title
         index={index}
         activeCardIndex={activeCardIndex}
+        inactive={inactive}
       >{`${Acronym} (${Text})`}</Title>
     </Container>
   );
@@ -25,9 +32,9 @@ const Container = styled.div`
   border-radius: 10px;
   padding: 0px 15px 0px 15px;
   background: ${(props) =>
-    props.index === props.activeCardIndex
-      ? props.theme.colors.mainGold
-      : props.theme.colors.darkBlue};
+    props.index !== props.activeCardIndex || props.inactive
+      ? props.theme.colors.darkBlue
+      : props.theme.colors.mainGold};
 `;
 
 const Title = styled.p`
@@ -39,7 +46,7 @@ const Title = styled.p`
   overflow: hidden;
   text-overflow: ellipsis;
   color: ${(props) =>
-    props.index === props.activeCardIndex
-      ? props.theme.colors.darkGray
-      : props.theme.colors.offWhite};
+    props.index !== props.activeCardIndex || props.inactive
+      ? props.theme.colors.offWhite
+      : props.theme.colors.darkGray};
 `;

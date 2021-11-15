@@ -36,7 +36,7 @@ export default class ResultCards extends React.Component {
     }
 
     return (
-      <CardContainer>
+      <CardContainer stopScroll={this.props.searchBarFocused}>
         {reversedCards.map((card, i) => {
           return (
             <VisibilitySensor
@@ -48,6 +48,7 @@ export default class ResultCards extends React.Component {
             >
               <ScrollContainer ref={(element) => (this[card._id] = element)}>
                 <Card
+                  inactive={this.props.searchBarFocused}
                   tabIndex={i}
                   cardData={card}
                   key={card._id}
@@ -73,7 +74,7 @@ const ScrollContainer = styled.div`
 const CardContainer = styled.div`
   position: absolute;
   top: 130px;
-  overflow: scroll;
+  overflow: ${(props) => (props.stopScroll ? "hidden" : "scroll")};
   max-height: ${window.innerHeight - 250}px;
   ::-webkit-scrollbar {
     display: none;

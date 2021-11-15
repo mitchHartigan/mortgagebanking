@@ -8,13 +8,17 @@ export default class Sidebar extends React.Component {
     const newArr = reverseArray(this.props.cards);
 
     return (
-      <Container cards={this.props.cards}>
+      <Container
+        cards={this.props.cards}
+        inactive={this.props.searchBarFocused}
+      >
         {newArr.map((card, i) => {
           return (
             <Acronym
               key={card._id}
               cardID={card._id}
               index={i}
+              inactive={this.props.searchBarFocused}
               highlightedCardIndex={this.props.highlightedCardIndex}
               onClick={() => this.props.setScrollToCardId(card._id)}
             >
@@ -40,13 +44,13 @@ const Container = styled.div`
 
 const Acronym = styled.p`
   background: ${(props) =>
-    props.index === props.highlightedCardIndex
-      ? props.theme.colors.mainGold
-      : props.theme.colors.darkBlue};
+    props.index !== props.highlightedCardIndex || props.inactive
+      ? props.theme.colors.darkBlue
+      : props.theme.colors.mainGold};
   color: ${(props) =>
-    props.index === props.highlightedCardIndex
-      ? props.theme.colors.darkGray
-      : props.theme.colors.offWhite};
+    props.index !== props.highlightedCardIndex || props.inactive
+      ? props.theme.colors.offWhite
+      : props.theme.colors.darkGray};
   min-width: 75px;
   max-width: 200px;
   margin: 7px 0px 7px 0px;

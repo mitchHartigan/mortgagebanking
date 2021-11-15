@@ -8,12 +8,12 @@ import Title from "./Title";
 
 export default class Card extends React.Component {
   render() {
-    const { cardData, index, activeCardIndex } = this.props;
+    const { cardData, index, activeCardIndex, inactive } = this.props;
 
     console.log("activeCardIndex from Card index", activeCardIndex);
 
     return (
-      <Container>
+      <Container inactive={inactive}>
         <CloseButton
           src="button_close.svg"
           alt="close button."
@@ -23,6 +23,7 @@ export default class Card extends React.Component {
           cardData={cardData}
           index={index}
           activeCardIndex={activeCardIndex}
+          inactive={this.props.inactive}
         />
         <DefinitionRow cardData={cardData} />
         <Description cardData={cardData} />
@@ -43,6 +44,7 @@ const Container = styled.div`
   box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.3);
   border-radius: 10px;
   margin: 30px 0px 30px 0px;
+  opacity: ${(props) => (props.inactive ? "0.4" : "1")};
 `;
 
 const CloseButton = styled.img`
