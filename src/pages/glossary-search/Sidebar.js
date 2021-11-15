@@ -7,22 +7,28 @@ export default class Sidebar extends React.Component {
   render() {
     const newArr = reverseArray(this.props.cards);
 
-    console.log("index from Sidebar", this.props.highlightedCardIndex);
-
     return (
-      <Container cards={this.props.cards}>
+      <Container
+        cards={this.props.cards}
+        ref={(element) => (this.containerRef = element)}
+      >
         {newArr.map((card, i) => {
           return (
             <Acronym
               key={card._id}
               cardID={card._id}
               index={i}
+              ref={(element) => (this[card._id] = element)}
               highlightedCardIndex={this.props.highlightedCardIndex}
+              onClick={() => this.props.setScrollToCardId(card._id)}
             >
               {card.Acronym}
             </Acronym>
           );
         })}
+        <button onClick={() => console.log(this["614cd65f33c9ad4ea838e89d"])}>
+          print ref
+        </button>
       </Container>
     );
   }
@@ -44,6 +50,10 @@ const Acronym = styled.p`
     props.index === props.highlightedCardIndex
       ? props.theme.colors.mainGold
       : props.theme.colors.darkBlue};
+  color: ${(props) =>
+    props.index === props.highlightedCardIndex
+      ? props.theme.colors.darkGray
+      : props.theme.colors.offWhite};
   min-width: 75px;
   max-width: 200px;
   margin: 7px 0px 7px 0px;

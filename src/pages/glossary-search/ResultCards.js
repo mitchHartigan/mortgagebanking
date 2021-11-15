@@ -4,6 +4,7 @@ import Card from "./Card";
 import { nanoid } from "nanoid";
 import { reverseArray } from "./_utils";
 import VisibilitySensor from "react-visibility-sensor";
+import Sidebar from "./Sidebar";
 
 export default class ResultCards extends React.Component {
   constructor(props) {
@@ -20,18 +21,31 @@ export default class ResultCards extends React.Component {
   _handleVisibilityChange = (isVisible, i) => {
     if (isVisible) {
       this.props.setHighlightedCardIndex(i);
-
-      this.setState({ activeCardIndex: i }, () => {
-        console.log("index from ResultsCards", i);
-      });
+      this.setState({ activeCardIndex: i });
     }
+  };
+
+  _scrollCardIntoView = (id) => {
+    this[id].scrollIntoView();
   };
 
   render() {
     const reversedCards = reverseArray(this.props.cards);
 
+    if (this.props.scrollToCardId) {
+      this._scrollCardIntoView(this.props.scrollToCardId);
+    }
+
     return (
       <CardContainer ref={this.containerRef}>
+        <button
+          onClick={() => {
+            this["614cd65f33c9ad4ea838e87e"].scrollIntoView();
+            console.log(this["614cd65f33c9ad4ea838e87e"]);
+          }}
+        >
+          scroll to impediment ref
+        </button>
         {reversedCards.map((card, i) => {
           return (
             <VisibilitySensor
@@ -41,14 +55,17 @@ export default class ResultCards extends React.Component {
               offset={{ top: 200 }}
               scrollCheck={false}
             >
-              <Card
-                tabIndex={i}
-                cardData={card}
-                key={nanoid()}
-                index={i}
-                activeCardIndex={this.state.activeCardIndex}
-                handleClose={this.props.deleteCard}
-              />
+              <ScrollContainer ref={(element) => (this[card._id] = element)}>
+                <Card
+                  tabIndex={i}
+                  cardData={card}
+                  key={card._id}
+                  cardID={card._id}
+                  index={i}
+                  activeCardIndex={this.state.activeCardIndex}
+                  handleClose={this.props.deleteCard}
+                />
+              </ScrollContainer>
             </VisibilitySensor>
           );
         })}
@@ -57,7 +74,10 @@ export default class ResultCards extends React.Component {
   }
 }
 
-const Container = styled.div``;
+const ScrollContainer = styled.div`
+  margin: 0px;
+  padding: 0px;
+`;
 
 const CardContainer = styled.div`
   position: absolute;

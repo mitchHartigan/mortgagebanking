@@ -21,13 +21,16 @@ export default class index extends React.Component {
       searchBarFocused: false,
       loadingResults: false,
       highlightedCardIndex: 0,
+      scrollToCardId: "",
     };
   }
 
+  setScrollToCardId = (id) => {
+    this.setState({ scrollToCardId: id });
+  };
+
   setHighlightedCardIndex = (index) => {
-    this.setState({ highlightedCardIndex: index }, () => {
-      console.log("index from GS index", this.state.highlightedCardIndex);
-    });
+    this.setState({ highlightedCardIndex: index });
   };
 
   deleteCard = (index) => {
@@ -101,12 +104,17 @@ export default class index extends React.Component {
           <Title size="xl" styles={TitleStylesOverride}>
             Acronym Glossary
           </Title>
-          <Sidebar cards={cards} highlightedCardIndex={highlightedCardIndex} />
+          <Sidebar
+            cards={cards}
+            highlightedCardIndex={highlightedCardIndex}
+            setScrollToCardId={this.setScrollToCardId}
+          />
           <ResultsContainer {...resultsContainerProps} />
           <ResultCards
             cards={cards}
             deleteCard={this.deleteCard}
             setHighlightedCardIndex={this.setHighlightedCardIndex}
+            scrollToCardId={this.state.scrollToCardId}
           />
         </ContentContainer>
         <Navbar alwaysDisplay />

@@ -6,25 +6,27 @@ import DefinitionRow from "./DefinitionRow";
 import CitationRow from "./CitationRow";
 import Title from "./Title";
 
-export default function Card(props) {
-  const { cardData, index, activeCardIndex } = props;
-  return (
-    <Container>
-      <CloseButton
-        src="button_close.svg"
-        alt="close button."
-        onClick={() => props.handleClose(props.index)}
-      />
-      <Title
-        cardData={cardData}
-        index={index}
-        activeCardIndex={activeCardIndex}
-      />
-      <DefinitionRow cardData={cardData} />
-      <Description cardData={cardData} />
-      <CitationRow cardData={cardData} />
-    </Container>
-  );
+export default class Card extends React.Component {
+  render() {
+    const { cardData, index, activeCardIndex } = this.props;
+    return (
+      <Container>
+        <CloseButton
+          src="button_close.svg"
+          alt="close button."
+          onClick={() => this.props.handleClose(this.props.index)}
+        />
+        <Title
+          cardData={cardData}
+          index={index}
+          activeCardIndex={activeCardIndex}
+        />
+        <DefinitionRow cardData={cardData} />
+        <Description cardData={cardData} />
+        <CitationRow cardData={cardData} />
+      </Container>
+    );
+  }
 }
 
 const Container = styled.div`
