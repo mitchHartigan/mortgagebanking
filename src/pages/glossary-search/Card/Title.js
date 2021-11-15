@@ -28,7 +28,7 @@ const Container = styled.div`
   width: 100%;
   box-sizing: border-box;
   border-radius: 10px;
-  padding: 0px 15px 0px 15px;
+  padding: 0px 35px 0px 35px;
   background: ${(props) =>
     props.index !== props.activeCardIndex || props.inactive
       ? props.theme.colors.darkBlue

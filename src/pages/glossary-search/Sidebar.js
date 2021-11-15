@@ -38,7 +38,7 @@ const Container = styled.div`
     props.cards && props.cards.length > 0 ? "flex" : "none"};
   flex-direction: column;
   align-items: flex-end;
-  top: 177px;
+  top: 187px;
   left: -175px;
 `;
 

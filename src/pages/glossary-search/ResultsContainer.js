@@ -84,6 +84,7 @@ export default class ResultsContainer extends React.Component {
 }
 
 const Container = styled.div`
+  margin-top: 10px;
   display: flex;
   flex-direction: column;
   justify-content: center;
