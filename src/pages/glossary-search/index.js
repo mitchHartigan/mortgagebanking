@@ -20,8 +20,15 @@ export default class index extends React.Component {
       cards: [],
       searchBarFocused: false,
       loadingResults: false,
+      highlightedCardIndex: 0,
     };
   }
+
+  setHighlightedCardIndex = (index) => {
+    this.setState({ highlightedCardIndex: index }, () => {
+      console.log("index from GS index", this.state.highlightedCardIndex);
+    });
+  };
 
   deleteCard = (index) => {
     const { cards } = this.state;
@@ -56,21 +63,23 @@ export default class index extends React.Component {
   };
 
   toggleSearchBarFocused = () => {
-    this.setState(
-      {
-        searchBarFocused: !this.state.searchBarFocused,
-        cursor: 0,
-        query: "",
-      },
-      () => {
-        console.log(this.state);
-      }
-    );
+    this.setState({
+      searchBarFocused: !this.state.searchBarFocused,
+      cursor: 0,
+      query: "",
+    });
   };
 
   render() {
-    const { query, cursor, results, cards, searchBarFocused, loadingResults } =
-      this.state;
+    const {
+      query,
+      cursor,
+      results,
+      cards,
+      searchBarFocused,
+      loadingResults,
+      highlightedCardIndex,
+    } = this.state;
 
     const resultsContainerProps = {
       query: query,
@@ -92,9 +101,13 @@ export default class index extends React.Component {
           <Title size="xl" styles={TitleStylesOverride}>
             Acronym Glossary
           </Title>
-          <Sidebar cards={cards} />
+          <Sidebar cards={cards} highlightedCardIndex={highlightedCardIndex} />
           <ResultsContainer {...resultsContainerProps} />
-          <ResultCards cards={cards} deleteCard={this.deleteCard} />
+          <ResultCards
+            cards={cards}
+            deleteCard={this.deleteCard}
+            setHighlightedCardIndex={this.setHighlightedCardIndex}
+          />
         </ContentContainer>
         <Navbar alwaysDisplay />
       </Container>

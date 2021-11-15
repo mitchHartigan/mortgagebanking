@@ -11,13 +11,19 @@ export default class ResultCards extends React.Component {
 
     this.state = {
       activeCardIndex: 0,
+      reversedCards: [],
     };
+
     this.containerRef = React.createRef();
   }
 
   _handleVisibilityChange = (isVisible, i) => {
     if (isVisible) {
-      this.setState({ activeCardIndex: i });
+      this.props.setHighlightedCardIndex(i);
+
+      this.setState({ activeCardIndex: i }, () => {
+        console.log("index from ResultsCards", i);
+      });
     }
   };
 
