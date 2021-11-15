@@ -7,7 +7,7 @@ import CitationRow from "./CitationRow";
 import Title from "./Title";
 
 export default function Card(props) {
-  const { cardData } = props;
+  const { cardData, index, activeCardIndex } = props;
   return (
     <Container>
       <CloseButton
@@ -15,7 +15,11 @@ export default function Card(props) {
         alt="close button."
         onClick={() => props.handleClose(props.index)}
       />
-      <Title cardData={cardData} />
+      <Title
+        cardData={cardData}
+        index={index}
+        activeCardIndex={activeCardIndex}
+      />
       <DefinitionRow cardData={cardData} />
       <Description cardData={cardData} />
       <CitationRow cardData={cardData} />

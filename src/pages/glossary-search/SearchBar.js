@@ -48,7 +48,7 @@ export default class SearchBar extends Component {
       <Container
         ref={this.containerRef}
         tabIndex="0"
-        onKeyDown={(evt) => console.log(`evt.key`, evt.key)}
+        // onKeyDown={(evt) => console.log(`evt.key`, evt.key)}
       >
         <MagnifyingGlass src="magnifying_glass.svg" alt="magnifying glass" />
         <Input

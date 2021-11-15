@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { nanoid } from "nanoid";
 
 import { reverseArray } from "./_utils";
 
@@ -9,7 +10,7 @@ export default function Sidebar(props) {
   return (
     <Container>
       {newArr.map((card) => {
-        return <Acronym>{card.Acronym}</Acronym>;
+        return <Acronym key={nanoid()}>{card.Acronym}</Acronym>;
       })}
     </Container>
   );

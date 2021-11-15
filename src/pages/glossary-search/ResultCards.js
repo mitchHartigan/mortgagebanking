@@ -3,24 +3,52 @@ import styled from "styled-components";
 import Card from "./Card";
 import { nanoid } from "nanoid";
 import { reverseArray } from "./_utils";
+import VisibilitySensor from "react-visibility-sensor";
 
-export default function ResultCards(props) {
-  const reversedCards = reverseArray(props.cards);
+export default class ResultCards extends React.Component {
+  constructor(props) {
+    super(props);
 
-  return (
-    <CardContainer>
-      {reversedCards.map((card, i) => {
-        return (
-          <Card
-            cardData={card}
-            key={nanoid()}
-            index={i}
-            handleClose={props.deleteCard}
-          />
-        );
-      })}
-    </CardContainer>
-  );
+    this.state = {
+      activeCardIndex: 0,
+    };
+    this.containerRef = React.createRef();
+  }
+
+  _handleVisibilityChange = (isVisible, i) => {
+    if (isVisible) {
+      this.setState({ activeCardIndex: i });
+    }
+  };
+
+  render() {
+    const reversedCards = reverseArray(this.props.cards);
+
+    return (
+      <CardContainer ref={this.containerRef}>
+        {reversedCards.map((card, i) => {
+          return (
+            <VisibilitySensor
+              onChange={(isVisible) =>
+                this._handleVisibilityChange(isVisible, i)
+              }
+              offset={{ top: 200 }}
+              scrollCheck={false}
+            >
+              <Card
+                tabIndex={i}
+                cardData={card}
+                key={nanoid()}
+                index={i}
+                activeCardIndex={this.state.activeCardIndex}
+                handleClose={this.props.deleteCard}
+              />
+            </VisibilitySensor>
+          );
+        })}
+      </CardContainer>
+    );
+  }
 }
 
 const Container = styled.div``;
