@@ -8,6 +8,7 @@ import Navbar from "components/navbar";
 import ResultsContainer from "./ResultsContainer";
 import Sidebar from "./Sidebar";
 import ResultCards from "./ResultCards";
+import { reverseArray } from "./_utils";
 
 export default class index extends React.Component {
   constructor(props) {
@@ -38,10 +39,12 @@ export default class index extends React.Component {
   };
 
   deleteCard = (index) => {
-    const { cards } = this.state;
-    cards.splice(index, 1);
+    let { cards } = this.state;
+    let reverseArr = reverseArray(cards);
 
-    this.setState({ cards: cards });
+    reverseArr.splice(index, 1);
+
+    this.setState({ cards: reverseArr });
   };
 
   loadCard = (index) => {

@@ -28,7 +28,6 @@ export default function Results(props) {
   } = props;
 
   let results = props.results;
-  console.log("results from Results", results);
   if (results.errorMessage) results = [];
 
   const _toggleViewAllResults = () => {

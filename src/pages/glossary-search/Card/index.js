@@ -9,12 +9,15 @@ import Title from "./Title";
 export default class Card extends React.Component {
   render() {
     const { cardData, index, activeCardIndex } = this.props;
+
+    console.log("activeCardIndex from Card index", activeCardIndex);
+
     return (
       <Container>
         <CloseButton
           src="button_close.svg"
           alt="close button."
-          onClick={() => this.props.handleClose(this.props.index)}
+          onClick={() => this.props.handleClose(this.props.activeCardIndex)}
         />
         <Title
           cardData={cardData}
