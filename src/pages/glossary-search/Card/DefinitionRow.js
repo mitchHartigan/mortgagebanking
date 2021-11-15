@@ -52,6 +52,9 @@ const AcronymContainer = styled.div`
   height: 100%;
   align-self: start;
   justify-self: end;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 `;
 
 const TitleContainer = styled.div`
