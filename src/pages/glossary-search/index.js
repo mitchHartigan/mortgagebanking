@@ -60,6 +60,7 @@ export default class index extends React.Component {
       {
         searchBarFocused: !this.state.searchBarFocused,
         cursor: 0,
+        query: "",
       },
       () => {
         console.log(this.state);
