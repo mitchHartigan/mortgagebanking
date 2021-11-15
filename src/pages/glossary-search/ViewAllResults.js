@@ -7,7 +7,6 @@ export default class ViewAllResults extends React.Component {
 
     this.state = {
       cursor: 0,
-      scrollTop: 0,
     };
 
     this.containerRef = React.createRef();
@@ -56,28 +55,29 @@ export default class ViewAllResults extends React.Component {
     }, 10);
   }
 
-  render() {
-    const { query, results, cursorPos, updateCursor, loadCard } = this.props;
+  _mapResults = (results) => {
+    return results.map((result, i) => {
+      return (
+        <Result
+          tabIndex={i + 1}
+          key={result._id}
+          listPos={i}
+          cursorPos={this.state.cursor}
+          onMouseEnter={() => this._updateCursorPos(i)}
+          name={result._id}
+          currentIndex={i}
+          onMouseDown={() => this._handleLoadCard(i)} // this is i, not i+2, because it's the position in the results[] array.
+        >
+          <Acronym>{result.Acronym}</Acronym>
+          <Definition>{result.Text}</Definition>
+        </Result>
+      );
+    });
+  };
 
-    const mapResults = () => {
-      return results.map((result, i) => {
-        return (
-          <Result
-            tabIndex={i + 1}
-            key={result._id}
-            listPos={i}
-            cursorPos={this.state.cursor}
-            onMouseEnter={() => this._updateCursorPos(i)}
-            name={result._id}
-            currentIndex={i}
-            onMouseDown={() => this._handleLoadCard(i)} // this is i, not i+2, because it's the position in the results[] array.
-          >
-            <Acronym>{result.Acronym}</Acronym>
-            <Definition>{result.Text}</Definition>
-          </Result>
-        );
-      });
-    };
+  render() {
+    const { query, cursorPos, updateCursor, loadCard } = this.props;
+    let results = this.props.results || [];
 
     return (
       <Container show>
@@ -94,7 +94,7 @@ export default class ViewAllResults extends React.Component {
             onKeyDown={this._handleKeyDown}
             onMouseOver={this._focusDropdownContainer}
           >
-            {mapResults()}
+            {this._mapResults(results)}
           </ResultsContainer>
         </TitleContainer>
       </Container>
