@@ -8,17 +8,13 @@ export default class Sidebar extends React.Component {
     const newArr = reverseArray(this.props.cards);
 
     return (
-      <Container
-        cards={this.props.cards}
-        ref={(element) => (this.containerRef = element)}
-      >
+      <Container cards={this.props.cards}>
         {newArr.map((card, i) => {
           return (
             <Acronym
               key={card._id}
               cardID={card._id}
               index={i}
-              ref={(element) => (this[card._id] = element)}
               highlightedCardIndex={this.props.highlightedCardIndex}
               onClick={() => this.props.setScrollToCardId(card._id)}
             >
@@ -26,9 +22,6 @@ export default class Sidebar extends React.Component {
             </Acronym>
           );
         })}
-        <button onClick={() => console.log(this["614cd65f33c9ad4ea838e89d"])}>
-          print ref
-        </button>
       </Container>
     );
   }

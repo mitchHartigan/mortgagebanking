@@ -14,8 +14,6 @@ export default class ResultCards extends React.Component {
       activeCardIndex: 0,
       reversedCards: [],
     };
-
-    this.containerRef = React.createRef();
   }
 
   _handleVisibilityChange = (isVisible, i) => {
@@ -38,15 +36,7 @@ export default class ResultCards extends React.Component {
     }
 
     return (
-      <CardContainer ref={this.containerRef}>
-        <button
-          onClick={() => {
-            this["614cd65f33c9ad4ea838e87e"].scrollIntoView();
-            console.log(this["614cd65f33c9ad4ea838e87e"]);
-          }}
-        >
-          scroll to impediment ref
-        </button>
+      <CardContainer>
         {reversedCards.map((card, i) => {
           return (
             <VisibilitySensor
