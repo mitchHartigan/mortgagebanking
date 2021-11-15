@@ -27,6 +27,7 @@ export default class ResultCards extends React.Component {
 
   _scrollCardIntoView = (id) => {
     this[id].scrollIntoView();
+    this.props.clearScrollToCardId();
   };
 
   render() {

@@ -29,6 +29,10 @@ export default class index extends React.Component {
     this.setState({ scrollToCardId: id });
   };
 
+  clearScrollToCardId = () => {
+    this.setState({ scrollToCardId: "" });
+  };
+
   setHighlightedCardIndex = (index) => {
     this.setState({ highlightedCardIndex: index });
   };
@@ -115,6 +119,7 @@ export default class index extends React.Component {
             deleteCard={this.deleteCard}
             setHighlightedCardIndex={this.setHighlightedCardIndex}
             scrollToCardId={this.state.scrollToCardId}
+            clearScrollToCardId={this.clearScrollToCardId}
           />
         </ContentContainer>
         <Navbar alwaysDisplay />
