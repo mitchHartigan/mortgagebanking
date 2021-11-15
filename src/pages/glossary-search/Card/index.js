@@ -10,8 +10,6 @@ export default class Card extends React.Component {
   render() {
     const { cardData, index, activeCardIndex, inactive } = this.props;
 
-    console.log("activeCardIndex from Card index", activeCardIndex);
-
     return (
       <Container inactive={inactive}>
         <CloseButton

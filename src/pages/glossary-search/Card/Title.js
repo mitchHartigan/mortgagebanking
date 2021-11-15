@@ -6,8 +6,6 @@ export default function TitleRow(props) {
 
   const { index, activeCardIndex, inactive } = props;
 
-  console.log("inactive?", inactive);
-
   return (
     <Container
       index={index}
