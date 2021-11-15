@@ -97,7 +97,7 @@ const Container = styled.div`
 
 const Result = styled.div`
   display: grid;
-  grid-template-columns: 65px 10% 10% 50% 1fr;
+  grid-template-columns: 65px 10% 10% 1fr 65px;
   width: 100%;
 
   background-color: ${(props) =>
