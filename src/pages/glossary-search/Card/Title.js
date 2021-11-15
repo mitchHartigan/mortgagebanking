@@ -17,6 +17,7 @@ const Container = styled.div`
   width: 100%;
   box-sizing: border-box;
   border-radius: 10px;
+  padding: 0px 15px 0px 15px;
   background: ${(props) => props.theme.colors.mainGold};
 `;
 
@@ -25,4 +26,7 @@ const Title = styled.p`
   font-size: 18px;
   font-weight: 600;
   margin: 7px 0px 7px 0px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
