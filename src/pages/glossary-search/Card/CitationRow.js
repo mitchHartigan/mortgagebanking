@@ -15,7 +15,7 @@ export default function CitationRow(props) {
           <ItemTitle>Citation</ItemTitle>
           <TitleUnderline />
         </TitleContainer>
-        <ItemText>{citation}</ItemText>
+        <CitationText>{citation}</CitationText>
       </CitationContainer>
 
       <DateContainer>
@@ -55,7 +55,7 @@ const DateContainer = styled.div`
   justify-content: center;
   align-items: ${(props) => (props.leftAligned ? "flex-start" : "flex-end")};
 
-  @media (max-width: 600px) {
+  @media (max-width: 1330px) {
     display: none;
   }
 `;
@@ -84,6 +84,18 @@ const ItemText = styled.p`
   margin: 7px 0px 0px 0px;
   overflow: hidden;
   text-overflow: ellipsis;
+
+  @media (max-width: 900px) {
+    font-size: ${(props) => props.theme.text.xxs};
+  }
+`;
+
+const CitationText = styled.p`
+  font-family: ${(props) => props.theme.textFont};
+  font-size: ${(props) => props.theme.text.xs};
+  font-weight: 500;
+  margin: 7px 0px 0px 0px;
+  max-width: 100%:
 
   @media (max-width: 900px) {
     font-size: ${(props) => props.theme.text.xxs};
