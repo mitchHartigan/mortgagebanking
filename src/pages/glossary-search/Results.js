@@ -20,13 +20,14 @@ export default function Results(props) {
     focused,
     query,
     cursorPos,
-    results,
     loadingResults,
     updateCursor,
     loadCard,
     toggleViewAllResults,
     toggleSearchBarFocused,
   } = props;
+
+  const results = props.results || [];
 
   const _toggleViewAllResults = () => {
     toggleSearchBarFocused();
