@@ -31,9 +31,9 @@ export default class SearchBar extends Component {
         this.props.updateCursor(cursorPos + 1);
       }
     } else if (key === "Enter") {
-      if (this.props.cursorPos === 1) {
-        this.props.toggleViewAllResults();
-      } else {
+      if (this.props.cursorPos === 0) return;
+      if (this.props.cursorPos === 1) this.props.toggleViewAllResults();
+      else {
         this.props.loadCard(this.props.cursorPos - 2); // since the first two cursor indexes identify the search bar and view all results elements.
       }
     }
