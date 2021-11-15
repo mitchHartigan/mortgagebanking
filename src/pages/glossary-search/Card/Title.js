@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 export default function TitleRow(props) {
   const { Acronym, Text } = props.cardData;
+
   return (
     <Container>
       <Title>{`${Acronym} (${Text})`}</Title>

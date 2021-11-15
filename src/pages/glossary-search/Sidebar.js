@@ -21,7 +21,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  top: 175px;
+  top: 177px;
   left: -175px;
 `;
 
@@ -30,10 +30,10 @@ const Acronym = styled.p`
   max-width: 200px;
   margin: 7px 0px 7px 0px;
   box-sizing: border-box;
-  padding: 5px 7px 5px 7px;
+  padding: 3px 5px 3px 5px;
 
   font-family: ${(props) => props.theme.textFont};
-  font-size: ${(props) => props.theme.text.sm};
+  font-size: ${(props) => props.theme.text.xs};
   text-align: center;
   background: #e1a915;
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.25);

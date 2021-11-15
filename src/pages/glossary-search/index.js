@@ -6,7 +6,6 @@ import { BackButton } from "components/resources/BackButton";
 import { Title } from "components/Title";
 import Navbar from "components/navbar";
 import ResultsContainer from "./ResultsContainer";
-import Card from "./Card";
 import Sidebar from "./Sidebar";
 import ResultCards from "./ResultCards";
 
