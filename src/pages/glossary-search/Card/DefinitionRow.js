@@ -10,39 +10,48 @@ export default function DefinitionRow(props) {
 
   return (
     <Container>
-      <ItemContainer leftAligned>
+      <DefinitionContainer leftAligned>
         <TitleContainer>
           <ItemTitle>Definition</ItemTitle>
           <TitleUnderline />
         </TitleContainer>
         <ItemText>{definition}</ItemText>
-      </ItemContainer>
+      </DefinitionContainer>
 
-      <ItemContainer>
+      <AcronymContainer>
         <TitleContainer>
           <ItemTitle>Acronym</ItemTitle>
           <TitleUnderline />
         </TitleContainer>
-        <ItemText>{acronym}</ItemText>
-      </ItemContainer>
+        <Acronym>{acronym}</Acronym>
+      </AcronymContainer>
     </Container>
   );
 }
 
 const Container = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
+  display: grid;
+  grid-template-columns: 70% 5% 25%;
   width: 100%;
   margin: 30px 0px 25px 0px;
 `;
 
-const ItemContainer = styled.div`
+const DefinitionContainer = styled.div`
+  grid-column: 1 / 2;
+  height: 100%;
+  align-self: start;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  text-overflow: wrap;
   align-items: ${(props) => (props.leftAligned ? "flex-start" : "flex-end")};
+`;
+
+const AcronymContainer = styled.div`
+  grid-column: 3 / 4;
+  height: 100%;
+  align-self: start;
+  justify-self: end;
 `;
 
 const TitleContainer = styled.div`
@@ -62,6 +71,11 @@ const ItemText = styled.p`
   font-size: ${(props) => props.theme.text.xs};
   font-weight: 500;
   margin: 7px 0px 0px 0px;
+`;
+
+const Acronym = styled(ItemText)`
+  width: 100%;
+  text-align: right;
 `;
 
 const TitleUnderline = styled.span`
