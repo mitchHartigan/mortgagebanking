@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { nanoid } from "nanoid";
+import { genTruncatedResults, parseDuplicatesFromResults } from "./_utils";
 
 import "../../index.css";
 
@@ -27,6 +28,7 @@ export default function Results(props) {
     toggleSearchBarFocused,
   } = props;
 
+  // These checks may be unecessary with the new parseDuplicates util.
   let results = props.results;
   if (results.errorMessage) results = [];
 
@@ -36,23 +38,22 @@ export default function Results(props) {
   };
 
   const mapResults = () => {
-    return results.map((result, i) => {
-      if (i <= 5) {
-        return (
-          <Result
-            key={nanoid()}
-            listPos={i + 2}
-            cursorPos={cursorPos}
-            onMouseEnter={() => updateCursor(i + 2)}
-            name={result._id}
-            currentIndex={i}
-            onMouseDown={() => loadCard(i)} // this is i, not i+2, because it's the position in the results[] array.
-          >
-            <Acronym>{result.Acronym}</Acronym>
-            <Definition>{result.Text}</Definition>
-          </Result>
-        );
-      }
+    const parsedResults = parseDuplicatesFromResults(results, props.cards);
+    return genTruncatedResults(parsedResults).map((result, i) => {
+      return (
+        <Result
+          key={nanoid()}
+          listPos={i + 2}
+          cursorPos={cursorPos}
+          onMouseEnter={() => updateCursor(i + 2)}
+          name={result._id}
+          currentIndex={i}
+          onMouseDown={() => loadCard(i)} // this is i, not i+2, because it's the position in the results[] array.
+        >
+          <Acronym>{result.Acronym}</Acronym>
+          <Definition>{result.Text}</Definition>
+        </Result>
+      );
     });
   };
 

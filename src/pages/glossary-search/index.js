@@ -100,6 +100,7 @@ export default class index extends React.Component {
       query: query,
       cursor: cursor,
       results: results,
+      cards: cards,
       searchBarFocused: searchBarFocused,
       loadingResults: loadingResults,
       updateQuery: this.updateQuery,

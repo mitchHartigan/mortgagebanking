@@ -38,6 +38,7 @@ export default class ResultsContainer extends React.Component {
       cursor,
       query,
       results,
+      cards,
       searchBarFocused,
       loadingResults,
       loadCard,
@@ -64,6 +65,7 @@ export default class ResultsContainer extends React.Component {
             cursorPos={cursor}
             updateCursor={updateCursor}
             results={results}
+            cards={cards}
             focused={searchBarFocused}
             loadingResults={loadingResults}
             loadCard={loadCard}
