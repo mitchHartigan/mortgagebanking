@@ -82,6 +82,7 @@ const ItemText = styled.p`
   @media (max-width: 900px) {
     font-size: ${(props) => props.theme.text.xxs};
   }
+  word-break: break-word;
 `;
 
 const Acronym = styled(ItemText)`

@@ -48,6 +48,7 @@ export default class ResultCards extends React.Component {
                 this._handleVisibilityChange(isVisible, i)
               }
               offset={{ top: 210 }}
+              key={card._id}
               scrollCheck={false}
             >
               <ScrollContainer ref={(element) => (this[card._id] = element)}>

@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import CitationText from "./CitationText";
 
 export default function CitationRow(props) {
   let dateAdded = props.cardData["Date Entered"];
@@ -31,7 +32,7 @@ export default function CitationRow(props) {
 
 const Container = styled.div`
   display: grid;
-  grid-template-columns: 70% 5% 25%;
+  grid-template-columns: 63% 7% 30%;
   width: 100%;
   margin: 25px 0px 25px 0px;
 `;
@@ -54,10 +55,6 @@ const DateContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: ${(props) => (props.leftAligned ? "flex-start" : "flex-end")};
-
-  @media (max-width: 1330px) {
-    display: none;
-  }
 `;
 
 const TitleContainer = styled.div`
@@ -84,18 +81,6 @@ const ItemText = styled.p`
   margin: 7px 0px 0px 0px;
   overflow: hidden;
   text-overflow: ellipsis;
-
-  @media (max-width: 900px) {
-    font-size: ${(props) => props.theme.text.xxs};
-  }
-`;
-
-const CitationText = styled.p`
-  font-family: ${(props) => props.theme.textFont};
-  font-size: ${(props) => props.theme.text.xs};
-  font-weight: 500;
-  margin: 7px 0px 0px 0px;
-  max-width: 100%:
 
   @media (max-width: 900px) {
     font-size: ${(props) => props.theme.text.xxs};
