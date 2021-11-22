@@ -59,7 +59,7 @@ export default class index extends React.Component {
 
     if (query.length > 1) {
       const data = await fetch(
-        `https://g92t09z7f4.execute-api.us-east-1.amazonaws.com/search?term=${query}`
+        `https://w9rmil6np8.execute-api.us-east-1.amazonaws.com/search?term=${query}`
       )
         .then((results) => results.json())
         .then((results) => {
