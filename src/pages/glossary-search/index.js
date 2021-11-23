@@ -62,10 +62,7 @@ export default class index extends React.Component {
         $search: {
           text: {
             query: `${query}`,
-            path: ["Acronym", "Text"],
-            fuzzy: {
-              maxEdits: 2,
-            },
+            path: "Acronym",
           },
         },
       },
