@@ -26,6 +26,14 @@ export default class index extends React.Component {
     };
   }
 
+  componentDidMount() {
+    const cards = JSON.parse(sessionStorage.getItem("cards"));
+
+    if (cards && cards.length > 0) {
+      this.setState({ cards: cards });
+    }
+  }
+
   setScrollToCardId = (id) => {
     this.setState({ scrollToCardId: id });
   };
@@ -51,14 +59,16 @@ export default class index extends React.Component {
     const { results, cards } = this.state;
 
     cards.push(results[index]);
-    this.setState({ cards: cards, query: "" });
+    this.setState({ cards: cards, query: "" }, () => {
+      sessionStorage.setItem("cards", JSON.stringify(cards));
+    });
   };
 
   updateQuery = async (query) => {
     this.setState({ query: query, loadingResults: true });
 
     if (query.length > 1) {
-      const data = await fetch(
+      fetch(
         `https://ib1w9yyw7a.execute-api.us-east-1.amazonaws.com/search?term=${query}`
       )
         .then((results) => results.json())
@@ -147,16 +157,6 @@ export default class index extends React.Component {
     );
   }
 }
-
-const CardContainer = styled.div`
-  position: absolute;
-  top: 130px;
-  overflow: scroll;
-  max-height: ${window.innerHeight - 250}px;
-  ::-webkit-scrollbar {
-    display: none;
-  }
-`;
 
 const BackButtonContainer = styled.div`
   width: 100%;
