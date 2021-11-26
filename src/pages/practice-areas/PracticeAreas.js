@@ -7,6 +7,7 @@ import Navbar from "components/navbar/index";
 import RepresentativeEngagements from "./_RepresentativeEngagements";
 import { ScrollToTopOnMount } from "components/ScrollToTopOnMount";
 import ReactGA from "react-ga";
+import { Footer } from "components/Footer";
 
 export default function PracticeAreas() {
   ReactGA.pageview("Practice Areas");
@@ -26,6 +27,7 @@ export default function PracticeAreas() {
 
         <RepresentativeEngagements />
       </ContentContainer>
+      <Footer />
       <Navbar alwaysDisplay />
     </Container>
   );

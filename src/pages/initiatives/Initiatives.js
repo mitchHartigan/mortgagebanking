@@ -9,6 +9,7 @@ import { ConversationsCard } from "./_ConversationsCard";
 import { ProjectsCard } from "./_ProjectsCard";
 import { ScrollToTopOnMount } from "components/ScrollToTopOnMount";
 import ReactGA from "react-ga";
+import { Footer } from "components/Footer";
 
 export default function Initiatives() {
   ReactGA.pageview("Initiatives");
@@ -30,6 +31,7 @@ export default function Initiatives() {
         <ConversationsCard />
         <ProjectsCard />
       </ContentContainer>
+      <Footer />
       <Navbar alwaysDisplay />
     </Container>
   );

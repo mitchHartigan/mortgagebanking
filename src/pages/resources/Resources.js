@@ -10,6 +10,7 @@ import { Subtext } from "components/Subtext";
 import { ScrollToTopOnMount } from "components/ScrollToTopOnMount";
 import ReactGA from "react-ga";
 import GlossarySearch from "../glossary-search/index";
+import { Footer } from "components/Footer";
 
 export default class Resources extends React.Component {
   constructor(props) {
@@ -49,6 +50,7 @@ export default class Resources extends React.Component {
             <LibraryCard />
             <CalculatorCard />
           </CardContainer>
+          <Footer />
           <Navbar alwaysDisplay />
         </Container>
       );
@@ -60,11 +62,9 @@ export default class Resources extends React.Component {
 
 const TitleStylesOverride = `
   margin-top: 150px;
-
   @media (max-width: 1200px) {
     margin-top: 120px;
   }
-
   @media (max-width: 900px) {
   margin-top: 15px;
   }
@@ -73,11 +73,9 @@ const TitleStylesOverride = `
 const SubtextStylesOverride = `
   text-align: center;
   width: 50%;
-
   @media (max-width: 1200px) {
     width: 70%;
   }
-
   @media (max-width: 900px) {
     width: 90%;
   }
@@ -87,6 +85,8 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
+  height: 100vh;
 `;
 
 const CardContainer = styled.div`
@@ -94,12 +94,10 @@ const CardContainer = styled.div`
   flex-direction: row;
   width: 90%;
   justify-content: space-around;
-  margin-top: 4vh;
-
+  margin-bottom: 10vh;
   @media (max-width: 1800px) {
     width: 100%;
   }
-
   @media (max-width: 1350px) {
     flex-direction: column;
     width: auto;
