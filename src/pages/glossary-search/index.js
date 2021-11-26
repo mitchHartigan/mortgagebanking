@@ -65,7 +65,9 @@ export default class index extends React.Component {
   };
 
   updateQuery = async (query) => {
-    this.setState({ query: query, loadingResults: true });
+    this.setState({ query: query, loadingResults: true }, () => {
+      console.log("1. query, loadingResults", query, this.state.loadingResults);
+    });
 
     const settings = JSON.stringify({
       settingsArr: [
@@ -77,17 +79,14 @@ export default class index extends React.Component {
                   text: {
                     query: `${query}`,
                     path: "Acronym",
-                    score: { boost: { value: 3 } },
-                    fuzzy: {
-                      maxEdits: 1,
-                    },
+                    score: { boost: { value: 4 } },
                   },
                 },
                 {
-                  text: {
+                  autocomplete: {
                     query: `${query}`,
                     path: "Text",
-                    score: { boost: { value: 2 } },
+                    score: { boost: { value: 1 } },
                   },
                 },
               ],
@@ -110,6 +109,8 @@ export default class index extends React.Component {
       ],
     });
 
+    console.log("2. settings sent to backend:", settings);
+
     if (query.length > 1) {
       fetch(
         `https://mr6l6hmd1l.execute-api.us-east-1.amazonaws.com/search?settings=${settings}`
@@ -117,7 +118,7 @@ export default class index extends React.Component {
         .then((results) => results.json())
         .then((results) => {
           this.setState({ results: results, loadingResults: false }, () => {
-            console.log("results", this.state.results);
+            console.log("3. results from backend", this.state.results);
           });
         });
     }
