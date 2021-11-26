@@ -67,9 +67,52 @@ export default class index extends React.Component {
   updateQuery = async (query) => {
     this.setState({ query: query, loadingResults: true });
 
+    const settings = JSON.stringify({
+      settingsArr: [
+        {
+          $search: {
+            compound: {
+              should: [
+                {
+                  text: {
+                    query: `${query}`,
+                    path: "Acronym",
+                    score: { boost: { value: 3 } },
+                    fuzzy: {
+                      maxEdits: 1,
+                    },
+                  },
+                },
+                {
+                  text: {
+                    query: `${query}`,
+                    path: "Text",
+                    score: { boost: { value: 2 } },
+                  },
+                },
+              ],
+            },
+          },
+        },
+        { $limit: 50 },
+        {
+          $project: {
+            _id: 1,
+            Acronym: 1,
+            Citation: 1,
+            "Description of use": 1,
+            "Date Entered": 1,
+            Text: 1,
+            Definition: 1,
+            score: { $meta: "searchScore" },
+          },
+        },
+      ],
+    });
+
     if (query.length > 1) {
       fetch(
-        `https://4cgu1jcel9.execute-api.us-east-1.amazonaws.com/search?term=${query}`
+        `https://mr6l6hmd1l.execute-api.us-east-1.amazonaws.com/search?settings=${settings}`
       )
         .then((results) => results.json())
         .then((results) => {
