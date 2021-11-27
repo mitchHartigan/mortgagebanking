@@ -59,13 +59,17 @@ export default class index extends React.Component {
     const { results, cards } = this.state;
 
     cards.push(results[index]);
-    this.setState({ cards: cards, query: "" }, () => {
+    this.setState({ cards: cards, query: "", results: [] }, () => {
       sessionStorage.setItem("cards", JSON.stringify(cards));
+      console.log("query emptied loadCard");
     });
   };
 
   updateQuery = async (query) => {
-    this.setState({ query: query, loadingResults: true });
+    this.setState({ query: query, loadingResults: true }, () => {
+      console.log("this.state.query", this.state.query);
+      console.log("^this.state.results", this.state.results);
+    });
 
     const settings = JSON.stringify({
       settingsArr: [
@@ -79,15 +83,20 @@ export default class index extends React.Component {
                     path: "Acronym",
                     score: { boost: { value: 4 } },
                     fuzzy: {
-                      maxEdits: 1,
+                      maxEdits: 2,
+                      prefixLength: 2,
                     },
                   },
                 },
                 {
-                  autocomplete: {
+                  text: {
                     query: `${query}`,
                     path: "Text",
                     score: { boost: { value: 1 } },
+                    fuzzy: {
+                      maxEdits: 2,
+                      prefixLength: 2,
+                    },
                   },
                 },
               ],
@@ -126,11 +135,17 @@ export default class index extends React.Component {
   };
 
   toggleSearchBarFocused = () => {
-    this.setState({
-      searchBarFocused: !this.state.searchBarFocused,
-      cursor: 0,
-      query: "",
-    });
+    this.setState(
+      {
+        searchBarFocused: !this.state.searchBarFocused,
+        cursor: 0,
+        query: "",
+        results: [],
+      },
+      () => {
+        console.log("query emptied toggle", this.state);
+      }
+    );
   };
 
   toggleViewAllResultsFocused = () => {

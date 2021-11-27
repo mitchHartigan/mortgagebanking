@@ -16,6 +16,12 @@ export default class ResultCards extends React.Component {
     };
   }
 
+  _componentDidMount() {
+    window.addEventListener("resize", () => {
+      console.log("window resized!", window.innerWidth);
+    });
+  }
+
   _handleVisibilityChange = (isVisible, i) => {
     if (isVisible) {
       this.props.setHighlightedCardIndex(i);

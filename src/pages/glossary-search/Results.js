@@ -60,6 +60,7 @@ export default function Results(props) {
   return (
     <Container query={query} focused={focused}>
       <ViewAllResult
+        hidden={props.results.length >= 6}
         listPos={1}
         cursorPos={cursorPos}
         query={query}
@@ -151,7 +152,7 @@ const Definition = styled.p`
 `;
 
 const ViewAllResult = styled.li`
-  display: ${(props) => (props.results.length >= 6 ? "grid" : "none")};
+  display: grid;
   grid-template-columns: 65px 10% 10% 50% 1fr;
   width: 100%;
 
