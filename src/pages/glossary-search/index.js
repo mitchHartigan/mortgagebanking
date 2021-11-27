@@ -78,6 +78,9 @@ export default class index extends React.Component {
                     query: `${query}`,
                     path: "Acronym",
                     score: { boost: { value: 4 } },
+                    fuzzy: {
+                      maxEdits: 1,
+                    },
                   },
                 },
                 {
