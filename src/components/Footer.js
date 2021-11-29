@@ -29,7 +29,7 @@ export function Footer(props) {
     return (
       <Container>
         <Subtext size="xs" styles={CopyrightText}>
-          Copyright Shirk Law 2021
+          Shirk Law PLLC Copyright 2021
         </Subtext>
 
         <Subtext size="xs" styles={AddressText}>

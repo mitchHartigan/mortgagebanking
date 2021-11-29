@@ -8,6 +8,7 @@ import ResultsContainer from "./ResultsContainer";
 import Sidebar from "./Sidebar";
 import ResultCards from "./ResultCards";
 import { reverseArray } from "./_utils";
+import { Footer } from "components/Footer";
 
 export default class index extends React.Component {
   constructor(props) {
@@ -59,7 +60,7 @@ export default class index extends React.Component {
     const { results, cards } = this.state;
 
     cards.push(results[index]);
-    this.setState({ cards: cards, query: "", results: [] }, () => {
+    this.setState({ cards: cards, query: "" }, () => {
       sessionStorage.setItem("cards", JSON.stringify(cards));
       console.log("query emptied loadCard");
     });
@@ -95,7 +96,7 @@ export default class index extends React.Component {
                     score: { boost: { value: 1 } },
                     fuzzy: {
                       maxEdits: 2,
-                      prefixLength: 2,
+                      prefixLength: 4,
                     },
                   },
                 },
@@ -140,7 +141,6 @@ export default class index extends React.Component {
         searchBarFocused: !this.state.searchBarFocused,
         cursor: 0,
         query: "",
-        results: [],
       },
       () => {
         console.log("query emptied toggle", this.state);

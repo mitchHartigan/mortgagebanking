@@ -152,7 +152,7 @@ const Definition = styled.p`
 `;
 
 const ViewAllResult = styled.li`
-  display: grid;
+  display: ${(props) => (props.results.length >= 6 ? "grid" : "none")};
   grid-template-columns: 65px 10% 10% 50% 1fr;
   width: 100%;
 

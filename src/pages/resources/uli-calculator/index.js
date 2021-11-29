@@ -9,6 +9,7 @@ import { AnchorLink } from "components/AnchorLink";
 import Calculator from "./Calculator";
 import { ScrollToTopOnMount } from "components/ScrollToTopOnMount";
 import ReactGA from "react-ga";
+import { Footer } from "components/Footer";
 
 export default class ULICalculator extends Component {
   componentDidMount() {
@@ -48,6 +49,7 @@ export default class ULICalculator extends Component {
 
           <Calculator />
         </ContentContainer>
+        <Footer />
         <Navbar alwaysDisplay />
       </Container>
     );
