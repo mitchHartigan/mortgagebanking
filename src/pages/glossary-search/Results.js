@@ -118,7 +118,7 @@ const Result = styled.div`
   cursor: pointer;
 
   @media (max-width: 600px) {
-    grid-template-columns: 27px 10% 10% 1fr 20px;
+    grid-template-columns: 27px 25% 5% 1fr 20px;
   }
 `;
 
@@ -164,7 +164,7 @@ const ViewAllResult = styled.li`
   cursor: pointer;
 
   @media (max-width: 600px) {
-    grid-template-columns: 27px 10% 10% 1fr 20px;
+    grid-template-columns: 27px 25% 5% 1fr 20px;
   }
 `;
 
