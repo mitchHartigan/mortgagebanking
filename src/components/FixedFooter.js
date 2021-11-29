@@ -2,8 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import { Subtext } from "components/Subtext";
 
-export function Footer(props) {
-  const { lotsteinLegalFooter, isFixed } = props;
+export function FixedFooter(props) {
+  const { lotsteinLegalFooter } = props;
 
   if (lotsteinLegalFooter) {
     return (
@@ -27,7 +27,7 @@ export function Footer(props) {
     );
   } else {
     return (
-      <Container isFixed={isFixed}>
+      <Container>
         <Subtext size="xs" styles={CopyrightText}>
           Shirk Law PLLC Copyright 2021
         </Subtext>
@@ -76,15 +76,9 @@ const AreaText = `
 `;
 
 const Container = styled.div`
-  ${(props) => {
-    if (props.isFixed) {
-      return `
-          position: fixed;
-          left: 0;
-          bottom: 0;
-      `;
-    }
-  }}
+  position: fixed;
+  left: 0;
+  bottom: 0;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   align-items: center;

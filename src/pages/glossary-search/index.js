@@ -179,7 +179,7 @@ export default class index extends React.Component {
     };
 
     return (
-      <Container id="state">
+      <Container>
         <ScrollToTopOnMount />
         <BackButtonContainer>
           <BackButton
@@ -208,6 +208,7 @@ export default class index extends React.Component {
             viewAllResultsFocused={viewAllResultsFocused}
           />
         </ContentContainer>
+        <Footer isFixed />
         <Navbar alwaysDisplay />
       </Container>
     );
