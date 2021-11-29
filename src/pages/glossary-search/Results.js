@@ -117,6 +117,10 @@ const Result = styled.div`
   color: ${(props) => (props.listPos === props.cursorPos ? "white" : "black")};
   cursor: pointer;
 
+  @media (max-width: 1050px) {
+    grid-template-columns: 65px 25% 5% 1fr 20px;
+  }
+
   @media (max-width: 600px) {
     grid-template-columns: 27px 25% 5% 1fr 20px;
   }
@@ -126,7 +130,6 @@ const Acronym = styled.p`
   grid-column: 2 / 3;
   font-size: ${(props) => props.theme.text.xs};
   font-family: ${(props) => props.theme.textFont};
-
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -163,7 +166,11 @@ const ViewAllResult = styled.li`
   color: ${(props) => (props.listPos === props.cursorPos ? "white" : "black")};
   cursor: pointer;
 
-  @media (max-width: 600px) {
+  @media (max-width: 1050px) {
+    grid-template-columns: 65px 25% 5% 1fr 20px;
+  }
+
+  @media (max-width: 900px) {
     grid-template-columns: 27px 25% 5% 1fr 20px;
   }
 `;
