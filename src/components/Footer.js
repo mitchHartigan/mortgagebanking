@@ -76,15 +76,6 @@ const AreaText = `
 `;
 
 const Container = styled.div`
-  ${(props) => {
-    if (props.isFixed) {
-      return `
-          position: fixed;
-          left: 0;
-          bottom: 0;
-      `;
-    }
-  }}
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   align-items: center;
@@ -93,12 +84,28 @@ const Container = styled.div`
 
   @media (max-width: 1300px) {
     display: flex;
-    padding: 10px 0px 10px 20px;
+    padding: ${(props) =>
+      props.isFixed
+        ? "5px 0px 5px 5px"
+        : "10px 0px 10px 0px}10px 0px 10px 0px"};
     box-sizing: border-box;
     flex-direction: column;
     align-items: center;
     justify-content: center;
   }
+  ${(props) => {
+    if (props.isFixed) {
+      return `
+          position: fixed;
+          left: 0;
+          bottom: 0;
+
+          @media(max-width: 1300px){
+            display: none;
+          }
+      `;
+    }
+  }}
 `;
 
 const LotsteinLegalContainer = styled.div`

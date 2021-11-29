@@ -16,12 +16,6 @@ export default class ResultCards extends React.Component {
     };
   }
 
-  _componentDidMount() {
-    window.addEventListener("resize", () => {
-      console.log("window resized!", window.innerWidth);
-    });
-  }
-
   _handleVisibilityChange = (isVisible, i) => {
     if (isVisible) {
       this.props.setHighlightedCardIndex(i);
@@ -90,12 +84,22 @@ const CardContainer = styled.div`
   top: 140px;
   overflow: ${(props) => (props.stopScroll ? "hidden" : "scroll")};
   pointer-events: ${(props) => (props.stopScroll ? "none" : "auto")};
-  max-height: ${window.innerHeight - 250}px;
+  max-height: ${window.innerHeight - 300}px;
   ::-webkit-scrollbar {
     display: none;
   }
 
+  @media (max-width: 1200px) {
+    max-height: ${window.innerHeight - 260}px;
+  }
+
+  @media (max-width: 1150px) {
+    top: 120px;
+    max-height: ${window.innerHeight - 260}px;
+  }
+
   @media (max-width: 900px) {
     top: 200px;
+    max-height: ${window.innerHeight - 200}px;
   }
 `;
