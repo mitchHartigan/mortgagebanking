@@ -9,7 +9,7 @@ export function Footer(props) {
     return (
       <LotsteinLegalContainer>
         <Subtext size="xs" styles={LotsteinTextStyles}>
-          Copyright Shirk Law 2021
+          Shirk Law PLLC Copyright 2021
         </Subtext>
 
         <Subtext size="xs" styles={LotsteinTextStyles}>
