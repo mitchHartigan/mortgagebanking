@@ -9,7 +9,7 @@ import { InitiativesImage } from "./_InitiativesImage";
 import AboutUs from "./AboutUs";
 import { ContactUs } from "./ContactUs";
 import Hero from "./_Hero.js";
-import { Footer } from "./Footer";
+import { Footer } from "components/Footer";
 import ReactGA from "react-ga";
 
 const resourcesData = {
@@ -119,7 +119,7 @@ export default class Homepage extends Component {
         <DarkBlueContainer>
           <AboutUs />
           <ContactUs interestArea={this.state.interestArea} />
-          <Footer />
+          <Footer lotsteinLegalFooter />
         </DarkBlueContainer>
         <Navbar fadeIn={firstLoad} homepage />
       </Container>

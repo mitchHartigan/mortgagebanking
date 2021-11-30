@@ -7,6 +7,7 @@ import Navbar from "components/navbar/index";
 import RepresentativeEngagements from "./_RepresentativeEngagements";
 import { ScrollToTopOnMount } from "components/ScrollToTopOnMount";
 import ReactGA from "react-ga";
+import { Footer } from "components/Footer";
 
 export default function PracticeAreas() {
   ReactGA.pageview("Practice Areas");
@@ -19,13 +20,15 @@ export default function PracticeAreas() {
         </Title>
         <TextContainer>
           <Subtext size="xs" alignment="center" styles="width: 90%;">
-            Law’s practice focuses on mortgage lending, lead providers, and
-            fintechs. Within that scope are myriad issues addressed for clients.
+            Shirk Law’s practice focuses on mortgage lending, lead providers,
+            and fintechs. Within that scope are myriad issues addressed for
+            clients.
           </Subtext>
         </TextContainer>
 
         <RepresentativeEngagements />
       </ContentContainer>
+      <Footer />
       <Navbar alwaysDisplay />
     </Container>
   );
