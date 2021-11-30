@@ -13,7 +13,19 @@ export default class ResultCards extends React.Component {
     this.state = {
       activeCardIndex: 0,
       reversedCards: [],
+      visibilityOffset: 240,
     };
+  }
+
+  componentDidMount() {
+    window.addEventListener("resize", () => {
+      if (window.innerWidth <= 1100) {
+        this.setState({ visibilityOffset: 225 });
+      }
+      if (window.innerWidth <= 900) {
+        this.setState({ visibilityOffset: 200 });
+      }
+    });
   }
 
   _handleVisibilityChange = (isVisible, i) => {
@@ -31,6 +43,8 @@ export default class ResultCards extends React.Component {
   render() {
     const reversedCards = reverseArray(this.props.cards);
 
+    const visibilityOffset = this.state.visibilityOffset;
+
     if (this.props.scrollToCardId) {
       this._scrollCardIntoView(this.props.scrollToCardId);
     }
@@ -47,7 +61,7 @@ export default class ResultCards extends React.Component {
               onChange={(isVisible) =>
                 this._handleVisibilityChange(isVisible, i)
               }
-              offset={{ top: 210 }}
+              offset={{ top: visibilityOffset }}
               key={card._id}
               scrollCheck={false}
             >
