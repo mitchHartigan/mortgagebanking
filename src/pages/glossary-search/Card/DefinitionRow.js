@@ -10,7 +10,7 @@ export default function DefinitionRow(props) {
 
   return (
     <Container>
-      <DefinitionContainer leftAligned>
+      <DefinitionContainer>
         <TitleContainer>
           <ItemTitle>Definition</ItemTitle>
           <TitleUnderline />
@@ -41,18 +41,18 @@ const DefinitionContainer = styled.div`
   height: 100%;
   align-self: start;
   display: flex;
+  justify-self: start;
   flex-direction: column;
-  justify-content: center;
   text-overflow: wrap;
-  align-items: ${(props) => (props.leftAligned ? "flex-start" : "flex-end")};
+  align-items: flex-start;
 `;
 
 const AcronymContainer = styled.div`
   grid-column: 3 / 4;
   height: 100%;
   align-self: start;
-  justify-self: end;
   display: flex;
+  justify-self: end;
   flex-direction: column;
   align-items: flex-end;
 `;
