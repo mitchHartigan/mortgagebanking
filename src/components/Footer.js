@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Subtext } from "components/Subtext";
 
 export function Footer(props) {
-  const { lotsteinLegalFooter, isFixed } = props;
+  const { lotsteinLegalFooter, isFixed, slim } = props;
 
   if (lotsteinLegalFooter) {
     return (
@@ -25,6 +25,15 @@ export function Footer(props) {
         </Subtext>
       </LotsteinLegalContainer>
     );
+  }
+  if (slim) {
+    return (
+      <SlimContainer>
+        <Subtext size="xxs" styles={slimCopyrightText}>
+          Shirk Law PLLC Copyright 2021
+        </Subtext>
+      </SlimContainer>
+    );
   } else {
     return (
       <Container isFixed={isFixed}>
@@ -44,8 +53,26 @@ export function Footer(props) {
   }
 }
 
+const SlimContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: ${(props) => props.theme.colors.darkBlue};
+`;
+
 const LotsteinTextStyles = `
   margin: 5px 0px 5px 0px;
+  color: #BDBDBD;
+  text-align: center;
+  width: auto;
+`;
+
+const slimCopyrightText = `
+  margin: 3px 0px 3px 0px;
   color: #BDBDBD;
   text-align: center;
   width: auto;
@@ -85,9 +112,7 @@ const Container = styled.div`
   @media (max-width: 1300px) {
     display: flex;
     padding: ${(props) =>
-      props.isFixed
-        ? "5px 0px 5px 5px"
-        : "10px 0px 10px 0px}10px 0px 10px 0px"};
+      props.isFixed ? "5px 0px 5px 5px" : "10px 0px 10px 0px"};
     box-sizing: border-box;
     flex-direction: column;
     align-items: center;
