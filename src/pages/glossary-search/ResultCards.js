@@ -23,7 +23,7 @@ export default class ResultCards extends React.Component {
         this.setState({ visibilityOffset: 225 });
       }
       if (window.innerWidth <= 900) {
-        this.setState({ visibilityOffset: 200 });
+        this.setState({ visibilityOffset: 100 });
       }
     });
   }
@@ -108,12 +108,17 @@ const CardContainer = styled.div`
   }
 
   @media (max-width: 1150px) {
-    top: 120px;
+    top: 125px;
     max-height: ${window.innerHeight - 260}px;
   }
 
   @media (max-width: 900px) {
-    top: 200px;
-    max-height: ${window.innerHeight - 200}px;
+    top: 140px;
+    max-height: ${window.innerHeight - 220}px;
+  }
+
+  @media (max-width: 500px) {
+    top: 140px;
+    max-height: ${window.innerHeight - 180}px;
   }
 `;

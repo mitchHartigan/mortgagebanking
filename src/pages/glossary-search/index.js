@@ -208,7 +208,7 @@ export default class index extends React.Component {
             viewAllResultsFocused={viewAllResultsFocused}
           />
         </ContentContainer>
-        <Footer isFixed />
+        <Footer slim />
         <Navbar alwaysDisplay />
       </Container>
     );
@@ -239,8 +239,8 @@ const TitleStylesOverride = `
   margin-bottom: 2vh; 
 
   @media (max-width: 900px) {
-     margin-top: 80px;
-     text-align: center;
+    margin-top: 15px;
+    text-align: center;
   };
 `;
 
