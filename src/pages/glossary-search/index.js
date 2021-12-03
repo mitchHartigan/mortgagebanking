@@ -76,31 +76,9 @@ export default class index extends React.Component {
       settingsArr: [
         {
           $search: {
-            compound: {
-              should: [
-                {
-                  text: {
-                    query: `${query}`,
-                    path: "Acronym",
-                    score: { boost: { value: 4 } },
-                    fuzzy: {
-                      maxEdits: 2,
-                      prefixLength: 2,
-                    },
-                  },
-                },
-                {
-                  text: {
-                    query: `${query}`,
-                    path: "Text",
-                    score: { boost: { value: 1 } },
-                    fuzzy: {
-                      maxEdits: 2,
-                      prefixLength: 4,
-                    },
-                  },
-                },
-              ],
+            autocomplete: {
+              query: `${query}`,
+              path: "Acronym",
             },
           },
         },
