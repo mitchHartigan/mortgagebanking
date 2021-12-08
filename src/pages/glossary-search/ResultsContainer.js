@@ -41,6 +41,7 @@ export default class ResultsContainer extends React.Component {
       cards,
       searchBarFocused,
       loadingResults,
+      completedQuery,
       loadCard,
       updateCursor,
       updateQuery,
@@ -68,6 +69,7 @@ export default class ResultsContainer extends React.Component {
             cards={cards}
             focused={searchBarFocused}
             loadingResults={loadingResults}
+            completedQuery={completedQuery}
             loadCard={loadCard}
             toggleViewAllResults={this.toggleViewAllResults}
             toggleSearchBarFocused={toggleSearchBarFocused}

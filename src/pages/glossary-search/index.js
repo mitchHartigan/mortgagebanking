@@ -9,6 +9,7 @@ import Sidebar from "./Sidebar";
 import ResultCards from "./ResultCards";
 import { reverseArray } from "./_utils";
 import { Footer } from "components/Footer";
+import { querySettings } from "./_querySettings";
 
 export default class index extends React.Component {
   constructor(props) {
@@ -22,6 +23,7 @@ export default class index extends React.Component {
       searchBarFocused: false,
       viewAllResultsFocused: false,
       loadingResults: false,
+      completedQuery: false,
       highlightedCardIndex: 0,
       scrollToCardId: "",
     };
@@ -33,6 +35,15 @@ export default class index extends React.Component {
     if (cards && cards.length > 0) {
       this.setState({ cards: cards });
     }
+
+    // Send a dummy request to spin up the cluster if it has been idle.
+    fetch(
+      `https://mr6l6hmd1l.execute-api.us-east-1.amazonaws.com/search?settings=${querySettings(
+        "ASAP"
+      )}`
+    )
+      .then((results) => results.json())
+      .then((results) => console.log("results from wakeup`", results));
   }
 
   setScrollToCardId = (id) => {
@@ -53,7 +64,9 @@ export default class index extends React.Component {
 
     reverseArr.splice(index, 1);
 
-    this.setState({ cards: reverseArr });
+    this.setState({ cards: reverseArr }, () => {
+      sessionStorage.setItem("cards", JSON.stringify(reverseArr));
+    });
   };
 
   loadCard = (index) => {
@@ -67,46 +80,43 @@ export default class index extends React.Component {
   };
 
   updateQuery = async (query) => {
-    this.setState({ query: query, loadingResults: true }, () => {
-      console.log("this.state.query", this.state.query);
-      console.log("^this.state.results", this.state.results);
-    });
+    // Well, this certainly needs some documentation.
+    const controller = new AbortController();
+    const signal = controller.signal;
 
-    const settings = JSON.stringify({
-      settingsArr: [
-        {
-          $search: {
-            autocomplete: {
-              query: `${query}`,
-              path: "Acronym",
-            },
-          },
-        },
-        { $limit: 50 },
-        {
-          $project: {
-            _id: 1,
-            Acronym: 1,
-            Citation: 1,
-            "Description of use": 1,
-            "Date Entered": 1,
-            Text: 1,
-            Definition: 1,
-            score: { $meta: "searchScore" },
-          },
-        },
-      ],
-    });
+    if (this.state.loadingResults) controller.abort();
 
-    if (query.length > 1) {
-      fetch(
-        `https://mr6l6hmd1l.execute-api.us-east-1.amazonaws.com/search?settings=${settings}`
-      )
-        .then((results) => results.json())
-        .then((results) => {
-          this.setState({ results: results, loadingResults: false });
-        });
+    if (query.length === 0 || query === "") {
+      controller.abort();
+      await this.setState({ query: "", results: [] });
+      return;
     }
+
+    await this.setState({
+      query: query,
+      loadingResults: true,
+      completedQuery: false,
+      results: [],
+    });
+
+    setTimeout(() => {
+      if (query.length > 1) {
+        const settings = querySettings(query);
+        fetch(
+          `https://mr6l6hmd1l.execute-api.us-east-1.amazonaws.com/search?settings=${settings}`,
+          { signal }
+        )
+          .then((results) => results.json())
+          .then((results) => {
+            this.setState({
+              results: results,
+              loadingResults: false,
+              completedQuery: true,
+            });
+          })
+          .catch(() => this.setState({ loadingResults: false, results: [] }));
+      }
+    }, 70);
   };
 
   updateCursor = (pos) => {
@@ -114,16 +124,12 @@ export default class index extends React.Component {
   };
 
   toggleSearchBarFocused = () => {
-    this.setState(
-      {
-        searchBarFocused: !this.state.searchBarFocused,
-        cursor: 0,
-        query: "",
-      },
-      () => {
-        console.log("query emptied toggle", this.state);
-      }
-    );
+    this.setState({
+      searchBarFocused: !this.state.searchBarFocused,
+      cursor: 0,
+      query: "",
+      results: [],
+    });
   };
 
   toggleViewAllResultsFocused = () => {
@@ -139,6 +145,7 @@ export default class index extends React.Component {
       searchBarFocused,
       viewAllResultsFocused,
       loadingResults,
+      completedQuery,
       highlightedCardIndex,
     } = this.state;
 
@@ -149,6 +156,7 @@ export default class index extends React.Component {
       cards: cards,
       searchBarFocused: searchBarFocused,
       loadingResults: loadingResults,
+      completedQuery: completedQuery,
       updateQuery: this.updateQuery,
       updateCursor: this.updateCursor,
       toggleSearchBarFocused: this.toggleSearchBarFocused,
