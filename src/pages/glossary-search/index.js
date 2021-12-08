@@ -88,7 +88,12 @@ export default class index extends React.Component {
 
     if (query.length === 0 || query === "") {
       controller.abort();
-      await this.setState({ query: "", results: [] });
+      await this.setState({
+        query: "",
+        results: [],
+        loadingResults: false,
+        completedQuery: false,
+      });
       return;
     }
 
@@ -99,24 +104,24 @@ export default class index extends React.Component {
       results: [],
     });
 
-    setTimeout(() => {
-      if (query.length > 1) {
-        const settings = querySettings(query);
-        fetch(
-          `https://mr6l6hmd1l.execute-api.us-east-1.amazonaws.com/search?settings=${settings}`,
-          { signal }
-        )
-          .then((results) => results.json())
-          .then((results) => {
-            this.setState({
-              results: results,
-              loadingResults: false,
-              completedQuery: true,
-            });
-          })
-          .catch(() => this.setState({ loadingResults: false, results: [] }));
-      }
-    }, 70);
+    if (query.length > 1) {
+      const settings = querySettings(query);
+
+      fetch(
+        `https://mr6l6hmd1l.execute-api.us-east-1.amazonaws.com/search?settings=${settings}`,
+        { signal }
+      )
+        .then((results) => results.json())
+        .then((results) => {
+          console.log("results from below .json()", results);
+          this.setState({
+            results: results,
+            loadingResults: false,
+            completedQuery: true,
+          });
+        })
+        .catch(() => this.setState({ loadingResults: false, results: [] }));
+    }
   };
 
   updateCursor = (pos) => {

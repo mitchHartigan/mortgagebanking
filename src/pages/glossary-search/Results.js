@@ -58,8 +58,8 @@ export default function Results(props) {
     });
   };
 
-  const viewAllMesssage = (completedQuery, query) => {
-    if (completedQuery) {
+  const viewAllMesssage = (completedQuery, loadingResults) => {
+    if (completedQuery && !loadingResults) {
       return <i>{"See all search results >"}</i>;
     } else {
       return `Searching...`;
@@ -89,7 +89,9 @@ export default function Results(props) {
         onMouseDown={_toggleViewAllResults}
       >
         <Acronym>{query}</Acronym>
-        <Definition>{viewAllMesssage(completedQuery, query)}</Definition>
+        <Definition>
+          {viewAllMesssage(completedQuery, loadingResults)}
+        </Definition>
       </ViewAllResult>
       <NoResultsFound
         results={results}
