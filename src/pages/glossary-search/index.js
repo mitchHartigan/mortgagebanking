@@ -38,9 +38,7 @@ export default class index extends React.Component {
 
     // Send a dummy request to spin up the cluster if it has been idle.
     fetch(
-      `https://mr6l6hmd1l.execute-api.us-east-1.amazonaws.com/search?settings=${querySettings(
-        "ASAP"
-      )}`
+      `https://md5rhmga23.execute-api.us-west-2.amazonaws.com/production/search?term=ASAP`
     ).then((results) => results.json());
   }
 
@@ -99,7 +97,7 @@ export default class index extends React.Component {
       () => {
         if (query.length > 1) {
           fetch(
-            `https://mr6l6hmd1l.execute-api.us-east-1.amazonaws.com/search?term=${this.state.query}`
+            `https://md5rhmga23.execute-api.us-west-2.amazonaws.com/production/search?term=${this.state.query}`
           )
             .then((results) => results.json())
             .then((results) => {
