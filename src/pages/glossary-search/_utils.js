@@ -27,3 +27,13 @@ export const parseDuplicatesFromResults = (results, cards) => {
 export const genTruncatedResults = (results) => {
   return results.slice(0, 6);
 };
+
+export const API_FETCH_RESULTS = async (query) => {
+  let results = await fetch(
+    `https://md5rhmga23.execute-api.us-west-2.amazonaws.com/production/search?term=${query}`
+  );
+
+  let parsedResults = await results.json();
+
+  return parsedResults;
+};

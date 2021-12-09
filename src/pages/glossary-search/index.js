@@ -9,7 +9,8 @@ import Sidebar from "./Sidebar";
 import ResultCards from "./ResultCards";
 import { reverseArray } from "./_utils";
 import { Footer } from "components/Footer";
-import { querySettings } from "./_querySettings";
+
+import { API_FETCH_RESULTS } from "./_utils";
 
 export default class index extends React.Component {
   constructor(props) {
@@ -29,17 +30,16 @@ export default class index extends React.Component {
     };
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     const cards = JSON.parse(sessionStorage.getItem("cards"));
 
     if (cards && cards.length > 0) {
       this.setState({ cards: cards });
     }
 
+    const results = await API_FETCH_RESULTS("ASAP");
+    console.log(results);
     // Send a dummy request to spin up the cluster if it has been idle.
-    fetch(
-      `https://md5rhmga23.execute-api.us-west-2.amazonaws.com/production/search?term=ASAP`
-    ).then((results) => results.json());
   }
 
   setScrollToCardId = (id) => {
@@ -101,6 +101,7 @@ export default class index extends React.Component {
           )
             .then((results) => results.json())
             .then((results) => {
+              console.log("results", results);
               this.setState({
                 results: results,
                 loadingResults: false,
