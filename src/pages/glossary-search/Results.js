@@ -66,15 +66,6 @@ export default function Results(props) {
     }
   };
 
-  console.log(
-    "query",
-    query,
-    "completedQuery",
-    completedQuery,
-    "results",
-    results
-  );
-
   return (
     <Container query={query} focused={focused}>
       <ViewAllResult

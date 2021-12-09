@@ -41,9 +41,7 @@ export default class index extends React.Component {
       `https://mr6l6hmd1l.execute-api.us-east-1.amazonaws.com/search?settings=${querySettings(
         "ASAP"
       )}`
-    )
-      .then((results) => results.json())
-      .then((results) => console.log("results from wakeup`", results));
+    ).then((results) => results.json());
   }
 
   setScrollToCardId = (id) => {
@@ -75,19 +73,13 @@ export default class index extends React.Component {
     cards.push(results[index]);
     this.setState({ cards: cards, query: "" }, () => {
       sessionStorage.setItem("cards", JSON.stringify(cards));
-      console.log("query emptied loadCard");
     });
   };
 
   updateQuery = async (query) => {
     // Well, this certainly needs some documentation.
-    const controller = new AbortController();
-    const signal = controller.signal;
-
-    if (this.state.loadingResults) controller.abort();
 
     if (query.length === 0 || query === "") {
-      controller.abort();
       await this.setState({
         query: "",
         results: [],
@@ -97,31 +89,30 @@ export default class index extends React.Component {
       return;
     }
 
-    await this.setState({
-      query: query,
-      loadingResults: true,
-      completedQuery: false,
-      results: [],
-    });
-
-    if (query.length > 1) {
-      const settings = querySettings(query);
-
-      fetch(
-        `https://mr6l6hmd1l.execute-api.us-east-1.amazonaws.com/search?settings=${settings}`,
-        { signal }
-      )
-        .then((results) => results.json())
-        .then((results) => {
-          console.log("results from below .json()", results);
-          this.setState({
-            results: results,
-            loadingResults: false,
-            completedQuery: true,
-          });
-        })
-        .catch(() => this.setState({ loadingResults: false, results: [] }));
-    }
+    this.setState(
+      {
+        query: query,
+        loadingResults: true,
+        completedQuery: false,
+        results: [],
+      },
+      () => {
+        if (query.length > 1) {
+          fetch(
+            `https://mr6l6hmd1l.execute-api.us-east-1.amazonaws.com/search?term=${this.state.query}`
+          )
+            .then((results) => results.json())
+            .then((results) => {
+              this.setState({
+                results: results,
+                loadingResults: false,
+                completedQuery: true,
+              });
+            })
+            .catch(() => this.setState({ loadingResults: false, results: [] }));
+        }
+      }
+    );
   };
 
   updateCursor = (pos) => {
