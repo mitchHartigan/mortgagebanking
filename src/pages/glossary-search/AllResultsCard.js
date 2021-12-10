@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { API_FETCH_RESULTS, parseDuplicatesFromResults } from "./_utils";
 
 export default class AllResultsCard extends React.Component {
   constructor(props) {
@@ -7,13 +8,14 @@ export default class AllResultsCard extends React.Component {
 
     this.state = {
       cursor: 0,
+      results: [],
     };
 
     this.containerRef = React.createRef();
   }
 
   _handleLoadCard = (index) => {
-    this.props.loadCard(index);
+    this.props.loadCardFromViewAllResults(this.props.query, index);
     this.props.toggleSearch();
   };
 
@@ -38,8 +40,9 @@ export default class AllResultsCard extends React.Component {
         this.setState({ cursor: cursorPos - 1 });
       }
     } else if (key === "ArrowDown") {
+      console.log("down arrow, hello?");
       let cursorPos = this.state.cursor;
-      if (cursorPos >= this.props.results.length - 1) return;
+      if (cursorPos >= this.state.results.length - 1) return;
       // including the search bar (cursor 0) and 'See all results' (cursor 1), and a maximum of 6 results, the max index will be 7.
       else {
         this.setState({ cursor: cursorPos + 1 });
@@ -49,14 +52,17 @@ export default class AllResultsCard extends React.Component {
     }
   };
 
-  componentDidMount() {
-    setTimeout(() => {
+  async componentDidMount() {
+    const results = await API_FETCH_RESULTS(this.props.query);
+    const parsedResults = parseDuplicatesFromResults(results, this.props.cards);
+
+    this.setState({ results: parsedResults }, () => {
       this.containerRef.current.focus();
-    }, 10);
+    });
   }
 
-  _mapResults = (results) => {
-    return results.map((result, i) => {
+  _mapResults = () => {
+    return this.state.results.map((result, i) => {
       return (
         <Result
           tabIndex={i + 1}
@@ -90,6 +96,7 @@ export default class AllResultsCard extends React.Component {
           <Title>{`Viewing all search results for '${query}'.`}</Title>
           <Underline />
           <ResultsContainer
+            id="ayy lmaoooooo"
             tabIndex="0"
             autoFocus
             ref={this.containerRef}

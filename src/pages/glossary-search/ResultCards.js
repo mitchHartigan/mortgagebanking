@@ -18,6 +18,7 @@ export default class ResultCards extends React.Component {
   }
 
   componentDidMount() {
+    console.log(this.props.cards);
     window.addEventListener("resize", () => {
       if (window.innerWidth <= 1100) {
         this.setState({ visibilityOffset: 225 });

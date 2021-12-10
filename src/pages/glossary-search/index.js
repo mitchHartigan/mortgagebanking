@@ -65,6 +65,18 @@ export default class index extends React.Component {
     });
   };
 
+  loadCardFromViewAllResults = async (query, index) => {
+    const { cards } = this.state;
+    const results = await API_FETCH_RESULTS(query);
+
+    console.log("results from loadCard");
+
+    cards.push(results[index]);
+    this.setState({ cards: cards, query: "" }, () => {
+      sessionStorage.setItem("cards", JSON.stringify(cards));
+    });
+  };
+
   loadCard = (index) => {
     const { results, cards } = this.state;
 
@@ -157,6 +169,7 @@ export default class index extends React.Component {
       toggleSearchBarFocused: this.toggleSearchBarFocused,
       toggleViewAllResultsFocused: this.toggleViewAllResultsFocused,
       loadCard: this.loadCard,
+      loadCardFromViewAllResults: this.loadCardFromViewAllResults,
     };
 
     return (

@@ -58,6 +58,14 @@ export default function Results(props) {
     });
   };
 
+  const handleViewAllResultsInteraction = (completedQuery, loadingResults) => {
+    if (!completedQuery || loadingResults) {
+      return;
+    } else {
+      _toggleViewAllResults();
+    }
+  };
+
   const viewAllMesssage = (completedQuery, loadingResults) => {
     if (completedQuery && !loadingResults) {
       return <i>{"See all search results >"}</i>;
@@ -76,7 +84,7 @@ export default function Results(props) {
         cursorPos={cursorPos}
         onMouseEnter={() => updateCursor(1)}
         results={results}
-        onMouseDown={_toggleViewAllResults}
+        onMouseDown={handleViewAllResultsInteraction}
       >
         <Acronym>{query}</Acronym>
         <Definition>
@@ -166,7 +174,7 @@ export const Definition = styled.p`
 
 const ViewAllResult = styled.li`
   display: ${(props) =>
-    props.query.length < 3 ||
+    props.query.length < 2 ||
     (props.completedQuery && props.results.length <= 6)
       ? "none"
       : "grid"};
