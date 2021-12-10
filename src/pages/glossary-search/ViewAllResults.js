@@ -1,198 +1,52 @@
 import React from "react";
 import styled from "styled-components";
+import { Acronym, Definition } from "./Results";
 
-export default class ViewAllResults extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      cursor: 0,
-    };
-
-    this.containerRef = React.createRef();
+const viewAllMesssage = (completedQuery, loadingResults) => {
+  if (completedQuery && !loadingResults) {
+    return <i>{"See all search results >"}</i>;
+  } else {
+    return `Searching...`;
   }
+};
 
-  _handleLoadCard = (index) => {
-    this.props.loadCard(index);
-    this.props.toggleSearch();
-  };
+export default function ViewAllResults(props) {
+  const {
+    query,
+    completedQuery,
+    loadingResults,
+    results,
+    listPos,
+    cursorPos,
+    updateCursor,
+    toggleViewAllResults,
+  } = props;
 
-  _focusDropdownContainer = () => {
-    this.containerRef.current.focus();
-  };
-
-  _updateCursorPos = (pos) => {
-    if (pos >= 11) {
-    }
-    this.setState({ cursor: pos });
-  };
-
-  _handleKeyDown = (evt) => {
-    const { key } = evt;
-    // maybe refactor this with a switch case statement?
-
-    if (key === "ArrowUp") {
-      let cursorPos = this.state.cursor;
-      if (cursorPos === 0) return;
-      else {
-        this.setState({ cursor: cursorPos - 1 });
-      }
-    } else if (key === "ArrowDown") {
-      let cursorPos = this.state.cursor;
-      if (cursorPos >= this.props.results.length - 1) return;
-      // including the search bar (cursor 0) and 'See all results' (cursor 1), and a maximum of 6 results, the max index will be 7.
-      else {
-        this.setState({ cursor: cursorPos + 1 });
-      }
-    } else if (key === "Enter") {
-      this._handleLoadCard(this.state.cursor); // since the first two cursor indexes identify the search bar and view all results elements.
-    }
-  };
-
-  componentDidMount() {
-    setTimeout(() => {
-      this.containerRef.current.focus();
-    }, 10);
-  }
-
-  _mapResults = (results) => {
-    return results.map((result, i) => {
-      return (
-        <Result
-          tabIndex={i + 1}
-          key={result._id}
-          listPos={i}
-          cursorPos={this.state.cursor}
-          onMouseEnter={() => this._updateCursorPos(i)}
-          name={result._id}
-          currentIndex={i}
-          onMouseDown={() => this._handleLoadCard(i)} // this is i, not i+2, because it's the position in the results[] array.
-        >
-          <Acronym>{result.Acronym}</Acronym>
-          <Definition>{result.Text}</Definition>
-        </Result>
-      );
-    });
-  };
-
-  render() {
-    const { query, cursorPos, updateCursor, loadCard } = this.props;
-
-    let results = this.props.results;
-    if (results.errorMessage) results = [];
-
-    return (
-      <Container show>
-        <BackButton
-          onClick={this.props.toggleSearch}
-        >{`<     Back to Search`}</BackButton>
-        <TitleContainer>
-          <Title>{`Viewing all search results for '${query}'.`}</Title>
-          <Underline />
-          <ResultsContainer
-            tabIndex="0"
-            autoFocus
-            ref={this.containerRef}
-            onKeyDown={this._handleKeyDown}
-            onMouseOver={this._focusDropdownContainer}
-          >
-            {this._mapResults(results)}
-          </ResultsContainer>
-        </TitleContainer>
-      </Container>
-    );
-  }
+  return (
+    <ViewAllResult
+      query={query}
+      completedQuery={completedQuery}
+      loadingResults={loadingResults}
+      listPos={1}
+      cursorPos={cursorPos}
+      onMouseEnter={() => updateCursor(1)}
+      results={results}
+      onMouseDown={toggleViewAllResults}
+    >
+      <Acronym>{query}</Acronym>
+      <Definition>{viewAllMesssage(completedQuery, loadingResults)}</Definition>
+    </ViewAllResult>
+  );
 }
 
-const Container = styled.div`
-  display: ${(props) => (props.show ? "flex" : "none")};
-  flex-direction: column;
-  background-color: white;
-  width: 800px;
-  height: 700px;
-  border-radius: 20px;
-  outline: none;
-  box-sizing: border-box;
-  z-index: 1;
-  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
-  padding: 30px;
-
-  @media (max-width: 1330px) {
-    width: 650px;
-    height: 500px;
-  }
-
-  @media (max-width: 700px) {
-    padding: 15px;
-    width: 90vw;
-  }
-`;
-
-const BackButton = styled.p`
-  font-family: ${(props) => props.theme.textFont};
-  font-size: ${(props) => props.theme.text.xs};
-  font-weight: 600;
-  cursor: pointer;
-  margin: 0px;
-  white-space: pre;
-
-  @media (max-width: 700px) {
-    font-size: ${(props) => props.theme.text.xxs};
-  }
-`;
-
-const Title = styled.h4`
-  font-family: ${(props) => props.theme.textFont};
-  font-size: ${(props) => props.theme.text.xs};
-  font-weight: 400;
-  margin: 20px 0px 10px 0px;
-
-  @media (max-width: 700px) {
-    font-size: ${(props) => props.theme.text.xxs};
-  }
-`;
-
-const Underline = styled.span`
-  display: block;
-  height: 2px;
-  background: ${(props) => props.theme.colors.darkGray};
-  margin: 0px;
-`;
-
-const TitleContainer = styled.div`
-  padding: 0px 25px 0px 25px;
-
-  @media (max-width: 600px) {
-    padding: 0px;
-  }
-`;
-
-const ResultsContainer = styled.div`
-  overflow-y: scroll;
-  height: 550px;
-  outline: none;
-  margin-right: -20px;
-
-  &::-webkit-scrollbar {
-    width: 7px;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background: ${(props) => props.theme.colors.darkGray};
-  }
-
-  @media (max-width: 1330px) {
-    height: 380px;
-    margin-right: 0px;
-  }
-`;
-
-// Copied over from Results.js. We'll make a uniform component later that we can use for both.
-
-const Result = styled.div`
-  display: grid;
-  grid-template-columns: 40px 10% 10% 1fr 40px;
-  width: 95%;
+const ViewAllResult = styled.li`
+  display: ${(props) =>
+    props.query.length < 3 ||
+    (props.completedQuery && props.results.length <= 6)
+      ? "none"
+      : "grid"};
+  grid-template-columns: 65px 10% 10% 50% 1fr;
+  width: 100%;
 
   background-color: ${(props) =>
     props.listPos === props.cursorPos
@@ -201,37 +55,11 @@ const Result = styled.div`
   color: ${(props) => (props.listPos === props.cursorPos ? "white" : "black")};
   cursor: pointer;
 
-  @media (max-width: 700px) {
-    grid-template-columns: 15px 10% 10% 1fr 15px;
-    width: 100%;
+  @media (max-width: 1050px) {
+    grid-template-columns: 65px 25% 5% 1fr 20px;
   }
-`;
 
-const Acronym = styled.p`
-  grid-column: 2 / 3;
-  font-size: ${(props) => props.theme.text.xs};
-  font-family: ${(props) => props.theme.textFont};
-
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-
-  @media (max-width: 700px) {
-    font-size: ${(props) => props.theme.text.xxs};
-  }
-`;
-
-const Definition = styled.p`
-  grid-column: 4 / 5;
-  font-size: ${(props) => props.theme.text.xs};
-  font-family: ${(props) => props.theme.textFont};
-  font-weight: 400;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  width: 100%;
-
-  @media (max-width: 700px) {
-    font-size: ${(props) => props.theme.text.xxs};
+  @media (max-width: 900px) {
+    grid-template-columns: 27px 25% 5% 1fr 20px;
   }
 `;

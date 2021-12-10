@@ -74,7 +74,6 @@ export default function Results(props) {
         loadingResults={loadingResults}
         listPos={1}
         cursorPos={cursorPos}
-        query={query}
         onMouseEnter={() => updateCursor(1)}
         results={results}
         onMouseDown={_toggleViewAllResults}
@@ -137,7 +136,7 @@ const Result = styled.div`
   }
 `;
 
-const Acronym = styled.p`
+export const Acronym = styled.p`
   grid-column: 2 / 3;
   font-size: ${(props) => props.theme.text.xs};
   font-family: ${(props) => props.theme.textFont};
@@ -150,7 +149,7 @@ const Acronym = styled.p`
   }
 `;
 
-const Definition = styled.p`
+export const Definition = styled.p`
   grid-column: 4 / 5;
   font-size: ${(props) => props.theme.text.xs};
   font-family: ${(props) => props.theme.textFont};
