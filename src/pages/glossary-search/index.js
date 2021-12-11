@@ -10,6 +10,8 @@ import ResultCards from "./ResultCards";
 import { reverseArray } from "./_utils";
 import { Footer } from "components/Footer";
 
+import { API_FETCH_RESULTS } from "./_utils";
+
 export default class index extends React.Component {
   constructor(props) {
     super(props);
@@ -22,17 +24,22 @@ export default class index extends React.Component {
       searchBarFocused: false,
       viewAllResultsFocused: false,
       loadingResults: false,
+      completedQuery: false,
       highlightedCardIndex: 0,
       scrollToCardId: "",
     };
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     const cards = JSON.parse(sessionStorage.getItem("cards"));
 
     if (cards && cards.length > 0) {
       this.setState({ cards: cards });
     }
+
+    const results = await API_FETCH_RESULTS("ASAP");
+    console.log(results);
+    // Send a dummy request to spin up the cluster if it has been idle.
   }
 
   setScrollToCardId = (id) => {
@@ -53,7 +60,21 @@ export default class index extends React.Component {
 
     reverseArr.splice(index, 1);
 
-    this.setState({ cards: reverseArr });
+    this.setState({ cards: reverseArr }, () => {
+      sessionStorage.setItem("cards", JSON.stringify(reverseArr));
+    });
+  };
+
+  loadCardFromViewAllResults = async (query, index) => {
+    const { cards } = this.state;
+    const results = await API_FETCH_RESULTS(query);
+
+    console.log("results from loadCard");
+
+    cards.push(results[index]);
+    this.setState({ cards: cards, query: "" }, () => {
+      sessionStorage.setItem("cards", JSON.stringify(cards));
+    });
   };
 
   loadCard = (index) => {
@@ -62,51 +83,47 @@ export default class index extends React.Component {
     cards.push(results[index]);
     this.setState({ cards: cards, query: "" }, () => {
       sessionStorage.setItem("cards", JSON.stringify(cards));
-      console.log("query emptied loadCard");
     });
   };
 
   updateQuery = async (query) => {
-    this.setState({ query: query, loadingResults: true }, () => {
-      console.log("this.state.query", this.state.query);
-      console.log("^this.state.results", this.state.results);
-    });
+    // Well, this certainly needs some documentation.
 
-    const settings = JSON.stringify({
-      settingsArr: [
-        {
-          $search: {
-            autocomplete: {
-              query: `${query}`,
-              path: "Acronym",
-            },
-          },
-        },
-        { $limit: 50 },
-        {
-          $project: {
-            _id: 1,
-            Acronym: 1,
-            Citation: 1,
-            "Description of use": 1,
-            "Date Entered": 1,
-            Text: 1,
-            Definition: 1,
-            score: { $meta: "searchScore" },
-          },
-        },
-      ],
-    });
-
-    if (query.length > 1) {
-      fetch(
-        `https://mr6l6hmd1l.execute-api.us-east-1.amazonaws.com/search?settings=${settings}`
-      )
-        .then((results) => results.json())
-        .then((results) => {
-          this.setState({ results: results, loadingResults: false });
-        });
+    if (query.length === 0 || query === "") {
+      await this.setState({
+        query: "",
+        results: [],
+        loadingResults: false,
+        completedQuery: false,
+      });
+      return;
     }
+
+    this.setState(
+      {
+        query: query,
+        loadingResults: true,
+        completedQuery: false,
+        results: [],
+      },
+      () => {
+        if (query.length > 1) {
+          fetch(
+            `https://md5rhmga23.execute-api.us-west-2.amazonaws.com/production/search?term=${this.state.query}`
+          )
+            .then((results) => results.json())
+            .then((results) => {
+              console.log("results", results);
+              this.setState({
+                results: results,
+                loadingResults: false,
+                completedQuery: true,
+              });
+            })
+            .catch(() => this.setState({ loadingResults: false, results: [] }));
+        }
+      }
+    );
   };
 
   updateCursor = (pos) => {
@@ -114,16 +131,12 @@ export default class index extends React.Component {
   };
 
   toggleSearchBarFocused = () => {
-    this.setState(
-      {
-        searchBarFocused: !this.state.searchBarFocused,
-        cursor: 0,
-        query: "",
-      },
-      () => {
-        console.log("query emptied toggle", this.state);
-      }
-    );
+    this.setState({
+      searchBarFocused: !this.state.searchBarFocused,
+      cursor: 0,
+      query: "",
+      results: [],
+    });
   };
 
   toggleViewAllResultsFocused = () => {
@@ -139,6 +152,7 @@ export default class index extends React.Component {
       searchBarFocused,
       viewAllResultsFocused,
       loadingResults,
+      completedQuery,
       highlightedCardIndex,
     } = this.state;
 
@@ -149,11 +163,13 @@ export default class index extends React.Component {
       cards: cards,
       searchBarFocused: searchBarFocused,
       loadingResults: loadingResults,
+      completedQuery: completedQuery,
       updateQuery: this.updateQuery,
       updateCursor: this.updateCursor,
       toggleSearchBarFocused: this.toggleSearchBarFocused,
       toggleViewAllResultsFocused: this.toggleViewAllResultsFocused,
       loadCard: this.loadCard,
+      loadCardFromViewAllResults: this.loadCardFromViewAllResults,
     };
 
     return (

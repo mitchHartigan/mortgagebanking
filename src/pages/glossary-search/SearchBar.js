@@ -8,6 +8,14 @@ export default class SearchBar extends Component {
     this.inputRef = React.createRef();
   }
 
+  _handleViewAllResults = (completedQuery, loadingResults) => {
+    if (!completedQuery || loadingResults) {
+      return;
+    } else {
+      this.props.toggleViewAllResults();
+    }
+  };
+
   _handleInput = (evt) => {
     this.props.updateQuery(evt.target.value);
   };
@@ -32,8 +40,12 @@ export default class SearchBar extends Component {
       }
     } else if (key === "Enter") {
       if (this.props.cursorPos === 0) return;
-      if (this.props.cursorPos === 1) this.props.toggleViewAllResults();
-      else {
+      if (this.props.cursorPos === 1) {
+        this._handleViewAllResults(
+          this.props.completedQuery,
+          this.props.loadingResults
+        );
+      } else {
         this.props.loadCard(this.props.cursorPos - 2); // since the first two cursor indexes identify the search bar and view all results elements.
       }
     }

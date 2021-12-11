@@ -22,6 +22,7 @@ export default function Results(props) {
     query,
     cursorPos,
     loadingResults,
+    completedQuery,
     updateCursor,
     loadCard,
     toggleViewAllResults,
@@ -57,25 +58,42 @@ export default function Results(props) {
     });
   };
 
+  const handleViewAllResultsInteraction = (completedQuery, loadingResults) => {
+    if (!completedQuery || loadingResults) {
+      return;
+    } else {
+      _toggleViewAllResults();
+    }
+  };
+
+  const viewAllMesssage = (completedQuery, loadingResults) => {
+    if (completedQuery && !loadingResults) {
+      return <i>{"See all search results >"}</i>;
+    } else {
+      return `Searching...`;
+    }
+  };
+
   return (
     <Container query={query} focused={focused}>
       <ViewAllResult
-        hidden={props.results.length >= 6}
+        query={query}
+        completedQuery={completedQuery}
+        loadingResults={loadingResults}
         listPos={1}
         cursorPos={cursorPos}
-        query={query}
         onMouseEnter={() => updateCursor(1)}
         results={results}
-        onMouseDown={_toggleViewAllResults}
+        onMouseDown={handleViewAllResultsInteraction}
       >
         <Acronym>{query}</Acronym>
         <Definition>
-          <i>{`See all search results >`}</i>
+          {viewAllMesssage(completedQuery, loadingResults)}
         </Definition>
       </ViewAllResult>
       <NoResultsFound
         results={results}
-        loadingResults={loadingResults}
+        completedQuery={completedQuery}
         loadCard={loadCard}
       >
         <NoResultsMessage>
@@ -126,7 +144,7 @@ const Result = styled.div`
   }
 `;
 
-const Acronym = styled.p`
+export const Acronym = styled.p`
   grid-column: 2 / 3;
   font-size: ${(props) => props.theme.text.xs};
   font-family: ${(props) => props.theme.textFont};
@@ -139,7 +157,7 @@ const Acronym = styled.p`
   }
 `;
 
-const Definition = styled.p`
+export const Definition = styled.p`
   grid-column: 4 / 5;
   font-size: ${(props) => props.theme.text.xs};
   font-family: ${(props) => props.theme.textFont};
@@ -155,7 +173,11 @@ const Definition = styled.p`
 `;
 
 const ViewAllResult = styled.li`
-  display: ${(props) => (props.results.length >= 6 ? "grid" : "none")};
+  display: ${(props) =>
+    props.query.length < 2 ||
+    (props.completedQuery && props.results.length <= 6)
+      ? "none"
+      : "grid"};
   grid-template-columns: 65px 10% 10% 50% 1fr;
   width: 100%;
 
@@ -177,7 +199,7 @@ const ViewAllResult = styled.li`
 
 const NoResultsFound = styled.div`
   display: ${(props) =>
-    props.results.length <= 0 && !props.loadingResults ? "flex" : "none"};
+    props.results.length <= 0 && props.completedQuery ? "flex" : "none"};
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;

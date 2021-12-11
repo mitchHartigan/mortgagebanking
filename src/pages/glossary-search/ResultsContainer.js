@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import SearchBar from "./SearchBar";
 import Results from "./Results";
-import ViewAllResults from "./ViewAllResults";
+import AllResultsCard from "./AllResultsCard";
 
 export default class ResultsContainer extends React.Component {
   constructor(props) {
@@ -41,7 +41,9 @@ export default class ResultsContainer extends React.Component {
       cards,
       searchBarFocused,
       loadingResults,
+      completedQuery,
       loadCard,
+      loadCardFromViewAllResults,
       updateCursor,
       updateQuery,
       toggleSearchBarFocused,
@@ -51,6 +53,8 @@ export default class ResultsContainer extends React.Component {
       return (
         <Container>
           <SearchBar
+            completedQuery={completedQuery}
+            loadingResults={loadingResults}
             updateCursor={updateCursor}
             updateQuery={updateQuery}
             query={query}
@@ -68,6 +72,7 @@ export default class ResultsContainer extends React.Component {
             cards={cards}
             focused={searchBarFocused}
             loadingResults={loadingResults}
+            completedQuery={completedQuery}
             loadCard={loadCard}
             toggleViewAllResults={this.toggleViewAllResults}
             toggleSearchBarFocused={toggleSearchBarFocused}
@@ -76,11 +81,12 @@ export default class ResultsContainer extends React.Component {
       );
     } else {
       return (
-        <ViewAllResults
+        <AllResultsCard
           toggleSearch={this.toggleSearch}
           query={this.state.viewAllResultsQuery}
           results={results}
-          loadCard={loadCard}
+          cards={cards}
+          loadCardFromViewAllResults={loadCardFromViewAllResults}
         />
       );
     }
