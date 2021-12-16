@@ -14,7 +14,6 @@ export default class ResultCards extends React.Component {
       activeCardIndex: 0,
       reversedCards: [],
       visibilityOffset: 240,
-      disableHighlights: false,
     };
   }
 
@@ -25,7 +24,7 @@ export default class ResultCards extends React.Component {
         this.setState({ visibilityOffset: 225 });
       }
       if (window.innerWidth <= 900) {
-        this.setState({ visibilityOffset: 100, disableHighlights: true });
+        this.setState({ visibilityOffset: 100 });
       }
     });
   }
@@ -72,7 +71,7 @@ export default class ResultCards extends React.Component {
                   inactive={
                     this.props.searchBarFocused ||
                     this.props.viewAllResultsFocused ||
-                    this.props.disableHighlights
+                    this.state.disableHighlights
                   }
                   tabIndex={i}
                   cardData={card}

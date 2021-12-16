@@ -7,16 +7,39 @@ import CitationRow from "./CitationRow";
 import Title from "./Title";
 
 export default class Card extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      disableHighlights: false,
+    };
+  }
+
+  componentDidMount() {
+    if (window.innerWidth <= 900) {
+      this.setState({ disableHighlights: true });
+    }
+  }
+
   render() {
     const { cardData, index, activeCardIndex, inactive } = this.props;
 
     return (
       <Container inactive={inactive}>
-        <CloseButton
-          src="button_close.svg"
-          alt="close button."
-          onClick={() => this.props.handleClose(this.props.activeCardIndex)}
-        />
+        {this.state.disableHighlights && (
+          <CloseButton
+            src="button_close_white.svg"
+            alt="close button."
+            onClick={() => this.props.handleClose(this.props.activeCardIndex)}
+          />
+        )}
+        {!this.state.disableHighlights && (
+          <CloseButton
+            src="button_close.svg"
+            alt="close button."
+            onClick={() => this.props.handleClose(this.props.activeCardIndex)}
+          />
+        )}
         <Title
           cardData={cardData}
           index={index}
