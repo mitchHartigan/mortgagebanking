@@ -1,24 +1,40 @@
 import React from "react";
 import styled from "styled-components";
 
-export default function TitleRow(props) {
-  const { Acronym, Text } = props.cardData;
+export default class TitleRow extends React.Component {
+  constructor(props) {
+    super(props);
 
-  const { index, activeCardIndex, inactive } = props;
+    this.state = {
+      disableHighlights: false,
+    };
+  }
 
-  return (
-    <Container
-      index={index}
-      activeCardIndex={activeCardIndex}
-      inactive={inactive}
-    >
-      <Title
+  componentDidMount() {
+    if (window.innerWidth <= 900) {
+      this.setState({ disableHighlights: true });
+    }
+  }
+
+  render() {
+    const { Acronym, Text } = this.props.cardData;
+
+    const { index, activeCardIndex, inactive } = this.props;
+
+    return (
+      <Container
         index={index}
         activeCardIndex={activeCardIndex}
-        inactive={inactive}
-      >{`${Acronym} (${Text})`}</Title>
-    </Container>
-  );
+        inactive={inactive || this.state.disableHighlights}
+      >
+        <Title
+          index={index}
+          activeCardIndex={activeCardIndex}
+          inactive={inactive || this.state.disableHighlights}
+        >{`${Acronym} (${Text})`}</Title>
+      </Container>
+    );
+  }
 }
 
 const Container = styled.div`

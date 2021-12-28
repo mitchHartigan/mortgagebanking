@@ -70,7 +70,8 @@ export default class ResultCards extends React.Component {
                 <Card
                   inactive={
                     this.props.searchBarFocused ||
-                    this.props.viewAllResultsFocused
+                    this.props.viewAllResultsFocused ||
+                    this.state.disableHighlights
                   }
                   tabIndex={i}
                   cardData={card}
