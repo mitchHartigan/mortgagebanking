@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import { API_FETCH_RESULTS, parseDuplicatesFromResults } from "./_utils";
+import { API_FETCH_RESULTS } from "./API";
+import { parseDuplicatesFromResults } from "./_utils";
 
 export default class AllResultsCard extends React.Component {
   constructor(props) {

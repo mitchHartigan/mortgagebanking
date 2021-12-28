@@ -10,7 +10,7 @@ import ResultCards from "./ResultCards";
 import { reverseArray } from "./_utils";
 import { Footer } from "components/Footer";
 
-import { API_FETCH_RESULTS } from "./_utils";
+import { API_FETCH_RESULTS } from "./API";
 
 export default class index extends React.Component {
   constructor(props) {
