@@ -37,7 +37,7 @@ export default class index extends React.Component {
       this.setState({ cards: cards });
     }
 
-    const results = await API_FETCH_RESULTS("ASAP");
+    await API_FETCH_RESULTS("ASAP");
     // Send a dummy request to spin up the cluster if it has been idle.
   }
 
@@ -67,8 +67,6 @@ export default class index extends React.Component {
   loadCardFromViewAllResults = async (query, index) => {
     const { cards } = this.state;
     const results = await API_FETCH_RESULTS(query);
-
-    console.log("results from loadCard");
 
     cards.push(results[index]);
     this.setState({ cards: cards, query: "" }, () => {
@@ -112,7 +110,6 @@ export default class index extends React.Component {
           )
             .then((results) => results.json())
             .then((results) => {
-              console.log("results", results);
               this.setState({
                 results: results,
                 loadingResults: false,

@@ -41,7 +41,6 @@ export default class AllResultsCard extends React.Component {
         this.setState({ cursor: cursorPos - 1 });
       }
     } else if (key === "ArrowDown") {
-      console.log("down arrow, hello?");
       let cursorPos = this.state.cursor;
       if (cursorPos >= this.state.results.length - 1) return;
       // including the search bar (cursor 0) and 'See all results' (cursor 1), and a maximum of 6 results, the max index will be 7.
