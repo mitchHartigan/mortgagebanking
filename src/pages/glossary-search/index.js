@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { ThemeConsumer } from "styled-components";
 
 import { ScrollToTopOnMount } from "components/ScrollToTopOnMount";
 import { Title } from "components/Title";
@@ -38,7 +38,6 @@ export default class index extends React.Component {
     }
 
     const results = await API_FETCH_RESULTS("ASAP");
-    console.log(results);
     // Send a dummy request to spin up the cluster if it has been idle.
   }
 
@@ -172,36 +171,43 @@ export default class index extends React.Component {
       loadCardFromViewAllResults: this.loadCardFromViewAllResults,
     };
 
+    const sidebarProps = {
+      cards: cards,
+      highlightedCardIndex: highlightedCardIndex,
+      setScrollToCardId: this.setScrollToCardId,
+      searchBarFocused: searchBarFocused,
+      viewAllResultsFocused: viewAllResultsFocused,
+    };
+
+    const resultCardProps = {
+      cards: cards,
+      deleteCard: this.deleteCard,
+      setHighlightedCardIndex: this.setHighlightedCardIndex,
+      scrollToCardId: this.state.scrollToCardId,
+      clearScrollToCardId: this.clearScrollToCardId,
+      searchBarFocused: searchBarFocused,
+      viewAllResultsFocused: viewAllResultsFocused,
+    };
+
     return (
       <Container>
+        {""}
         <ScrollToTopOnMount />
         <BackButtonContainer>
           <BackButton
             onClick={this.props.toggleGlossary}
           >{`< Resources`}</BackButton>
         </BackButtonContainer>
+
         <ContentContainer>
           <Title size="xl" styles={TitleStylesOverride}>
             Acronym Glossary
           </Title>
-          <Sidebar
-            cards={cards}
-            highlightedCardIndex={highlightedCardIndex}
-            setScrollToCardId={this.setScrollToCardId}
-            searchBarFocused={searchBarFocused}
-            viewAllResultsFocused={viewAllResultsFocused}
-          />
+          <Sidebar {...sidebarProps} />
           <ResultsContainer {...resultsContainerProps} />
-          <ResultCards
-            cards={cards}
-            deleteCard={this.deleteCard}
-            setHighlightedCardIndex={this.setHighlightedCardIndex}
-            scrollToCardId={this.state.scrollToCardId}
-            clearScrollToCardId={this.clearScrollToCardId}
-            searchBarFocused={searchBarFocused}
-            viewAllResultsFocused={viewAllResultsFocused}
-          />
+          <ResultCards {...resultCardProps} />
         </ContentContainer>
+
         <Footer slim />
         <Navbar alwaysDisplay />
       </Container>
