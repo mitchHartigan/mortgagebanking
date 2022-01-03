@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import Description from "./Description";
 
+import Description from "./Description";
 import DefinitionRow from "./DefinitionRow";
 import CitationRow from "./CitationRow";
 import Title from "./Title";
@@ -9,8 +9,6 @@ import Title from "./Title";
 export default function Card(props) {
   const [disableHighlights, setHighlightsDisabled] = useState(false);
 
-  // empty array [] argument passed into useEffect causes it to only
-  // render once on component load, and not subsequently.
   useEffect(() => {
     if (window.innerHeight <= 900) {
       setHighlightsDisabled(true);
@@ -24,14 +22,14 @@ export default function Card(props) {
       {disableHighlights && (
         <CloseButton
           src="button_close_white.svg"
-          alt="close button."
+          alt="black card close button."
           onClick={() => props.handleClose(props.activeCardIndex)}
         />
       )}
       {!disableHighlights && (
         <CloseButton
           src="button_close.svg"
-          alt="close button."
+          alt="white card close button."
           onClick={() => props.handleClose(props.activeCardIndex)}
         />
       )}
