@@ -1,42 +1,25 @@
 import React from "react";
 import styled from "styled-components";
 
-export default class TitleRow extends React.Component {
-  constructor(props) {
-    super(props);
+export default function TitleRow(props) {
+  const { Acronym, Text } = props.cardData;
 
-    this.state = {
-      disableHighlights: false,
-    };
-  }
+  const { index, activeCardIndex, inactive, disableHighlights } = props;
 
-  componentDidMount() {
-    if (window.innerWidth <= 900) {
-      this.setState({ disableHighlights: true });
-    }
-  }
-
-  render() {
-    const { Acronym, Text } = this.props.cardData;
-
-    const { index, activeCardIndex, inactive } = this.props;
-
-    return (
-      <Container
+  return (
+    <Container
+      index={index}
+      activeCardIndex={activeCardIndex}
+      inactive={inactive || disableHighlights}
+    >
+      <Title
         index={index}
         activeCardIndex={activeCardIndex}
-        inactive={inactive || this.state.disableHighlights}
-      >
-        <Title
-          index={index}
-          activeCardIndex={activeCardIndex}
-          inactive={inactive || this.state.disableHighlights}
-        >{`${Acronym} (${Text})`}</Title>
-      </Container>
-    );
-  }
+        inactive={inactive || disableHighlights}
+      >{`${Acronym} (${Text})`}</Title>
+    </Container>
+  );
 }
-
 const Container = styled.div`
   display: flex;
   flex-direction: row;

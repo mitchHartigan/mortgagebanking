@@ -40,6 +40,7 @@ export default function Card(props) {
         index={index}
         activeCardIndex={activeCardIndex}
         inactive={props.inactive}
+        disableHighlights={disableHighlights}
       />
       <DefinitionRow cardData={cardData} />
       <Description cardData={cardData} />
