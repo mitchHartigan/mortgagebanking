@@ -20,6 +20,7 @@ export default function TitleRow(props) {
     </Container>
   );
 }
+
 const Container = styled.div`
   display: flex;
   flex-direction: row;

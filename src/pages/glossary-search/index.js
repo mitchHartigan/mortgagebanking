@@ -6,7 +6,7 @@ import { Title } from "components/Title";
 import Navbar from "components/navbar";
 import ResultsContainer from "./ResultsContainer";
 import Sidebar from "./Sidebar";
-import ResultCards from "./ResultCards";
+import Cards from "./Cards";
 import { reverseArray } from "./_utils";
 import { Footer } from "components/Footer";
 
@@ -37,8 +37,8 @@ export default class index extends React.Component {
       this.setState({ cards: cards });
     }
 
-    await API_FETCH_RESULTS("ASAP");
     // Send a dummy request to spin up the cluster if it has been idle.
+    await API_FETCH_RESULTS("ASAP");
   }
 
   setScrollToCardId = (id) => {
@@ -176,7 +176,7 @@ export default class index extends React.Component {
       viewAllResultsFocused: viewAllResultsFocused,
     };
 
-    const resultCardProps = {
+    const cardsProps = {
       cards: cards,
       deleteCard: this.deleteCard,
       setHighlightedCardIndex: this.setHighlightedCardIndex,
@@ -202,7 +202,7 @@ export default class index extends React.Component {
           </Title>
           <Sidebar {...sidebarProps} />
           <ResultsContainer {...resultsContainerProps} />
-          <ResultCards {...resultCardProps} />
+          <Cards {...cardsProps} />
         </ContentContainer>
 
         <Footer slim />

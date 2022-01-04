@@ -56,11 +56,11 @@ export default function Results(props) {
   };
 
   const viewAllMesssage = (completedQuery, loadingResults) => {
-    if (completedQuery && !loadingResults) {
-      return <i>{"See all search results >"}</i>;
-    } else {
-      return `Searching...`;
-    }
+    return completedQuery && !loadingResults ? (
+      <i>{"See all search results"}</i>
+    ) : (
+      "Searching..."
+    );
   };
 
   return (
