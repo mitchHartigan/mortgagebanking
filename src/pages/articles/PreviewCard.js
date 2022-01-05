@@ -3,12 +3,14 @@ import styled from "styled-components";
 
 import ContentPreview from "./ContentPreview";
 
-export default function PreviewCard() {
+export default function PreviewCard(props) {
+  const { data } = props;
+
   return (
     <Card>
       <ContentContainer>
-        <ImgPreview />
-        <ContentPreview />
+        <ImgPreview url={props.data.imgPreviewUrl} />
+        <ContentPreview data={data} />
       </ContentContainer>
     </Card>
   );
@@ -36,7 +38,8 @@ const ContentContainer = styled.div`
 
 const ImgPreview = styled.div`
   grid-column: 1/2;
-  height: 210px;
+  height: 225px;
+  justify-self: start;
   width: 300px;
   background-color: tomato;
 `;

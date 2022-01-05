@@ -6,6 +6,7 @@ import Navbar from "components/navbar";
 import { Footer } from "components/Footer";
 import { Title } from "components/Title";
 import PreviewCard from "./PreviewCard";
+import { article_preview_data } from "./article_preview_data";
 
 /* @param props
  * @param props.toggleResoureces - function that takes the user
@@ -17,7 +18,9 @@ export default function Articles() {
     <Container>
       <ScrollToTopOnMount />
       <ContentContainer>
-        <PreviewCard />
+        {article_preview_data.map((article) => {
+          return <PreviewCard data={article} />;
+        })}
       </ContentContainer>
     </Container>
   );

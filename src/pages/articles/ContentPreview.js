@@ -1,21 +1,19 @@
 import React from "react";
 import styled from "styled-components";
 
-export default function ContentPreview() {
+export default function ContentPreview(props) {
+  console.log(props);
+  const { title, date, previewContent } = props.data;
+
   return (
     <Container>
       <HeaderContainer>
-        <Title>Regulation by Software</Title>
-        <Date>Sep 19th, 2019</Date>
+        <Title>{title}</Title>
+        <Date>{date}</Date>
         <Span />
       </HeaderContainer>
       <TextContainer>
-        <Text>
-          The slippery slope of regulation by software has apparently been
-          traversed again. On a call with software developers regarding HMDA,
-          the Consumer Financial Protection Bureau ("Bureau") indicated that the
-          Universal Loan Identifier ("ULI") is not case sensitive.
-        </Text>
+        <Text>{previewContent}</Text>
       </TextContainer>
     </Container>
   );
@@ -53,7 +51,7 @@ const Date = styled.p`
 
 const Span = styled.div`
   width: 80px;
-  height: 3px;
+  height: 4px;
   background-color: ${(props) => props.theme.colors.mainGold};
   margin: 10px 0px 10px 0px;
 `;
