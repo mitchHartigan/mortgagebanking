@@ -9,16 +9,14 @@ export default function ContentPreview() {
         <Date>Sep 19th, 2019</Date>
         <Span />
       </HeaderContainer>
-      <Text>
-        The slippery slope of regulation by software has apparently been
-        traversed again. On a call with software developers regarding HMDA, the
-        Consumer Financial Protection Bureau ("Bureau") indicated that the
-        Universal Loan Identifier ("ULI") is not case sensitive. However, that
-        conclusion appears to be driven by software development rather than
-        regulations. I believe it is an inappropriate determination under the
-        regulation, particularly since the Regulation's Appendix C shows mixed
-        case characters.
-      </Text>
+      <TextContainer>
+        <Text>
+          The slippery slope of regulation by software has apparently been
+          traversed again. On a call with software developers regarding HMDA,
+          the Consumer Financial Protection Bureau ("Bureau") indicated that the
+          Universal Loan Identifier ("ULI") is not case sensitive.
+        </Text>
+      </TextContainer>
     </Container>
   );
 }
@@ -28,10 +26,12 @@ const HeaderContainer = styled.div``;
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: flex-start;
   grid-column: 2/3;
+  justify-self: end;
   height: 100%;
+  margin-left: 5px;
 `;
 
 const Title = styled.h1`
@@ -39,6 +39,10 @@ const Title = styled.h1`
   font-family: ${(props) => props.theme.titleFont};
   font-weight: normal;
   margin: -12px 0px 5px 0px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
 `;
 
 const Date = styled.p`
@@ -57,8 +61,12 @@ const Span = styled.div`
 const Text = styled.p`
   font-size: ${(props) => props.theme.text.xxs};
   font-family: ${(props) => props.theme.textFont};
-  margin: 10px 0px 0px 0px;
+  margin: 8px 0px 0px 0px;
   line-height: 22px;
-  text-overflow: ellipsis;
-  overflow-y: hidden;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
 `;
+
+const TextContainer = styled.div``;
