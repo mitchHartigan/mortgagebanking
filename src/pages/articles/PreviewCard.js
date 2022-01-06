@@ -9,7 +9,7 @@ export default function PreviewCard(props) {
   return (
     <Card>
       <ContentContainer>
-        <ImgPreview url={props.data.imgPreviewUrl} />
+        <ImgPreview url={props.data.previewImgUrl} />
         <ContentPreview data={data} />
       </ContentContainer>
     </Card>
@@ -41,5 +41,8 @@ const ImgPreview = styled.div`
   height: 225px;
   justify-self: start;
   width: 300px;
-  background-color: tomato;
+  background-image: url("/articles/img/${(props) => props.url}");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 `;
