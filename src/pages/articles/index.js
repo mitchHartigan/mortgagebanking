@@ -10,18 +10,23 @@ import { article_preview_data } from "./article_preview_data";
 
 /* @param props
  * @param props.toggleResoureces - function that takes the user
-   back to the Resources page when called.
+ * back to the Resources page when called.
  */
 
 export default function Articles() {
   return (
     <Container>
       <ScrollToTopOnMount />
+      <Title size="xxl" styles={"margin-top: 75px;"}>
+        Articles
+      </Title>
       <ContentContainer>
         {article_preview_data.map((article) => {
           return <PreviewCard data={article} />;
         })}
       </ContentContainer>
+      <Footer slim />
+      <Navbar alwaysDisplay />
     </Container>
   );
 }
@@ -41,6 +46,8 @@ const ContentContainer = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+
+  margin: 50px 0px 0px 0px;
 
   @media (max-width: 1200px) {
     width: 70%;

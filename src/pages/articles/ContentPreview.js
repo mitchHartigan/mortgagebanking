@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 
 export default function ContentPreview(props) {
-  console.log(props);
   const { title, date, previewContent } = props.data;
 
   return (
@@ -51,7 +50,7 @@ const Date = styled.p`
 
 const Span = styled.div`
   width: 80px;
-  height: 4px;
+  height: 3px;
   background-color: ${(props) => props.theme.colors.mainGold};
   margin: 10px 0px 10px 0px;
 `;
