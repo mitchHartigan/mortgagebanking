@@ -1,33 +1,27 @@
 import React from "react";
 import styled from "styled-components";
+import { Switch, Route, useRouteMatch } from "react-router-dom";
 
-import { ScrollToTopOnMount } from "components/ScrollToTopOnMount";
-import Navbar from "components/navbar";
-import { Footer } from "components/Footer";
-import { Title } from "components/Title";
-import PreviewCard from "./PreviewCard";
-import { article_preview_data } from "./article_preview_data";
+import ArticlesHub from "./ArticlesHub";
+import ArticlePage from "./ArticlePage";
 
 /* @param props
  * @param props.toggleResoureces - function that takes the user
  * back to the Resources page when called.
  */
 
-export default function Articles() {
+export default function Articles(props) {
+  const { path } = useRouteMatch();
+
   return (
-    <Container>
-      <ScrollToTopOnMount />
-      <Title size="xxl" styles={"margin-top: 75px;"}>
-        Articles
-      </Title>
-      <ContentContainer>
-        {article_preview_data.map((article) => {
-          return <PreviewCard data={article} />;
-        })}
-      </ContentContainer>
-      <Footer slim />
-      <Navbar alwaysDisplay />
-    </Container>
+    <Switch>
+      <Route exact path={path}>
+        <ArticlesHub />
+      </Route>
+      <Route path={`${path}/:articleName`}>
+        <ArticlePage />
+      </Route>
+    </Switch>
   );
 }
 

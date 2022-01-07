@@ -1,19 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
+import { Redirect } from "react-router-dom";
 
 import ContentPreview from "./ContentPreview";
 
 export default function PreviewCard(props) {
   const { data } = props;
+  const [loadArticle, setLoadArticle] = useState(false);
 
-  return (
-    <Card>
-      <ContentContainer>
-        <ImgPreview url={props.data.previewImgUrl} />
-        <ContentPreview data={data} />
-      </ContentContainer>
-    </Card>
-  );
+  if (!loadArticle) {
+    return (
+      <Card onClick={() => setLoadArticle(true)}>
+        <ContentContainer>
+          <ImgPreview url={`${data.imgUrl}_sm.png`} />
+          <ContentPreview data={data} />
+        </ContentContainer>
+      </Card>
+    );
+  } else {
+    return <Redirect to={`/articles/${data.name}`} />;
+  }
 }
 
 const Card = styled.div`
