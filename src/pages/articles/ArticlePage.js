@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import ReactMarkdown from "react-markdown";
 import { useParams } from "react-router-dom";
 
 import { ScrollToTopOnMount } from "components/ScrollToTopOnMount";
@@ -7,6 +8,7 @@ import Navbar from "components/navbar";
 import { Footer } from "components/Footer";
 import { BackButton } from "components/resources/BackButton";
 import { article_preview_data } from "./article_preview_data.js";
+import testMD from "./test.md";
 
 const _articleLookup = (articleName, articlesData) => {
   let match;
@@ -16,7 +18,15 @@ const _articleLookup = (articleName, articlesData) => {
   if (match) return match;
 };
 
+const fetchMarkdown = async () => {
+  const response = await fetch(testMD);
+  const text = await response.text();
+  console.log(text);
+  return text;
+};
+
 export default function ArticlePage(props) {
+  const [markdown, setMarkdown] = useState("");
   const { articleName } = useParams();
 
   const { title, date, previewContent, name } = _articleLookup(
@@ -24,14 +34,25 @@ export default function ArticlePage(props) {
     article_preview_data
   );
 
+  useEffect(() => {
+    fetch(testMD)
+      .then((response) => {
+        return response.text();
+      })
+      .then((text) => {
+        console.log(text);
+        setMarkdown(text);
+      });
+  }, []);
+
+  console.log(markdown);
+
   return (
     <Container>
       <ScrollToTopOnMount />
       <BackButton text={`< Articles`} location="/articles" />
       <ContentContainer>
-        <p>{title}</p>
-        <p>{date}</p>
-        <p>{previewContent}</p>
+        <ReactMarkdown>{markdown}</ReactMarkdown>
       </ContentContainer>
       <Footer slim />
       <Navbar alwaysDisplay />
