@@ -9,6 +9,11 @@ import { Footer } from "components/Footer";
 import { BackButton } from "components/resources/BackButton";
 import { article_preview_data } from "./article_preview_data.js";
 import testMD from "./test.md";
+import "./markdown.css";
+
+const mdHeader = styled.h1`
+  color: blue;
+`;
 
 const _articleLookup = (articleName, articlesData) => {
   let match;
@@ -52,7 +57,17 @@ export default function ArticlePage(props) {
       <ScrollToTopOnMount />
       <BackButton text={`< Articles`} location="/articles" />
       <ContentContainer>
-        <Markdown>{markdown}</Markdown>
+        <Markdown
+          options={{
+            overrides: {
+              h1: {
+                component: mdHeader,
+              },
+            },
+          }}
+        >
+          {markdown}
+        </Markdown>
       </ContentContainer>
       <Footer slim />
       <Navbar alwaysDisplay />
