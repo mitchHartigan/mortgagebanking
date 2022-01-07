@@ -9,7 +9,6 @@ import { Footer } from "components/Footer";
 import { BackButton } from "components/resources/BackButton";
 import { article_preview_data } from "./article_preview_data.js";
 import testMD from "./test.md";
-import "./markdown.css";
 
 const mdHeader = styled.h1`
   color: blue;
