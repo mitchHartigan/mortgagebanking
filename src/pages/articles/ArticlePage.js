@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import ReactMarkdown from "react-markdown";
+import Markdown from "markdown-to-jsx";
 import { useParams } from "react-router-dom";
 
 import { ScrollToTopOnMount } from "components/ScrollToTopOnMount";
@@ -52,7 +52,7 @@ export default function ArticlePage(props) {
       <ScrollToTopOnMount />
       <BackButton text={`< Articles`} location="/articles" />
       <ContentContainer>
-        <ReactMarkdown>{markdown}</ReactMarkdown>
+        <Markdown>{markdown}</Markdown>
       </ContentContainer>
       <Footer slim />
       <Navbar alwaysDisplay />
