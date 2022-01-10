@@ -3,8 +3,8 @@ import styled from "styled-components";
 import Markdown from "markdown-to-jsx";
 
 import { Title } from "components/Title";
-import regulation_by_software from "../data/regulation_by_software.md";
 import { mdHeader, mdParagraph } from "./_mdOverrideComponents";
+import { useParams } from "react-router-dom";
 
 const markdownOptions = {
   overrides: {
@@ -17,18 +17,33 @@ const markdownOptions = {
   },
 };
 
+const loadArticle = async (articleName) => {
+  // article.default is the name of the .md file once it's been built. I think. So,
+  // it returns something like /static/media/regulation_by_software.e9adfce9.md.
+  if (articleName) {
+    const article = await import(`../data/${articleName}.md`);
+    return article.default;
+  }
+};
+
 export default function MarkdownLoader(props) {
-  const [markdown, setMarkdown] = useState("");
+  const [markdown, setMarkdown] = useState();
+  const { title, date, imgUrl, validArticle, name } = props;
 
-  const { title, date, imgUrl, validArticle } = props;
+  const { articleName } = useParams();
+  console.log("articleName", articleName);
 
-  useEffect(async () => {
-    const response = await fetch(regulation_by_software);
-    const text = await response.text();
-    setMarkdown(text);
+  useEffect(() => {
+    async function loadData() {
+      const articleToBeLoaded = await loadArticle(articleName);
+      const response = await fetch(articleToBeLoaded);
+      const text = await response.text();
+      setMarkdown(text);
+    }
+    loadData();
   }, []);
 
-  if (validArticle) {
+  if (validArticle && markdown) {
     return (
       <Container>
         <Image url={imgUrl} />

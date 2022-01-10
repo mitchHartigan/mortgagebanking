@@ -10,7 +10,7 @@ import { article_preview_data } from "../data/article_preview_data.js";
 import { _articleLookup } from "./_articleLookup.util";
 import MarkdownLoader from "./MarkdownLoader";
 
-export default function ArticlePage(props) {
+export default function ArticlePage() {
   const { articleName } = useParams();
 
   const [validArticle, setValidArticle] = useState(false);
@@ -34,6 +34,7 @@ export default function ArticlePage(props) {
           title={article.title}
           date={article.date}
           imgUrl={article.imgUrl}
+          name={article.name}
           validArticle={validArticle}
         />
       </ContentContainer>
