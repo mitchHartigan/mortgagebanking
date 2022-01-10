@@ -20,18 +20,21 @@ const markdownOptions = {
 const loadArticle = async (articleName) => {
   // article.default is the name of the .md file once it's been built. I think. So,
   // it returns something like /static/media/regulation_by_software.e9adfce9.md.
-  if (articleName) {
-    const article = await import(`../data/${articleName}.md`);
-    return article.default;
+  try {
+    if (articleName) {
+      const article = await import(`../data/${articleName}.md`);
+      return article.default;
+    }
+  } catch {
+    console.log("failed to load article:", articleName);
   }
 };
 
 export default function MarkdownLoader(props) {
   const [markdown, setMarkdown] = useState();
-  const { title, date, imgUrl, validArticle, name } = props;
+  const { title, date, imgUrl, validArticle } = props;
 
   const { articleName } = useParams();
-  console.log("articleName", articleName);
 
   useEffect(() => {
     async function loadData() {
@@ -54,8 +57,12 @@ export default function MarkdownLoader(props) {
         <Date>Published on {date}.</Date>
       </Container>
     );
+  } else if (validArticle && !markdown) {
+    return null;
   } else {
-    return <p>Invalid article.</p>;
+    return (
+      <ErrorMessage>Hmm. There doesn't seem to be anything here.</ErrorMessage>
+    );
   }
 }
 
@@ -81,4 +88,9 @@ const Date = styled.p`
   font-family: ${(props) => props.theme.textFont};
   font-size: ${(props) => props.theme.xs};
   font-style: italic;
+`;
+
+const ErrorMessage = styled.p`
+  font-family: ${(props) => props.theme.textFont};
+  font-size: ${(props) => props.theme.sm};
 `;
