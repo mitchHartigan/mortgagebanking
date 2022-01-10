@@ -6,7 +6,7 @@ import Navbar from "components/navbar";
 import { Footer } from "components/Footer";
 import { Title } from "components/Title";
 import PreviewCard from "./PreviewCard";
-import { article_preview_data } from "./article_preview_data";
+import { article_preview_data } from "../data/article_preview_data";
 
 /* @param props
  * @param props.toggleResoureces - function that takes the user

@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-export default function ContentPreview(props) {
+export default function PreviewContent(props) {
   const { title, date, previewContent } = props.data;
 
   return (
