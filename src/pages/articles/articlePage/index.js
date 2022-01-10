@@ -7,25 +7,23 @@ import Navbar from "components/navbar";
 import { Footer } from "components/Footer";
 import { BackButton } from "components/resources/BackButton";
 import { article_preview_data } from "../data/article_preview_data.js";
+import { _articleLookup } from "./_articleLookup.util";
 import MarkdownLoader from "./MarkdownLoader";
-
-const _articleLookup = (articleName, articlesData) => {
-  let match;
-  articlesData.forEach((article) => {
-    if (article.name === articleName) match = article;
-  });
-  if (match) return match;
-};
 
 export default function ArticlePage(props) {
   const { articleName } = useParams();
 
-  console.log("articleName", articleName);
+  const [validArticle, setValidArticle] = useState(false);
+  const [article, setArticle] = useState({});
 
-  const { title, date, previewContent, name, imgUrl } = _articleLookup(
-    articleName,
-    article_preview_data
-  );
+  useEffect(() => {
+    const article = _articleLookup(articleName, article_preview_data);
+
+    if (article) {
+      setArticle({ ...article });
+      setValidArticle(true);
+    }
+  }, []);
 
   return (
     <Container>
@@ -33,10 +31,10 @@ export default function ArticlePage(props) {
       <BackButton text={`< Articles`} location="/articles" />
       <ContentContainer>
         <MarkdownLoader
-          title={title}
-          date={date}
-          imgUrl={imgUrl}
-          validArticle
+          title={article.title}
+          date={article.date}
+          imgUrl={article.imgUrl}
+          validArticle={validArticle}
         />
       </ContentContainer>
       <Footer slim />
@@ -44,17 +42,6 @@ export default function ArticlePage(props) {
     </Container>
   );
 }
-
-const Image = styled.div`
-  background-image: url(/articles/img/${(props) => props.url}_lg.png);
-  background-size: cover;
-  width: 100%;
-  height: 500px;
-
-  @media (max-width: 1200px) {
-    height: 350px;
-  }
-`;
 
 const Container = styled.div`
   display: flex;
