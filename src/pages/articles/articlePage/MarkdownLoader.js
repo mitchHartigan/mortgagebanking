@@ -35,8 +35,8 @@ export default function MarkdownLoader(props) {
         <Title size="xl" styles={"margin: 25px 0px 25px 0px;"}>
           {title}
         </Title>
-        <p>{date}</p>
         <Markdown options={markdownOptions}>{markdown}</Markdown>
+        <Date>Published on {date}.</Date>
       </Container>
     );
   } else {
@@ -44,7 +44,12 @@ export default function MarkdownLoader(props) {
   }
 }
 
-const Container = styled.div``;
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
 
 const Image = styled.div`
   background-image: url(/articles/img/${(props) => props.url}_lg.png);
@@ -55,4 +60,10 @@ const Image = styled.div`
   @media (max-width: 1200px) {
     height: 350px;
   }
+`;
+
+const Date = styled.p`
+  font-family: ${(props) => props.theme.textFont};
+  font-size: ${(props) => props.theme.xs};
+  font-style: italic;
 `;
