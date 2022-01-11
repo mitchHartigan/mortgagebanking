@@ -21,6 +21,13 @@ export const article_preview_data = [
     name: "oregon-sweeping-forebearance-foreclosure-moratorium",
   },
   {
+    title: "Fair Housing Concerns and Responses",
+    date: "Jan 8th, 2020",
+    previewContent:
+      "Housing is a fundamental necessity of all people. Access to housing is problematic for many with lower incomes, particularly those with limited English proficiency or disabilities that may require accommodations to even begin the process.",
+    name: "fair-housing-concerns-and-responses",
+  },
+  {
     title: "Regulation by Software",
     date: "Sep 19th, 2019",
     previewContent:
