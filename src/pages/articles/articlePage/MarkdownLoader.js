@@ -17,52 +17,67 @@ const markdownOptions = {
   },
 };
 
-const loadArticle = async (articleName) => {
-  // article.default is the name of the .md file once it's been built. I think. So,
-  // it returns something like /static/media/regulation_by_software.e9adfce9.md.
-  try {
-    if (articleName) {
-      const article = await import(`../data/${articleName}.md`);
-      return article.default;
-    }
-  } catch {
-    console.log("failed to load article:", articleName);
-  }
-};
-
 export default function MarkdownLoader(props) {
   const [markdown, setMarkdown] = useState();
-  const { title, date, imgUrl, validArticle } = props;
+  const { title, date, validArticle } = props;
+  const [loadError, setLoadError] = useState(false);
 
   const { articleName } = useParams();
 
+  const _loadArticle = async (articleName) => {
+    // article.default is the name of the .md file once it's been built. I think. So,
+    // it returns something like /static/media/regulation_by_software.e9adfce9.md.
+    try {
+      if (articleName) {
+        const article = await import(`../data/${articleName}.md`);
+        return article.default;
+      }
+    } catch {
+      console.log("failed to load article:", articleName);
+      setLoadError(true);
+    }
+  };
+
   useEffect(() => {
     async function loadData() {
-      const articleToBeLoaded = await loadArticle(articleName);
+      const articleToBeLoaded = await _loadArticle(articleName);
       const response = await fetch(articleToBeLoaded);
       const text = await response.text();
+
+      // perform check to make sure article is loaded properly here?
+
       setMarkdown(text);
     }
     loadData();
   }, []);
 
+  // this is messy. Please refactor future mitchell.
   if (validArticle && markdown) {
     return (
       <Container>
-        <Image url={imgUrl} />
-        <Title size="xl" styles={"margin: 25px 0px 25px 0px;"}>
+        <Image url={articleName} />
+        <Title
+          size="xl"
+          styles={"margin: 25px 0px 25px 0px;"}
+          alignTitle="center"
+          align="center"
+        >
           {title}
         </Title>
         <Markdown options={markdownOptions}>{markdown}</Markdown>
         <Date>Published on {date}.</Date>
       </Container>
     );
-  } else if (validArticle && !markdown) {
+  }
+  if (validArticle && !markdown) {
     return null;
-  } else {
+  }
+  if (loadError) {
     return (
       <ErrorMessage>Hmm. There doesn't seem to be anything here.</ErrorMessage>
     );
+  } else {
+    return null;
   }
 }
 

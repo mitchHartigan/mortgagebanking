@@ -12,7 +12,7 @@ export default function PreviewCard(props) {
     return (
       <Card onClick={() => setLoadArticle(true)}>
         <ContentContainer>
-          <ImgPreview url={`${data.imgUrl}_sm.png`} />
+          <ImgPreview url={`${data.name}_sm.png`} />
           <PreviewContent data={data} />
         </ContentContainer>
       </Card>

@@ -33,7 +33,6 @@ export default function ArticlePage() {
         <MarkdownLoader
           title={article.title}
           date={article.date}
-          imgUrl={article.imgUrl}
           name={article.name}
           validArticle={validArticle}
         />
