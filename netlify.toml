@@ -1,4 +1,0 @@
-[build]
-  command = "react-scrips build"
-  publish="/build"
-  base = ""
