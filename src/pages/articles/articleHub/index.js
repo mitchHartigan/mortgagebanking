@@ -47,7 +47,7 @@ const ContentContainer = styled.div`
   justify-content: flex-start;
   align-items: center;
 
-  margin: 50px 0px 0px 0px;
+  margin-top: 10px;
 
   @media (max-width: 1200px) {
     width: 70%;

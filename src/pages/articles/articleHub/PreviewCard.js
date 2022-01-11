@@ -32,10 +32,13 @@ const Card = styled.div`
   padding: 30px 40px 30px 40px;
   box-sizing: border-box;
   box-shadow: 1px 4px 4px rgba(0, 0, 0, 0.3);
+  margin: 20px 0px 20px 0px;
+  transition: box-shadow 50ms linear;
 
   &: hover {
     cursor: pointer;
-    box-shadow: 1px 4px 4px rgba(0, 0, 0, 0.5);
+    box-shadow: 1px 4px 4px rgba(0, 0, 0, 0.4);
+    transition: box-shadow 50ms linear;
   }
 `;
 
