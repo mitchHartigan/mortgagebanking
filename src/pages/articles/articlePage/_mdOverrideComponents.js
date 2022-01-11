@@ -12,5 +12,5 @@ export const mdHeader = styled.h1`
 export const mdParagraph = styled.p`
   color: black;
   font-family: ${(props) => props.theme.textFont};
-  line-height: 24px;
+  line-height: 25px;
 `;

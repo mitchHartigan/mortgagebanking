@@ -8,11 +8,6 @@ import { Title } from "components/Title";
 import PreviewCard from "./PreviewCard";
 import { article_preview_data } from "../data/article_preview_data";
 
-/* @param props
- * @param props.toggleResoureces - function that takes the user
- * back to the Resources page when called.
- */
-
 export default function ArticlesHub() {
   return (
     <Container>
@@ -47,7 +42,7 @@ const ContentContainer = styled.div`
   justify-content: flex-start;
   align-items: center;
 
-  margin-top: 10px;
+  margin: 10px 0px 60px 0px;
 
   @media (max-width: 1200px) {
     width: 70%;
