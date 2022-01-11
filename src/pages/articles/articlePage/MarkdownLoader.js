@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Markdown from "markdown-to-jsx";
 
 import { Title } from "components/Title";
-import { mdHeader, mdParagraph } from "./_mdOverrideComponents";
+import { mdHeader, mdParagraph, mdListItem } from "./_mdOverrideComponents";
 import { useParams } from "react-router-dom";
 
 const markdownOptions = {
@@ -13,6 +13,9 @@ const markdownOptions = {
     },
     p: {
       component: mdParagraph,
+    },
+    li: {
+      component: mdListItem,
     },
   },
 };

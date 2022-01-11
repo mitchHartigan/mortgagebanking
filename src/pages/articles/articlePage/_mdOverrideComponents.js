@@ -14,3 +14,9 @@ export const mdParagraph = styled.p`
   font-family: ${(props) => props.theme.textFont};
   line-height: 25px;
 `;
+
+export const mdListItem = styled.li`
+  color: black;
+  font-family: ${(props) => props.theme.textFont};
+  line-height: 25px;
+`;
