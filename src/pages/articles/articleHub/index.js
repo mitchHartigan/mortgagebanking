@@ -12,7 +12,7 @@ export default function ArticlesHub() {
   return (
     <Container>
       <ScrollToTopOnMount />
-      <Title size="xxl" styles={"margin-top: 75px;"}>
+      <Title size="xxl" styles={titleStylesOverride}>
         Articles
       </Title>
       <ContentContainer>
@@ -25,6 +25,14 @@ export default function ArticlesHub() {
     </Container>
   );
 }
+
+const titleStylesOverride = `
+  margin-top: 75px;
+
+  @media (max-width: 900px){
+    margin-top: 15px;
+  }
+`;
 
 const Container = styled.div`
   width: 100%;

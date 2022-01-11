@@ -18,7 +18,13 @@ export default function PreviewContent(props) {
   );
 }
 
-const HeaderContainer = styled.div``;
+const HeaderContainer = styled.div`
+  @media (max-width: 900px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+`;
 
 const Container = styled.div`
   display: flex;

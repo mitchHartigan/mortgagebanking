@@ -40,6 +40,12 @@ const Card = styled.div`
     box-shadow: 1px 4px 4px rgba(0, 0, 0, 0.4);
     transition: box-shadow 50ms linear;
   }
+
+  @media (max-width: 900px) {
+    width: auto;
+    height: auto;
+    padding: 20px 30px 20px 30px;
+  }
 `;
 
 const ContentContainer = styled.div`
@@ -48,6 +54,12 @@ const ContentContainer = styled.div`
   width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
+
+  @media (max-width: 900px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
 `;
 
 const ImgPreview = styled.div`
@@ -59,4 +71,8 @@ const ImgPreview = styled.div`
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+
+  @media (max-width: 900px) {
+    margin: 10px 0px 30px 0px;
+  }
 `;
