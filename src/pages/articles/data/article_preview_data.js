@@ -56,4 +56,11 @@ export const article_preview_data = [
       "The CFPB's en banc appeal in the PHH Corporation, et al v. Consumer Financial Protection Bureau case was decided today.  The U.S. Court of Appeals for the District of Columbia Circuit reversed the 3 judge panel decision on the constitutionality of a single director but reinstated the panel’s",
     name: "favorable-phh-decision-reinforces-mulvaney-email",
   },
+  {
+    title: "Roadmap to 2018 HMDA Data Leniency",
+    date: "Dec 26th, 2017",
+    previewContent:
+      "The Consumer Financial Protection Bureau, OCC, and FDIC recently released statements promising leniency with regard to resubmission of 2018 HMDA data. The Agencies' statements recognize the additional complexity in data collection and reporting caused by new data requirements and mandatory reporting",
+    name: "roadmap-to-2018-hmda-data-leniency",
+  },
 ];
