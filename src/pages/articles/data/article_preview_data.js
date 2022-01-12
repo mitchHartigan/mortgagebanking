@@ -92,4 +92,12 @@ export const article_preview_data = [
       "Will HMDA's 23 character ULI handle production when the ULI can never be reused in the future? What if 18 characters are taken up by a non-consumer identifying substitute for the MERS ID, leaving only five? What happens when we add branch identifiers?",
     name: "can-you-outsell-hmdas-universal-loan-identifier",
   },
+  {
+    title:
+      "Attention HMDA Filers: You Need a LEI (Legal Entity Identifier). Top 3 Questions about Getting a LEI",
+    date: "April 4th, 2017",
+    previewContent:
+      "Believe it or not the top 3 questions about getting a LEI are: 1. What is a LEI? 2. Where do I get a LEI? and 3. Is getting a LEI free? Hint: t isn't a flower necklace, you can't get one at the airport in Hawaii, and since the government requires it and a third party provides it you know",
+    name: "attention-hmda-filers-you-need-a-lei",
+  },
 ];
