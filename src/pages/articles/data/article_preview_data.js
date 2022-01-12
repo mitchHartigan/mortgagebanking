@@ -108,4 +108,12 @@ export const article_preview_data = [
       "The Code of Federal Regulations is where federal administrative laws are codified, which are also referred to as “rules.” The Code of Federal Regulations is written by federal agencies authorized by Congress to clarify the statutes that Congress passes. ",
     name: "understanding-code-of-federal-regulations-citations",
   },
+  {
+    title:
+      "CFPB eRegulations Parsing Errors (Part 2 of 2) - Where and How to Verify eRegulation Text",
+    date: "August 4th, 2016",
+    previewContent:
+      "The Bureau’s eRegulations parsing errors were the topic of user tips in my previous post. This post describes where and how to verify the text. For the purposes of this article, we examine the parsing error in the header of 12 C.F.R. § 1026.36(d)(1). The eRegulations heading reads “Payments",
+    name: "cfpb-eregulations-parsing-errors-part-2",
+  },
 ];
