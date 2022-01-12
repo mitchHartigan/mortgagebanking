@@ -49,4 +49,11 @@ export const article_preview_data = [
       "The California DBO has been aggressively enforcing the CFL without clarifying lead provider ambiguities in the law. Lead providers are no longer an emerging industry, they constitute core marketing in this digital age, yet the California Financing Law (“CFL”) is an analog statute with relevant",
     name: "lead-provider-concerns-raised-by-california-dbo",
   },
+  {
+    title: "Favorable PHH decision reinforces Mulvaney email",
+    date: "Feb 1, 2018",
+    previewContent:
+      "The CFPB's en banc appeal in the PHH Corporation, et al v. Consumer Financial Protection Bureau case was decided today.  The U.S. Court of Appeals for the District of Columbia Circuit reversed the 3 judge panel decision on the constitutionality of a single director but reinstated the panel’s",
+    name: "favorable-phh-decision-reinforces-mulvaney-email",
+  },
 ];
