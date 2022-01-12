@@ -19,4 +19,5 @@ export const mdListItem = styled.li`
   color: black;
   font-family: ${(props) => props.theme.textFont};
   line-height: 25px;
+  margin: 5px 0px 5px 0px;
 `;

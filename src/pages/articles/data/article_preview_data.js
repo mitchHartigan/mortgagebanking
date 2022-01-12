@@ -70,4 +70,11 @@ export const article_preview_data = [
       "Opportunity for you to influence new regulations prior to notice and comment period. In my role on the Oregon Division of Financial Regulations' Rulemaking Advisory Committee for the drafting of the permanent regulations implementing the Mortgage Loan Servicer Practices",
     name: "oregon-mortgage-loan-servicer-practices-act",
   },
+  {
+    title: "Oregon Mortgage Loan Servicer Practices Act Temporary Regulations",
+    date: "Oct 31, 2017",
+    previewContent:
+      "Signed into law on August 2, 2017, the Oregon Mortgage Loan Servicer Practices Act (MLSPA) becomes operative January 1, 2018. Temporary regulations implementing the MLSPA will be published tomorrow, giving covered mortgage loan servicers only 60 days to get licensed.",
+    name: "oregon-mortgage-loan-servicer-practices-act-temporary-regulations",
+  },
 ];
