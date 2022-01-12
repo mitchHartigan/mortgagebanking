@@ -100,4 +100,12 @@ export const article_preview_data = [
       "Believe it or not the top 3 questions about getting a LEI are: 1. What is a LEI? 2. Where do I get a LEI? and 3. Is getting a LEI free? Hint: t isn't a flower necklace, you can't get one at the airport in Hawaii, and since the government requires it and a third party provides it you know",
     name: "attention-hmda-filers-you-need-a-lei",
   },
+  {
+    title:
+      "Understanding Code of Federal Regulations Citations - banking and mortgage banking administrative la",
+    date: "Aug 7th, 2016",
+    previewContent:
+      "The Code of Federal Regulations is where federal administrative laws are codified, which are also referred to as “rules.” The Code of Federal Regulations is written by federal agencies authorized by Congress to clarify the statutes that Congress passes. ",
+    name: "understanding-code-of-federal-regulations-citations",
+  },
 ];
