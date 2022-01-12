@@ -41,4 +41,12 @@ export const article_preview_data = [
       "South Carolina H 3627 proposes penalty of 3x payment if mortgagors fail to apply at least 30% of a mortgagee's loan payment toward the principal balance of the loan. In so doing, it both mislabels borrowers as mortgagee and lenders as mortgagors (it's the opposite) and misunderstands the mortgage math",
     name: "south-carolina-h3627-misunderstands-mortgage-math",
   },
+  {
+    title:
+      "Lead Provider Concerns Raised by California DBO Enforcement Actions",
+    date: "Oct 23rd, 2018",
+    previewContent:
+      "The California DBO has been aggressively enforcing the CFL without clarifying lead provider ambiguities in the law. Lead providers are no longer an emerging industry, they constitute core marketing in this digital age, yet the California Financing Law (“CFL”) is an analog statute with relevant",
+    name: "lead-provider-concerns-raised-by-california-dbo",
+  },
 ];
