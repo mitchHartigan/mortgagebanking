@@ -34,4 +34,11 @@ export const article_preview_data = [
       'The slippery slope of regulation by software has apparently been traversed again. On a call with software developers regarding HMDA, the Consumer Financial Protection Bureau ("Bureau") indicated that the Universal Loan Identifier ("ULI") is not case sensitive.',
     name: "regulation-by-software",
   },
+  {
+    title: "South Carolina's H 3627 Misunderstands Mortgage Math",
+    date: "Jan 21st, 2019",
+    previewContent:
+      "South Carolina H 3627 proposes penalty of 3x payment if mortgagors fail to apply at least 30% of a mortgagee's loan payment toward the principal balance of the loan. In so doing, it both mislabels borrowers as mortgagee and lenders as mortgagors (it's the opposite) and misunderstands the mortgage math",
+    name: "south-carolina-h3627-misunderstands-mortgage-math",
+  },
 ];
