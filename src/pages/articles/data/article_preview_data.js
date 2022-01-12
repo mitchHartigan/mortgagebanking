@@ -63,4 +63,11 @@ export const article_preview_data = [
       "The Consumer Financial Protection Bureau, OCC, and FDIC recently released statements promising leniency with regard to resubmission of 2018 HMDA data. The Agencies' statements recognize the additional complexity in data collection and reporting caused by new data requirements and mandatory reporting",
     name: "roadmap-to-2018-hmda-data-leniency",
   },
+  {
+    title: "Oregon Mortgage Loan Servicer Practices Act Permanent Rulemaking",
+    date: "Nov 15, 2017",
+    previewContent:
+      "Opportunity for you to influence new regulations prior to notice and comment period. In my role on the Oregon Division of Financial Regulations' Rulemaking Advisory Committee for the drafting of the permanent regulations implementing the Mortgage Loan Servicer Practices",
+    name: "oregon-mortgage-loan-servicer-practices-act",
+  },
 ];
