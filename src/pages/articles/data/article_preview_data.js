@@ -84,4 +84,12 @@ export const article_preview_data = [
       "The CFPB has recently required both depository institutions and independent mortgage companies to increase their compliance staff. A number of companies are struggling to understand how many compliance resources are needed. We think ratios are a crude and relatively ineffective tool in this evaluation.",
     name: "mortgage-compliance-staffing-demand",
   },
+  {
+    title:
+      "Can You Outsell HMDA's Universal Loan Identifier and Dwarf the ULI?",
+    date: "April 4th, 2017",
+    previewContent:
+      "Will HMDA's 23 character ULI handle production when the ULI can never be reused in the future? What if 18 characters are taken up by a non-consumer identifying substitute for the MERS ID, leaving only five? What happens when we add branch identifiers?",
+    name: "can-you-outsell-hmdas-universal-loan-identifier",
+  },
 ];
