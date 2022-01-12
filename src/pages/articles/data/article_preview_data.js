@@ -124,4 +124,11 @@ export const article_preview_data = [
       "Parsing errors require users to exercise caution when using the Consumer Financial Protection Bureau's eRegulations. Though once a favored tool because of its simple user interface, I no longer advocate its use due to a number of recently identified parsing",
     name: "cfpb-eregulations-parsing-errors-part-1",
   },
+  {
+    title: "Fannie/Freddie UCD on Your Mind?",
+    date: "March 31st, 2016",
+    previewContent:
+      "The Federal Housing Finance Agency has directed Fannie and Freddie to develop a Uniform Mortgage Data Program of which the Uniform Closing Dataset (UCD) is one component. The goal is to better support the CFPB's new Closing Disclosure. The UCD will ",
+    name: "fannie-freddie-ucd-on-your-mind",
+  },
 ];
