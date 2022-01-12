@@ -116,4 +116,12 @@ export const article_preview_data = [
       "The Bureau’s eRegulations parsing errors were the topic of user tips in my previous post. This post describes where and how to verify the text. For the purposes of this article, we examine the parsing error in the header of 12 C.F.R. § 1026.36(d)(1). The eRegulations heading reads “Payments",
     name: "cfpb-eregulations-parsing-errors-part-2",
   },
+  {
+    title:
+      "CFPB eRegulations Parsing Errors (Part 1 of 2) Three Tips for Safer eRegulations Use",
+    date: "July 28th, 2016",
+    previewContent:
+      "Parsing errors require users to exercise caution when using the Consumer Financial Protection Bureau's eRegulations. Though once a favored tool because of its simple user interface, I no longer advocate its use due to a number of recently identified parsing",
+    name: "cfpb-eregulations-parsing-errors-part-1",
+  },
 ];
