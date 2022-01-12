@@ -8,6 +8,8 @@ export default function PreviewCard(props) {
   const { data } = props;
   const [loadArticle, setLoadArticle] = useState(false);
 
+  console.log("data", data);
+
   if (!loadArticle) {
     return (
       <Card onClick={() => setLoadArticle(true)}>

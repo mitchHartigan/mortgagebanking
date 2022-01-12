@@ -77,4 +77,11 @@ export const article_preview_data = [
       "Signed into law on August 2, 2017, the Oregon Mortgage Loan Servicer Practices Act (MLSPA) becomes operative January 1, 2018. Temporary regulations implementing the MLSPA will be published tomorrow, giving covered mortgage loan servicers only 60 days to get licensed.",
     name: "oregon-mortgage-loan-servicer-practices-act-temporary-regulations",
   },
+  {
+    title: "Mortgage Compliance Staffing Demand",
+    date: "April 5th, 2017",
+    previewContent:
+      "The CFPB has recently required both depository institutions and independent mortgage companies to increase their compliance staff. A number of companies are struggling to understand how many compliance resources are needed. We think ratios are a crude and relatively ineffective tool in this evaluation.",
+    name: "mortgage-compliance-staffing-demand",
+  },
 ];
