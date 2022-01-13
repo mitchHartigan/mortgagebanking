@@ -61,7 +61,7 @@ export default function MarkdownLoader(props) {
         <Image url={articleName} />
         <Title
           size="xl"
-          styles={"margin: 25px 0px 25px 0px;"}
+          styles={titleStylesOverride}
           alignTitle="center"
           align="center"
         >
@@ -84,6 +84,14 @@ export default function MarkdownLoader(props) {
   }
 }
 
+const titleStylesOverride = `
+  margin: 25px 0px 25px 0px;
+
+  @media (max-width: 900px) {
+    margin: 10px 0px 10px 0px;
+  }
+`;
+
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -93,12 +101,19 @@ const Container = styled.div`
 
 const Image = styled.div`
   background-image: url(/articles/img/${(props) => props.url}_lg.png);
-  background-size: cover;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
   width: 100%;
   height: 500px;
 
   @media (max-width: 1200px) {
     height: 350px;
+  }
+
+  @media (max-width: 900px) {
+    max-height: 35vh;
+    margin: 10px 0px 0px 0px;
   }
 `;
 

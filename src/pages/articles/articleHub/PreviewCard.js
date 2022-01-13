@@ -8,8 +8,6 @@ export default function PreviewCard(props) {
   const { data } = props;
   const [loadArticle, setLoadArticle] = useState(false);
 
-  console.log("data", data);
-
   if (!loadArticle) {
     return (
       <Card onClick={() => setLoadArticle(true)}>
@@ -44,6 +42,12 @@ const Card = styled.div`
   }
 
   @media (max-width: 900px) {
+    width: 550px;
+    height: 500px;
+    padding: 30px;
+  }
+
+  @media (max-width: 700px) {
     width: auto;
     height: auto;
     padding: 20px 30px 20px 30px;
@@ -61,6 +65,7 @@ const ContentContainer = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
   }
 `;
 
@@ -75,6 +80,11 @@ const ImgPreview = styled.div`
   background-size: cover;
 
   @media (max-width: 900px) {
+    height: 450px;
     margin: 10px 0px 30px 0px;
+  }
+
+  @media (max-width: 700px) {
+    height: 225px;
   }
 `;

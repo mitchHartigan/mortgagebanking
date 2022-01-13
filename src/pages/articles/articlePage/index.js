@@ -28,7 +28,11 @@ export default function ArticlePage() {
   return (
     <Container>
       <ScrollToTopOnMount />
-      <BackButton text={`< Articles`} location="/articles" />
+      <BackButton
+        text={`< Back to Articles`}
+        location="/articles"
+        articleButton
+      />
       <ContentContainer>
         <MarkdownLoader
           title={article.title}
@@ -56,4 +60,9 @@ const ContentContainer = styled.div`
   width: 45%;
   box-sizing: border-box;
   padding: 0px 0px 100px 0px;
+
+  @media (max-width: 900px) {
+    width: 90%;
+    padding: 0px 0px 50px 0px;
+  }
 `;

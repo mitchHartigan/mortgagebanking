@@ -23,6 +23,7 @@ const HeaderContainer = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
   }
 `;
 
@@ -35,6 +36,10 @@ const Container = styled.div`
   justify-self: end;
   height: 100%;
   margin-left: 5px;
+
+  @media (max-width: 900px) {
+    align-items: center;
+  }
 `;
 
 const Title = styled.h1`
@@ -46,6 +51,10 @@ const Title = styled.h1`
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
+
+  @media (max-width: 900px) {
+    text-align: center;
+  }
 `;
 
 const Date = styled.p`
@@ -72,4 +81,7 @@ const Text = styled.p`
   -webkit-line-clamp: 3;
 `;
 
-const TextContainer = styled.div``;
+const TextContainer = styled.div`
+  padding: 0px 5px 0px 5px;
+  box-sizing: border-box;
+`;
