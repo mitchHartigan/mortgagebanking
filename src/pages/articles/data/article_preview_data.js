@@ -3,14 +3,15 @@ export const article_preview_data = [
     title:
       "FinCEN Anti-Money Laundering Customer Identification Program Rulemaking",
     date: "Sep 14th, 2020",
-    previewContent: `Today, the Financial Crimes Enforcement Network (FinCEN), announced final rulemaking on anti-money laundering (AML) customer identification program (CIP) requirements for banks `,
+    previewContent:
+      "Today, the Financial Crimes Enforcement Network (FinCEN), announced final rulemaking on anti-money laundering (AML) customer identification program (CIP) requirements for banks not subject to federal functional regulator supervision. This new rulemaking subjects those non-supervise",
     name: "fincen-anti-money-laundering",
   },
   {
     title: "Oregon's forbearance and foreclosure moratorium extended",
     date: "Aug 31st, 2020",
     previewContent:
-      "Oregon Gov. Kate Brown issued Executive Order 20-37 today extending the emergency period under HB 4204 through December 31, 2020. The emergency period previously ran from March 8th through September 30.",
+      "Oregon Gov. Kate Brown issued Executive Order 20-37 today extending the emergency period under HB 4204 through December 31, 2020. The emergency period previously ran from March 8th through September 30. HB 4204 imposes mortgage payment forbearance requirements and foreclosure moratorium on all real property loans.",
     name: "oregon-forbearance-and-foreclosure",
   },
   {
