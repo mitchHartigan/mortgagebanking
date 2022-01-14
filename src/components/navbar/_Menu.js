@@ -44,6 +44,15 @@ export const Menu = (props) => {
           Practice Areas
         </NavLink>
         <NavLink
+          route="/articles"
+          align="flex-start"
+          styles={LinkMarginOverride}
+          dark
+          size="sm"
+        >
+          Articles
+        </NavLink>
+        <NavLink
           route="/initiatives"
           align="flex-start"
           styles={LinkMarginOverride}

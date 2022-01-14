@@ -58,6 +58,9 @@ export default class Navbar extends React.Component {
             <NavLink route="/practice-areas" width="auto">
               Practice Areas
             </NavLink>
+            <NavLink route="/articles" width="auto">
+              Articles
+            </NavLink>
             <NavLink route="/initiatives" width="auto">
               Initiatives
             </NavLink>
