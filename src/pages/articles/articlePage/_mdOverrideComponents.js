@@ -12,12 +12,12 @@ export const mdHeader = styled.h1`
 export const mdParagraph = styled.p`
   color: black;
   font-family: ${(props) => props.theme.textFont};
-  line-height: 25px;
+  line-height: 30px;
 `;
 
 export const mdListItem = styled.li`
   color: black;
   font-family: ${(props) => props.theme.textFont};
-  line-height: 25px;
+  line-height: 30px;
   margin: 5px 0px 5px 0px;
 `;
