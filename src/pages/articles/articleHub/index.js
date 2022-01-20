@@ -6,7 +6,7 @@ import Navbar from "components/navbar";
 import { Footer } from "components/Footer";
 import { Title } from "components/Title";
 import PreviewCard from "./PreviewCard";
-import { article_preview_data } from "../data/article_preview_data";
+import { article_data } from "../data/article_data";
 
 export default function ArticlesHub() {
   return (
@@ -16,7 +16,7 @@ export default function ArticlesHub() {
         Articles
       </Title>
       <ContentContainer>
-        {article_preview_data.map((article) => {
+        {article_data.map((article) => {
           return <PreviewCard data={article} />;
         })}
       </ContentContainer>

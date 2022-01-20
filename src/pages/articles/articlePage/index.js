@@ -6,7 +6,7 @@ import { ScrollToTopOnMount } from "components/ScrollToTopOnMount";
 import Navbar from "components/navbar";
 import { Footer } from "components/Footer";
 import { BackButton } from "components/resources/BackButton";
-import { article_preview_data } from "../data/article_preview_data.js";
+import { article_data } from "../data/article_data.js";
 import { _articleLookup } from "./_articleLookup.util";
 import MarkdownLoader from "./MarkdownLoader";
 
@@ -17,7 +17,7 @@ export default function ArticlePage() {
   const [article, setArticle] = useState({});
 
   useEffect(() => {
-    const article = _articleLookup(articleName, article_preview_data);
+    const article = _articleLookup(articleName, article_data);
 
     if (article) {
       setArticle({ ...article });

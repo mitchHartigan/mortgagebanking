@@ -3,6 +3,8 @@ export const article_data = [
     title:
       "FinCEN Anti-Money Laundering Customer Identification Program Rulemaking",
     date: "Sep 14th, 2020",
+    previewContent:
+      "Today, the Financial Crimes Enforcement Network (FinCEN), announced final rulemaking on anti-money laundering (AML) customer identification program (CIP) requirements for banks not subject to federal functional regulator supervision. This new rulemaking subjects those non-supervise",
     name: "fincen-anti-money-laundering",
     content: `
     Today, the Financial Crimes Enforcement Network (FinCEN), announced final rulemaking on anti-money laundering (AML) customer identification program (CIP) requirements for banks not subject to federal functional regulator supervision. This new rulemaking subjects those non-supervised banks to the same CIP requirements imposed on regulated banks. Non-bank organizations like loan and finance companies have not been subject to CIP requirements, and remain so.
@@ -25,6 +27,8 @@ export const article_data = [
   {
     title: "Oregon's forbearance and foreclosure moratorium extended",
     date: "Aug 31st, 2020",
+    previewContent:
+      "Oregon Gov. Kate Brown issued Executive Order 20-37 today extending the emergency period under HB 4204 through December 31, 2020. The emergency period previously ran from March 8th through September 30. HB 4204 imposes mortgage payment forbearance requirements and foreclosure moratorium on all real property loans.",
     name: "oregon-forbearance-and-foreclosure",
     content: `
     Oregon Gov. Kate Brown issued Executive Order 20-37 today extending the emergency period under HB 4204 through December 31, 2020. The emergency period previously ran from March 8th through September 30. HB 4204 imposes mortgage payment forbearance requirements and foreclosure moratorium on all real property loans.
@@ -38,6 +42,8 @@ export const article_data = [
   {
     title: "Oregon's Sweeping Forbearance & Foreclosure Moratorium Law",
     date: "July 1st, 2020",
+    previewContent:
+      "June 30, 2020, Oregon Governor, Kate Brown, signed sweeping mortgage payment forbearance and foreclosure moratorium provisions into law. Virtually all loans secured by real property and certain installment contracts secured ",
     name: "oregon-sweeping-forebearance-foreclosure-moratorium",
     content: `
     June 30, 2020, Oregon Governor, Kate Brown, signed sweeping mortgage payment forbearance and foreclosure moratorium provisions into law. Virtually all loans secured by real property and certain installment contracts secured by personal property used as a residence in Oregon are covered, including but not limited to 1-4 family residential, multifamily residential, bare land, and commercial properties. Oregon lenders must provide written notice to borrowers of their right to accommodations. Additionally, if designated by an executive order of the governor on or before August 31st, the end date for the emergency period may be extended beyond the designated emergency period that runs from March 8th to September 30, 2020.
@@ -140,6 +146,8 @@ export const article_data = [
   {
     title: "Fair Housing Concerns and Responses",
     date: "Jan 8th, 2020",
+    previewContent:
+      "Housing is a fundamental necessity of all people. Access to housing is problematic for many with lower incomes, particularly those with limited English proficiency or disabilities that may require accommodations to even begin the process.",
     name: "fair-housing-concerns-and-responses",
     content: `
     Housing is a fundamental necessity of all people. Access to housing is problematic for many with lower incomes, particularly those with limited English proficiency or disabilities that may require accommodations to even begin the process. Statistical and anecdotal evidence over the years has left little doubt that housing discrimination can take subtle forms that result in material impact.
@@ -162,6 +170,8 @@ export const article_data = [
   {
     title: "Regulation by Software",
     date: "Sep 19th, 2019",
+    previewContent:
+      'The slippery slope of regulation by software has apparently been traversed again. On a call with software developers regarding HMDA, the Consumer Financial Protection Bureau ("Bureau") indicated that the Universal Loan Identifier ("ULI") is not case sensitive.',
     name: "regulation-by-software",
     content: `
     The slippery slope of regulation by software has apparently been traversed again. On a call with software developers regarding HMDA, the Consumer Financial Protection Bureau ("Bureau") indicated that the Universal Loan Identifier ("ULI") is not case sensitive. However, that conclusion appears to be driven by software development rather than regulations. I believe it is an inappropriate determination under the regulation, particularly since the Regulation's Appendix C shows mixed case characters.
@@ -212,6 +222,8 @@ export const article_data = [
   {
     title: "South Carolina's H 3627 Misunderstands Mortgage Math",
     date: "Jan 21st, 2019",
+    previewContent:
+      "South Carolina H 3627 proposes penalty of 3x payment if mortgagors fail to apply at least 30% of a mortgagee's loan payment toward the principal balance of the loan. In so doing, it both mislabels borrowers as mortgagee and lenders as mortgagors (it's the opposite) and misunderstands the mortgage math",
     name: "south-carolina-h3627-misunderstands-mortgage-math",
     content: `
     South Carolina H 3627 proposes penalty of 3x payment if mortgagors fail to apply at least 30% of a mortgagee's loan payment toward the principal balance of the loan. In so doing, it both mislabels borrowers as mortgagee and lenders as mortgagors (it's the opposite) and misunderstands the mortgage math, which dictates that two factors, 1) the interest rate and 2) the term of the loan, work together to determine the amount of principal in each payment when amortizing a loan. The amount of principal starts low and increases throughout the term of the loan. The longer the term of the loan, the lower the initial percentage of principal in the payment. Imposing a minimum principal ratio in payments has the effect of setting interest rate caps on transactions of a given term. The penalties in H 3627 would shut down lending when rates exceed the effective caps and have calamitous effect on property values. Thus, H 3627 is a stark reminder to be vigilant in watching state legislation to prevent significant harm to consumers and the industry that serves them.
@@ -245,6 +257,8 @@ export const article_data = [
     title:
       "Lead Provider Concerns Raised by California DBO Enforcement Actions",
     date: "Oct 23rd, 2018",
+    previewContent:
+      "The California DBO has been aggressively enforcing the CFL without clarifying lead provider ambiguities in the law. Lead providers are no longer an emerging industry, they constitute core marketing in this digital age, yet the California Financing Law (“CFL”) is an analog statute with relevant",
     name: "lead-provider-concerns-raised-by-california-dbo",
     content: `
     The California DBO has been aggressively enforcing the CFL without clarifying lead provider ambiguities in the law. Lead providers are no longer an emerging industry, they constitute core marketing in this digital age, yet the California Financing Law (“CFL”) is an analog statute with relevant provisions passed by the California legislature before IBM introduced the personal computer.
@@ -347,6 +361,8 @@ export const article_data = [
   {
     title: "Favorable PHH decision reinforces Mulvaney email",
     date: "Feb 1, 2018",
+    previewContent:
+      "The CFPB's en banc appeal in the PHH Corporation, et al v. Consumer Financial Protection Bureau case was decided today.  The U.S. Court of Appeals for the District of Columbia Circuit reversed the 3 judge panel decision on the constitutionality of a single director but reinstated the panel’s",
     name: "favorable-phh-decision-reinforces-mulvaney-email",
     content: `
     The CFPB's en banc appeal in the PHH Corporation, et al v. Consumer Financial Protection Bureau case was [decided today](https://www.cadc.uscourts.gov/internet/opinions.nsf/B7623651686D60D585258226005405AC/$file/15-1177.pdf). The U.S. Court of Appeals for the District of Columbia Circuit reversed the 3 judge panel decision on the constitutionality of a single director but reinstated the panel’s holdings on statutory questions. Thus, the substantive questions regarding RESPA’s section 8 and the statute of limitations were upheld and reinstated by the full court. The court's rejection of Director Cordray's opinion that backed the Bureau Enforcement Division's novel interpretations of RESPA was a timely exclamation point on Acting Director Mulvaney's recent email articulating how things will be different at the Bureau.
@@ -367,6 +383,8 @@ export const article_data = [
   {
     title: "Roadmap to 2018 HMDA Data Leniency",
     date: "Dec 26th, 2017",
+    previewContent:
+      "The Consumer Financial Protection Bureau, OCC, and FDIC recently released statements promising leniency with regard to resubmission of 2018 HMDA data. The Agencies' statements recognize the additional complexity in data collection and reporting caused by new data requirements and mandatory reporting",
     name: "roadmap-to-2018-hmda-data-leniency",
     content: `
     The Consumer Financial Protection Bureau, OCC, and FDIC recently released statements promising leniency with regard to resubmission of 2018 HMDA data. The Agencies' statements recognize the additional complexity in data collection and reporting caused by new data requirements and mandatory reporting of home equity and commercial business channels. Unfortunately, the statements may be rhetorical unless the Bureau’s new HMDA submission portal's (the "HMDA Portal") software is revised to relax presubmission validation rules and attestations. To achieve the stated leniency objectives, the Bureau should consider the following steps: 1) Relax the HMDA Portal's workflow, and 2) Provide data correction guidance under the safe harbor at § 1003.6(b).
@@ -431,6 +449,8 @@ export const article_data = [
   {
     title: "Oregon Mortgage Loan Servicer Practices Act Permanent Rulemaking",
     date: "Nov 15, 2017",
+    previewContent:
+      "Opportunity for you to influence new regulations prior to notice and comment period. In my role on the Oregon Division of Financial Regulations' Rulemaking Advisory Committee for the drafting of the permanent regulations implementing the Mortgage Loan Servicer Practices",
     name: "oregon-mortgage-loan-servicer-practices-act",
     content: `
     Opportunity for you to influence new regulations prior to notice and comment period. In my role on the Oregon Division of Financial Regulations' Rulemaking Advisory Committee for the drafting of the permanent regulations implementing the Mortgage Loan Servicer Practices Act (MLSPA), I want to provide persons impacted with an opportunity to provide feedback before the proposed rule is published.
@@ -451,6 +471,8 @@ export const article_data = [
   {
     title: "Oregon Mortgage Loan Servicer Practices Act Temporary Regulations",
     date: "Oct 31, 2017",
+    previewContent:
+      "Signed into law on August 2, 2017, the Oregon Mortgage Loan Servicer Practices Act (MLSPA) becomes operative January 1, 2018. Temporary regulations implementing the MLSPA will be published tomorrow, giving covered mortgage loan servicers only 60 days to get licensed.",
     name: "oregon-mortgage-loan-servicer-practices-act-temporary-regulations",
     content: `
     Signed into law on August 2, 2017, the Oregon Mortgage Loan Servicer Practices Act (MLSPA) becomes operative January 1, 2018. Temporary regulations implementing the MLSPA will be published tomorrow, giving covered mortgage loan servicers only 60 days to get licensed.
@@ -476,6 +498,8 @@ export const article_data = [
   {
     title: "Mortgage Compliance Staffing Demand",
     date: "April 5th, 2017",
+    previewContent:
+      "The CFPB has recently required both depository institutions and independent mortgage companies to increase their compliance staff. A number of companies are struggling to understand how many compliance resources are needed. We think ratios are a crude and relatively ineffective tool in this evaluation.",
     name: "mortgage-compliance-staffing-demand",
     content: `
     The CFPB has recently required both depository institutions and independent mortgage companies to increase their compliance staff. A number of companies are struggling to understand how many compliance resources are needed. We think ratios are a crude and relatively ineffective tool in this evaluation. Lenders have diverse needs for compliance staffing based not only on the jobs the compliance staff perform but also on the company’s overall culture and operating model. A combination of an integrated and modular approach to compliance management can help diminish the total staffing needs while allowing the organization to appropriately budget for growth.
@@ -506,6 +530,8 @@ export const article_data = [
     title:
       "Can You Outsell HMDA's Universal Loan Identifier and Dwarf the ULI?",
     date: "April 4th, 2017",
+    previewContent:
+      "Will HMDA's 23 character ULI handle production when the ULI can never be reused in the future? What if 18 characters are taken up by a non-consumer identifying substitute for the MERS ID, leaving only five? What happens when we add branch identifiers?",
     name: "can-you-outsell-hmdas-universal-loan-identifier",
     content: `
     Will HMDA's 23 character ULI handle production when the ULI can never be reused in the future? What if 18 characters are taken up by a non-consumer identifying substitute for the MERS ID, leaving only five? What happens when we add branch identifiers? We did the math. Your sales team has room to grow.
@@ -533,6 +559,8 @@ export const article_data = [
     title:
       "Attention HMDA Filers: You Need a LEI (Legal Entity Identifier). Top 3 Questions about Getting a LEI",
     date: "April 4th, 2017",
+    previewContent:
+      "Believe it or not the top 3 questions about getting a LEI are: 1. What is a LEI? 2. Where do I get a LEI? and 3. Is getting a LEI free? Hint: t isn't a flower necklace, you can't get one at the airport in Hawaii, and since the government requires it and a third party provides it you know",
     name: "attention-hmda-filers-you-need-a-lei",
     content: `
     Believe it or not the top 3 questions about getting a LEI are: 1. What is a LEI? 2. Where do I get a LEI? and 3. Is getting a LEI free? Hint: t isn't a flower necklace, you can't get one at the airport in Hawaii, and since the government requires it and a third party provides it you know it won't be free. The Legal Entity Identifier is the prefix to the new HMDA Universal Loan Identifier and must be obtained from an approved issuing organization.
@@ -571,6 +599,8 @@ export const article_data = [
     title:
       "Understanding Code of Federal Regulations Citations - banking and mortgage banking administrative la",
     date: "Aug 7th, 2016",
+    previewContent:
+      "The Code of Federal Regulations is where federal administrative laws are codified, which are also referred to as “rules.” The Code of Federal Regulations is written by federal agencies authorized by Congress to clarify the statutes that Congress passes. ",
     name: "understanding-code-of-federal-regulations-citations",
     content: `
     # Code of Federal Regulations citations
@@ -617,6 +647,8 @@ export const article_data = [
     title:
       "CFPB eRegulations Parsing Errors (Part 2 of 2) - Where and How to Verify eRegulation Text",
     date: "August 4th, 2016",
+    previewContent:
+      "The Bureau’s eRegulations parsing errors were the topic of user tips in my previous post. This post describes where and how to verify the text. For the purposes of this article, we examine the parsing error in the header of 12 C.F.R. § 1026.36(d)(1). The eRegulations heading reads “Payments",
     name: "cfpb-eregulations-parsing-errors-part-2",
     content: `
     The Bureau’s eRegulations parsing errors were the topic of user tips in my previous post. This post describes where and how to verify the text. For the purposes of this article, we examine the parsing error in the header of 12 C.F.R. § 1026.36(d)(1). The eRegulations heading reads “Payments based on transaction terms or conditions.” However, it should read “Payments based on a term of a transaction.” We will look at each step of review showing how we know the eRegulations are wrong and explain along the way where to look for the proper language.
@@ -719,6 +751,8 @@ export const article_data = [
     title:
       "CFPB eRegulations Parsing Errors (Part 1 of 2) Three Tips for Safer eRegulations Use",
     date: "July 28th, 2016",
+    previewContent:
+      "Parsing errors require users to exercise caution when using the Consumer Financial Protection Bureau's eRegulations. Though once a favored tool because of its simple user interface, I no longer advocate its use due to a number of recently identified parsing",
     name: "cfpb-eregulations-parsing-errors-part-1",
     content: `
     Parsing errors require users to exercise caution when using the Consumer Financial Protection Bureau's eRegulations. Though once a favored tool because of its simple user interface, I no longer advocate its use due to a number of recently identified parsing errors including erroneous headers, faulty subparagraph delineation, and missing links to official interpretations. Hopefully, errors will be corrected soon, but until then follow these 3 tips for safer use.
@@ -759,6 +793,8 @@ export const article_data = [
   {
     title: "Fannie/Freddie UCD on Your Mind?",
     date: "March 31st, 2016",
+    previewContent:
+      "The Federal Housing Finance Agency has directed Fannie and Freddie to develop a Uniform Mortgage Data Program of which the Uniform Closing Dataset (UCD) is one component. The goal is to better support the CFPB's new Closing Disclosure. The UCD will ",
     name: "fannie-freddie-ucd-on-your-mind",
     content: `
     The Federal Housing Finance Agency has directed Fannie and Freddie to develop a Uniform Mortgage Data Program of which the Uniform Closing Dataset (UCD) is one component. The goal is to better support the CFPB's new Closing Disclosure. The UCD will contain the data in extensible markup language (XML) format along with a portable document format (PDF) image of the Closing Disclosure. Fannie Mae and Freddie Mac will accept voluntary submissions no later than Q4 2016 with mandatory delivery no sooner than Q2 2017.
