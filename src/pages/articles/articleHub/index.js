@@ -7,9 +7,11 @@ import { Footer } from "components/Footer";
 import { Title } from "components/Title";
 import PreviewCard from "./PreviewCard";
 import { FETCH_ARTICLE_DATA } from "../API";
+import { LoadingArticles } from "./LoadingArticles";
 
 export default function ArticlesHub() {
   const [articleData, setArticleData] = useState([]);
+  const [loadingArticleData, setLoadingArticleData] = useState(false);
 
   // To prevent having to make an API request each time the
   // ArticlesHub loads.
@@ -20,13 +22,17 @@ export default function ArticlesHub() {
 
     if (existingArticleData) {
       setArticleData(existingArticleData);
+      setLoadingArticleData(false);
     } else {
       sessionStorage.setItem("articleData", JSON.stringify(articleData));
       setArticleData(articleData);
+      setLoadingArticleData(false);
     }
   }
 
   useEffect(() => {
+    setLoadingArticleData(true);
+
     async function loadData() {
       const articleData = await FETCH_ARTICLE_DATA();
       if (articleData) _saveArticlesToSessionStorage(articleData);
@@ -40,11 +46,14 @@ export default function ArticlesHub() {
       <Title size="xxl" styles={titleStylesOverride}>
         Articles
       </Title>
-      <ContentContainer>
-        {articleData.map((article) => {
-          return <PreviewCard key={article._id} data={article} />;
-        })}
-      </ContentContainer>
+      {!loadingArticleData && (
+        <ContentContainer>
+          {articleData.map((article) => {
+            return <PreviewCard key={article._id} data={article} />;
+          })}
+        </ContentContainer>
+      )}
+      {loadingArticleData && <LoadingArticles />}
       <Footer slim />
       <Navbar alwaysDisplay />
     </Container>
