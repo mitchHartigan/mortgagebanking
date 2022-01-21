@@ -6,33 +6,17 @@ import Navbar from "components/navbar";
 import { Footer } from "components/Footer";
 import { Title } from "components/Title";
 import PreviewCard from "./PreviewCard";
-// import { article_data } from "../data/article_data";
-
-const _fetchArticleData = async () => {
-  console.log("fetching articles...");
-  let articles = await fetch(
-    "https://md5rhmga23.execute-api.us-west-2.amazonaws.com/production/articles"
-  );
-
-  // Returns an array with one index, another array of the articles
-  // objects. So, articles[0] contains the
-  articles = await articles.json();
-
-  return articles;
-};
+import { FETCH_ARTICLE_DATA } from "../API";
 
 export default function ArticlesHub() {
   const [articleData, setArticleData] = useState([]);
 
   useEffect(() => {
     async function loadData() {
-      const articleData = await _fetchArticleData();
+      const articleData = await FETCH_ARTICLE_DATA();
 
       if (articleData) {
-        const articleArray = await [articleData];
-        console.log("articleArray", articleArray);
-        console.log("articleArray[0]", articleArray[0]);
-        setArticleData(articleArray[0]);
+        setArticleData(articleData);
       }
     }
     loadData();
