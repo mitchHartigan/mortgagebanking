@@ -11,13 +11,25 @@ import { FETCH_ARTICLE_DATA } from "../API";
 export default function ArticlesHub() {
   const [articleData, setArticleData] = useState([]);
 
+  // To prevent having to make an API request each time the
+  // ArticlesHub loads.
+  function _saveArticlesToSessionStorage(articleData) {
+    const existingArticleData = JSON.parse(
+      sessionStorage.getItem("articleData")
+    );
+
+    if (existingArticleData) {
+      setArticleData(existingArticleData);
+    } else {
+      sessionStorage.setItem("articleData", JSON.stringify(articleData));
+      setArticleData(articleData);
+    }
+  }
+
   useEffect(() => {
     async function loadData() {
       const articleData = await FETCH_ARTICLE_DATA();
-
-      if (articleData) {
-        setArticleData(articleData);
-      }
+      if (articleData) _saveArticlesToSessionStorage(articleData);
     }
     loadData();
   }, []);
@@ -30,7 +42,7 @@ export default function ArticlesHub() {
       </Title>
       <ContentContainer>
         {articleData.map((article) => {
-          return <PreviewCard data={article} />;
+          return <PreviewCard key={article._id} data={article} />;
         })}
       </ContentContainer>
       <Footer slim />
