@@ -8,21 +8,33 @@ import { Footer } from "components/Footer";
 import { BackButton } from "components/resources/BackButton";
 import { article_data } from "../data/article_data.js";
 import { _articleLookup } from "./_articleLookup.util";
+import { FETCH_ARTICLE, FETCH_ARTICLE_DATA } from "../API.js";
 import MarkdownLoader from "./MarkdownLoader";
 
 export default function ArticlePage() {
   const { articleName } = useParams();
 
   const [validArticle, setValidArticle] = useState(false);
+  const [loadError, setLoadError] = useState(false);
   const [article, setArticle] = useState({});
+  const [articleText, setArticleText] = useState("");
+
+  async function setupState() {
+    const article = _articleLookup(articleName, article_data);
+    const text = await FETCH_ARTICLE(articleName);
+
+    if (text) {
+      setValidArticle(true);
+      setArticleText(text);
+      setArticle({ ...article });
+    } else {
+      setValidArticle(false);
+      setLoadError(true);
+    }
+  }
 
   useEffect(() => {
-    const article = _articleLookup(articleName, article_data);
-
-    if (article) {
-      setArticle({ ...article });
-      setValidArticle(true);
-    }
+    setupState();
   }, []);
 
   return (
@@ -39,6 +51,8 @@ export default function ArticlePage() {
           date={article.date}
           name={article.name}
           validArticle={validArticle}
+          articleText={articleText}
+          loadError={loadError}
         />
       </ContentContainer>
       <Footer slim />

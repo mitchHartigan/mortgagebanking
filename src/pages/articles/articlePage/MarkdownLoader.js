@@ -21,41 +21,11 @@ const markdownOptions = {
 };
 
 export default function MarkdownLoader(props) {
-  const [markdown, setMarkdown] = useState();
-  const { title, date, validArticle } = props;
-  const [loadError, setLoadError] = useState(false);
-
+  const { title, date, validArticle, articleText, loadError } = props;
   const { articleName } = useParams();
 
-  const _loadArticle = async (articleName) => {
-    // article.default is the name of the .md file once it's been built. I think. So,
-    // it returns something like /static/media/regulation_by_software.e9adfce9.md.
-    try {
-      if (articleName) {
-        const article = await import(`../data/${articleName}.md`);
-        return article.default;
-      }
-    } catch {
-      console.log("failed to load article:", articleName);
-      setLoadError(true);
-    }
-  };
-
-  useEffect(() => {
-    async function loadData() {
-      const articleToBeLoaded = await _loadArticle(articleName);
-      const response = await fetch(articleToBeLoaded);
-      const text = await response.text();
-
-      // perform check to make sure article is loaded properly here?
-
-      setMarkdown(text);
-    }
-    loadData();
-  }, []);
-
   // this is messy. Please refactor future mitchell.
-  if (validArticle && markdown) {
+  if (validArticle && articleText) {
     return (
       <Container>
         <Image url={articleName} />
@@ -67,12 +37,12 @@ export default function MarkdownLoader(props) {
         >
           {title}
         </Title>
-        <Markdown options={markdownOptions}>{markdown}</Markdown>
+        <Markdown options={markdownOptions}>{articleText}</Markdown>
         <Date>Published on {date}.</Date>
       </Container>
     );
   }
-  if (validArticle && !markdown) {
+  if (validArticle && !articleText) {
     return null;
   }
   if (loadError) {
