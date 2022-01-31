@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
 import { ScrollToTopOnMount } from "components/ScrollToTopOnMount";
+import { saveArticlesToSessionStorage } from "./utils";
 import Navbar from "components/navbar";
 import { Footer } from "components/Footer";
 import { Title } from "components/Title";
@@ -13,29 +14,35 @@ export default function ArticlesHub() {
   const [articleData, setArticleData] = useState([]);
   const [loadingArticleData, setLoadingArticleData] = useState(false);
 
-  // To prevent having to make an API request each time the
-  // ArticlesHub loads.
-  function _saveArticlesToSessionStorage(articleData) {
-    const existingArticleData = JSON.parse(
-      sessionStorage.getItem("articleData")
-    );
+  // // To prevent having to make an API request each time the
+  // // ArticlesHub loads.
+  // function _saveArticlesToSessionStorage(articleData) {
+  //   const existingArticleData = JSON.parse(
+  //     sessionStorage.getItem("articleData")
+  //   );
 
-    if (existingArticleData) {
-      setArticleData(existingArticleData);
-      setLoadingArticleData(false);
-    } else {
-      sessionStorage.setItem("articleData", JSON.stringify(articleData));
-      setArticleData(articleData);
-      setLoadingArticleData(false);
-    }
-  }
+  //   if (existingArticleData) {
+  //     setArticleData(existingArticleData);
+  //     setLoadingArticleData(false);
+  //   } else {
+  //     sessionStorage.setItem("articleData", JSON.stringify(articleData));
+  //     setArticleData(articleData);
+  //     setLoadingArticleData(false);
+  //   }
+  // }
 
   useEffect(() => {
     setLoadingArticleData(true);
 
     async function loadData() {
       const articleData = await FETCH_ARTICLE_DATA();
-      if (articleData) _saveArticlesToSessionStorage(articleData);
+      console.log(articleData);
+      if (articleData)
+        saveArticlesToSessionStorage(
+          articleData,
+          setArticleData,
+          setLoadingArticleData
+        );
     }
     loadData();
   }, []);

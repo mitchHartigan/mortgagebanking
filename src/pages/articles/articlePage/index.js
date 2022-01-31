@@ -8,7 +8,7 @@ import { Footer } from "components/Footer";
 import { BackButton } from "components/resources/BackButton";
 import { article_data } from "../data/article_data.js";
 import { _articleLookup } from "./_articleLookup.util";
-import { FETCH_ARTICLE, FETCH_ARTICLE_DATA } from "../API.js";
+import { FETCH_ARTICLE } from "../API.js";
 import MarkdownLoader from "./MarkdownLoader";
 
 export default function ArticlePage() {

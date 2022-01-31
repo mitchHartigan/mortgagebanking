@@ -1,15 +1,18 @@
+import { sortArticleDataByDate } from "./articleHub/utils";
+
 export const FETCH_ARTICLE_DATA = async () => {
   let articles = await fetch(
-    "https://md5rhmga23.execute-api.us-west-2.amazonaws.com/production/articles"
+    "https://md5rhmga23.execute-api.us-west-2.amazonaws.com/production/articles/staging"
   );
   articles = await articles.json();
-  return articles;
+
+  return sortArticleDataByDate(articles);
 };
 
 export const FETCH_ARTICLE = async (filename) => {
   try {
     let response = await fetch(
-      `https://md5rhmga23.execute-api.us-west-2.amazonaws.com/production/markdown/${filename}.md`
+      `https://md5rhmga23.execute-api.us-west-2.amazonaws.com/production/markdown/staging/${filename}.md`
     );
 
     const responseObj = await response.json();
