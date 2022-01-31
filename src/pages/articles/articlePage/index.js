@@ -14,7 +14,6 @@ import MarkdownLoader from "./MarkdownLoader";
 export default function ArticlePage() {
   const { articleName } = useParams();
 
-  const [validArticle, setValidArticle] = useState(false);
   const [loadError, setLoadError] = useState(false);
   const [article, setArticle] = useState({});
   const [articleText, setArticleText] = useState("");
@@ -24,11 +23,9 @@ export default function ArticlePage() {
     const text = await FETCH_ARTICLE(articleName);
 
     if (text) {
-      setValidArticle(true);
       setArticleText(text);
       setArticle({ ...article });
     } else {
-      setValidArticle(false);
       setLoadError(true);
     }
   }
@@ -50,7 +47,6 @@ export default function ArticlePage() {
           title={article.title}
           date={article.date}
           name={article.name}
-          validArticle={validArticle}
           articleText={articleText}
           loadError={loadError}
         />

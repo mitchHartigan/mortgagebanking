@@ -21,11 +21,10 @@ const markdownOptions = {
 };
 
 export default function MarkdownLoader(props) {
-  const { title, date, validArticle, articleText, loadError } = props;
+  const { title, date, articleText, loadError } = props;
   const { articleName } = useParams();
 
-  // this is messy. Please refactor future mitchell.
-  if (validArticle && articleText) {
+  if (articleText) {
     return (
       <Container>
         <Image url={articleName} />
@@ -41,9 +40,6 @@ export default function MarkdownLoader(props) {
         <Date>Published on {date}.</Date>
       </Container>
     );
-  }
-  if (validArticle && !articleText) {
-    return null;
   }
   if (loadError) {
     return (
