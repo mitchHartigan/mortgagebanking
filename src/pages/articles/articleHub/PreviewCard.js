@@ -1,18 +1,41 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Redirect } from "react-router-dom";
 
 import PreviewContent from "./PreviewContent";
 
+const checkIfImageExists = (name, setImage) => {
+  const img = new Image();
+  const imgPath = `/articles/img/${name}_sm.png`;
+  img.src = imgPath;
+
+  if (img.complete) {
+    setImage(imgPath);
+  } else {
+    img.onload = () => {
+      setImage(imgPath);
+    };
+    img.onerror = () => {
+      setImage("/articles/img/default.png");
+    };
+  }
+};
+
 export default function PreviewCard(props) {
   const { data } = props;
   const [loadArticle, setLoadArticle] = useState(false);
+  const [image, setImage] = useState("");
+
+  useEffect(() => {
+    checkIfImageExists(data.name, setImage);
+  });
 
   if (!loadArticle) {
     return (
       <Card onClick={() => setLoadArticle(true)}>
         <ContentContainer>
-          <ImgPreview url={`${data.name}_sm.png`} />
+          {/* <ImgPreview url={`${data.name}_sm.png`} /> */}
+          <ImgPreview url={image} />
           <PreviewContent data={data} />
         </ContentContainer>
       </Card>
@@ -74,7 +97,7 @@ const ImgPreview = styled.div`
   height: 225px;
   justify-self: start;
   width: 300px;
-  background-image: url("/articles/img/${(props) => props.url}");
+  background-image: url("${(props) => props.url}");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
