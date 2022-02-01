@@ -14,23 +14,6 @@ export default function ArticlesHub() {
   const [articleData, setArticleData] = useState([]);
   const [loadingArticleData, setLoadingArticleData] = useState(false);
 
-  // // To prevent having to make an API request each time the
-  // // ArticlesHub loads.
-  // function _saveArticlesToSessionStorage(articleData) {
-  //   const existingArticleData = JSON.parse(
-  //     sessionStorage.getItem("articleData")
-  //   );
-
-  //   if (existingArticleData) {
-  //     setArticleData(existingArticleData);
-  //     setLoadingArticleData(false);
-  //   } else {
-  //     sessionStorage.setItem("articleData", JSON.stringify(articleData));
-  //     setArticleData(articleData);
-  //     setLoadingArticleData(false);
-  //   }
-  // }
-
   useEffect(() => {
     setLoadingArticleData(true);
 
