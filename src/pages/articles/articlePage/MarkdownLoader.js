@@ -72,6 +72,7 @@ const Image = styled.div`
   background-repeat: no-repeat;
   width: 100%;
   height: 500px;
+  margin-top: 100px;
 
   @media (max-width: 1200px) {
     height: 350px;

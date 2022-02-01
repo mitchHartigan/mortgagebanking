@@ -71,6 +71,10 @@ const ContentContainer = styled.div`
   box-sizing: border-box;
   padding: 0px 0px 100px 0px;
 
+  @media (max-width: 1300px) {
+    width: 60%;
+  }
+
   @media (max-width: 900px) {
     width: 90%;
     padding: 0px 0px 50px 0px;

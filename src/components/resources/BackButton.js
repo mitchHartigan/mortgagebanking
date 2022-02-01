@@ -35,14 +35,23 @@ const Container = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  padding-left: 4vw;
+  padding-left: 3.5vw;
   box-sizing: border-box;
   margin-top: 9vh;
+
+  ${(props) => {
+    if (props.articleButton) {
+      return `
+        position: fixed;
+      `;
+    }
+  }}
 
   @media (max-width: 900px) {
     ${(props) => {
       if (props.articleButton) {
         return `
+          position: static;
           display: flex;
           margin-left: -20px;
           justify-content: center;
