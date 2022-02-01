@@ -3,7 +3,12 @@ import styled from "styled-components";
 import Markdown from "markdown-to-jsx";
 
 import { Title } from "components/Title";
-import { mdHeader, mdParagraph, mdListItem } from "./_mdOverrideComponents";
+import {
+  mdHeader,
+  mdParagraph,
+  mdListItem,
+  mdPre,
+} from "./_mdOverrideComponents";
 import { useParams } from "react-router-dom";
 
 const markdownOptions = {
@@ -17,17 +22,43 @@ const markdownOptions = {
     li: {
       component: mdListItem,
     },
+    pre: {
+      component: mdPre,
+    },
   },
+};
+
+const checkIfImageExists = (name, setImage) => {
+  const img = document.createElement("img");
+  const imgPath = `/articles/img/${name}_lg.png`;
+  img.src = imgPath;
+
+  if (img.complete) {
+    setImage(imgPath);
+  } else {
+    img.onload = () => {
+      setImage(imgPath);
+    };
+    img.onerror = () => {
+      setImage("/articles/img/default.png");
+    };
+  }
+  img.remove();
 };
 
 export default function MarkdownLoader(props) {
   const { title, date, articleText, loadError } = props;
+  const [image, setImage] = useState("");
   const { articleName } = useParams();
+
+  useEffect(() => {
+    checkIfImageExists(articleName, setImage);
+  });
 
   if (articleText) {
     return (
       <Container>
-        <Image url={articleName} />
+        <Image url={image} />
         <Title
           size="xl"
           styles={titleStylesOverride}
@@ -66,7 +97,7 @@ const Container = styled.div`
 `;
 
 const Image = styled.div`
-  background-image: url(/articles/img/${(props) => props.url}_lg.png);
+  background-image: url(${(props) => props.url});
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;

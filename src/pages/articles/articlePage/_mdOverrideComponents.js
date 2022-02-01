@@ -21,3 +21,10 @@ export const mdListItem = styled.li`
   line-height: 30px;
   margin: 5px 0px 5px 0px;
 `;
+
+export const mdPre = styled.pre`
+  color: black;
+  font-family: ${(props) => props.theme.textFont};
+  line-height: 30px;
+  margin: 5px 0px 5px 0px;
+`;

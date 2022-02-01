@@ -6,9 +6,8 @@ import { ScrollToTopOnMount } from "components/ScrollToTopOnMount";
 import Navbar from "components/navbar";
 import { Footer } from "components/Footer";
 import { BackButton } from "components/resources/BackButton";
-import { article_data } from "../data/article_data.js";
 import { _articleLookup } from "./_articleLookup.util";
-import { FETCH_ARTICLE } from "../API.js";
+import { FETCH_ARTICLE, FETCH_ARTICLE_DATA } from "../API.js";
 import MarkdownLoader from "./MarkdownLoader";
 
 export default function ArticlePage() {
@@ -19,7 +18,8 @@ export default function ArticlePage() {
   const [articleText, setArticleText] = useState("");
 
   async function setupState() {
-    const article = _articleLookup(articleName, article_data);
+    const articleData = await FETCH_ARTICLE_DATA();
+    const article = _articleLookup(articleName, articleData);
     const text = await FETCH_ARTICLE(articleName);
 
     if (text) {
