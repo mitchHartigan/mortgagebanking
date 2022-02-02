@@ -27,3 +27,16 @@ export const FETCH_ARTICLE = async (filename) => {
     return false;
   }
 };
+
+export const FETCH_IMG_BASE64 = async (imgName) => {
+  try {
+    let response = await fetch(
+      `https://md5rhmga23.execute-api.us-west-2.amazonaws.com/production/images/staging/${imgName}`
+    );
+
+    const responseObj = await response.json();
+    return responseObj;
+  } catch {
+    return false;
+  }
+};

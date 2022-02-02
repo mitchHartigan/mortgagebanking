@@ -10,6 +10,7 @@ import {
   mdPre,
 } from "./_mdOverrideComponents";
 import { useParams } from "react-router-dom";
+import { FETCH_IMG_BASE64 } from "../API";
 
 const markdownOptions = {
   overrides: {
@@ -28,22 +29,30 @@ const markdownOptions = {
   },
 };
 
-const checkIfImageExists = (name, setImage) => {
-  const img = document.createElement("img");
-  const imgPath = `/articles/img/${name}_lg.png`;
-  img.src = imgPath;
+const checkIfImageExists = async (name, setImage) => {
+  // const img = document.createElement("img");
+  const imgObj = await FETCH_IMG_BASE64(`${name}_lg.png`);
 
-  if (img.complete) {
-    setImage(imgPath);
-  } else {
-    img.onload = () => {
-      setImage(imgPath);
-    };
-    img.onerror = () => {
-      setImage("/articles/img/default.png");
-    };
+  console.log("i", imgObj);
+
+  if (!imgObj.validImg) setImage("/articles/img/default.png");
+  else {
+    setImage(`data:image/png;base64,${imgObj.url}`);
   }
-  img.remove();
+
+  // img.src = `data:image/png;base64,${imgPath}`;
+
+  // if (img.complete) {
+  //   setImage(imgPath);
+  // } else {
+  //   img.onload = () => {
+  //     setImage(imgPath);
+  //   };
+  //   img.onerror = () => {
+  //     setImage("/articles/img/default.png");
+  //   };
+  // }
+  // img.remove();
 };
 
 export default function MarkdownLoader(props) {
@@ -53,7 +62,7 @@ export default function MarkdownLoader(props) {
 
   useEffect(() => {
     checkIfImageExists(articleName, setImage);
-  });
+  }, []);
 
   if (articleText) {
     return (
