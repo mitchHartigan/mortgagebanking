@@ -19,7 +19,6 @@ export default function ArticlesHub() {
 
     async function loadData() {
       const articleData = await FETCH_ARTICLE_DATA();
-      console.log(articleData);
       if (articleData)
         saveArticlesToSessionStorage(
           articleData,

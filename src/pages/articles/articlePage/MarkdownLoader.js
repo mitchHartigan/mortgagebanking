@@ -29,8 +29,7 @@ const markdownOptions = {
   },
 };
 
-const checkIfImageExists = async (name, setImage) => {
-  // const img = document.createElement("img");
+const loadImageFromDB = async (name, setImage) => {
   const imgObj = await FETCH_IMG_BASE64(`${name}_lg.png`);
 
   console.log("i", imgObj);
@@ -39,20 +38,6 @@ const checkIfImageExists = async (name, setImage) => {
   else {
     setImage(`data:image/png;base64,${imgObj.url}`);
   }
-
-  // img.src = `data:image/png;base64,${imgPath}`;
-
-  // if (img.complete) {
-  //   setImage(imgPath);
-  // } else {
-  //   img.onload = () => {
-  //     setImage(imgPath);
-  //   };
-  //   img.onerror = () => {
-  //     setImage("/articles/img/default.png");
-  //   };
-  // }
-  // img.remove();
 };
 
 export default function MarkdownLoader(props) {
@@ -61,7 +46,7 @@ export default function MarkdownLoader(props) {
   const { articleName } = useParams();
 
   useEffect(() => {
-    checkIfImageExists(articleName, setImage);
+    loadImageFromDB(articleName, setImage);
   }, []);
 
   if (articleText) {
