@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Redirect } from "react-router-dom";
 
 import PreviewContent from "./PreviewContent";
+import { FETCH_IMG_BASE64 } from "../API";
 
 const checkIfImageExists = (name, setImage) => {
   const img = new Image();
@@ -21,20 +22,26 @@ const checkIfImageExists = (name, setImage) => {
   }
 };
 
+const loadImageFromDB = async (name, setImage) => {
+  const imgObj = await FETCH_IMG_BASE64(`${name}_sm.png`);
+
+  if (!imgObj.validImg) setImage("/articles/img/default.png");
+  else setImage(`data:image/png;base64,${imgObj.url}`);
+};
+
 export default function PreviewCard(props) {
   const { data } = props;
   const [loadArticle, setLoadArticle] = useState(false);
   const [image, setImage] = useState("");
 
   useEffect(() => {
-    checkIfImageExists(data.name, setImage);
-  });
+    loadImageFromDB(data.name, setImage);
+  }, []);
 
   if (!loadArticle) {
     return (
       <Card onClick={() => setLoadArticle(true)}>
         <ContentContainer>
-          {/* <ImgPreview url={`${data.name}_sm.png`} /> */}
           <ImgPreview url={image} />
           <PreviewContent data={data} />
         </ContentContainer>
