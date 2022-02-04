@@ -82,6 +82,6 @@ const Text = styled.p`
 `;
 
 const TextContainer = styled.div`
-  padding: 0px 5px 0px 5px;
+  padding: 0px 5px 0px 0px;
   box-sizing: border-box;
 `;
