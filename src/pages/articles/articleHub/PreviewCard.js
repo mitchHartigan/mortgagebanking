@@ -5,23 +5,6 @@ import { Redirect } from "react-router-dom";
 import PreviewContent from "./PreviewContent";
 import { FETCH_IMG_BASE64 } from "../API";
 
-const checkIfImageExists = (name, setImage) => {
-  const img = new Image();
-  const imgPath = `/articles/img/${name}_sm.png`;
-  img.src = imgPath;
-
-  if (img.complete) {
-    setImage(imgPath);
-  } else {
-    img.onload = () => {
-      setImage(imgPath);
-    };
-    img.onerror = () => {
-      setImage("/articles/img/default.png");
-    };
-  }
-};
-
 const loadImageFromDB = async (name, setImage) => {
   const imgObj = await FETCH_IMG_BASE64(`${name}_sm.png`);
 
@@ -104,6 +87,7 @@ const ImgPreview = styled.div`
   height: 225px;
   justify-self: start;
   width: 300px;
+  background-color: ${(props) => props.theme.colors.offWhite};
   background-image: url("${(props) => props.url}");
   background-position: center;
   background-repeat: no-repeat;
