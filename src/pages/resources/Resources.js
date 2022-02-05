@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 import { Title } from "components/Title";
@@ -12,51 +12,44 @@ import ReactGA from "react-ga";
 import GlossarySearch from "../glossary-search/index";
 import { Footer } from "components/Footer";
 
-export default class Resources extends React.Component {
-  constructor(props) {
-    super(props);
+export default function Resources() {
+  ReactGA.pageview("Resources");
 
-    this.state = {
-      loadGlossary: false,
-    };
-  }
+  const [glossaryLoaded, setGlossaryLoaded] = useState(false);
 
-  toggleGlossary = () => {
-    this.setState({ loadGlossary: !this.state.loadGlossary });
+  const toggleGlossary = () => {
+    setGlossaryLoaded(!glossaryLoaded);
   };
 
-  render() {
-    ReactGA.pageview("Resources");
-    if (!this.state.loadGlossary) {
-      return (
-        <Container>
-          <ScrollToTopOnMount />
-          <Title
-            align="center"
-            alignTitle="center"
-            size="xxl"
-            styles={TitleStylesOverride}
-          >
-            Resources
-          </Title>
-          <Subtext size="xs" styles={SubtextStylesOverride}>
-            Tools the firm uses that it decided to share. It’s a new site and a
-            few of the tools are being refined, but they’ll be worth the wait.
-            Have an idea for a new tool, let us know, we are working on several.
-          </Subtext>
+  if (!glossaryLoaded) {
+    return (
+      <Container>
+        <ScrollToTopOnMount />
+        <Title
+          align="center"
+          alignTitle="center"
+          size="xxl"
+          styles={TitleStylesOverride}
+        >
+          Resources
+        </Title>
+        <Subtext size="xs" styles={SubtextStylesOverride}>
+          Tools the firm uses that it decided to share. It’s a new site and a
+          few of the tools are being refined, but they’ll be worth the wait.
+          Have an idea for a new tool, let us know, we are working on several.
+        </Subtext>
 
-          <CardContainer>
-            <SeachCard toggleGlossary={this.toggleGlossary} />
-            <LibraryCard />
-            <CalculatorCard />
-          </CardContainer>
-          <Footer />
-          <Navbar alwaysDisplay />
-        </Container>
-      );
-    } else {
-      return <GlossarySearch toggleGlossary={this.toggleGlossary} />;
-    }
+        <CardContainer>
+          <SeachCard toggleGlossary={toggleGlossary} />
+          <LibraryCard />
+          <CalculatorCard />
+        </CardContainer>
+        <Footer />
+        <Navbar alwaysDisplay />
+      </Container>
+    );
+  } else {
+    return <GlossarySearch toggleGlossary={toggleGlossary} />;
   }
 }
 

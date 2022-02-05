@@ -6,7 +6,6 @@ import ContactForm from "./_ContactForm";
 
 export class ContactUs extends React.Component {
   render() {
-    console.log("props from ContactUs", this.props);
     return (
       <Container>
         <Title id="scrollTarget" size="xxl" color="offWhite">

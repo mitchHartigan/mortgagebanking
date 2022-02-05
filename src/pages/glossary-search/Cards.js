@@ -1,12 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 import Card from "./Card";
-import { nanoid } from "nanoid";
 import { reverseArray } from "./_utils";
 import VisibilitySensor from "react-visibility-sensor";
-import Sidebar from "./Sidebar";
 
-export default class ResultCards extends React.Component {
+export default class Cards extends React.Component {
   constructor(props) {
     super(props);
 
@@ -18,7 +16,6 @@ export default class ResultCards extends React.Component {
   }
 
   componentDidMount() {
-    console.log(this.props.cards);
     window.addEventListener("resize", () => {
       if (window.innerWidth <= 1100) {
         this.setState({ visibilityOffset: 225 });

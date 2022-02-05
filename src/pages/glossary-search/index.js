@@ -1,16 +1,16 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { ThemeConsumer } from "styled-components";
 
 import { ScrollToTopOnMount } from "components/ScrollToTopOnMount";
 import { Title } from "components/Title";
 import Navbar from "components/navbar";
 import ResultsContainer from "./ResultsContainer";
 import Sidebar from "./Sidebar";
-import ResultCards from "./ResultCards";
+import Cards from "./Cards";
 import { reverseArray } from "./_utils";
 import { Footer } from "components/Footer";
 
-import { API_FETCH_RESULTS } from "./_utils";
+import { API_FETCH_RESULTS } from "./API";
 
 export default class index extends React.Component {
   constructor(props) {
@@ -37,9 +37,8 @@ export default class index extends React.Component {
       this.setState({ cards: cards });
     }
 
-    const results = await API_FETCH_RESULTS("ASAP");
-    console.log(results);
     // Send a dummy request to spin up the cluster if it has been idle.
+    await API_FETCH_RESULTS("ASAP");
   }
 
   setScrollToCardId = (id) => {
@@ -68,8 +67,6 @@ export default class index extends React.Component {
   loadCardFromViewAllResults = async (query, index) => {
     const { cards } = this.state;
     const results = await API_FETCH_RESULTS(query);
-
-    console.log("results from loadCard");
 
     cards.push(results[index]);
     this.setState({ cards: cards, query: "" }, () => {
@@ -113,7 +110,6 @@ export default class index extends React.Component {
           )
             .then((results) => results.json())
             .then((results) => {
-              console.log("results", results);
               this.setState({
                 results: results,
                 loadingResults: false,
@@ -172,36 +168,43 @@ export default class index extends React.Component {
       loadCardFromViewAllResults: this.loadCardFromViewAllResults,
     };
 
+    const sidebarProps = {
+      cards: cards,
+      highlightedCardIndex: highlightedCardIndex,
+      setScrollToCardId: this.setScrollToCardId,
+      searchBarFocused: searchBarFocused,
+      viewAllResultsFocused: viewAllResultsFocused,
+    };
+
+    const cardsProps = {
+      cards: cards,
+      deleteCard: this.deleteCard,
+      setHighlightedCardIndex: this.setHighlightedCardIndex,
+      scrollToCardId: this.state.scrollToCardId,
+      clearScrollToCardId: this.clearScrollToCardId,
+      searchBarFocused: searchBarFocused,
+      viewAllResultsFocused: viewAllResultsFocused,
+    };
+
     return (
       <Container>
+        {""}
         <ScrollToTopOnMount />
         <BackButtonContainer>
           <BackButton
             onClick={this.props.toggleGlossary}
           >{`< Resources`}</BackButton>
         </BackButtonContainer>
+
         <ContentContainer>
           <Title size="xl" styles={TitleStylesOverride}>
             Acronym Glossary
           </Title>
-          <Sidebar
-            cards={cards}
-            highlightedCardIndex={highlightedCardIndex}
-            setScrollToCardId={this.setScrollToCardId}
-            searchBarFocused={searchBarFocused}
-            viewAllResultsFocused={viewAllResultsFocused}
-          />
+          <Sidebar {...sidebarProps} />
           <ResultsContainer {...resultsContainerProps} />
-          <ResultCards
-            cards={cards}
-            deleteCard={this.deleteCard}
-            setHighlightedCardIndex={this.setHighlightedCardIndex}
-            scrollToCardId={this.state.scrollToCardId}
-            clearScrollToCardId={this.clearScrollToCardId}
-            searchBarFocused={searchBarFocused}
-            viewAllResultsFocused={viewAllResultsFocused}
-          />
+          <Cards {...cardsProps} />
         </ContentContainer>
+
         <Footer slim />
         <Navbar alwaysDisplay />
       </Container>

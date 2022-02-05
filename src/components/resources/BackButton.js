@@ -16,14 +16,14 @@ export class BackButton extends React.Component {
   };
 
   render() {
-    const { text, location } = this.props;
+    const { text, location, articleButton } = this.props;
 
     if (this.state.redirect) {
       return <Redirect to={location} />;
     }
 
     return (
-      <Container>
+      <Container articleButton={articleButton}>
         <Text onClick={this._handleRedirect}>{text}</Text>
       </Container>
     );
@@ -35,12 +35,31 @@ const Container = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  padding-left: 4vw;
+  padding-left: 3.5vw;
   box-sizing: border-box;
   margin-top: 9vh;
 
+  ${(props) => {
+    if (props.articleButton) {
+      return `
+        position: fixed;
+      `;
+    }
+  }}
+
   @media (max-width: 900px) {
-    display: none;
+    ${(props) => {
+      if (props.articleButton) {
+        return `
+          position: static;
+          display: flex;
+          margin-left: -20px;
+          justify-content: center;
+          margin-top: 30px;
+          margin-bottom: 10px;
+        `;
+      }
+    }}
   }
 `;
 

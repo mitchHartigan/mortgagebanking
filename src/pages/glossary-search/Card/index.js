@@ -1,57 +1,50 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import Description from "./Description";
 
+import Description from "./Description";
 import DefinitionRow from "./DefinitionRow";
 import CitationRow from "./CitationRow";
 import Title from "./Title";
 
-export default class Card extends React.Component {
-  constructor(props) {
-    super(props);
+export default function Card(props) {
+  const [disableHighlights, setHighlightsDisabled] = useState(false);
 
-    this.state = {
-      disableHighlights: false,
-    };
-  }
-
-  componentDidMount() {
-    if (window.innerWidth <= 900) {
-      this.setState({ disableHighlights: true });
+  useEffect(() => {
+    if (window.innerHeight <= 900) {
+      setHighlightsDisabled(true);
     }
-  }
+  }, []);
 
-  render() {
-    const { cardData, index, activeCardIndex, inactive } = this.props;
+  const { cardData, index, activeCardIndex, inactive } = props;
 
-    return (
-      <Container inactive={inactive}>
-        {this.state.disableHighlights && (
-          <CloseButton
-            src="button_close_white.svg"
-            alt="close button."
-            onClick={() => this.props.handleClose(this.props.activeCardIndex)}
-          />
-        )}
-        {!this.state.disableHighlights && (
-          <CloseButton
-            src="button_close.svg"
-            alt="close button."
-            onClick={() => this.props.handleClose(this.props.activeCardIndex)}
-          />
-        )}
-        <Title
-          cardData={cardData}
-          index={index}
-          activeCardIndex={activeCardIndex}
-          inactive={this.props.inactive}
+  return (
+    <Container inactive={inactive}>
+      {disableHighlights && (
+        <CloseButton
+          src="button_close_white.svg"
+          alt="black card close button."
+          onClick={() => props.handleClose(props.activeCardIndex)}
         />
-        <DefinitionRow cardData={cardData} />
-        <Description cardData={cardData} />
-        <CitationRow cardData={cardData} />
-      </Container>
-    );
-  }
+      )}
+      {!disableHighlights && (
+        <CloseButton
+          src="button_close.svg"
+          alt="white card close button."
+          onClick={() => props.handleClose(props.activeCardIndex)}
+        />
+      )}
+      <Title
+        cardData={cardData}
+        index={index}
+        activeCardIndex={activeCardIndex}
+        inactive={props.inactive}
+        disableHighlights={disableHighlights}
+      />
+      <DefinitionRow cardData={cardData} />
+      <Description cardData={cardData} />
+      <CitationRow cardData={cardData} />
+    </Container>
+  );
 }
 
 const Container = styled.div`
