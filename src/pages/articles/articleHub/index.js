@@ -9,6 +9,8 @@ import { Title } from "components/Title";
 import PreviewCard from "./PreviewCard";
 import { FETCH_ARTICLE_DATA } from "../API";
 import { LoadingArticles } from "./LoadingArticles";
+import KeywordSearch from "./search/keywordSearch";
+import FilterSearch from "./search/filterSearch";
 
 export default function ArticlesHub() {
   const [articleData, setArticleData] = useState([]);
@@ -35,6 +37,10 @@ export default function ArticlesHub() {
       <Title size="xxl" styles={titleStylesOverride}>
         Articles
       </Title>
+      <SearchContainer>
+        <KeywordSearch />
+        <FilterSearch />
+      </SearchContainer>
       {!loadingArticleData && (
         <ContentContainer>
           {articleData.map((article) => {
@@ -82,4 +88,11 @@ const ContentContainer = styled.div`
   @media (max-width: 900px) {
     width: 90%;
   }
+`;
+
+const SearchContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: center;
 `;
