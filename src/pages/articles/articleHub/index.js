@@ -9,12 +9,37 @@ import { Title } from "components/Title";
 import PreviewCard from "./PreviewCard";
 import { FETCH_ARTICLE_DATA } from "../API";
 import { LoadingArticles } from "./LoadingArticles";
-import KeywordSearch from "./search/keywordSearch";
 import FilterSearch from "./search/filterSearch";
+import KeywordSearch from "./search/keywordSearch";
 
 export default function ArticlesHub() {
   const [articleData, setArticleData] = useState([]);
   const [loadingArticleData, setLoadingArticleData] = useState(false);
+  const [searchEntered, setSearchEntered] = useState(false);
+  const [filteredArticleData, setFilteredArticleData] = useState([]);
+  const [keyword, setKeyword] = useState("");
+  const [tags, setTags] = useState("");
+
+  function updateKeyword(keyword) {
+    console.log("updating keyword");
+    setKeyword(keyword);
+  }
+
+  function searchByKeyword(keyword, articles) {
+    let filteredResults = [];
+
+    for (let article of articles) {
+      if (article.content.search(keyword) !== -1) {
+        filteredResults.push(article);
+      }
+    }
+    console.log(filteredResults);
+    return filteredResults;
+  }
+
+  function updateTags(tagsArr) {
+    setTags(tagsArr);
+  }
 
   useEffect(() => {
     setLoadingArticleData(true);
@@ -38,12 +63,26 @@ export default function ArticlesHub() {
         Articles
       </Title>
       <SearchContainer>
-        <KeywordSearch />
-        <FilterSearch />
+        <KeywordSearch
+          handleUpdate={updateKeyword}
+          toggleSearch={setSearchEntered}
+        />
+        <FilterSearch
+          handleUpdate={updateTags}
+          toggleSearch={setSearchEntered}
+        />
       </SearchContainer>
+      <StatusMessage></StatusMessage>
       {!loadingArticleData && (
         <ContentContainer>
           {articleData.map((article) => {
+            return <PreviewCard key={article._id} data={article} />;
+          })}
+        </ContentContainer>
+      )}
+      {!loadingArticleData && searchEntered && (
+        <ContentContainer>
+          {searchByKeyword(keyword, articleData).map((article) => {
             return <PreviewCard key={article._id} data={article} />;
           })}
         </ContentContainer>
@@ -96,3 +135,5 @@ const SearchContainer = styled.div`
   width: 100%;
   justify-content: center;
 `;
+
+const StatusMessage = styled.p``;

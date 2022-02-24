@@ -1,14 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
-export default function KeywordSearch() {
+export default function KeywordSearch(props) {
+  const [keyword, setKeyword] = useState("");
+
   function handleChange(evt) {
-    console.log(evt.target.value);
+    setKeyword(evt.target.value);
+  }
+
+  function handleKeyDown(evt) {
+    if (evt.keyCode === 13) {
+      console.log("Enter...entered!");
+      props.handleUpdate(keyword);
+      props.toggleSearch();
+    }
   }
 
   return (
     <Container>
-      <Input onChange={handleChange} />
+      <Input onChange={handleChange} onKeyDown={handleKeyDown} />
     </Container>
   );
 }
