@@ -5,14 +5,19 @@ export default function KeywordSearch(props) {
   const [keyword, setKeyword] = useState("");
 
   function handleChange(evt) {
-    setKeyword(evt.target.value);
+    const { value } = evt.target;
+
+    if (value === "") {
+      setKeyword(value);
+      props.toggleSearch(false);
+    }
+    setKeyword(value);
   }
 
   function handleKeyDown(evt) {
     if (evt.keyCode === 13) {
-      console.log("Enter...entered!");
       props.handleUpdate(keyword);
-      props.toggleSearch();
+      props.toggleSearch(true);
     }
   }
 

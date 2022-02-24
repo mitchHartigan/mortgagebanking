@@ -16,6 +16,7 @@ export default function ArticlesHub() {
   const [articleData, setArticleData] = useState([]);
   const [loadingArticleData, setLoadingArticleData] = useState(false);
   const [searchEntered, setSearchEntered] = useState(false);
+  const [keywordSearch, setKeywordSearch] = useState(false);
   const [filteredArticleData, setFilteredArticleData] = useState([]);
   const [keyword, setKeyword] = useState("");
   const [tags, setTags] = useState("");
@@ -27,12 +28,9 @@ export default function ArticlesHub() {
 
   function searchByKeyword(keyword, articles) {
     let filteredResults = [];
-    console.log("keyword", keyword);
 
     for (let article of articles) {
       if (article.content) {
-        console.log("match!", "article.name");
-        console.log("matched content", article.content);
         if (article.content.search(keyword) >= 0) {
           filteredResults.push(article);
         }
@@ -46,9 +44,9 @@ export default function ArticlesHub() {
     setTags(tagsArr);
   }
 
-  function togSearch() {
-    console.log("togSearch: current val", searchEntered);
-    setSearchEntered(true);
+  function togSearch(val) {
+    console.log("togSearch: current val", val);
+    setKeywordSearch(val);
   }
 
   useEffect(() => {
@@ -75,30 +73,27 @@ export default function ArticlesHub() {
       <SearchContainer>
         <KeywordSearch
           handleUpdate={updateKeyword}
-          toggleSearch={() => togSearch()}
+          toggleSearch={(val) => togSearch(val)}
         />
         <FilterSearch
           handleUpdate={updateTags}
-          toggleSearch={() => togSearch()}
+          toggleSearch={(val) => togSearch(val)}
         />
       </SearchContainer>
       <StatusMessage></StatusMessage>
-      {!loadingArticleData && !searchEntered && (
+      {!loadingArticleData && !keywordSearch && (
         <ContentContainer>
           {articleData.map((article) => {
             return <PreviewCard key={article._id} data={article} />;
           })}
         </ContentContainer>
       )}
-      {searchEntered && (
-        <>
-          <p>hello?</p>
-          <ContentContainer>
-            {searchByKeyword(keyword, articleData).map((article) => {
-              return <PreviewCard key={article._id} data={article} />;
-            })}
-          </ContentContainer>
-        </>
+      {!loadingArticleData && keywordSearch && (
+        <ContentContainer>
+          {searchByKeyword(keyword, articleData).map((article) => {
+            return <PreviewCard key={article._id} data={article} />;
+          })}
+        </ContentContainer>
       )}
       {loadingArticleData && <LoadingArticles />}
       <Footer slim />
