@@ -15,8 +15,8 @@ import KeywordSearch from "./search/keywordSearch";
 export default function ArticlesHub() {
   const [articleData, setArticleData] = useState([]);
   const [loadingArticleData, setLoadingArticleData] = useState(false);
-  const [searchEntered, setSearchEntered] = useState(false);
   const [keywordSearch, setKeywordSearch] = useState(false);
+  const [tagSearch, setTagSearch] = useState(false);
   const [filteredArticleData, setFilteredArticleData] = useState([]);
   const [keyword, setKeyword] = useState("");
   const [tags, setTags] = useState("");
@@ -40,8 +40,38 @@ export default function ArticlesHub() {
     return filteredResults;
   }
 
+  function searchByTags(tags, articles) {
+    let filteredResults = [];
+
+    for (let article of articles) {
+      // for each article
+      if (article.tags) {
+        for (let articleTag of article.tags) {
+          // for each article tag
+          for (let filterTag of tags) {
+            // for each filter tag
+            if (articleTag === filterTag) {
+              filteredResults.push(article);
+            }
+          }
+        }
+      }
+    }
+    console.log(filteredResults);
+    return filteredResults;
+  }
+
   function updateTags(tagsArr) {
-    setTags(tagsArr);
+    console.log("update tags called");
+    console.log("tagsArr", tagsArr);
+    if (tagsArr) setTags(tagsArr);
+
+    if (tagsArr.length > 0) {
+      console.log("tag search should be set to true...");
+      setTagSearch(true);
+    } else {
+      setTagSearch(false);
+    }
   }
 
   function togSearch(val) {
@@ -68,6 +98,25 @@ export default function ArticlesHub() {
       </ContentContainer>
     );
   };
+  // --------------------------------------------------------------------------------
+
+  // --------------------------------------------------------------------------------
+
+  const genFilterResults = (tags, articleData) => {
+    const searchResults = searchByTags(tags, articleData);
+
+    console.log("searchResults", searchResults);
+
+    return (
+      <ContentContainer>
+        <p>{`${tags.length} filter(s) applied to results.`}</p>
+        {searchResults.map((article) => {
+          return <PreviewCard key={article._id} data={article} />;
+        })}
+      </ContentContainer>
+    );
+  };
+
   // --------------------------------------------------------------------------------
 
   useEffect(() => {
@@ -102,7 +151,7 @@ export default function ArticlesHub() {
         />
       </SearchContainer>
       <StatusMessage></StatusMessage>
-      {!loadingArticleData && !keywordSearch && (
+      {!loadingArticleData && !keywordSearch && !tagSearch && (
         <ContentContainer>
           {articleData.map((article) => {
             return <PreviewCard key={article._id} data={article} />;
@@ -112,6 +161,7 @@ export default function ArticlesHub() {
       {!loadingArticleData &&
         keywordSearch &&
         genKeywordResults(keyword, articleData)}
+      {!loadingArticleData && tagSearch && genFilterResults(tags, articleData)}
       {loadingArticleData && <LoadingArticles />}
       <Footer slim />
       <Navbar alwaysDisplay />

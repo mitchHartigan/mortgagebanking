@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import { tags } from "./tags";
 
-export default function FilterSearch() {
+export default function FilterSearch(props) {
   const [dropdown, toggleDropdown] = useState(false);
   const [activeTags, setActiveTags] = useState([]);
 
@@ -11,6 +11,7 @@ export default function FilterSearch() {
     const updatedTags = [...activeTags, tag];
     console.log("addActiveTag, updatedTags:", updatedTags);
     setActiveTags(updatedTags);
+    props.handleUpdate(updatedTags);
   }
 
   function removeActiveTag(tag) {
@@ -21,6 +22,7 @@ export default function FilterSearch() {
     console.log("removeActiveTag, updatedTags: ", updatedTags);
 
     setActiveTags(updatedTags);
+    props.handleUpdate(updatedTags);
   }
 
   function handleCheckInput(evt) {
