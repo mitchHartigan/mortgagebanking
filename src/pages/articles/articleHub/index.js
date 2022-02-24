@@ -49,6 +49,27 @@ export default function ArticlesHub() {
     setKeywordSearch(val);
   }
 
+  // -------------------------------------------------------------------------------
+  const genKeywordResults = (keyword, articleData) => {
+    const searchResults = searchByKeyword(keyword, articleData);
+
+    function genStatusMessage() {
+      if (searchResults.length == 0)
+        return `No results found for '${keyword}'.`;
+      return `Showing articles containing '${keyword}'.`;
+    }
+
+    return (
+      <ContentContainer>
+        <p>{genStatusMessage()}</p>
+        {searchResults.map((article) => {
+          return <PreviewCard key={article._id} data={article} />;
+        })}
+      </ContentContainer>
+    );
+  };
+  // --------------------------------------------------------------------------------
+
   useEffect(() => {
     setLoadingArticleData(true);
 
@@ -88,13 +109,9 @@ export default function ArticlesHub() {
           })}
         </ContentContainer>
       )}
-      {!loadingArticleData && keywordSearch && (
-        <ContentContainer>
-          {searchByKeyword(keyword, articleData).map((article) => {
-            return <PreviewCard key={article._id} data={article} />;
-          })}
-        </ContentContainer>
-      )}
+      {!loadingArticleData &&
+        keywordSearch &&
+        genKeywordResults(keyword, articleData)}
       {loadingArticleData && <LoadingArticles />}
       <Footer slim />
       <Navbar alwaysDisplay />

@@ -23,7 +23,11 @@ export default function KeywordSearch(props) {
 
   return (
     <Container>
-      <Input onChange={handleChange} onKeyDown={handleKeyDown} />
+      <Input
+        onChange={handleChange}
+        onKeyDown={handleKeyDown}
+        placeholder="Search by keyword..."
+      />
     </Container>
   );
 }
