@@ -27,10 +27,15 @@ export default function ArticlesHub() {
 
   function searchByKeyword(keyword, articles) {
     let filteredResults = [];
+    console.log("keyword", keyword);
 
     for (let article of articles) {
-      if (article.content.search(keyword) !== -1) {
-        filteredResults.push(article);
+      if (article.content) {
+        console.log("match!", "article.name");
+        console.log("matched content", article.content);
+        if (article.content.search(keyword) >= 0) {
+          filteredResults.push(article);
+        }
       }
     }
     console.log(filteredResults);
@@ -39,6 +44,11 @@ export default function ArticlesHub() {
 
   function updateTags(tagsArr) {
     setTags(tagsArr);
+  }
+
+  function togSearch() {
+    console.log("togSearch: current val", searchEntered);
+    setSearchEntered(true);
   }
 
   useEffect(() => {
@@ -65,27 +75,30 @@ export default function ArticlesHub() {
       <SearchContainer>
         <KeywordSearch
           handleUpdate={updateKeyword}
-          toggleSearch={setSearchEntered}
+          toggleSearch={() => togSearch()}
         />
         <FilterSearch
           handleUpdate={updateTags}
-          toggleSearch={setSearchEntered}
+          toggleSearch={() => togSearch()}
         />
       </SearchContainer>
       <StatusMessage></StatusMessage>
-      {!loadingArticleData && (
+      {!loadingArticleData && !searchEntered && (
         <ContentContainer>
           {articleData.map((article) => {
             return <PreviewCard key={article._id} data={article} />;
           })}
         </ContentContainer>
       )}
-      {!loadingArticleData && searchEntered && (
-        <ContentContainer>
-          {searchByKeyword(keyword, articleData).map((article) => {
-            return <PreviewCard key={article._id} data={article} />;
-          })}
-        </ContentContainer>
+      {searchEntered && (
+        <>
+          <p>hello?</p>
+          <ContentContainer>
+            {searchByKeyword(keyword, articleData).map((article) => {
+              return <PreviewCard key={article._id} data={article} />;
+            })}
+          </ContentContainer>
+        </>
       )}
       {loadingArticleData && <LoadingArticles />}
       <Footer slim />
