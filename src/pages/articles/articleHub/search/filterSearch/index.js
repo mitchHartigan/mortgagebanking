@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import "./styles.css";
 
 import { tags } from "./tags";
 
@@ -45,23 +46,32 @@ export default function FilterSearch(props) {
         </DropDownHeaderContainer>
 
         <Span />
-        {tags.map((tag) => {
-          return (
-            <div>
-              <input
-                type="checkbox"
-                name={tag}
-                onChange={(evt) => handleCheckInput(evt)}
-                key={tag}
-              />
-              <label htmlFor={tag}>{tag}</label>
-            </div>
-          );
-        })}
+        <div className="scroll">
+          {tags.map((tag) => {
+            return (
+              <div>
+                <input
+                  type="checkbox"
+                  name={tag}
+                  onChange={(evt) => handleCheckInput(evt)}
+                  key={tag}
+                />
+                <label htmlFor={tag}>{tag}</label>
+              </div>
+            );
+          })}
+        </div>
       </FilterDropdown>
     </>
   );
 }
+
+const TagContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  max-height: 200px;
+  overflow-y: scroll;
+`;
 
 const Chevron = styled.div`
   width: 15px;
