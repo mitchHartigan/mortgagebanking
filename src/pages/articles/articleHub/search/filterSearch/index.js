@@ -33,33 +33,33 @@ export default function FilterSearch(props) {
     }
   }
 
-  if (!dropdown) {
-    return (
-      <FilterButton onClick={() => toggleDropdown(true)}>Filter</FilterButton>
-    );
-  }
   return (
-    <FilterDropdown>
-      <DropDownHeaderContainer>
-        <Title>Filter by tag</Title>
-        <Chevron onClick={() => toggleDropdown(false)} />
-      </DropDownHeaderContainer>
+    <>
+      <FilterButton dropdown={dropdown} onClick={() => toggleDropdown(true)}>
+        Filter
+      </FilterButton>
+      <FilterDropdown dropdown={dropdown}>
+        <DropDownHeaderContainer>
+          <Title>Filter by tag</Title>
+          <Chevron onClick={() => toggleDropdown(false)} />
+        </DropDownHeaderContainer>
 
-      <Span />
-      {tags.map((tag) => {
-        return (
-          <div>
-            <input
-              type="checkbox"
-              name={tag}
-              onChange={(evt) => handleCheckInput(evt)}
-              key={tag}
-            />
-            <label htmlFor={tag}>{tag}</label>
-          </div>
-        );
-      })}
-    </FilterDropdown>
+        <Span />
+        {tags.map((tag) => {
+          return (
+            <div>
+              <input
+                type="checkbox"
+                name={tag}
+                onChange={(evt) => handleCheckInput(evt)}
+                key={tag}
+              />
+              <label htmlFor={tag}>{tag}</label>
+            </div>
+          );
+        })}
+      </FilterDropdown>
+    </>
   );
 }
 
@@ -89,13 +89,13 @@ const DropDownHeaderContainer = styled.div`
 `;
 
 const FilterButton = styled.div`
-  display: flex;
+  display: ${(props) => (props.dropdown ? "none" : "flex")};
   width: 200px;
   background-color: white;
 `;
 
 const FilterDropdown = styled.div`
-  display: flex;
+  display: ${(props) => (props.dropdown ? "flex" : "none")};
   flex-direction: column;
   justify-content: center;
   width: 300px;

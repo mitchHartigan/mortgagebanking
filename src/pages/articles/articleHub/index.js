@@ -11,18 +11,26 @@ import { FETCH_ARTICLE_DATA } from "../API";
 import { LoadingArticles } from "./LoadingArticles";
 import FilterSearch from "./search/filterSearch";
 import KeywordSearch from "./search/keywordSearch";
+import { FilterResults } from "./search/filterSearch/FilterResults";
 
 export default function ArticlesHub() {
   const [articleData, setArticleData] = useState([]);
   const [loadingArticleData, setLoadingArticleData] = useState(false);
   const [keywordSearch, setKeywordSearch] = useState(false);
   const [tagSearch, setTagSearch] = useState(false);
-  const [filteredArticleData, setFilteredArticleData] = useState([]);
   const [keyword, setKeyword] = useState("");
-  const [tags, setTags] = useState("");
+  const [tags, setTags] = useState([]);
+
+  function toggleKeywordSearch(value) {
+    if (!value) {
+      setKeywordSearch(value);
+      return;
+    }
+    setKeywordSearch(value);
+    setTagSearch(false);
+  }
 
   function updateKeyword(keyword) {
-    console.log("updating keyword");
     setKeyword(keyword);
   }
 
@@ -36,7 +44,6 @@ export default function ArticlesHub() {
         }
       }
     }
-    console.log(filteredResults);
     return filteredResults;
   }
 
@@ -62,21 +69,15 @@ export default function ArticlesHub() {
   }
 
   function updateTags(tagsArr) {
-    console.log("update tags called");
-    console.log("tagsArr", tagsArr);
-    if (tagsArr) setTags(tagsArr);
+    const newTagsArr = [...tagsArr];
 
-    if (tagsArr.length > 0) {
-      console.log("tag search should be set to true...");
+    if (newTagsArr.length > 0) {
+      setKeywordSearch(false);
       setTagSearch(true);
+      setTags(newTagsArr);
     } else {
       setTagSearch(false);
     }
-  }
-
-  function togSearch(val) {
-    console.log("togSearch: current val", val);
-    setKeywordSearch(val);
   }
 
   // -------------------------------------------------------------------------------
@@ -101,11 +102,8 @@ export default function ArticlesHub() {
   // --------------------------------------------------------------------------------
 
   // --------------------------------------------------------------------------------
-
   const genFilterResults = (tags, articleData) => {
     const searchResults = searchByTags(tags, articleData);
-
-    console.log("searchResults", searchResults);
 
     return (
       <ContentContainer>
@@ -116,7 +114,6 @@ export default function ArticlesHub() {
       </ContentContainer>
     );
   };
-
   // --------------------------------------------------------------------------------
 
   useEffect(() => {
@@ -143,12 +140,9 @@ export default function ArticlesHub() {
       <SearchContainer>
         <KeywordSearch
           handleUpdate={updateKeyword}
-          toggleSearch={(val) => togSearch(val)}
+          toggleSearch={(val) => toggleKeywordSearch(val)}
         />
-        <FilterSearch
-          handleUpdate={updateTags}
-          toggleSearch={(val) => togSearch(val)}
-        />
+        <FilterSearch handleUpdate={updateTags} />
       </SearchContainer>
       <StatusMessage></StatusMessage>
       {!loadingArticleData && !keywordSearch && !tagSearch && (
@@ -161,7 +155,9 @@ export default function ArticlesHub() {
       {!loadingArticleData &&
         keywordSearch &&
         genKeywordResults(keyword, articleData)}
-      {!loadingArticleData && tagSearch && genFilterResults(tags, articleData)}
+      {!loadingArticleData && !keywordSearch && tagSearch && (
+        <FilterResults tags={tags} articleData={articleData} />
+      )}
       {loadingArticleData && <LoadingArticles />}
       <Footer slim />
       <Navbar alwaysDisplay />
