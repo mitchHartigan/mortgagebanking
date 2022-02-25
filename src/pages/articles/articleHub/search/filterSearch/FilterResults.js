@@ -25,7 +25,8 @@ function searchByTags(tags, articles) {
 
 export const FilterResults = (props) => {
   const { tags, articleData } = props;
-  const searchResults = searchByTags(tags, articleData);
+  const rawSearchResults = searchByTags(tags, articleData);
+  const searchResults = [...new Set(rawSearchResults)];
 
   return (
     <ContentContainer>
