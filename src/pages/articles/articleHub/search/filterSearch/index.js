@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import "./styles.css";
+
+import filterIcon from "./filter_icon.svg";
+import chevron from "./chevron_black.png";
 
 import { tags } from "./tags";
 
@@ -35,19 +37,19 @@ export default function FilterSearch(props) {
     <>
       <FilterButton dropdown={dropdown} onClick={() => toggleDropdown(true)}>
         <FilterHeaderRowContainer>
-          <Image src={"filter_icon.svg"} alt="Filter sort icon." />
+          <Image src={filterIcon} alt="Filter sort icon." />
           <Title>Filter by tag</Title>
-          <Chevron src={"chevron_black.png"} alt="Chevron" />
+          <Chevron src={chevron} alt="Chevron" />
         </FilterHeaderRowContainer>
       </FilterButton>
 
       <FilterDropdown dropdown={dropdown}>
         <DropDownHeaderContainer onClick={() => toggleDropdown(false)}>
           <DropdownTitleContainer>
-            <Image src={"filter_icon.svg"} alt="Filter sort icon." />
+            <Image src={filterIcon} alt="Filter sort icon." />
             <Title>Filter by tag</Title>
           </DropdownTitleContainer>
-          <Chevron src={"chevron_black.png"} alt="Chevron" />
+          <Chevron src={chevron} alt="Chevron" />
         </DropDownHeaderContainer>
 
         <Span />
