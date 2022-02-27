@@ -49,22 +49,23 @@ export default function FilterSearch(props) {
             <Image src={filterIcon} alt="Filter sort icon." />
             <Title>Filter by tag</Title>
           </DropdownTitleContainer>
-          <Chevron src={chevron} alt="Chevron" />
+          <Chevron src={chevron} alt="Chevron" inverted />
         </DropDownHeaderContainer>
 
         <Span />
         <TagContainer>
           {tags.map((tag) => {
             return (
-              <div>
-                <input
+              <Tag>
+                <TagInput
                   type="checkbox"
                   name={tag}
+                  id={tag}
                   onChange={(evt) => handleCheckInput(evt)}
                   key={tag}
                 />
-                <label htmlFor={tag}>{tag}</label>
-              </div>
+                <TagLabel htmlFor={tag}>{tag}</TagLabel>
+              </Tag>
             );
           })}
         </TagContainer>
@@ -73,15 +74,39 @@ export default function FilterSearch(props) {
   );
 }
 
+const Tag = styled.div`
+  box-sizing: border-box;
+  margin: 3px 0px 2px -1px;
+  display: flex;
+  flex-direction: row;
+`;
+
+const TagLabel = styled.label`
+  font-family: ${(props) => props.theme.textFont};
+  font-size: ${(props) => props.theme.text.xs};
+  margin-top: -1px;
+  margin-left: 8px;
+  cursor: pointer;
+  user-select: none;
+`;
+
+const TagInput = styled.input`
+  font-family: ${(props) => props.theme.textFont};
+  font-size: ${(props) => props.theme.text.xs};
+`;
+
 const TagContainer = styled.div`
+  margin-top: 7px;
+
   display: flex;
   flex-direction: column;
-  max-height: 200px;
+  max-height: 195px;
   overflow-y: scroll;
 
   &::-webkit-scrollbar {
     width: 5px;
   }
+
   &::-webkit-scrollbar-track {
     background-color: transparent;
   }
@@ -109,6 +134,7 @@ const Image = styled.img`
 
 const Chevron = styled.img`
   margin-top: 2px;
+  transform: ${(props) => (props.inverted ? "rotate(180deg);" : "")};
 `;
 
 const Span = styled.div`
@@ -140,11 +166,11 @@ const FilterButton = styled.div`
   display: ${(props) => (props.dropdown ? "none" : "flex")};
   background-color: white;
   box-sizing: border-box;
-  padding: 0px 5px 0px 5px;
+  padding: 0px 10px 0px 10px;
   cursor: pointer;
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
   border-radius: 5px;
-  height: 33px;
+  height: 35px;
 `;
 
 const FilterDropdown = styled.div`

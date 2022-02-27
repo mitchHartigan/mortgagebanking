@@ -37,14 +37,14 @@ const Container = styled.div`
   flex-direction: row;
   align-items: center;
   background-color: white;
-  padding: 0px 5px 0px 5px;
+  padding: 0px 5px 0px 10px;
   box-sizing: border-box;
-  width: 325px;
+  width: 350px;
   border-radius: 5px;
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
   margin-right: 20px;
-  height: 33px;
-  max-height: 33px;
+  height: 35px;
+  max-height: 35px;
 `;
 
 const Input = styled.input`
