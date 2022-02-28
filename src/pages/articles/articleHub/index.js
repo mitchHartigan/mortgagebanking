@@ -100,23 +100,14 @@ export default function ArticlesHub() {
 
     return (
       <ContentContainer>
-        <button onClick={clearSearch}>Clear</button>
-        <StatusMessage>{genStatusMessage()}</StatusMessage>
-        {searchResults.map((article) => {
-          return <PreviewCard key={article._id} data={article} />;
-        })}
-      </ContentContainer>
-    );
-  };
-  // --------------------------------------------------------------------------------
-
-  // --------------------------------------------------------------------------------
-  const genFilterResults = (tags, articleData) => {
-    const searchResults = searchByTags(tags, articleData);
-
-    return (
-      <ContentContainer>
-        <p>{`${tags.length} filter(s) applied to results.`}</p>
+        <StatusContainer>
+          <CloseButton
+            onClick={clearSearch}
+            src="button_close.svg"
+            alt="close button"
+          />
+          <StatusMessage>{genStatusMessage()}</StatusMessage>
+        </StatusContainer>
         {searchResults.map((article) => {
           return <PreviewCard key={article._id} data={article} />;
         })}
@@ -225,4 +216,17 @@ const SearchContainer = styled.div`
 const StatusMessage = styled.p`
   font-family: ${(props) => props.theme.textFont};
   font-size: ${(props) => props.theme.text.xs};
+  margin: 0px;
+  margin-left: 15px;
+  margin-top: -2px;
+`;
+
+const StatusContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  margin: 20px 0px 10px 0px;
+`;
+
+const CloseButton = styled.img`
+  cursor: pointer;
 `;
