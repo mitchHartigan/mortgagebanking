@@ -19,7 +19,6 @@ function searchByTags(tags, articles) {
       }
     }
   }
-  console.log(filteredResults);
   return filteredResults;
 }
 
@@ -30,7 +29,14 @@ export const FilterResults = (props) => {
 
   return (
     <ContentContainer>
-      <p>{`${tags.length} filter(s) applied to results.`}</p>
+      <StatusContainer>
+        <CloseButton
+          onClick={props.clearSearch}
+          src="button_close.svg"
+          alt="close button"
+        />
+        <StatusMessage>{`${tags.length} filter(s) applied to results.`}</StatusMessage>
+      </StatusContainer>
       {searchResults.map((article) => {
         return <PreviewCard key={article._id} data={article} />;
       })}
@@ -55,4 +61,22 @@ const ContentContainer = styled.div`
   @media (max-width: 900px) {
     width: 90%;
   }
+`;
+
+const CloseButton = styled.img`
+  cursor: pointer;
+`;
+
+const StatusMessage = styled.p`
+  font-family: ${(props) => props.theme.textFont};
+  font-size: ${(props) => props.theme.text.xs};
+  margin: 0px;
+  margin-left: 15px;
+  margin-top: -2px;
+`;
+
+const StatusContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  margin: 20px 0px 10px 0px;
 `;

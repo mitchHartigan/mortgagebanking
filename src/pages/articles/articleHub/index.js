@@ -49,6 +49,11 @@ export default function ArticlesHub() {
     return filteredResults;
   }
 
+  function clearSearch() {
+    setTagSearch(false);
+    setKeywordSearch(false);
+  }
+
   function searchByTags(tags, articles) {
     let filteredResults = [];
 
@@ -94,7 +99,8 @@ export default function ArticlesHub() {
 
     return (
       <ContentContainer>
-        <p>{genStatusMessage()}</p>
+        <button onClick={clearSearch}>Clear</button>
+        <StatusMessage>{genStatusMessage()}</StatusMessage>
         {searchResults.map((article) => {
           return <PreviewCard key={article._id} data={article} />;
         })}
@@ -143,10 +149,10 @@ export default function ArticlesHub() {
         <KeywordSearch
           handleUpdate={updateKeyword}
           toggleSearch={(val) => toggleKeywordSearch(val)}
+          keywordSearch={keywordSearch}
         />
         <FilterSearch handleUpdate={updateTags} />
       </SearchContainer>
-      <StatusMessage></StatusMessage>
       {!loadingArticleData && !keywordSearch && !tagSearch && (
         <ContentContainer>
           {articleData.map((article) => {
@@ -158,7 +164,11 @@ export default function ArticlesHub() {
         keywordSearch &&
         genKeywordResults(keyword, articleData)}
       {!loadingArticleData && !keywordSearch && tagSearch && (
-        <FilterResults tags={tags} articleData={articleData} />
+        <FilterResults
+          tags={tags}
+          articleData={articleData}
+          clearSearch={clearSearch}
+        />
       )}
       {loadingArticleData && <LoadingArticles />}
       <Footer slim />
@@ -207,6 +217,11 @@ const SearchContainer = styled.div`
   flex-direction: row;
   width: 100%;
   justify-content: center;
+
+  margin-top: 25px;
 `;
 
-const StatusMessage = styled.p``;
+const StatusMessage = styled.p`
+  font-family: ${(props) => props.theme.textFont};
+  font-size: ${(props) => props.theme.text.xs};
+`;
