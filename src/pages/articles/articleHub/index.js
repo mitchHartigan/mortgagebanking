@@ -31,6 +31,7 @@ export default function ArticlesHub() {
   }
 
   function updateKeyword(keyword) {
+    console.log("keyword:", keyword);
     setKeyword(keyword);
   }
 
@@ -227,6 +228,7 @@ const SearchContainer = styled.div`
 const StatusMessage = styled.p`
   font-family: ${(props) => props.theme.textFont};
   font-size: ${(props) => props.theme.text.xs};
+  font-weight: bold;
   margin: 0px;
   margin-left: 15px;
   margin-top: -2px;
