@@ -157,6 +157,10 @@ const Title = styled.p`
   font-size: ${(props) => props.theme.text.xs};
   user-select: none;
   -webkit-user-select: none;
+
+  @media (max-width: 1200px) {
+    margin-right: 15px;
+  }
 `;
 
 const DropDownHeaderContainer = styled.div`
@@ -178,6 +182,7 @@ const FilterButton = styled.div`
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
   border-radius: 5px;
   height: 35px;
+  min-width: 170px;
 `;
 
 const FilterDropdown = styled.div`

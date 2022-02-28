@@ -46,6 +46,10 @@ const Container = styled.div`
   margin-right: 20px;
   height: 35px;
   max-height: 35px;
+
+  @media (max-width: 1200px) {
+    width: 100%;
+  }
 `;
 
 const Input = styled.input`

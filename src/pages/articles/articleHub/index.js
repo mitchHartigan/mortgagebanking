@@ -207,10 +207,21 @@ const ContentContainer = styled.div`
 const SearchContainer = styled.div`
   display: flex;
   flex-direction: row;
-  width: 100%;
   justify-content: center;
 
   margin-top: 25px;
+
+  @media (max-width: 1200px) {
+    width: 750px;
+  }
+
+  @media (max-width: 900px) {
+    width: 550px;
+  }
+
+  @media (max-width: 700px) {
+    width: 90%;
+  }
 `;
 
 const StatusMessage = styled.p`
