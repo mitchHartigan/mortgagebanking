@@ -37,9 +37,11 @@ export default function ArticlesHub() {
   function searchByKeyword(keyword, articles) {
     let filteredResults = [];
 
+    const searchPattern = new RegExp(keyword, "i");
+
     for (let article of articles) {
       if (article.content) {
-        if (article.content.search(keyword) >= 0) {
+        if (article.content.search(searchPattern) >= 0) {
           filteredResults.push(article);
         }
       }
