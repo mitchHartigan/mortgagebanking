@@ -8,20 +8,17 @@ import { tags } from "./tags";
 
 export default function FilterSearch(props) {
   const [dropdown, toggleDropdown] = useState(false);
-  const [activeTags, setActiveTags] = useState([]);
 
   function addActiveTag(tag) {
-    const updatedTags = [...activeTags, tag];
-    setActiveTags(updatedTags);
+    const updatedTags = [...props.tags, tag];
     props.handleUpdate(updatedTags);
   }
 
   function removeActiveTag(tag) {
-    const updatedTags = activeTags;
-    const tagIndex = activeTags.indexOf(tag);
+    const updatedTags = props.tags;
+    const tagIndex = props.tags.indexOf(tag);
     updatedTags.splice(tagIndex, 1);
 
-    setActiveTags(updatedTags);
     props.handleUpdate(updatedTags);
   }
 
@@ -31,6 +28,15 @@ export default function FilterSearch(props) {
     } else {
       removeActiveTag(evt.target.name);
     }
+  }
+
+  function checkIfTagActive(inputTag) {
+    let activeTag = false;
+
+    for (let savedTag of props.tags) {
+      if (inputTag === savedTag) activeTag = true;
+    }
+    return activeTag;
   }
 
   return (
@@ -63,6 +69,7 @@ export default function FilterSearch(props) {
                   id={tag}
                   onChange={(evt) => handleCheckInput(evt)}
                   key={tag}
+                  checked={checkIfTagActive(tag)}
                 />
                 <TagLabel htmlFor={tag}>{tag}</TagLabel>
               </Tag>

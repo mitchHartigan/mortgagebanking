@@ -51,6 +51,7 @@ export default function ArticlesHub() {
 
   function clearSearch() {
     setTagSearch(false);
+    setTags([]);
     setKeywordSearch(false);
   }
 
@@ -151,7 +152,7 @@ export default function ArticlesHub() {
           toggleSearch={(val) => toggleKeywordSearch(val)}
           keywordSearch={keywordSearch}
         />
-        <FilterSearch handleUpdate={updateTags} />
+        <FilterSearch handleUpdate={updateTags} tags={tags} />
       </SearchContainer>
       {!loadingArticleData && !keywordSearch && !tagSearch && (
         <ContentContainer>
