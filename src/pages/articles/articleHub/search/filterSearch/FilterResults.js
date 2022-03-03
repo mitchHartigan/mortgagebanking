@@ -52,7 +52,7 @@ export const FilterResults = (props) => {
         })}
       {searchResults.length == 0 && (
         <NoResultsFoundMessage>
-          No matching articles found for the selected tags.
+          No articles found matching the selected tags.
         </NoResultsFoundMessage>
       )}
     </ContentContainer>
