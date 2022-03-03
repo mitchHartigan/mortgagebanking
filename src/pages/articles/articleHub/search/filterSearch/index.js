@@ -98,6 +98,7 @@ const TagLabel = styled.label`
 const TagInput = styled.input`
   font-family: ${(props) => props.theme.textFont};
   font-size: ${(props) => props.theme.text.xs};
+  cursor: pointer;
 `;
 
 const TagContainer = styled.div`

@@ -2,21 +2,20 @@ import React, { useState } from "react";
 import styled from "styled-components";
 
 export default function KeywordSearch(props) {
-  const [keyword, setKeyword] = useState("");
+  // const [keyword, setKeyword] = useState("");
 
   function handleChange(evt) {
     const { value } = evt.target;
 
     if (value === "") {
-      setKeyword(value);
+      props.handleUpdate(value);
       props.toggleSearch(false);
     }
-    setKeyword(value);
+    props.handleUpdate(value);
   }
 
   function handleKeyDown(evt) {
     if (evt.keyCode === 13) {
-      props.handleUpdate(keyword);
       props.toggleSearch(true);
     }
   }
@@ -25,7 +24,7 @@ export default function KeywordSearch(props) {
     <Container>
       <Input
         onChange={handleChange}
-        value={keyword}
+        value={props.keyword}
         onKeyDown={handleKeyDown}
         placeholder="Search by keyword..."
       />
