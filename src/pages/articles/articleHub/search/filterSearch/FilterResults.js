@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import PreviewCard from "../../PreviewCard";
+import buttonClose from "./button_close.svg";
 
 function searchByTags(tags, articles) {
   let filteredResults = [];
@@ -22,6 +23,8 @@ function searchByTags(tags, articles) {
   return filteredResults;
 }
 
+// -------------------------------
+// -------------------------------
 export const FilterResults = (props) => {
   const { tags, articleData } = props;
   const rawSearchResults = searchByTags(tags, articleData);
@@ -32,11 +35,16 @@ export const FilterResults = (props) => {
       <StatusContainer>
         <CloseButton
           onClick={props.clearSearch}
-          src="button_close.svg"
+          src={buttonClose}
           alt="close button"
         />
-        <StatusMessage>{`${tags.length} filter(s) applied to results.`}</StatusMessage>
+        <StatusMessage>{`Filtering by ${tags.length} tag(s):`}</StatusMessage>
       </StatusContainer>
+      <TagContainer>
+        {tags.map((tag) => {
+          return <Tag>{tag}</Tag>;
+        })}
+      </TagContainer>
       {searchResults.map((article) => {
         return <PreviewCard key={article._id} data={article} />;
       })}
@@ -61,6 +69,26 @@ const ContentContainer = styled.div`
   @media (max-width: 900px) {
     width: 90%;
   }
+`;
+
+const TagContainer = styled.div`
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0px 20px 0px 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+`;
+
+const Tag = styled.div`
+  margin: 5px 10px 5px 10px;
+  padding: 5px 10px 5px 10px;
+  border-radius: 5px;
+  color: black;
+  background-color: ${(props) => props.theme.colors.mainGold};
+  font-family: ${(props) => props.theme.textFont};
+  font-size: ${(props) => props.theme.text.xs};
 `;
 
 const CloseButton = styled.img`
