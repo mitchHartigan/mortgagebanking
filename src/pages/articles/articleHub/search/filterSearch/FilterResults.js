@@ -3,26 +3,27 @@ import styled from "styled-components";
 import PreviewCard from "../../PreviewCard";
 import buttonClose from "./button_close.svg";
 
-function searchByTags(tags, articles) {
+function checkArrayIncludesAll(array, target) {
+  // baseArray is the filter tags.
+  // targetArray is the article tags.
+  return target.every((value) => array.includes(value));
+}
+
+function searchByTags(filterTags, articles) {
   let filteredResults = [];
 
   for (let article of articles) {
     // for each article
-    if (article.tags) {
-      for (let articleTag of article.tags) {
-        // for each article tag
-        for (let filterTag of tags) {
-          // for each filter tag
-          if (articleTag === filterTag) {
-            filteredResults.push(article);
-          }
-        }
+    if (article.tags.length > 0) {
+      const matchingTags = checkArrayIncludesAll(article.tags, filterTags);
+
+      if (matchingTags) {
+        filteredResults.push(article);
       }
     }
   }
   return filteredResults;
 }
-
 // -------------------------------
 // -------------------------------
 export const FilterResults = (props) => {
@@ -38,16 +39,22 @@ export const FilterResults = (props) => {
           src={buttonClose}
           alt="close button"
         />
-        <StatusMessage>{`Filtering by ${tags.length} tag(s):`}</StatusMessage>
+        <StatusMessage>{`Filtering articles by ${tags.length} tag(s):`}</StatusMessage>
       </StatusContainer>
       <TagContainer>
         {tags.map((tag) => {
           return <Tag>{tag}</Tag>;
         })}
       </TagContainer>
-      {searchResults.map((article) => {
-        return <PreviewCard key={article._id} data={article} />;
-      })}
+      {searchResults.length > 0 &&
+        searchResults.map((article) => {
+          return <PreviewCard key={article._id} data={article} />;
+        })}
+      {searchResults.length == 0 && (
+        <NoResultsFoundMessage>
+          No matching articles found for the selected tags.
+        </NoResultsFoundMessage>
+      )}
     </ContentContainer>
   );
 };
@@ -75,6 +82,7 @@ const TagContainer = styled.div`
   width: 100%;
   box-sizing: border-box;
   padding: 0px 20px 0px 20px;
+  margin: 10px 0px 10px 0px;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -83,8 +91,9 @@ const TagContainer = styled.div`
 
 const Tag = styled.div`
   margin: 5px 10px 5px 10px;
-  padding: 5px 10px 5px 10px;
+  padding: 5px 10px 7px 10px;
   border-radius: 5px;
+  box-shadow: 0px 1px 1px rgb(0 0 0 / 25%);
   color: black;
   background-color: ${(props) => props.theme.colors.mainGold};
   font-family: ${(props) => props.theme.textFont};
@@ -93,6 +102,11 @@ const Tag = styled.div`
 
 const CloseButton = styled.img`
   cursor: pointer;
+`;
+
+const NoResultsFoundMessage = styled.p`
+  font-family: ${(props) => props.theme.textFont};
+  font-size: ${(props) => props.theme.text.xs};
 `;
 
 const StatusMessage = styled.p`
