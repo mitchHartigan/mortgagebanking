@@ -38,7 +38,7 @@ export default function FilterSearch(props) {
   }
 
   return (
-    <>
+    <FilterDropdownContainer>
       <FilterButton dropdown={dropdown} onClick={() => toggleDropdown(true)}>
         <FilterHeaderRowContainer>
           <Image src={filterIcon} alt="Filter sort icon." />
@@ -75,7 +75,7 @@ export default function FilterSearch(props) {
           })}
         </TagContainer>
       </FilterDropdown>
-    </>
+    </FilterDropdownContainer>
   );
 }
 
@@ -193,3 +193,5 @@ const FilterDropdown = styled.div`
   padding: 0px 10px 15px 10px;
   border-radius: 5px;
 `;
+
+const FilterDropdownContainer = styled.div``;
