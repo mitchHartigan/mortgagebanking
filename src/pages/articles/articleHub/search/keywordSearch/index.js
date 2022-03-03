@@ -5,13 +5,7 @@ export default function KeywordSearch(props) {
   // const [keyword, setKeyword] = useState("");
 
   function handleChange(evt) {
-    const { value } = evt.target;
-
-    if (value === "") {
-      props.handleUpdate(value);
-      props.toggleSearch(false);
-    }
-    props.handleUpdate(value);
+    props.handleUpdate(evt.target.value);
   }
 
   function handleKeyDown(evt) {

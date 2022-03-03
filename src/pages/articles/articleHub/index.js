@@ -19,6 +19,7 @@ export default function ArticlesHub() {
   const [keywordSearch, setKeywordSearch] = useState(false);
   const [tagSearch, setTagSearch] = useState(false);
   const [keyword, setKeyword] = useState("");
+  const [keywordQuery, setKeywordQuery] = useState("");
   const [tags, setTags] = useState([]);
 
   function toggleKeywordSearch(value) {
@@ -27,11 +28,11 @@ export default function ArticlesHub() {
       return;
     }
     setKeywordSearch(value);
+    setKeywordQuery(keyword);
     setTagSearch(false);
   }
 
   function updateKeyword(keyword) {
-    console.log("keyword:", keyword);
     setKeyword(keyword);
   }
 
@@ -91,13 +92,13 @@ export default function ArticlesHub() {
   }
 
   // -------------------------------------------------------------------------------
-  const genKeywordResults = (keyword, articleData) => {
-    const searchResults = searchByKeyword(keyword, articleData);
+  const genKeywordResults = (keywordQuery, articleData) => {
+    const searchResults = searchByKeyword(keywordQuery, articleData);
 
     function genStatusMessage() {
       if (searchResults.length == 0)
-        return `No results found for '${keyword}'.`;
-      return `Showing articles containing '${keyword}'.`;
+        return `No results found for '${keywordQuery}'.`;
+      return `Showing articles containing '${keywordQuery}'.`;
     }
 
     return (
@@ -145,6 +146,7 @@ export default function ArticlesHub() {
           toggleSearch={(val) => toggleKeywordSearch(val)}
           keywordSearch={keywordSearch}
           keyword={keyword}
+          keywordQuery={keywordQuery}
         />
         <FilterSearch handleUpdate={updateTags} tags={tags} />
       </SearchContainer>
@@ -157,7 +159,7 @@ export default function ArticlesHub() {
       )}
       {!loadingArticleData &&
         keywordSearch &&
-        genKeywordResults(keyword, articleData)}
+        genKeywordResults(keywordQuery, articleData)}
       {!loadingArticleData && !keywordSearch && tagSearch && (
         <FilterResults
           tags={tags}
