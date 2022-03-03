@@ -17,8 +17,8 @@ export default function FilterSearch(props) {
   function removeActiveTag(tag) {
     const updatedTags = props.tags;
     const tagIndex = props.tags.indexOf(tag);
-    updatedTags.splice(tagIndex, 1);
 
+    updatedTags.splice(tagIndex, 1);
     props.handleUpdate(updatedTags);
   }
 

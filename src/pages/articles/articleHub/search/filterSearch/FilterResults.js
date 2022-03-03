@@ -4,8 +4,6 @@ import PreviewCard from "../../PreviewCard";
 import buttonClose from "./button_close.svg";
 
 function checkArrayIncludesAll(array, target) {
-  // baseArray is the filter tags.
-  // targetArray is the article tags.
   return target.every((value) => array.includes(value));
 }
 
@@ -24,8 +22,7 @@ function searchByTags(filterTags, articles) {
   }
   return filteredResults;
 }
-// -------------------------------
-// -------------------------------
+
 export const FilterResults = (props) => {
   const { tags, articleData } = props;
   const rawSearchResults = searchByTags(tags, articleData);
