@@ -12,7 +12,6 @@ export const tags = [
   "CFR",
   "LEI",
   "ULI",
-  "MortgageComplaince",
   "LegalEntityIdentifier",
   "GLEI",
   "NeedaLEI",
