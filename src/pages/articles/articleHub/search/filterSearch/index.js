@@ -23,11 +23,9 @@ export default function FilterSearch(props) {
   }
 
   function handleCheckInput(evt) {
-    if (evt.target.checked) {
-      addActiveTag(evt.target.name);
-    } else {
-      removeActiveTag(evt.target.name);
-    }
+    const { checked, name } = evt.target;
+    if (checked) addActiveTag(name);
+    else removeActiveTag(name);
   }
 
   function checkIfTagActive(inputTag) {
