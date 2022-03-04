@@ -94,7 +94,7 @@ export const KeywordResults = (props) => {
 const StatusContainer = styled.div`
   display: flex;
   flex-direction: row;
-  margin: 20px 0px 10px 0px;
+  margin: 27px 0px 17px 0px;
 `;
 
 const StatusMessage = styled.p`

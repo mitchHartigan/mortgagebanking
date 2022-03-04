@@ -119,5 +119,5 @@ const StatusMessage = styled.p`
 const StatusContainer = styled.div`
   display: flex;
   flex-direction: row;
-  margin: 20px 0px 10px 0px;
+  margin: 27px 0px 10px 0px;
 `;
