@@ -37,14 +37,11 @@ function searchByKeyword(keywordQuery, articles) {
 
         let rawSnippet = parsedContent.substring(
           strIndex - 100,
-          strIndex + 150
+          strIndex + 200
         );
 
         const parsedSnippet = rawSnippet.split(" ");
-        parsedSnippet.splice(0, 1);
-        console.log("asdf", parsedSnippet);
-
-        console.log("hey mitch!", arrayToString(parsedSnippet));
+        parsedSnippet[0] = "...";
 
         const snippet = arrayToString(parsedSnippet);
         snippets.push(snippet);

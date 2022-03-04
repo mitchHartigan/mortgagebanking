@@ -1,6 +1,11 @@
 .highlighterContainer {
   font-family: Lato;
   font-size: 14px;
+  line-height: 22px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
 }
 
 .highlighterActiveArea {
