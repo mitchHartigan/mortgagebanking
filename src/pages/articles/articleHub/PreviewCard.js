@@ -13,7 +13,7 @@ const loadImageFromDB = async (name, setImage) => {
 };
 
 export default function PreviewCard(props) {
-  const { data } = props;
+  const { data, previewData, snippet, keyword } = props;
   const [loadArticle, setLoadArticle] = useState(false);
   const [image, setImage] = useState("");
 
@@ -26,7 +26,7 @@ export default function PreviewCard(props) {
       <Card onClick={() => setLoadArticle(true)}>
         <ContentContainer>
           <ImgPreview url={image} />
-          <PreviewContent data={data} />
+          <PreviewContent data={data} previewData={props.previewData} />
         </ContentContainer>
       </Card>
     );

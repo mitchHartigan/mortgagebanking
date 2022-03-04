@@ -1,0 +1,11 @@
+.highlighterContainer {
+  font-family: Lato;
+  font-size: 14px;
+}
+
+.highlighterActiveArea {
+  background-color: #e1a915;
+  color: white;
+  padding: 0px 2px 0px 2px;
+  text-shadow: 1px 1px #8f6b0d;
+}

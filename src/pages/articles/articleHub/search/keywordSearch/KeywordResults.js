@@ -4,8 +4,23 @@ import closeButton from "../filterSearch/button_close.svg";
 
 import PreviewCard from "../../PreviewCard";
 
+function arrayToString(array) {
+  var string = "";
+
+  for (let elem of array) {
+    if (array.indexOf(elem) == 0) {
+      string = string + elem;
+    } else {
+      string = string + " " + elem;
+    }
+  }
+
+  return string;
+}
+
 function searchByKeyword(keywordQuery, articles) {
   let filteredResults = [];
+  let snippets = [];
   // const searchPattern = new RegExp(keywordQuery, "i");
   const searchPattern = new RegExp(keywordQuery, "gi");
   console.log(searchPattern);
@@ -15,17 +30,33 @@ function searchByKeyword(keywordQuery, articles) {
       const strIndex = article.content.search(searchPattern);
 
       if (strIndex >= 0) {
-        filteredResults.push(article);
+        // Add matching article to results.
+
         const regex = /[\r\n]+/gm;
         const parsedContent = article.content.replace(regex, "");
 
         let rawSnippet = parsedContent.substring(
           strIndex - 100,
-          strIndex + 100
+          strIndex + 150
         );
+
         const parsedSnippet = rawSnippet.split(" ");
         parsedSnippet.splice(0, 1);
-        console.log(parsedSnippet);
+        console.log("asdf", parsedSnippet);
+
+        console.log("hey mitch!", arrayToString(parsedSnippet));
+
+        const snippet = arrayToString(parsedSnippet);
+        snippets.push(snippet);
+
+        const newArticleObj = {
+          ...article,
+          snippet: snippet,
+          keyword: keywordQuery,
+          keywordPattern: searchPattern,
+        };
+
+        filteredResults.push(newArticleObj);
       }
     }
   }
