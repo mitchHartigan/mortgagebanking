@@ -78,9 +78,6 @@ export default function ArticlesHub() {
       <Title size="xxl" styles={titleStylesOverride}>
         Articles
       </Title>
-      <button onClick={() => console.log("kq", keywordQuery)}>
-        log keywordQuery
-      </button>
       <SearchContainer>
         <KeywordSearch
           handleUpdate={updateKeyword}
