@@ -5,7 +5,11 @@ export default function KeywordSearch(props) {
   const { handleUpdate, toggleSearch, keyword } = props;
 
   function handleKeyDown(evt) {
-    if (evt.keyCode === 13) toggleSearch(true);
+    if (keyword === "" && evt.keyCode === 13) {
+      toggleSearch(false);
+    } else if (evt.keyCode === 13) {
+      toggleSearch(true);
+    }
   }
 
   return (

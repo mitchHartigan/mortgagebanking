@@ -12,6 +12,7 @@ import { LoadingArticles } from "./LoadingArticles";
 import FilterSearch from "./search/filterSearch";
 import KeywordSearch from "./search/keywordSearch";
 import { FilterResults } from "./search/filterSearch/FilterResults";
+import { KeywordResults } from "./search/keywordSearch/KeywordResults";
 
 export default function ArticlesHub() {
   const [articleData, setArticleData] = useState([]);
@@ -36,47 +37,11 @@ export default function ArticlesHub() {
     setKeyword(keyword);
   }
 
-  function searchByKeyword(keyword, articles) {
-    let filteredResults = [];
-
-    const searchPattern = new RegExp(keyword, "i");
-
-    for (let article of articles) {
-      if (article.content) {
-        if (article.content.search(searchPattern) >= 0) {
-          filteredResults.push(article);
-        }
-      }
-    }
-    return filteredResults;
-  }
-
   function clearSearch() {
     setTagSearch(false);
     setTags([]);
     setKeyword("");
     setKeywordSearch(false);
-  }
-
-  function searchByTags(tags, articles) {
-    let filteredResults = [];
-
-    for (let article of articles) {
-      // for each article
-      if (article.tags) {
-        for (let articleTag of article.tags) {
-          // for each article tag
-          for (let filterTag of tags) {
-            // for each filter tag
-            if (articleTag === filterTag) {
-              filteredResults.push(article);
-            }
-          }
-        }
-      }
-    }
-    console.log(filteredResults);
-    return filteredResults;
   }
 
   function updateTags(tagsArr) {
@@ -91,39 +56,12 @@ export default function ArticlesHub() {
     }
   }
 
-  // -------------------------------------------------------------------------------
-  const genKeywordResults = (keywordQuery, articleData) => {
-    const searchResults = searchByKeyword(keywordQuery, articleData);
-
-    function genStatusMessage() {
-      if (searchResults.length == 0)
-        return `No results found for '${keywordQuery}'.`;
-      return `Showing articles containing '${keywordQuery}'.`;
-    }
-
-    return (
-      <ContentContainer>
-        <StatusContainer>
-          <CloseButton
-            onClick={clearSearch}
-            src="button_close.svg"
-            alt="close button"
-          />
-          <StatusMessage>{genStatusMessage()}</StatusMessage>
-        </StatusContainer>
-        {searchResults.map((article) => {
-          return <PreviewCard key={article._id} data={article} />;
-        })}
-      </ContentContainer>
-    );
-  };
-  // --------------------------------------------------------------------------------
-
   useEffect(() => {
     setLoadingArticleData(true);
 
     async function loadData() {
       const articleData = await FETCH_ARTICLE_DATA();
+      console.log(articleData);
       if (articleData)
         saveArticlesToSessionStorage(
           articleData,
@@ -140,6 +78,9 @@ export default function ArticlesHub() {
       <Title size="xxl" styles={titleStylesOverride}>
         Articles
       </Title>
+      <button onClick={() => console.log("kq", keywordQuery)}>
+        log keywordQuery
+      </button>
       <SearchContainer>
         <KeywordSearch
           handleUpdate={updateKeyword}
@@ -157,9 +98,13 @@ export default function ArticlesHub() {
           })}
         </ContentContainer>
       )}
-      {!loadingArticleData &&
-        keywordSearch &&
-        genKeywordResults(keywordQuery, articleData)}
+      {!loadingArticleData && keywordSearch && (
+        <KeywordResults
+          keywordQuery={keywordQuery}
+          articleData={articleData}
+          clearSearch={clearSearch}
+        />
+      )}
       {!loadingArticleData && !keywordSearch && tagSearch && (
         <FilterResults
           tags={tags}
