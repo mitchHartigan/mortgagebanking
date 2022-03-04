@@ -31,6 +31,7 @@ export default function ArticlesHub() {
     setKeywordSearch(value);
     setKeywordQuery(keyword);
     setTagSearch(false);
+    setTags([]);
   }
 
   function updateKeyword(keyword) {
@@ -49,6 +50,8 @@ export default function ArticlesHub() {
 
     if (newTagsArr.length > 0) {
       setKeywordSearch(false);
+      setKeyword("");
+      setKeywordQuery("");
       setTagSearch(true);
       setTags(newTagsArr);
     } else {

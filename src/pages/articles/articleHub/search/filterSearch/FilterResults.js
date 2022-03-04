@@ -92,6 +92,7 @@ const Tag = styled.div`
   border-radius: 5px;
   box-shadow: 0px 1px 1px rgb(0 0 0 / 25%);
   color: black;
+  font-weight: bold;
   background-color: ${(props) => props.theme.colors.mainGold};
   font-family: ${(props) => props.theme.textFont};
   font-size: ${(props) => props.theme.text.xs};
