@@ -26,7 +26,7 @@ export default function PreviewCard(props) {
       <Card onClick={() => setLoadArticle(true)}>
         <ContentContainer>
           <ImgPreview url={image} />
-          <PreviewContent data={data} />
+          <PreviewContent data={data} previewData={props.previewData} />
         </ContentContainer>
       </Card>
     );
@@ -48,7 +48,7 @@ const Card = styled.div`
   margin: 20px 0px 20px 0px;
   transition: box-shadow 50ms linear;
 
-  &: hover {
+  &:hover {
     cursor: pointer;
     box-shadow: 1px 4px 4px rgba(0, 0, 0, 0.4);
     transition: box-shadow 50ms linear;

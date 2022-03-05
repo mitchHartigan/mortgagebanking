@@ -1,0 +1,16 @@
+.highlighterContainer {
+  font-family: Lato;
+  font-size: 14px;
+  line-height: 22px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+}
+
+.highlighterActiveArea {
+  background-color: #e1a915;
+  color: black;
+  padding: 0px 1px 2px 1px;
+  box-sizing: border-box;
+}
