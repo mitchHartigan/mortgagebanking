@@ -16,8 +16,6 @@ const Snippet = (props) => {
 export default function PreviewContent(props) {
   const { title, date, previewContent, snippet, term, keyword } = props.data;
 
-  console.log(keyword);
-
   return (
     <Container>
       <HeaderContainer>
