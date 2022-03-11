@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import "magnifying_glass.svg";
 
 export default class SearchBar extends Component {
   constructor(props) {

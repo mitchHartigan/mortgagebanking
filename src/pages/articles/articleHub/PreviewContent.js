@@ -1,8 +1,22 @@
 import React from "react";
 import styled from "styled-components";
+import Highlighter from "react-highlight-words";
+import "./styles.css";
+
+const Snippet = (props) => {
+  const { snippet, term } = props;
+  console.log(term);
+
+  for (let character in snippet) {
+    console.log(character);
+  }
+  return <p>{props.children}</p>;
+};
 
 export default function PreviewContent(props) {
-  const { title, date, previewContent } = props.data;
+  const { title, date, previewContent, snippet, term, keyword } = props.data;
+
+  console.log(keyword);
 
   return (
     <Container>
@@ -12,7 +26,16 @@ export default function PreviewContent(props) {
         <Span />
       </HeaderContainer>
       <TextContainer>
-        <Text>{previewContent}</Text>
+        {!snippet && <Text>{previewContent}</Text>}
+        {snippet && (
+          <Highlighter
+            className="highlighterContainer"
+            highlightClassName="highlighterActiveArea"
+            searchWords={[keyword]}
+            autoEscape
+            textToHighlight={snippet}
+          />
+        )}
       </TextContainer>
     </Container>
   );
@@ -84,4 +107,8 @@ const Text = styled.p`
 const TextContainer = styled.div`
   padding: 0px 5px 0px 0px;
   box-sizing: border-box;
+`;
+
+const Highlight = styled.div`
+  background-color: red;
 `;
