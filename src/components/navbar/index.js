@@ -33,7 +33,7 @@ export default class Navbar extends React.Component {
 
     return (
       <Container>
-        <Hamburger />
+        <Hamburger homepage={homepage} />
         <Navbar_
           scrollPos={this.state.scrollPos}
           alwaysDisplay={this.props.alwaysDisplay}

@@ -130,8 +130,6 @@ export default class Homepage extends Component {
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100%:
-  justify-content: center; 
 `;
 
 const DarkBlueContainer = styled.div`
