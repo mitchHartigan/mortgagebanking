@@ -47,7 +47,7 @@ export default class SearchBar extends Component {
       } else {
         this.props.loadCard(this.props.cursorPos - 2); // since the first two cursor indexes identify the search bar and view all results elements.
       }
-    }
+    } else this.props.updateCursor(2);
   };
 
   componentDidMount() {
