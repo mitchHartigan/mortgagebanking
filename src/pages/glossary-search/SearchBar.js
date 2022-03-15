@@ -8,46 +8,52 @@ export default class SearchBar extends Component {
   }
 
   _handleViewAllResults = (completedQuery, loadingResults) => {
-    if (!completedQuery || loadingResults) {
-      return;
-    } else {
-      this.props.toggleViewAllResults();
-    }
+    if (!completedQuery || loadingResults) return;
+    else this.props.toggleViewAllResults();
   };
 
   _handleInput = (evt) => {
     this.props.updateQuery(evt.target.value);
   };
 
-  _updateCursorPos = (evt) => {
+  updateCursorPos = (evt) => {
     const { key } = evt;
-    // maybe refactor this with a switch case statement?
+    const {
+      cursorPos,
+      updateCursor,
+      results,
+      completedQuery,
+      loadingResults,
+      loadCard,
+    } = this.props;
 
-    if (key === "ArrowUp") {
-      evt.preventDefault();
-      let cursorPos = this.props.cursorPos;
-      if (cursorPos <= 0) return;
-      else {
-        this.props.updateCursor(cursorPos - 1);
-      }
-    } else if (key === "ArrowDown") {
-      let cursorPos = this.props.cursorPos;
-      if (cursorPos === 7 || cursorPos >= this.props.results.length + 1) return;
-      // including the search bar (cursor 0) and 'See all results' (cursor 1), and a maximum of 6 results, the max index will be 7.
-      else {
-        this.props.updateCursor(cursorPos + 1);
-      }
-    } else if (key === "Enter") {
-      if (this.props.cursorPos === 0) return;
-      if (this.props.cursorPos === 1) {
-        this._handleViewAllResults(
-          this.props.completedQuery,
-          this.props.loadingResults
-        );
-      } else {
-        this.props.loadCard(this.props.cursorPos - 2); // since the first two cursor indexes identify the search bar and view all results elements.
-      }
-    } else this.props.updateCursor(2);
+    switch (key) {
+      case "ArrowUp":
+        // Move the cursor up one element.
+        evt.preventDefault();
+        if (cursorPos <= 0) return;
+        else updateCursor(cursorPos - 1);
+        break;
+
+      case "ArrowDown":
+        // Move the cursor down one element.
+        if (cursorPos === 7 || cursorPos >= results.length + 1) return;
+        // including the search bar (cursor 0) and 'See all results' (cursor 1), and a maximum of 6 results, the max index will be 7.
+        else updateCursor(cursorPos + 1);
+        break;
+
+      case "Enter":
+        // Load the card at the cursor.
+        if (cursorPos === 0) return;
+        if (cursorPos === 1)
+          this._handleViewAllResults(completedQuery, loadingResults);
+        else loadCard(cursorPos - 2);
+        // -2, since the first two cursor indexes are the search bar and 'view all results'.
+        break;
+
+      default:
+        updateCursor(2);
+    }
   };
 
   componentDidMount() {
@@ -62,7 +68,7 @@ export default class SearchBar extends Component {
           ref={this.inputRef}
           onChange={this._handleInput}
           value={this.props.query}
-          onKeyDown={this._updateCursorPos}
+          onKeyDown={this.updateCursorPos}
           placeholder="Enter acronym or term to search..."
           onFocus={this.props.toggleSearchBarFocused}
           onBlur={this.props.toggleSearchBarFocused}
