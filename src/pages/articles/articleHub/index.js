@@ -59,12 +59,26 @@ export default function ArticlesHub() {
     }
   }
 
+  // Eventually, I'd like to re-write this to use refs, just in case
+  // document.getElement gets deprecated in future React versions.
+  function scrollToOpenedArticle() {
+    setTimeout(() => {
+      const openedArticleTitle = sessionStorage.getItem("openedArticleTitle");
+
+      if (openedArticleTitle) {
+        const domNode = document.getElementById(openedArticleTitle);
+        if (domNode) {
+          domNode.scrollIntoView({ behavior: "auto", block: "center" });
+        }
+      }
+    }, 80);
+  }
+
   useEffect(() => {
     setLoadingArticleData(true);
 
     async function loadData() {
       const articleData = await FETCH_ARTICLE_DATA();
-      console.log(articleData);
       if (articleData)
         saveArticlesToSessionStorage(
           articleData,
@@ -73,6 +87,7 @@ export default function ArticlesHub() {
         );
     }
     loadData();
+    scrollToOpenedArticle();
   }, []);
 
   return (

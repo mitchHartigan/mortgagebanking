@@ -32,8 +32,6 @@ const markdownOptions = {
 const loadImageFromDB = async (name, setImage) => {
   const imgObj = await FETCH_IMG_BASE64(`${name}_lg.png`);
 
-  console.log("i", imgObj);
-
   if (!imgObj.validImg) setImage("/articles/img/default.png");
   else {
     setImage(`data:image/png;base64,${imgObj.url}`);

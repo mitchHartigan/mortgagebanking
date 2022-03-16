@@ -3,20 +3,8 @@ import styled from "styled-components";
 import Highlighter from "react-highlight-words";
 import "./styles.css";
 
-const Snippet = (props) => {
-  const { snippet, term } = props;
-  console.log(term);
-
-  for (let character in snippet) {
-    console.log(character);
-  }
-  return <p>{props.children}</p>;
-};
-
 export default function PreviewContent(props) {
   const { title, date, previewContent, snippet, term, keyword } = props.data;
-
-  console.log(keyword);
 
   return (
     <Container>
