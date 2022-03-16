@@ -72,8 +72,6 @@ export default function ArticlesHub() {
       getElement();
     });
 
-  // Eventually, I'd like to re-write this to use refs, just in case
-  // document.getElement gets deprecated in future React versions.
   async function scrollToOpenedArticle() {
     const openedArticleTitle = sessionStorage.getItem("openedArticleTitle");
 
