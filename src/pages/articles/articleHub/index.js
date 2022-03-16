@@ -79,8 +79,7 @@ export default function ArticlesHub() {
 
     if (openedArticleTitle) {
       const domNode = await getElementByIdAsync(openedArticleTitle);
-      console.log("domNode:", domNode);
-      domNode.scrollIntoView({});
+      domNode.scrollIntoView({ block: "center" });
     }
   }
 
