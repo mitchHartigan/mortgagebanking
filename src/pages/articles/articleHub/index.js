@@ -69,7 +69,11 @@ export default function ArticlesHub() {
         const domNode = document.getElementById(openedArticleTitle);
         if (domNode) {
           domNode.scrollIntoView({ behavior: "auto", block: "center" });
+        } else {
+          console.log("no dom node.");
         }
+      } else {
+        console.log("no opened article.");
       }
     }, 80);
   }
