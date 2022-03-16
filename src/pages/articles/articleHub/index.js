@@ -59,23 +59,29 @@ export default function ArticlesHub() {
     }
   }
 
+  const getElementByIdAsync = (id) =>
+    new Promise((resolve) => {
+      const getElement = () => {
+        const element = document.getElementById(id);
+        if (element) {
+          resolve(element);
+        } else {
+          requestAnimationFrame(getElement);
+        }
+      };
+      getElement();
+    });
+
   // Eventually, I'd like to re-write this to use refs, just in case
   // document.getElement gets deprecated in future React versions.
-  function scrollToOpenedArticle() {
-    setTimeout(() => {
-      const openedArticleTitle = sessionStorage.getItem("openedArticleTitle");
+  async function scrollToOpenedArticle() {
+    const openedArticleTitle = sessionStorage.getItem("openedArticleTitle");
 
-      if (openedArticleTitle) {
-        const domNode = document.getElementById(openedArticleTitle);
-        if (domNode) {
-          domNode.scrollIntoView({ behavior: "auto", block: "center" });
-        } else {
-          console.log("no dom node.");
-        }
-      } else {
-        console.log("no opened article.");
-      }
-    }, 80);
+    if (openedArticleTitle) {
+      const domNode = await getElementByIdAsync(openedArticleTitle);
+      console.log("domNode:", domNode);
+      domNode.scrollIntoView({});
+    }
   }
 
   useEffect(() => {
