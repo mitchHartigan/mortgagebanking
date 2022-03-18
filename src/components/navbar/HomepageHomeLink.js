@@ -30,4 +30,7 @@ const Text = styled.p`
   font-size: ${(props) => props.theme.text.sm};
   color: ${(props) => props.theme.colors.darkgray};
   cursor: pointer;
+  outline: none;
+  border: none;
+  background-color: transparent;
 `;
