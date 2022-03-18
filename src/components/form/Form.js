@@ -4,12 +4,12 @@ import styled from "styled-components";
 export const Form = (props) => {
   return (
     <Container>
-      <_Form>{props.children}</_Form>
+      <FormContainer>{props.children}</FormContainer>
     </Container>
   );
 };
 
-const _Form = styled.div`
+const FormContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
