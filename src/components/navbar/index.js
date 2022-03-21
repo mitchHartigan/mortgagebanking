@@ -33,14 +33,14 @@ export default class Navbar extends React.Component {
 
     return (
       <Container>
-        <Hamburger />
+        <Hamburger homepage={homepage} />
         <Navbar_
           scrollPos={this.state.scrollPos}
           alwaysDisplay={this.props.alwaysDisplay}
           fadeIn={this.props.fadeIn}
         >
           {""}
-          <LogoLink route="/" exact>
+          <LogoLink route="/" exact homepage={homepage}>
             <Logo />
           </LogoLink>
           {""}

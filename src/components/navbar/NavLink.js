@@ -44,9 +44,6 @@ const Text = styled.button`
   border: none;
   background-color: transparent;
 
-  @media (max-width: 1400px) {
-    font-size: ${(props) => props.theme.text.xxs};
-  }
   white-space: nowrap;
 `;
 

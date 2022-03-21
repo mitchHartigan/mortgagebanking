@@ -1,9 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 import { NavLink } from "./NavLink";
+import { HomepageContactLink } from "./HomepageContactLink";
+import HomepageHomeLink from "./HomepageHomeLink";
 
 export const Menu = (props) => {
-  const { toggleMenu } = props;
+  const { toggleMenu, homepage } = props;
 
   return (
     <Container>
@@ -15,25 +17,32 @@ export const Menu = (props) => {
       <Span></Span>
 
       <LinkContainer>
-        <NavLink
-          route="/"
-          align="flex-start"
-          styles={LinkMarginOverride}
-          dark
-          size="sm"
-        >
-          Home
-        </NavLink>
-        <NavLink
-          route="/"
-          align="flex-start"
-          styles={LinkMarginOverride}
-          dark
-          size="sm"
-          contactLink
-        >
-          Contact
-        </NavLink>
+        {homepage && <HomepageHomeLink toggleMenu={toggleMenu} />}
+        {homepage && <HomepageContactLink toggleMenu={toggleMenu} />}
+        {!homepage && (
+          <NavLink
+            route="/"
+            align="flex-start"
+            styles={LinkMarginOverride}
+            dark
+            size="sm"
+          >
+            Home
+          </NavLink>
+        )}
+        {!homepage && (
+          <NavLink
+            route="/"
+            align="flex-start"
+            styles={LinkMarginOverride}
+            dark
+            size="sm"
+            contactLink
+          >
+            Contact
+          </NavLink>
+        )}
+
         <NavLink
           route="/practice-areas"
           align="flex-start"
@@ -79,15 +88,9 @@ const LinkMarginOverride = {
   margin: "15px 0px 15px 0px;",
 };
 
-const BlurContainer = styled.div`
-  position: fixed;
-  width: 100%;
-  height: 100%;
-`;
-
 const Container = styled.div`
   position: fixed;
-  display: flex
+  display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
@@ -102,7 +105,6 @@ const Container = styled.div`
   @media (min-width: 1230px) {
     display: none;
   }
-
 `;
 
 const CancelButton = styled.p`
@@ -111,6 +113,7 @@ const CancelButton = styled.p`
   font-weight: normal;
   margin: 0px;
   margin-top: -5px;
+  margin-right: 25px;
   cursor: pointer;
 `;
 
@@ -120,6 +123,7 @@ const HeaderContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   margin: 15px 20px 0px 0px;
+  width: 100%;
 `;
 
 const LinkContainer = styled.div`

@@ -59,12 +59,33 @@ export default function ArticlesHub() {
     }
   }
 
+  const getElementByIdAsync = (id) =>
+    new Promise((resolve) => {
+      const getElement = () => {
+        const element = document.getElementById(id);
+        if (element) {
+          resolve(element);
+        } else {
+          requestAnimationFrame(getElement);
+        }
+      };
+      getElement();
+    });
+
+  async function scrollToOpenedArticle() {
+    const openedArticleTitle = sessionStorage.getItem("openedArticleTitle");
+
+    if (openedArticleTitle) {
+      const domNode = await getElementByIdAsync(openedArticleTitle);
+      domNode.scrollIntoView({ block: "center" });
+    }
+  }
+
   useEffect(() => {
     setLoadingArticleData(true);
 
     async function loadData() {
       const articleData = await FETCH_ARTICLE_DATA();
-      console.log(articleData);
       if (articleData)
         saveArticlesToSessionStorage(
           articleData,
@@ -73,6 +94,7 @@ export default function ArticlesHub() {
         );
     }
     loadData();
+    scrollToOpenedArticle();
   }, []);
 
   return (

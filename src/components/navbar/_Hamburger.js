@@ -28,7 +28,9 @@ export class Hamburger extends React.Component {
         </Container>
       );
     } else {
-      return <Menu toggleMenu={this._toggleMenu} />;
+      return (
+        <Menu toggleMenu={this._toggleMenu} homepage={this.props.homepage} />
+      );
     }
   }
 }

@@ -32,6 +32,5 @@ export function sortArticleDataByDate(articles) {
     .slice()
     .sort((a, b) => b.formattedDate - a.formattedDate);
 
-  console.log("orderedArr", orderedArr);
   return orderedArr;
 }

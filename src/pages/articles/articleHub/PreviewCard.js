@@ -12,6 +12,10 @@ const loadImageFromDB = async (name, setImage) => {
   else setImage(`data:image/png;base64,${imgObj.url}`);
 };
 
+const saveScrollPosition = (articleTitle) => {
+  sessionStorage.setItem("openedArticleTitle", articleTitle);
+};
+
 export default function PreviewCard(props) {
   const { data } = props;
   const [loadArticle, setLoadArticle] = useState(false);
@@ -23,7 +27,7 @@ export default function PreviewCard(props) {
 
   if (!loadArticle) {
     return (
-      <Card onClick={() => setLoadArticle(true)}>
+      <Card onClick={() => setLoadArticle(true)} id={data.title}>
         <ContentContainer>
           <ImgPreview url={image} />
           <PreviewContent data={data} previewData={props.previewData} />
@@ -31,6 +35,7 @@ export default function PreviewCard(props) {
       </Card>
     );
   } else {
+    saveScrollPosition(data.title);
     return <Redirect to={`/articles/${data.name}`} />;
   }
 }
