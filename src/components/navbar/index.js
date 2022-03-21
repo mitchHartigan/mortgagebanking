@@ -40,7 +40,7 @@ export default class Navbar extends React.Component {
           fadeIn={this.props.fadeIn}
         >
           {""}
-          <LogoLink route="/" exact>
+          <LogoLink route="/" exact homepage={homepage}>
             <Logo />
           </LogoLink>
           {""}
