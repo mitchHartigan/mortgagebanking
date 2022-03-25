@@ -11,6 +11,7 @@ import PracticeAreas from "pages/practice-areas/PracticeAreas";
 import Initiatives from "pages/initiatives/Initiatives";
 import SearchGlossary from "pages/glossary-search";
 import Articles from "pages/articles";
+import Admin from "pages/admin/index";
 
 function App() {
   return (
@@ -45,6 +46,10 @@ function App() {
 
           <Route path="/practice-areas">
             <PracticeAreas />
+          </Route>
+
+          <Route path="/admin">
+            <Admin />
           </Route>
         </Switch>
       </BrowserRouter>
