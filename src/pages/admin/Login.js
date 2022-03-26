@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { Title } from "components/Title";
 
 export default function Login() {
-  const [formData, setFormData] = useState({ email: "", password: "" });
+  const [formData, setFormData] = useState({ name: "", password: "" });
 
   const handleUpdate = (evt) => {
     const newFormData = {
@@ -14,11 +14,11 @@ export default function Login() {
     setFormData(newFormData);
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     // submit the form data.
     console.log("submitted.", formData);
 
-    fetch("http://localhost:4000/admin", {
+    const result = await fetch("http://localhost:4000/admin", {
       method: "POST",
       mode: "cors",
       body: JSON.stringify(formData),
@@ -26,13 +26,16 @@ export default function Login() {
         "Content-Type": "application/json",
       },
     });
+
+    console.log("hello?");
+    console.log(result);
   };
 
   return (
     <Container>
       <FormContainer>
         <Title size="lg">Administrator Login</Title>
-        <Input name="email" placeholder="Email" onChange={handleUpdate} />
+        <Input name="name" placeholder="Name" onChange={handleUpdate} />
         <Input
           name="password"
           placeholder="Password"
