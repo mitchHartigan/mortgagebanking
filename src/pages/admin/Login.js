@@ -17,6 +17,15 @@ export default function Login() {
   const handleSubmit = () => {
     // submit the form data.
     console.log("submitted.", formData);
+
+    fetch("http://localhost:4000/admin", {
+      method: "POST",
+      mode: "cors",
+      body: JSON.stringify(formData),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
   };
 
   return (
