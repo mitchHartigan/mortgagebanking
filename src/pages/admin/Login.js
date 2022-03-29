@@ -5,6 +5,7 @@ import { Title } from "components/Title";
 
 export default function Login() {
   const [formData, setFormData] = useState({ name: "", password: "" });
+  const [serverMessage, setServerMessage] = useState("");
 
   const handleUpdate = (evt) => {
     const newFormData = {
@@ -15,9 +16,6 @@ export default function Login() {
   };
 
   const handleSubmit = async () => {
-    // submit the form data.
-    console.log("submitted.", formData);
-
     const result = await fetch("http://localhost:4000/admin", {
       method: "POST",
       mode: "cors",
@@ -27,8 +25,8 @@ export default function Login() {
       },
     });
 
-    console.log("hello?");
-    console.log(result);
+    const json = await result.json();
+    setServerMessage(json.serverMessage);
   };
 
   return (
@@ -42,6 +40,7 @@ export default function Login() {
           type="password"
           onChange={handleUpdate}
         />
+        <ServerMessage>{serverMessage}</ServerMessage>
         <SubmitButton onClick={handleSubmit}>Submit</SubmitButton>
       </FormContainer>
     </Container>
@@ -66,6 +65,13 @@ const FormContainer = styled.div`
   border-radius: 5px;
   background-color: white;
   box-shadow: 0px 2px 2px rgba(32, 32, 32, 0.35);
+`;
+
+const ServerMessage = styled.p`
+  display: ${(props) => (props.children.length === 0 ? "none" : "auto")};
+  font-family: ${(props) => props.theme.textFont};
+  font-size: ${(props) => props.theme.text.sm};
+  color: red;
 `;
 
 const Input = styled.input`
