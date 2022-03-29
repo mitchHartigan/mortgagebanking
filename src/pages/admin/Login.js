@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import styled from "styled-components";
 
 import { Title } from "components/Title";
+import { Redirect } from "react-router-dom";
 
 export default function Login() {
   const [formData, setFormData] = useState({ name: "", password: "" });
   const [serverMessage, setServerMessage] = useState("");
+  const [authenticated, setAuthenticated] = useState(false);
 
   const handleUpdate = (evt) => {
     const newFormData = {
@@ -26,25 +28,36 @@ export default function Login() {
     });
 
     const json = await result.json();
+    console.log("json", json);
+
     setServerMessage(json.serverMessage);
+
+    if (json.token) {
+      localStorage.setItem("token", JSON.stringify(json.token));
+      setAuthenticated(true);
+    }
   };
 
-  return (
-    <Container>
-      <FormContainer>
-        <Title size="lg">Administrator Login</Title>
-        <Input name="name" placeholder="Name" onChange={handleUpdate} />
-        <Input
-          name="password"
-          placeholder="Password"
-          type="password"
-          onChange={handleUpdate}
-        />
-        <ServerMessage>{serverMessage}</ServerMessage>
-        <SubmitButton onClick={handleSubmit}>Submit</SubmitButton>
-      </FormContainer>
-    </Container>
-  );
+  if (!authenticated) {
+    return (
+      <Container>
+        <FormContainer>
+          <Title size="lg">Administrator Login</Title>
+          <Input name="name" placeholder="Name" onChange={handleUpdate} />
+          <Input
+            name="password"
+            placeholder="Password"
+            type="password"
+            onChange={handleUpdate}
+          />
+          <ServerMessage>{serverMessage}</ServerMessage>
+          <SubmitButton onClick={handleSubmit}>Submit</SubmitButton>
+        </FormContainer>
+      </Container>
+    );
+  } else {
+    return <Redirect to="/acronym-editor" />;
+  }
 }
 
 const Container = styled.div`

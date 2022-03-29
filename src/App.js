@@ -51,6 +51,10 @@ function App() {
           <Route path="/admin">
             <Admin />
           </Route>
+
+          <Route path="/acronym-editor">
+            <p>Acronym Editor</p>
+          </Route>
         </Switch>
       </BrowserRouter>
     </ThemeProvider>
