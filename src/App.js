@@ -12,6 +12,7 @@ import Initiatives from "pages/initiatives/Initiatives";
 import SearchGlossary from "pages/glossary-search";
 import Articles from "pages/articles";
 import Admin from "pages/admin/index";
+import AcronymReview from "pages/admin/AcronymReview";
 
 function App() {
   return (
@@ -53,7 +54,7 @@ function App() {
           </Route>
 
           <Route path="/acronym-editor">
-            <p>Acronym Editor</p>
+            <AcronymReview />
           </Route>
         </Switch>
       </BrowserRouter>
