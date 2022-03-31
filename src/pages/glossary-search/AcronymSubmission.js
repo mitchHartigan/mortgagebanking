@@ -18,16 +18,34 @@ export default function AcronymSubmission() {
   };
 
   const defaultFormErrors = {
-    name: false,
-    email: false,
-    Acronym: false,
-    Text: false,
-    Description: false,
-    Citation: false,
+    nameErr: false,
+    emailErr: false,
+    AcronymErr: false,
+    TextErr: false,
+    CitationErr: false,
   };
 
-  function handleSubmit() {
-    console.log(formData);
+  async function handleSubmit() {
+    const { name, email, Acronym, Text, Description, Citation } = formData;
+
+    setFormErrors({
+      nameErr: name === "",
+      emailErr: email === "",
+      AcronymErr: Acronym === "",
+      TextErr: Text === "",
+      CitationErr: Citation === "",
+    });
+
+    let formComplete = true;
+
+    // loop through and check if any of the form errors are currently active (ie, true)
+    for (let key of Object.keys(formErrors)) {
+      if (formErrors[key]) formComplete = false;
+    }
+
+    if (formComplete) {
+      // post to backend.
+    }
   }
 
   function updateFormData(evt) {
@@ -39,6 +57,8 @@ export default function AcronymSubmission() {
 
   const [formData, setFormData] = useState(defaultForm);
   const [formErrors, setFormErrors] = useState(defaultFormErrors);
+
+  const { nameErr, emailErr, AcronymErr, TextErr, CitationErr } = formErrors;
 
   return (
     <Container>
@@ -55,6 +75,7 @@ export default function AcronymSubmission() {
             name="name"
             label="Name or Organization"
             onChange={updateFormData}
+            invalid={nameErr}
             leftInputMargin
             whiteBackground
           />
@@ -63,6 +84,7 @@ export default function AcronymSubmission() {
             label="Email"
             onChange={updateFormData}
             whiteBackground
+            invalid={emailErr}
           />
         </DoubleInputRow>
         <Span />
@@ -72,12 +94,14 @@ export default function AcronymSubmission() {
             label="Acronym Name"
             leftInputMargin
             onChange={updateFormData}
+            invalid={AcronymErr}
             whiteBackground
           />
           <Input
             name="Text"
             label="Acronym Definition"
             onChange={updateFormData}
+            invalid={TextErr}
             whiteBackground
           />
         </DoubleInputRow>
@@ -91,6 +115,7 @@ export default function AcronymSubmission() {
           name="Citation"
           label="Publishing Organization (Name or Link)"
           onChange={updateFormData}
+          invalid={CitationErr}
           whiteBackground
         />
         <CenterBlock>
