@@ -56,7 +56,6 @@ export default class AcronymSubmission extends React.Component {
 
         // loop through and check if any of the form errors are currently active (ie, true)
         for (let key of Object.keys(formErrors)) {
-          console.log(key, formErrors[key]);
           if (formErrors[key]) formComplete = false;
         }
 
