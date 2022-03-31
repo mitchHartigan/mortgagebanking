@@ -2,7 +2,14 @@ import React from "react";
 import styled from "styled-components";
 
 export const TextArea = (props) => {
-  const { label, onChange, invalid, name, interestArea } = props;
+  const {
+    label,
+    onChange,
+    invalid,
+    name,
+    interestArea,
+    whiteBackground,
+  } = props;
 
   let interestAreaMessage = "";
 
@@ -13,6 +20,7 @@ export const TextArea = (props) => {
   return (
     <Container>
       <_TextArea
+        whiteBackground={whiteBackground}
         name={name}
         onChange={onChange}
         invalid={invalid}
@@ -27,7 +35,8 @@ export const TextArea = (props) => {
 const _TextArea = styled.textarea`
   height: 215px;
   padding: 10px 5px 5px 15px;
-  background-color: ${(props) => props.theme.colors.offWhite};
+  background-color: ${(props) =>
+    props.whiteBackground ? "white" : props.theme.colors.offWhite};
   font-family: ${(props) => props.theme.textFont};
   font-size: ${(props) => props.theme.text.xs};
   border: 2px solid

@@ -2,11 +2,20 @@ import React from "react";
 import styled from "styled-components";
 
 export const Input = (props) => {
-  const { label, onChange, invalid, name, value, leftInputMargin } = props;
+  const {
+    label,
+    onChange,
+    invalid,
+    name,
+    value,
+    whiteBackground,
+    leftInputMargin,
+  } = props;
 
   return (
     <Container leftInputMargin={leftInputMargin}>
       <_Input
+        whiteBackground={whiteBackground}
         name={name}
         onChange={onChange}
         invalid={invalid}
@@ -21,7 +30,8 @@ export const Input = (props) => {
 const _Input = styled.input`
   height: 45px;
   padding: 5px 5px 6px 15px;
-  background-color: ${(props) => props.theme.colors.offWhite};
+  background-color: ${(props) =>
+    props.whiteBackground ? "white" : props.theme.colors.offWhite};
   font-family: ${(props) => props.theme.textFont};
   font-size: ${(props) => props.theme.text.xs};
   border: 2px solid ${(props) =>

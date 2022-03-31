@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+
 import { Title } from "components/Title";
 import { Input } from "components/form/Input";
 import { SubmitButton } from "components/form/SubmitButton";
@@ -16,6 +17,15 @@ export default function AcronymSubmission() {
     Citation: "",
   };
 
+  const defaultFormErrors = {
+    name: false,
+    email: false,
+    Acronym: false,
+    Text: false,
+    Description: false,
+    Citation: false,
+  };
+
   function handleSubmit() {
     console.log(formData);
   }
@@ -28,11 +38,12 @@ export default function AcronymSubmission() {
   }
 
   const [formData, setFormData] = useState(defaultForm);
+  const [formErrors, setFormErrors] = useState(defaultFormErrors);
 
   return (
     <Container>
       <Form>
-        <Title size="md">Submit an Acronym</Title>
+        <Title size="lg">Submit an Acronym</Title>
         <CenterBlock>
           <Description>
             Not finding an acronym you know exists? Submit it below and we'll
@@ -45,8 +56,14 @@ export default function AcronymSubmission() {
             label="Name or Organization"
             onChange={updateFormData}
             leftInputMargin
+            whiteBackground
           />
-          <Input name="email" label="Email" onChange={updateFormData} />
+          <Input
+            name="email"
+            label="Email"
+            onChange={updateFormData}
+            whiteBackground
+          />
         </DoubleInputRow>
         <Span />
         <DoubleInputRow>
@@ -55,22 +72,26 @@ export default function AcronymSubmission() {
             label="Acronym Name"
             leftInputMargin
             onChange={updateFormData}
+            whiteBackground
           />
           <Input
             name="Text"
             label="Acronym Definition"
             onChange={updateFormData}
+            whiteBackground
           />
         </DoubleInputRow>
         <TextArea
           name="Description"
           label="Description of use (if applicable)"
           onChange={updateFormData}
+          whiteBackground
         />
         <Input
           name="Citation"
           label="Publishing Organization (Name or Link)"
           onChange={updateFormData}
+          whiteBackground
         />
         <CenterBlock>
           <SubmitButton onClick={handleSubmit} />
@@ -82,7 +103,7 @@ export default function AcronymSubmission() {
 
 const Span = styled.div`
   width: 100%;
-  height: 4px;
+  height: 3px;
   background-color: ${(props) => props.theme.colors.mainGold};
   margin: 0px 0px 30px 0px;
 `;
@@ -94,12 +115,6 @@ const DoubleInputRow = styled.div`
   width: 100%;
 `;
 
-const InputRowContainer = styled.div`
-  display: grid;
-  grid-template-columns: 47.5% 5% 47.5%
-  width: 100%;
-`;
-
 const Description = styled.p`
   font-family: ${(props) => props.theme.textFont};
   font-size: ${(props) => props.theme.text.xs};
@@ -107,7 +122,10 @@ const Description = styled.p`
 
 const Form = styled.div`
   width: 700px;
+  padding: 20px 40px 40px 40px;
   backgroud-color: white;
+  background-color: white;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.4);
   border-radius: 5px;
 `;
 
@@ -115,5 +133,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   width: 100%;
+  padding-top: 5vh;
 `;
