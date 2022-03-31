@@ -4,6 +4,7 @@ import { Title } from "components/Title";
 import { Input } from "components/form/Input";
 import { SubmitButton } from "components/form/SubmitButton";
 import { TextArea } from "components/form/TextArea";
+import { CenterBlock } from "components/CenterBlock";
 
 export default function AcronymSubmission() {
   const defaultForm = {
@@ -15,6 +16,17 @@ export default function AcronymSubmission() {
     Citation: "",
   };
 
+  function handleSubmit() {
+    console.log(formData);
+  }
+
+  function updateFormData(evt) {
+    setFormData({
+      ...formData,
+      [evt.target.name]: evt.target.value,
+    });
+  }
+
   const [formData, setFormData] = useState(defaultForm);
 
   return (
@@ -25,23 +37,48 @@ export default function AcronymSubmission() {
           Not finding an acronym you know exists? Submit it below and we'll add
           it to our database.
         </Description>
-        <Input name="name" label="Name" />
-        <Input name="email" label="Email" />
-        <p>------------------------</p>
         <DoubleInputRow>
-          <Input name="Acronym" label="Acronym" leftInputMargin />
-          <Input name="Text" label="Definition" />
+          <Input
+            name="name"
+            label="Name or Organization"
+            onChange={updateFormData}
+            leftInputMargin
+          />
+          <Input name="email" label="Email" onChange={updateFormData} />
         </DoubleInputRow>
-        <Input name="Description" label="Description of use" />
-        <Input name="Citation" label="Publishing Organization Name/Link" />
+        <Span />
+        <DoubleInputRow>
+          <Input
+            name="Acronym"
+            label="Acronym"
+            leftInputMargin
+            onChange={updateFormData}
+          />
+          <Input name="Text" label="Definition" onChange={updateFormData} />
+        </DoubleInputRow>
+        <Input
+          name="Description"
+          label="Description of use"
+          onChange={updateFormData}
+        />
+        <Input
+          name="Citation"
+          label="Publishing Organization (Name or Link)"
+          onChange={updateFormData}
+        />
+        <CenterBlock>
+          <SubmitButton onClick={handleSubmit} />
+        </CenterBlock>
       </Form>
     </Container>
   );
 }
 
-const Override = styled(Input)`
-  margin: 0px 10px 0px 10px;
-  background-color: red;
+const Span = styled.div`
+  width: 100%;
+  height: 4px;
+  background-color: ${(props) => props.theme.colors.mainGold};
+  margin: 0px 0px 30px 0px;
 `;
 
 const DoubleInputRow = styled.div`
