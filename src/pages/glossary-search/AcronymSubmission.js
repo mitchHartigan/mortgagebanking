@@ -33,10 +33,12 @@ export default function AcronymSubmission() {
     <Container>
       <Form>
         <Title size="md">Submit an Acronym</Title>
-        <Description>
-          Not finding an acronym you know exists? Submit it below and we'll add
-          it to our database.
-        </Description>
+        <CenterBlock>
+          <Description>
+            Not finding an acronym you know exists? Submit it below and we'll
+            add it to our database.
+          </Description>
+        </CenterBlock>
         <DoubleInputRow>
           <Input
             name="name"
@@ -50,15 +52,19 @@ export default function AcronymSubmission() {
         <DoubleInputRow>
           <Input
             name="Acronym"
-            label="Acronym"
+            label="Acronym Name"
             leftInputMargin
             onChange={updateFormData}
           />
-          <Input name="Text" label="Definition" onChange={updateFormData} />
+          <Input
+            name="Text"
+            label="Acronym Definition"
+            onChange={updateFormData}
+          />
         </DoubleInputRow>
-        <Input
+        <TextArea
           name="Description"
-          label="Description of use"
+          label="Description of use (if applicable)"
           onChange={updateFormData}
         />
         <Input
