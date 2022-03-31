@@ -14,14 +14,17 @@ export default function AcronymReview() {
 
       const payload = { token: token };
 
-      const result = await fetch("http://localhost:4000/checkAuthentication", {
-        method: "POST",
-        mode: "cors",
-        body: JSON.stringify(payload),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const result = await fetch(
+        "https://md5rhmga23.execute-api.us-west-2.amazonaws.com/production/checkAuthentication",
+        {
+          method: "POST",
+          mode: "cors",
+          body: JSON.stringify(payload),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
       const json = await result.json();
 

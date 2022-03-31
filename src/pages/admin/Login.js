@@ -18,14 +18,17 @@ export default function Login() {
   };
 
   const handleSubmit = async () => {
-    const result = await fetch("http://localhost:4000/admin", {
-      method: "POST",
-      mode: "cors",
-      body: JSON.stringify(formData),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const result = await fetch(
+      "https://md5rhmga23.execute-api.us-west-2.amazonaws.com/production/admin",
+      {
+        method: "POST",
+        mode: "cors",
+        body: JSON.stringify(formData),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
 
     const json = await result.json();
     console.log("json", json);

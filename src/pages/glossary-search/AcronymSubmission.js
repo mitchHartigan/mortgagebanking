@@ -77,13 +77,16 @@ export default class AcronymSubmission extends React.Component {
             authorEmail: authorEmail,
           };
 
-          const result = await fetch("http://localhost:4000/uploadAcronym", {
-            method: "POST",
-            body: JSON.stringify(newAcronym),
-            headers: {
-              "Content-Type": "application/json",
-            },
-          });
+          const result = await fetch(
+            "https://md5rhmga23.execute-api.us-west-2.amazonaws.com/production/",
+            {
+              method: "POST",
+              body: JSON.stringify(newAcronym),
+              headers: {
+                "Content-Type": "application/json",
+              },
+            }
+          );
 
           const json = await result.json();
           console.log(json);
