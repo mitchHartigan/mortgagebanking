@@ -9,6 +9,7 @@ import Sidebar from "./Sidebar";
 import Cards from "./Cards";
 import { reverseArray } from "./_utils";
 import { Footer } from "components/Footer";
+import SubmitAcronymButton from "./SubmitAcronymButton";
 
 import { API_FETCH_RESULTS } from "./API";
 
@@ -194,6 +195,7 @@ export default class index extends React.Component {
           <BackButton
             onClick={this.props.toggleGlossary}
           >{`< Resources`}</BackButton>
+          <SubmitAcronymButton>Submit an Acronym</SubmitAcronymButton>
         </BackButtonContainer>
 
         <ContentContainer>
@@ -216,8 +218,8 @@ const BackButtonContainer = styled.div`
   width: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
-  padding-left: 4vw;
+  justify-content: space-between;
+  padding: 0vh 4vw 0vh 4vw;
   box-sizing: border-box;
   margin-top: 9vh;
 

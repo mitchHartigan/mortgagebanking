@@ -13,6 +13,7 @@ import SearchGlossary from "pages/glossary-search";
 import Articles from "pages/articles";
 import Admin from "pages/admin/index";
 import AcronymReview from "pages/admin/AcronymReview";
+import AcronymSubmission from "pages/glossary-search/AcronymSubmission";
 
 function App() {
   return (
@@ -51,6 +52,10 @@ function App() {
 
           <Route path="/admin">
             <Admin />
+          </Route>
+
+          <Route path="/submit-an-acronym">
+            <AcronymSubmission />
           </Route>
 
           <Route path="/acronym-editor">

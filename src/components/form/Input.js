@@ -2,11 +2,10 @@ import React from "react";
 import styled from "styled-components";
 
 export const Input = (props) => {
-  const { label, onChange, invalid, name, value } = props;
+  const { label, onChange, invalid, name, value, leftInputMargin } = props;
 
   return (
-    <Container>
-      {/* <Label>{label}</Label> */}
+    <Container leftInputMargin={leftInputMargin}>
       <_Input
         name={name}
         onChange={onChange}
@@ -38,6 +37,7 @@ const _Input = styled.input`
     color: ${(props) => props.theme.colors.darkGray}
   }
 
+
   @media (max-width: 700px) {
     font-size: ${(props) => props.theme.text.xxs};
   }
@@ -58,6 +58,8 @@ const Container = styled.div`
   width: 100%;
   box-sizing: border-box;
   padding: 10px 0px 0px 0px;
+
+  margin-right: ${(props) => (props.leftInputMargin ? "15px" : "0px")};
 
   @media (max-width: 700px) {
     padding: 1vh 0px 1kvh 0px;
