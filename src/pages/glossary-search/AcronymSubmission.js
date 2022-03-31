@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
 import { Title } from "components/Title";
@@ -7,123 +7,174 @@ import { SubmitButton } from "components/form/SubmitButton";
 import { TextArea } from "components/form/TextArea";
 import { CenterBlock } from "components/CenterBlock";
 
-export default function AcronymSubmission() {
-  const defaultForm = {
-    name: "",
-    email: "",
-    Acronym: "",
-    Text: "",
-    Description: "",
-    Citation: "",
-  };
+export default class AcronymSubmission extends React.Component {
+  constructor(props) {
+    super(props);
 
-  const defaultFormErrors = {
-    nameErr: false,
-    emailErr: false,
-    AcronymErr: false,
-    TextErr: false,
-    CitationErr: false,
-  };
-
-  async function handleSubmit() {
-    const { name, email, Acronym, Text, Description, Citation } = formData;
-
-    setFormErrors({
-      nameErr: name === "",
-      emailErr: email === "",
-      AcronymErr: Acronym === "",
-      TextErr: Text === "",
-      CitationErr: Citation === "",
-    });
-
-    let formComplete = true;
-
-    // loop through and check if any of the form errors are currently active (ie, true)
-    for (let key of Object.keys(formErrors)) {
-      if (formErrors[key]) formComplete = false;
-    }
-
-    if (formComplete) {
-      // post to backend.
-    }
+    this.state = {
+      form: {
+        authorName: "",
+        authorEmail: "",
+        Acronym: "",
+        Text: "",
+        Description: "",
+        Citation: "",
+      },
+      formErrors: {
+        nameErr: false,
+        emailErr: false,
+        AcronymErr: false,
+        TextErr: false,
+        CitationErr: false,
+      },
+    };
   }
 
-  function updateFormData(evt) {
-    setFormData({
-      ...formData,
-      [evt.target.name]: evt.target.value,
+  handleSubmit = () => {
+    const {
+      authorName,
+      authorEmail,
+      Acronym,
+      Text,
+      Description,
+      Citation,
+    } = this.state.form;
+
+    this.setState(
+      {
+        formErrors: {
+          nameErr: authorName === "",
+          emailErr: authorEmail === "",
+          AcronymErr: Acronym === "",
+          TextErr: Text === "",
+          CitationErr: Citation === "",
+        },
+      },
+      async () => {
+        let formComplete = true;
+        const { formErrors } = this.state;
+
+        // loop through and check if any of the form errors are currently active (ie, true)
+        for (let key of Object.keys(formErrors)) {
+          console.log(key, formErrors[key]);
+          if (formErrors[key]) formComplete = false;
+        }
+
+        if (formComplete) {
+          const date = new Date();
+
+          const dateStr = `${
+            date.getMonth() + 1
+          }/${date.getDate()}/${date.getFullYear()}`;
+
+          // post to backend.
+          const newAcronym = {
+            Acronym: Acronym,
+            Text: Text,
+            Description: Description,
+            Citation: Citation,
+            "Date Entered": dateStr,
+            authorName: authorName,
+            authorEmail: authorEmail,
+          };
+
+          const result = await fetch("http://localhost:4000/uploadAcronym", {
+            method: "POST",
+            body: JSON.stringify(newAcronym),
+            headers: {
+              "Content-Type": "application/json",
+            },
+          });
+
+          const json = await result.json();
+          console.log(json);
+        }
+      }
+    );
+  };
+
+  updateFormData = (evt) => {
+    this.setState({
+      form: {
+        ...this.state.form,
+        [evt.target.name]: evt.target.value,
+      },
     });
+  };
+
+  render() {
+    const {
+      nameErr,
+      emailErr,
+      AcronymErr,
+      TextErr,
+      CitationErr,
+    } = this.state.formErrors;
+    return (
+      <Container>
+        <Form>
+          <Title size="lg">Submit an Acronym</Title>
+          <CenterBlock>
+            <Description>
+              Not finding an acronym you know exists? Submit it below and we'll
+              add it to our database.
+            </Description>
+          </CenterBlock>
+          <DoubleInputRow>
+            <Input
+              name="authorName"
+              label="Name or Organization"
+              onChange={this.updateFormData}
+              invalid={nameErr}
+              leftInputMargin
+              whiteBackground
+            />
+            <Input
+              name="authorEmail"
+              label="Email"
+              onChange={this.updateFormData}
+              whiteBackground
+              invalid={emailErr}
+            />
+          </DoubleInputRow>
+          <Span />
+          <DoubleInputRow>
+            <Input
+              name="Acronym"
+              label="Acronym Name"
+              leftInputMargin
+              onChange={this.updateFormData}
+              invalid={AcronymErr}
+              whiteBackground
+            />
+            <Input
+              name="Text"
+              label="Acronym Definition"
+              onChange={this.updateFormData}
+              invalid={TextErr}
+              whiteBackground
+            />
+          </DoubleInputRow>
+          <TextArea
+            name="Description"
+            label="Description of use (if applicable)"
+            onChange={this.updateFormData}
+            whiteBackground
+          />
+          <Input
+            name="Citation"
+            label="Publishing Organization (Name or Link)"
+            onChange={this.updateFormData}
+            invalid={CitationErr}
+            whiteBackground
+          />
+          <CenterBlock>
+            <SubmitButton onClick={this.handleSubmit} />
+          </CenterBlock>
+        </Form>
+      </Container>
+    );
   }
-
-  const [formData, setFormData] = useState(defaultForm);
-  const [formErrors, setFormErrors] = useState(defaultFormErrors);
-
-  const { nameErr, emailErr, AcronymErr, TextErr, CitationErr } = formErrors;
-
-  return (
-    <Container>
-      <Form>
-        <Title size="lg">Submit an Acronym</Title>
-        <CenterBlock>
-          <Description>
-            Not finding an acronym you know exists? Submit it below and we'll
-            add it to our database.
-          </Description>
-        </CenterBlock>
-        <DoubleInputRow>
-          <Input
-            name="name"
-            label="Name or Organization"
-            onChange={updateFormData}
-            invalid={nameErr}
-            leftInputMargin
-            whiteBackground
-          />
-          <Input
-            name="email"
-            label="Email"
-            onChange={updateFormData}
-            whiteBackground
-            invalid={emailErr}
-          />
-        </DoubleInputRow>
-        <Span />
-        <DoubleInputRow>
-          <Input
-            name="Acronym"
-            label="Acronym Name"
-            leftInputMargin
-            onChange={updateFormData}
-            invalid={AcronymErr}
-            whiteBackground
-          />
-          <Input
-            name="Text"
-            label="Acronym Definition"
-            onChange={updateFormData}
-            invalid={TextErr}
-            whiteBackground
-          />
-        </DoubleInputRow>
-        <TextArea
-          name="Description"
-          label="Description of use (if applicable)"
-          onChange={updateFormData}
-          whiteBackground
-        />
-        <Input
-          name="Citation"
-          label="Publishing Organization (Name or Link)"
-          onChange={updateFormData}
-          invalid={CitationErr}
-          whiteBackground
-        />
-        <CenterBlock>
-          <SubmitButton onClick={handleSubmit} />
-        </CenterBlock>
-      </Form>
-    </Container>
-  );
 }
 
 const Span = styled.div`
