@@ -78,7 +78,7 @@ export default class AcronymSubmission extends React.Component {
           };
 
           const result = await fetch(
-            "https://md5rhmga23.execute-api.us-west-2.amazonaws.com/production/",
+            "https://md5rhmga23.execute-api.us-west-2.amazonaws.com/production/uploadAcronym",
             {
               method: "POST",
               body: JSON.stringify(newAcronym),
