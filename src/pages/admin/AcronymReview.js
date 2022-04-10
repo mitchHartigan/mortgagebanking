@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Redirect } from "react-router-dom";
+import { FETCH_PENDING_ACRONYMS } from "./API";
+import PendingAcronyms from "./PendingAcronyms";
 
 export default function AcronymReview() {
   const [requestComplete, setRequestComplete] = useState(false);
   const [authenticated, setAuthenticated] = useState(false);
+  const [pendingAcronyms, setPendingAcronyms] = useState([]);
 
   useEffect(() => {
     async function sendToken() {
@@ -18,7 +21,6 @@ export default function AcronymReview() {
         "https://md5rhmga23.execute-api.us-west-2.amazonaws.com/production/checkAuthentication",
         {
           method: "POST",
-          mode: "cors",
           body: JSON.stringify(payload),
           headers: {
             "Content-Type": "application/json",
@@ -32,6 +34,11 @@ export default function AcronymReview() {
       setRequestComplete(true);
     }
     sendToken();
+    async function fetchAcronyms() {
+      const acronyms = await FETCH_PENDING_ACRONYMS();
+      setPendingAcronyms(acronyms);
+    }
+    fetchAcronyms();
   }, []);
 
   if (requestComplete && !authenticated) {
@@ -42,6 +49,7 @@ export default function AcronymReview() {
     return (
       <Container>
         <p>This is the acronym editing page.</p>
+        <PendingAcronyms acronyms={pendingAcronyms} />
       </Container>
     );
   }
