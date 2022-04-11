@@ -14,7 +14,7 @@ export default function AcronymPreview(props) {
 }
 
 const Title = styled.h1`
-  fojnt-family: ${(props) => props.theme.textFont};
+  font-family: ${(props) => props.theme.textFont};
   font-size: ${(props) => props.theme.text.sm};
   margin: 0px;
   padding: 0px;
@@ -27,4 +27,6 @@ const Container = styled.div`
   padding: 10px 20px 10px 20px;
   margin: 10px 20px 10px 20px;
   box-sizing: border-box;
+  border-radius: 5px;
+  text-overflow: ellipsis;
 `;
