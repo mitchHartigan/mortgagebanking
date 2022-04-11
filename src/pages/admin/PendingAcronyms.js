@@ -16,6 +16,7 @@ export default function PendingAcronyms(props) {
 
 const Container = styled.div`
   display: flex;
+  position: fixed;
   flex-direction: column;
   justify-content: center;
   padding: 10px;

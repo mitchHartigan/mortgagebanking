@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+
 import { Redirect } from "react-router-dom";
 import { FETCH_PENDING_ACRONYMS } from "./API";
 import PendingAcronyms from "./PendingAcronyms";
+import Editor from "./Editor";
 
 export default function AcronymReview() {
   const [requestComplete, setRequestComplete] = useState(false);
@@ -48,8 +50,8 @@ export default function AcronymReview() {
   if (requestComplete && authenticated) {
     return (
       <Container>
-        <p>This is the acronym editing page.</p>
         <PendingAcronyms acronyms={pendingAcronyms} />
+        <Editor acronyms={pendingAcronyms} />
       </Container>
     );
   }
@@ -58,4 +60,10 @@ export default function AcronymReview() {
   }
 }
 
-const Container = styled.div``;
+const Container = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 50px 100px 0px 100px;
+`;
