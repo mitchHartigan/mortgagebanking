@@ -33,7 +33,7 @@ const Container = styled.div`
   padding: 20px 60px 10px 60px;
   box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.3);
   border-radius: 10px;
-  margin: 30px 0px 30px 0px;
+  margin: 0px 0px 30px 0px;
   opacity: ${(props) => (props.inactive ? "0.4" : "1")};
 
   @media (max-width: 1330px) {
