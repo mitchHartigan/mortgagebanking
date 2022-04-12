@@ -1,43 +1,27 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { ApprovedIcon } from "./ApprovedIcon";
+import { ControlButton } from "./ControlButton";
 import { EditIcon } from "./EditIcon";
 import { RejectIcon } from "./RejectIcon";
 
 export default function CardControls(props) {
-  const { handleApprove, handleEdit, handleReject } = props;
-  const [approveHovered, setApproveHovered] = useState(false);
-  const [rejectHovered, setRejectHovered] = useState(false);
-  const [editHovered, setEditHovered] = useState(false);
-
   return (
     <Container>
       <AdmissionControls>
-        <ApproveButton
-          onClick={handleApprove}
-          onMouseEnter={() => setApproveHovered(true)}
-          onMouseLeave={() => setApproveHovered(false)}
-        >
-          <ApprovedIcon invertColor={approveHovered} />
-          <ButtonText>Approve</ButtonText>
-        </ApproveButton>
-        <RejectButton
-          onClick={handleReject}
-          onMouseEnter={() => setRejectHovered(true)}
-          onMouseLeave={() => setRejectHovered(false)}
-        >
-          <RejectIcon invertColor={rejectHovered} />
-          <ButtonText>Reject</ButtonText>
-        </RejectButton>
+        <ControlButton
+          name="Accept"
+          handleClick={() => console.log("ayy lmao")}
+        />
+        <ControlButton
+          name="Reject"
+          handleClick={() => console.log("ayy lmao x2")}
+        />
       </AdmissionControls>
-      <EditButton
-        onClick={handleEdit}
-        onMouseEnter={() => setEditHovered(true)}
-        onMouseLeave={() => setEditHovered(false)}
-      >
-        <EditIcon invertColor={editHovered} />
-        <ButtonText>Edit</ButtonText>
-      </EditButton>
+      <ControlButton
+        name="Edit"
+        handleClick={() => console.log("ayy lmao x3")}
+      />
     </Container>
   );
 }
@@ -50,10 +34,10 @@ const AdmissionControls = styled.div`
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: flex-start;
   margin: -15px 0px 15px 50px;
-  padding: 5px 0px 75px 0px;
+  padding: 5px 0px 0px 0px;
 `;
 
 const ButtonText = styled.p`
@@ -70,7 +54,7 @@ const ApproveButton = styled.div`
   align-items: center;
   margin: 15px 0px 15px 0px;
   outline: none;
-  padding-left: 5px;
+  padding-left: 10px;
   border-radius: 5px;
   width: 130px;
   height: 35px;
@@ -92,7 +76,7 @@ const RejectButton = styled(ApproveButton)`
 `;
 
 const EditButton = styled(ApproveButton)`
-  padding-left: 6px;
+  padding-left: 10px;
 
   &:hover {
     background-color: ${(props) => props.theme.colors.mainGold};

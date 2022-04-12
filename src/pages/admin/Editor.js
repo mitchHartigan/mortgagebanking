@@ -26,9 +26,11 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   margin-left: 450px;
+  margin-top: -40px;
 `;
 
 const ControlsContainer = styled.div`
   display: flex;
   flex-direction: row;
+  margin: 40px 0px 40px 0px;
 `;

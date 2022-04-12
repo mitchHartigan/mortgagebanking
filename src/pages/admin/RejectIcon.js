@@ -17,16 +17,16 @@ export const RejectIcon = (props) => {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <circle cx="11.5" cy="11.5" r="10.5" stroke={color} stroke-width="2" />
+      <circle cx="11.5" cy="11.5" r="10.5" stroke={color} strokeWidth="2" />
       <path
         d="M6.57129 6.57143L16.4284 16.4286"
         stroke={color}
-        stroke-width="2"
+        strokeWidth="2"
       />
       <path
         d="M16.4287 6.57143L6.57157 16.4286"
         stroke={color}
-        stroke-width="2"
+        strokeWidth="2"
       />
     </svg>
   );

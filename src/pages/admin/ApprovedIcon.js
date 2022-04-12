@@ -17,11 +17,11 @@ export const ApprovedIcon = (props) => {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <circle cx="12.5" cy="12.5" r="11.5" stroke={color} stroke-width="2" />
+      <circle cx="12.5" cy="12.5" r="11.5" stroke={color} strokeWidth="2" />
       <path
         d="M6.75 11.2576L9.83333 15.7857L18.25 8.39285"
         stroke={color}
-        stroke-width="2"
+        strokeWidth="2"
       />
     </svg>
   );
