@@ -50,10 +50,10 @@ const AdmissionControls = styled.div`
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: flex-start;
   margin: -15px 0px 15px 50px;
-  padding: 75px 0px 75px 0px;
+  padding: 5px 0px 75px 0px;
 `;
 
 const ButtonText = styled.p`

@@ -19,6 +19,7 @@ const Title = styled.h1`
   margin: 0px;
   padding: 0px;
   margin-top: 5px;
+  color: ${(props) => props.theme.colors.darkBlue};
 `;
 
 const Container = styled.div`
@@ -29,4 +30,5 @@ const Container = styled.div`
   box-sizing: border-box;
   border-radius: 5px;
   text-overflow: ellipsis;
+  box-shadow: 1px 2px 1px rgba(0, 0, 0, 0.25);
 `;
