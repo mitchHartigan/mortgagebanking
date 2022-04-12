@@ -74,30 +74,33 @@ const ApproveButton = styled.div`
   border-radius: 5px;
   width: 130px;
   height: 35px;
-  border: 2px solid #198754;
+  /* border: 2px solid #198754; */
+  border: 1px solid ${(props) => props.theme.colors.darkBlue};
   cursor: pointer;
-  background-color: transparent;
+  background-color: white;
 
   &:hover {
     background-color: #198754;
+    border: 1px solid #198754;
     color: white;
-    box-shadow: 0px 2px 1px rgba(0, 0, 0, 0.3);
   }
 `;
 
 const RejectButton = styled(ApproveButton)`
-  border: 2px solid #dc3545;
+  border: 1px solid ${(props) => props.theme.colors.darkBlue};
 
   &:hover {
     background-color: #dc3545;
+    border: 1px solid #dc3545;
   }
 `;
 
 const EditButton = styled(ApproveButton)`
-  border: 2px solid ${(props) => props.theme.colors.mainGold};
+  border: 1px solid ${(props) => props.theme.colors.darkBlue};
   padding-left: 6px;
 
   &:hover {
     background-color: ${(props) => props.theme.colors.mainGold};
+    border: 1px solid ${(props) => props.theme.colors.mainGold};
   }
 `;
