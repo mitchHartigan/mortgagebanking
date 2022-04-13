@@ -8,7 +8,9 @@ export const Confirmation = (props) => {
     <Container display={display}>
       <PromptTitle>Accept Acronym into production environment?</PromptTitle>
       <ButtonRow>
-        <AcceptButton onClick={acceptHandler}>Yes</AcceptButton>
+        <AcceptButton onClick={acceptHandler}>
+          <ButtonText>Yes</ButtonText>
+        </AcceptButton>
         <RejectButton onClick={rejectHandler}>No</RejectButton>
       </ButtonRow>
     </Container>
@@ -47,7 +49,7 @@ const AcceptButton = styled.div`
   border: 2px solid #202020;
   border-radius: 5px;
   width: 130px;
-  height: 35px;
+  height: 32px;
   font-family: ${(props) => props.theme.textFont};
 
   cursor: pointer;
@@ -66,4 +68,9 @@ const RejectButton = styled(AcceptButton)`
   &:hover {
     background-color: #e1a915;
   }
+`;
+
+const ButtonText = styled.div`
+  margin-left: -12px;
+  font-family: ${(props) => props.theme.textFont};
 `;

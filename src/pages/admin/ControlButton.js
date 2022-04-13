@@ -11,17 +11,22 @@ const colors = {
 
 export const ControlButton = (props) => {
   const { handleClick, name } = props;
+  const [active, setActive] = useState(false);
   const [hovered, setHovered] = useState(false);
 
   return (
     <Button
       name={name}
-      onClick={handleClick}
+      active={hovered || active}
+      onClick={() => {
+        setActive(!active);
+        handleClick();
+      }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      <Icon name={name} hovered={hovered} />
-      <ButtonText>{name}</ButtonText>
+      <Icon name={name} active={active || hovered} />
+      <ButtonText active={active || hovered}>{name}</ButtonText>
     </Button>
   );
 };
@@ -38,7 +43,7 @@ const Button = styled.div`
   height: 35px;
   color: #202020;
   cursor: pointer;
-  background-color: white;
+  background-color: ${(props) => (props.active ? colors[props.name] : "white")};
   box-shadow: 1px 2px rgba(0, 0, 0, 0.25);
 
   &:hover {
@@ -53,4 +58,5 @@ const ButtonText = styled.p`
   margin-left: 15px;
   margin-top: 14px;
   font-weight: normal;
+  color: ${(props) => (props.active ? "white" : "black")};
 `;

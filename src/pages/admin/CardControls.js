@@ -7,24 +7,30 @@ import { EditIcon } from "./EditIcon";
 import { RejectIcon } from "./RejectIcon";
 
 export default function CardControls(props) {
-  const [displayReject, setDisplayReject] = useState(false);
+  const defaultState = {
+    approve: false,
+    reject: false,
+    edit: false,
+  };
+
+  const [state, setState] = useState(defaultState);
 
   return (
     <Container>
       <AdmissionControls>
         <ControlButton
           name="Accept"
-          handleClick={() => setDisplayReject(true)}
+          handleClick={() => setState({ approve: !state.approve })}
         />
-        <Confirmation display={displayReject} />
+        <Confirmation display={state.approve} />
         <ControlButton
           name="Reject"
-          handleClick={() => console.log("ayy lmao x2")}
+          handleClick={() => setState({ reject: !state.reject })}
         />
       </AdmissionControls>
       <ControlButton
         name="Edit"
-        handleClick={() => console.log("ayy lmao x3")}
+        handleClick={() => setState({ edit: !state.edit })}
       />
     </Container>
   );
