@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
-import Card from "./Card";
 import CardControls from "./CardControls";
+import { CardFactory } from "./CardFactory/CardFactory";
 
 export default function Editor(props) {
   const { acronyms } = props;
@@ -12,7 +12,7 @@ export default function Editor(props) {
       {acronyms.map((acronym, i) => {
         return (
           <ControlsContainer>
-            <Card cardData={acronym} index={i} />
+            <CardFactory acronym={acronym} index={i} />
             <CardControls />
           </ControlsContainer>
         );

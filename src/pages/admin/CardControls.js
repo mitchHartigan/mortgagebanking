@@ -36,8 +36,8 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
-  margin: -15px 0px 15px 50px;
-  padding: 5px 0px 0px 0px;
+  margin: -15px 0px 15px 25px;
+  padding: 20px 0px 35px 0px;
 `;
 
 const ButtonText = styled.p`
@@ -64,14 +64,14 @@ const ApproveButton = styled.div`
   box-shadow: 1px 2px rgba(0, 0, 0, 0.25);
 
   &:hover {
-    background-color: #198754;
+    background-color: #e1a915;
     color: white;
   }
 `;
 
 const RejectButton = styled(ApproveButton)`
   &:hover {
-    background-color: #dc3545;
+    background-color: #e1a915;
   }
 `;
 

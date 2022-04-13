@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react";
 
 export const EditIcon = (props) => {
   const { invertColor } = props;
-  const [color, setColor] = useState("#e1a915");
+  const [color, setColor] = useState("#202020");
 
   useEffect(() => {
     if (invertColor) setColor("white");
-    if (!invertColor) setColor("#e1a915");
+    if (!invertColor) setColor("#202020");
   }, [invertColor]);
 
   return (

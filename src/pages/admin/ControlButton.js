@@ -33,15 +33,23 @@ const Button = styled.div`
   margin: 15px 0px 15px 0px;
   outline: none;
   padding-left: 10px;
+  border: ${(props) => {
+    if (props.name === "Edit") return "2px solid #e1a915";
+    return "none";
+  }};
   border-radius: 5px;
   width: 130px;
   height: 35px;
+  color: #202020;
   cursor: pointer;
   background-color: white;
-  box-shadow: 1px 2px rgba(0, 0, 0, 0.25);
+  box-shadow: ${(props) => {
+    if (props.name === "Edit") return "0px 0px rgba(0,0,0,0);";
+    return "1px 2px rgba(0, 0, 0, 0.25)";
+  }};
 
   &:hover {
-    background-color: ${(props) => colors[props.name]};
+    background-color: #e1a915;
     color: white;
   }
 `;
