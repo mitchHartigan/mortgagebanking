@@ -33,23 +33,16 @@ const Button = styled.div`
   margin: 15px 0px 15px 0px;
   outline: none;
   padding-left: 10px;
-  border: ${(props) => {
-    if (props.name === "Edit") return "2px solid #e1a915";
-    return "none";
-  }};
   border-radius: 5px;
   width: 130px;
   height: 35px;
   color: #202020;
   cursor: pointer;
   background-color: white;
-  box-shadow: ${(props) => {
-    if (props.name === "Edit") return "0px 0px rgba(0,0,0,0);";
-    return "1px 2px rgba(0, 0, 0, 0.25)";
-  }};
+  box-shadow: 1px 2px rgba(0, 0, 0, 0.25);
 
   &:hover {
-    background-color: #e1a915;
+    background-color: ${(props) => colors[props.name]};
     color: white;
   }
 `;
@@ -59,5 +52,5 @@ const ButtonText = styled.p`
   font-size: ${(props) => props.theme.text.xs};
   margin-left: 15px;
   margin-top: 14px;
-  font-weight: bold;
+  font-weight: normal;
 `;
