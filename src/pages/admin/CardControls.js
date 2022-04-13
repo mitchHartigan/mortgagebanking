@@ -1,18 +1,22 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { ApprovedIcon } from "./ApprovedIcon";
+import { Confirmation } from "./CardFactory/Confirmation";
 import { ControlButton } from "./ControlButton";
 import { EditIcon } from "./EditIcon";
 import { RejectIcon } from "./RejectIcon";
 
 export default function CardControls(props) {
+  const [displayReject, setDisplayReject] = useState(false);
+
   return (
     <Container>
       <AdmissionControls>
         <ControlButton
           name="Accept"
-          handleClick={() => console.log("ayy lmao")}
+          handleClick={() => setDisplayReject(true)}
         />
+        <Confirmation display={displayReject} />
         <ControlButton
           name="Reject"
           handleClick={() => console.log("ayy lmao x2")}

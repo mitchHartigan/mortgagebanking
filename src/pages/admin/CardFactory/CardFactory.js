@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 
 import { DisplayCard } from "./DisplayCard";
-import { ConfirmOverlay } from "./ConfirmOverlay";
 
 export const CardFactory = (props) => {
   const { acronym, index, activeCardIndex } = props;

@@ -7,24 +7,20 @@ import Description from "../../glossary-search/Card/Description";
 import DefinitionRow from "../../glossary-search/Card/DefinitionRow";
 import CitationRow from "../../glossary-search/Card/CitationRow";
 import Title from "../../glossary-search/Card/Title";
-import { ConfirmOverlay } from "./ConfirmOverlay.js";
 
 export const DisplayCard = (props) => {
   const { cardData, index, activeCardIndex, displayOverlay } = props;
 
   return (
-    <>
-      <ConfirmOverlay display={displayOverlay} />
-      <Container display={displayOverlay}>
-        <Title
-          cardData={cardData}
-          index={index}
-          activeCardIndex={activeCardIndex}
-        />
-        <DefinitionRow cardData={cardData} />
-        <Description cardData={cardData} />
-        <CitationRow cardData={cardData} />
-      </Container>
-    </>
+    <Container display={displayOverlay}>
+      <Title
+        cardData={cardData}
+        index={index}
+        activeCardIndex={activeCardIndex}
+      />
+      <DefinitionRow cardData={cardData} />
+      <Description cardData={cardData} />
+      <CitationRow cardData={cardData} />
+    </Container>
   );
 };
