@@ -1,10 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { ApprovedIcon } from "./ApprovedIcon";
 import { Confirmation } from "./CardFactory/Confirmation";
 import { ControlButton } from "./ControlButton";
-import { EditIcon } from "./EditIcon";
-import { RejectIcon } from "./RejectIcon";
 
 export default function CardControls(props) {
   const defaultState = {
@@ -15,22 +12,27 @@ export default function CardControls(props) {
 
   const [state, setState] = useState(defaultState);
 
+  const { approve, reject, edit } = state;
+
   return (
     <Container>
       <AdmissionControls>
         <ControlButton
           name="Accept"
-          handleClick={() => setState({ approve: !state.approve })}
+          handleClick={() => setState({ approve: !approve })}
+          disabled={reject || edit}
         />
-        <Confirmation display={state.approve} />
+        <Confirmation display={approve} />
         <ControlButton
           name="Reject"
-          handleClick={() => setState({ reject: !state.reject })}
+          handleClick={() => setState({ reject: !reject })}
+          disabled={approve || edit}
         />
       </AdmissionControls>
       <ControlButton
         name="Edit"
-        handleClick={() => setState({ edit: !state.edit })}
+        handleClick={() => setState({ edit: !edit })}
+        disabled={approve || reject}
       />
     </Container>
   );
@@ -48,14 +50,6 @@ const Container = styled.div`
   align-items: flex-start;
   margin: -15px 0px 15px 25px;
   padding: 20px 0px 35px 0px;
-`;
-
-const ButtonText = styled.p`
-  font-family: ${(props) => props.theme.textFont};
-  font-size: ${(props) => props.theme.text.xs};
-  margin-left: 15px;
-  margin-top: 14px;
-  font-weight: bold;
 `;
 
 const ApproveButton = styled.div`

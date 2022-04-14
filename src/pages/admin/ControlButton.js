@@ -10,13 +10,14 @@ const colors = {
 };
 
 export const ControlButton = (props) => {
-  const { handleClick, name } = props;
+  const { handleClick, name, disabled } = props;
   const [active, setActive] = useState(false);
   const [hovered, setHovered] = useState(false);
 
   return (
     <Button
       name={name}
+      disabled={disabled}
       active={hovered || active}
       onClick={() => {
         setActive(!active);
@@ -45,6 +46,9 @@ const Button = styled.div`
   cursor: pointer;
   background-color: ${(props) => (props.active ? colors[props.name] : "white")};
   box-shadow: 1px 2px rgba(0, 0, 0, 0.25);
+  ${(props) => {
+    if (props.disabled) return "opacity: 0.3; pointer-events: none;";
+  }}
 
   &:hover {
     background-color: ${(props) => colors[props.name]};
@@ -59,4 +63,5 @@ const ButtonText = styled.p`
   margin-top: 14px;
   font-weight: normal;
   color: ${(props) => (props.active ? "white" : "black")};
+  user-select: none;
 `;
