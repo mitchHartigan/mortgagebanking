@@ -1,19 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 import CardControls from "./CardControls";
 import { CardFactory } from "./CardFactory/CardFactory";
 
 export default function Editor(props) {
+  const defaultState = {
+    approve: false,
+    reject: false,
+    edit: false,
+  };
+
   const { acronyms } = props;
+  const [state, setState] = useState(defaultState);
 
   return (
     <Container>
       {acronyms.map((acronym, i) => {
         return (
           <ControlsContainer>
-            <CardFactory acronym={acronym} index={i} />
-            <CardControls />
+            <CardFactory acronym={acronym} index={i} buttonState={state} />
+            <CardControls state={state} setState={setState} />
           </ControlsContainer>
         );
       })}

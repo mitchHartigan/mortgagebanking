@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { DisplayCard } from "./DisplayCard";
 
 export const CardFactory = (props) => {
-  const { acronym, index, activeCardIndex } = props;
+  const { acronym, index, activeCardIndex, buttonState } = props;
   const [mode, setMode] = useState("display");
 
   switch (mode) {
@@ -13,6 +13,7 @@ export const CardFactory = (props) => {
           cardData={acronym}
           index={index}
           activeCardIndex={activeCardIndex}
+          buttonState={buttonState}
         />
       );
     case "edit":

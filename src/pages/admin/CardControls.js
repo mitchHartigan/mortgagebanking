@@ -4,15 +4,8 @@ import { Confirmation } from "./CardFactory/Confirmation";
 import { ControlButton } from "./ControlButton";
 
 export default function CardControls(props) {
-  const defaultState = {
-    approve: false,
-    reject: false,
-    edit: false,
-  };
-
-  const [state, setState] = useState(defaultState);
-
-  const { approve, reject, edit } = state;
+  const { setState } = props;
+  const { approve, reject, edit } = props.state;
 
   return (
     <Container>

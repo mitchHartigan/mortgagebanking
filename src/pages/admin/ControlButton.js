@@ -47,7 +47,8 @@ const Button = styled.div`
   background-color: ${(props) => (props.active ? colors[props.name] : "white")};
   box-shadow: 1px 2px rgba(0, 0, 0, 0.25);
   ${(props) => {
-    if (props.disabled) return "opacity: 0.3; pointer-events: none;";
+    if (props.disabled)
+      return "opacity: 0.3; pointer-events: none; filter: grayscale(100%);";
   }}
 
   &:hover {

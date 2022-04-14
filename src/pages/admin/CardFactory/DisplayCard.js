@@ -9,10 +9,11 @@ import CitationRow from "../../glossary-search/Card/CitationRow";
 import Title from "../../glossary-search/Card/Title";
 
 export const DisplayCard = (props) => {
-  const { cardData, index, activeCardIndex, displayOverlay } = props;
+  const { cardData, index, activeCardIndex, displayOverlay, buttonState } =
+    props;
 
   return (
-    <Container display={displayOverlay}>
+    <Container display={displayOverlay} state={buttonState}>
       <Title
         cardData={cardData}
         index={index}
