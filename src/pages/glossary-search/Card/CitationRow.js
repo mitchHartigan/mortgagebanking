@@ -16,14 +16,13 @@ export default function CitationRow(props) {
       <CitationContainer>
         <TitleContainer>
           <ItemTitle>Citation</ItemTitle>
-          <TitleUnderline />
+          <TitleUnderline show={!editMode} />
         </TitleContainer>
         {!editMode && <CitationText>{citation}</CitationText>}
         {editMode && (
           <CitationInput
             value={citation}
             onChange={(evt) => {
-              console.log(evt.target.value);
               setData({ ...cardData, Citation: evt.target.value });
             }}
           />
@@ -33,7 +32,7 @@ export default function CitationRow(props) {
       <DateContainer>
         <TitleContainer>
           <ItemTitle>Date Added</ItemTitle>
-          <TitleUnderline />
+          <TitleUnderline show />
         </TitleContainer>
         <ItemText>{dateAdded}</ItemText>
       </DateContainer>
@@ -43,9 +42,13 @@ export default function CitationRow(props) {
 
 const CitationInput = styled.input`
   height: 20px;
+  font-family: ${(props) => props.theme.textFont};
+  font-size: ${(props) => props.theme.text.xs};
+  padding: 5px 10px 7px 5px;
+  margin-top: 1px;
+  margin-left: -7px;
+  border: 2px solid ${(props) => props.theme.colors.darkGray};
 `;
-
-const ItemInput = styled(CitationInput)``;
 
 const Container = styled.div`
   display: grid;
@@ -109,4 +112,5 @@ const TitleUnderline = styled.span`
   height: 2px;
   background: ${(props) => props.theme.colors.darkGray};
   margin: 0px;
+  display: ${(props) => (props.show ? "block" : "none")};
 `;

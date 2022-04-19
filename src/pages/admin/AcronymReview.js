@@ -12,7 +12,6 @@ export default function AcronymReview() {
   const [pendingAcronyms, setPendingAcronyms] = useState([]);
 
   function setData(cardData) {
-    console.log("cardData", cardData);
     const indexPos = pendingAcronyms
       .map((acronym) => {
         return acronym._id;
@@ -51,6 +50,7 @@ export default function AcronymReview() {
     sendToken();
     async function fetchAcronyms() {
       const acronyms = await FETCH_PENDING_ACRONYMS();
+      console.log(acronyms);
       setPendingAcronyms(acronyms);
     }
     fetchAcronyms();
