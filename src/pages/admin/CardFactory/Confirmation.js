@@ -1,12 +1,29 @@
 import React from "react";
 import styled from "styled-components";
 
+const Title = (props) => {
+  const { name } = props;
+
+  if (name === "approve")
+    return (
+      <PromptTitle>
+        Accept this acronym into production environment?
+      </PromptTitle>
+    );
+
+  if (name === "reject") {
+    return (
+      <PromptTitle>Delete this acronym from the submission list?</PromptTitle>
+    );
+  }
+};
+
 export const Confirmation = (props) => {
-  const { display, acceptHandler, rejectHandler } = props;
+  const { display, acceptHandler, rejectHandler, name } = props;
 
   return (
     <Container display={display}>
-      <PromptTitle>Accept Acronym into production environment?</PromptTitle>
+      <Title name={name} />
       <ButtonRow>
         <AcceptButton onClick={acceptHandler}>
           <ButtonText>Yes</ButtonText>

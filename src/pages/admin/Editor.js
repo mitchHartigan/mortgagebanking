@@ -5,22 +5,25 @@ import CardControls from "./CardControls";
 import { CardFactory } from "./CardFactory/CardFactory";
 
 export default function Editor(props) {
-  const defaultState = {
-    approve: false,
-    reject: false,
-    edit: false,
-  };
-
+  const [activeCardIndex, setActiveCardIndex] = useState("");
   const { acronyms } = props;
-  const [state, setState] = useState(defaultState);
 
   return (
     <Container>
+      <p>Active card index: {activeCardIndex}</p>
       {acronyms.map((acronym, i) => {
         return (
           <ControlsContainer>
-            <CardFactory acronym={acronym} index={i} buttonState={state} />
-            <CardControls state={state} setState={setState} />
+            <CardFactory
+              acronym={acronym}
+              index={i}
+              activeCardIndex={activeCardIndex}
+            />
+            <CardControls
+              activeCardIndex={activeCardIndex}
+              setActiveCardIndex={setActiveCardIndex}
+              index={acronym._id}
+            />
           </ControlsContainer>
         );
       })}

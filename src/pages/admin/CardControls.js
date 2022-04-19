@@ -1,31 +1,57 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Confirmation } from "./CardFactory/Confirmation";
 import { ControlButton } from "./ControlButton";
 
 export default function CardControls(props) {
-  const { setState } = props;
-  const { approve, reject, edit } = props.state;
+  const { setActiveCardIndex, activeCardIndex, index } = props;
+
+  const defaultState = {
+    approve: false,
+    reject: false,
+    edit: false,
+  };
+
+  const [state, setState] = useState(defaultState);
+  const { approve, reject, edit } = state;
+
+  function handleClick(name) {
+    setState({ [name]: !state[name] });
+    setActiveCardIndex(index);
+  }
+
+  useEffect(() => {
+    if (activeCardIndex !== index) {
+      setState(defaultState);
+    }
+  }, [activeCardIndex, index]);
 
   return (
-    <Container>
+    <Container name={index}>
       <AdmissionControls>
         <ControlButton
           name="Accept"
-          handleClick={() => setState({ approve: !approve })}
+          handleClick={() => handleClick("approve")}
           disabled={reject || edit}
+          active={approve}
+          setState={setState}
         />
-        <Confirmation display={approve} />
+        <Confirmation display={approve} name="approve" />
         <ControlButton
           name="Reject"
-          handleClick={() => setState({ reject: !reject })}
+          handleClick={() => handleClick("reject")}
           disabled={approve || edit}
+          active={reject}
+          setState={setState}
         />
+        <Confirmation display={reject} name="reject" />
       </AdmissionControls>
       <ControlButton
         name="Edit"
-        handleClick={() => setState({ edit: !edit })}
+        handleClick={() => handleClick("edit")}
         disabled={approve || reject}
+        active={reject}
+        setState={setState}
       />
     </Container>
   );

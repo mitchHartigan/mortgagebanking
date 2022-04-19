@@ -9,14 +9,25 @@ import CitationRow from "../../glossary-search/Card/CitationRow";
 import Title from "../../glossary-search/Card/Title";
 
 export const DisplayCard = (props) => {
-  const { cardData, index, activeCardIndex, displayOverlay, buttonState } =
-    props;
+  const {
+    cardData,
+    index,
+    activeCardIndex,
+    displayOverlay,
+    buttonState,
+    background,
+  } = props;
 
   return (
-    <Container display={displayOverlay} state={buttonState}>
+    <Container
+      display={displayOverlay}
+      state={buttonState}
+      background={background}
+      index={cardData._id}
+    >
       <Title
         cardData={cardData}
-        index={index}
+        index={cardData._id}
         activeCardIndex={activeCardIndex}
       />
       <DefinitionRow cardData={cardData} />

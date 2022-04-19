@@ -10,8 +10,7 @@ const colors = {
 };
 
 export const ControlButton = (props) => {
-  const { handleClick, name, disabled } = props;
-  const [active, setActive] = useState(false);
+  const { handleClick, name, disabled, active, setState } = props;
   const [hovered, setHovered] = useState(false);
 
   return (
@@ -20,7 +19,7 @@ export const ControlButton = (props) => {
       disabled={disabled}
       active={hovered || active}
       onClick={() => {
-        setActive(!active);
+        setState({ [name]: ![name] });
         handleClick();
       }}
       onMouseEnter={() => setHovered(true)}

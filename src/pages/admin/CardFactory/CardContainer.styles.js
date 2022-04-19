@@ -14,14 +14,7 @@ export const Container = styled.div`
   margin: 0px 0px 30px 0px;
   opacity: ${(props) => (props.inactive ? "0.4" : "1")};
 
-  border: 2px solid transparent;
-
-  border: ${(props) => {
-    const { approve, reject, edit } = props.state;
-    if (approve) return `2px solid green`;
-    if (reject) return "2px solid red";
-    if (edit) return "2px solid #e1a915";
-  }};
+  border: 2px solid ${(props) => props.background};
 
   @media (max-width: 1330px) {
     width: 500px;
