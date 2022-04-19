@@ -11,7 +11,6 @@ export default function Editor(props) {
 
   return (
     <Container>
-      <p>Active card index: {activeCardIndex}</p>
       {acronyms.map((acronym, i) => {
         return (
           <ControlsContainer>

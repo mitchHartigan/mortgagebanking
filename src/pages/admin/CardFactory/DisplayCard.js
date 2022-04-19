@@ -24,6 +24,7 @@ export const DisplayCard = (props) => {
       state={buttonState}
       background={background}
       index={cardData._id}
+      id={cardData._id}
     >
       <Title
         cardData={cardData}

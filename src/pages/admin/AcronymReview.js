@@ -23,6 +23,11 @@ export default function AcronymReview() {
     setPendingAcronyms(newAcronyms);
   }
 
+  function scrollToCard(id) {
+    const cardTarget = document.getElementById(id);
+    cardTarget.scrollIntoView({ behavior: "smooth", block: "center" });
+  }
+
   useEffect(() => {
     async function sendToken() {
       const token = JSON.parse(localStorage.getItem("token"));
@@ -63,7 +68,10 @@ export default function AcronymReview() {
   if (requestComplete && authenticated) {
     return (
       <Container>
-        <PendingAcronyms acronyms={pendingAcronyms} />
+        <PendingAcronyms
+          acronyms={pendingAcronyms}
+          scrollToCard={scrollToCard}
+        />
         <Editor acronyms={pendingAcronyms} setData={setData} />
       </Container>
     );

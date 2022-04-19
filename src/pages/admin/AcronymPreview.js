@@ -2,10 +2,11 @@ import React from "react";
 import styled from "styled-components";
 
 export default function AcronymPreview(props) {
-  const { Acronym, Text } = props.acronym;
+  const { Acronym, Text, _id } = props.acronym;
+  const { scrollToCard } = props;
 
   return (
-    <Container>
+    <Container onClick={() => scrollToCard(_id)}>
       <Title>
         {Acronym} - {Text}
       </Title>
@@ -15,11 +16,10 @@ export default function AcronymPreview(props) {
 
 const Title = styled.h1`
   font-family: ${(props) => props.theme.textFont};
-  font-size: ${(props) => props.theme.text.sm};
+  font-size: ${(props) => props.theme.text.xs};
   margin: 0px;
   padding: 0px;
   margin-top: 5px;
-  color: ${(props) => props.theme.colors.darkBlue};
 `;
 
 const Container = styled.div`
@@ -31,4 +31,13 @@ const Container = styled.div`
   border-radius: 5px;
   text-overflow: ellipsis;
   box-shadow: 1px 2px 1px rgba(0, 0, 0, 0.25);
+
+  &:hover {
+    background-color: ${(props) => props.theme.colors.darkBlue};
+    color: white;
+    box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
+    cursor: pointer;
+    transition: background-color 0.1s linear;
+    transition: box-shadow 0.1s linear;
+  }
 `;
