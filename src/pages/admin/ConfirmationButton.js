@@ -25,7 +25,7 @@ export const ConfirmationButton = (props) => {
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      <Icon name={name} active={active || hovered} />
+      <Icon name={name} active={active} hovered={hovered} />
       <ButtonText active={active || hovered}>{name}</ButtonText>
     </Button>
   );

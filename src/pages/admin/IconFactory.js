@@ -5,14 +5,14 @@ import { EditIcon } from "./EditIcon";
 import { RejectIcon } from "./RejectIcon";
 
 export const Icon = (props) => {
-  const { name, active } = props;
+  const { name, hovered, active } = props;
   if (name === "Accept") {
-    return <ApprovedIcon invertColor={active} />;
+    return <ApprovedIcon invertColor={hovered || active} />;
   }
   if (name === "Reject") {
-    return <RejectIcon invertColor={active} />;
+    return <RejectIcon invertColor={hovered || active} />;
   }
   if (name === "Edit") {
-    return <EditIcon invertColor={active} />;
+    return <EditIcon invertColor={hovered} active={active} />;
   }
 };

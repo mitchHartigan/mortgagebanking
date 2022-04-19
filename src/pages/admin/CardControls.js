@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Confirmation } from "./CardFactory/Confirmation";
-import { ControlButton } from "./ControlButton";
+import { EditButton } from "./EditButton";
 import { ConfirmationButton } from "./ConfirmationButton";
 
 export default function CardControls(props) {
@@ -56,11 +56,11 @@ export default function CardControls(props) {
           rejectHandler={() => setState(defaultState)}
         />
       </AdmissionControls>
-      <ControlButton
+      <EditButton
         name="Edit"
         handleClick={() => handleClick("edit")}
         disabled={approve || reject}
-        active={reject}
+        active={edit}
         setState={setState}
       />
     </Container>
@@ -99,19 +99,5 @@ const ApproveButton = styled.div`
   &:hover {
     background-color: #e1a915;
     color: white;
-  }
-`;
-
-const RejectButton = styled(ApproveButton)`
-  &:hover {
-    background-color: #e1a915;
-  }
-`;
-
-const EditButton = styled(ApproveButton)`
-  padding-left: 10px;
-
-  &:hover {
-    background-color: ${(props) => props.theme.colors.mainGold};
   }
 `;

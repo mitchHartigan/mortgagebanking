@@ -9,9 +9,14 @@ const colors = {
   Edit: "#e1a915",
 };
 
-export const ControlButton = (props) => {
+export const EditButton = (props) => {
   const { handleClick, name, disabled, active, setState } = props;
   const [hovered, setHovered] = useState(false);
+
+  function genButtonText() {
+    if (!active) return name;
+    return "Stop Editing";
+  }
 
   return (
     <Button
@@ -25,8 +30,10 @@ export const ControlButton = (props) => {
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      <Icon name={name} active={active || hovered} />
-      <ButtonText active={active || hovered}>{name}</ButtonText>
+      <Icon name={name} hovered={hovered} active={active} />
+      <ButtonText active={active} hovered={hovered}>
+        {genButtonText()}
+      </ButtonText>
     </Button>
   );
 };
@@ -62,6 +69,6 @@ const ButtonText = styled.p`
   margin-left: 15px;
   margin-top: 14px;
   font-weight: normal;
-  color: ${(props) => (props.active ? "white" : "black")};
+  color: ${(props) => (props.hovered ? "white" : "black")};
   user-select: none;
 `;
