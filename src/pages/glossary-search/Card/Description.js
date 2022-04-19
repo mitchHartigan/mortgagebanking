@@ -4,15 +4,17 @@ import styled from "styled-components";
 export default function Description(props) {
   let description = props.cardData.Description;
 
-  const { editMode, setData, cardData } = props;
+  const { editMode, setData, cardData, activeCardIndex } = props;
   if (description === "" && !editMode) description = "No description provided.";
+
+  const isActiveCard = cardData._id === activeCardIndex;
 
   return (
     <Container>
       <Title>Description of Use</Title>
-      <Underline show={!editMode} />
-      {!editMode && <Text description={description}>{description}</Text>}
-      {editMode && (
+      <Underline show={!isActiveCard} />
+      {!isActiveCard && <Text description={description}>{description}</Text>}
+      {isActiveCard && editMode && (
         <TextInput
           value={description}
           onChange={(evt) =>

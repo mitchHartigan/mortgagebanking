@@ -29,6 +29,8 @@ export const DisplayCard = (props) => {
         cardData={cardData}
         index={cardData._id}
         activeCardIndex={activeCardIndex}
+        editMode={false}
+        disableHighlights
       />
       <DefinitionRow cardData={cardData} />
       <Description cardData={cardData} />

@@ -5,7 +5,8 @@ export default function DefinitionRow(props) {
   let definition = props.cardData.Text;
   let acronym = props.cardData.Acronym;
 
-  const { editMode, setData, cardData } = props;
+  const { editMode, setData, cardData, activeCardIndex } = props;
+  const isActiveCard = cardData._id === activeCardIndex;
 
   if (definition === "" && !editMode) definition = "N/A";
   if (acronym === "" && !editMode) acronym = "N/A";
@@ -15,10 +16,10 @@ export default function DefinitionRow(props) {
       <DefinitionContainer>
         <TitleContainer>
           <ItemTitle>Definition</ItemTitle>
-          <TitleUnderline show={!editMode} />
+          <TitleUnderline show={!isActiveCard} />
         </TitleContainer>
-        {!editMode && <ItemText>{definition}</ItemText>}
-        {editMode && (
+        {!isActiveCard && <ItemText>{definition}</ItemText>}
+        {isActiveCard && editMode && (
           <TitleInput
             value={definition}
             onChange={(evt) => {
@@ -31,10 +32,10 @@ export default function DefinitionRow(props) {
       <AcronymContainer>
         <TitleContainer>
           <ItemTitle>Acronym</ItemTitle>
-          <TitleUnderline show={!editMode} />
+          <TitleUnderline show={!isActiveCard} />
         </TitleContainer>
-        {!editMode && <Acronym>{acronym}</Acronym>}
-        {editMode && (
+        {!isActiveCard && <Acronym>{acronym}</Acronym>}
+        {isActiveCard && editMode && (
           <AcronymInput
             value={acronym}
             onChange={(evt) => {

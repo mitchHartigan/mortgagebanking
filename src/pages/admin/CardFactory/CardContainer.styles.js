@@ -14,8 +14,6 @@ export const Container = styled.div`
   margin: 0px 0px 30px 0px;
   opacity: ${(props) => (props.inactive ? "0.4" : "1")};
 
-  border: 2px solid ${(props) => props.background};
-
   @media (max-width: 1330px) {
     width: 500px;
   }

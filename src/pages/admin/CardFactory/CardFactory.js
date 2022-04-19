@@ -7,16 +7,6 @@ export const CardFactory = (props) => {
   const { acronym, index, activeCardIndex, buttonState, editMode, setData } =
     props;
 
-  const genBackground = () => {
-    if (index === activeCardIndex) {
-      const { approve, reject, edit } = buttonState;
-      if (approve) return "green";
-      if (reject) return "red";
-      if (edit) return "#e1a915";
-      else return "transparent";
-    }
-  };
-
   if (!editMode) {
     return (
       <DisplayCard
@@ -24,7 +14,6 @@ export const CardFactory = (props) => {
         index={index}
         activeCardIndex={activeCardIndex}
         buttonState={buttonState}
-        background={genBackground()}
       />
     );
   } else {
@@ -34,8 +23,8 @@ export const CardFactory = (props) => {
         index={index}
         activeCardIndex={activeCardIndex}
         buttonState={buttonState}
-        background={genBackground()}
         setData={setData}
+        editMode={editMode}
       />
     );
   }

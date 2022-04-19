@@ -33,9 +33,9 @@ export const EditCard = (props) => {
         editMode={true}
         setData={setData}
       />
-      <DefinitionRow cardData={cardData} editMode={true} setData={setData} />
-      <Description cardData={cardData} editMode={true} setData={setData} />
-      <CitationRow cardData={cardData} editMode={true} setData={setData} />
+      <DefinitionRow {...props} editMode />
+      <Description {...props} editMode />
+      <CitationRow {...props} editMode />
     </Container>
   );
 };

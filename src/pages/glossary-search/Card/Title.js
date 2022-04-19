@@ -4,13 +4,15 @@ import styled from "styled-components";
 export default function TitleRow(props) {
   const { Acronym, Text } = props.cardData;
 
-  const { index, activeCardIndex, inactive, disableHighlights } = props;
+  const { index, activeCardIndex, inactive, disableHighlights, editMode } =
+    props;
 
   return (
     <Container
       index={index}
       activeCardIndex={activeCardIndex}
       inactive={inactive || disableHighlights}
+      editMode={editMode}
     >
       <Title
         index={index}
@@ -29,10 +31,17 @@ const Container = styled.div`
   box-sizing: border-box;
   border-radius: 10px;
   padding: 0px 35px 0px 35px;
-  background: ${(props) =>
-    props.index !== props.activeCardIndex || props.inactive
-      ? props.theme.colors.darkBlue
-      : props.theme.colors.mainGold};
+  background: ${(props) => {
+    if (!props.editMode) {
+      return props.index !== props.activeCardIndex || props.inactive
+        ? props.theme.colors.darkBlue
+        : props.theme.colors.mainGold;
+    }
+    if (props.editMode && props.index === props.activeCardIndex)
+      return props.theme.colors.mainGold;
+
+    return props.theme.colors.darkBlue;
+  }};
 `;
 
 const Title = styled.p`
