@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Confirmation } from "./CardFactory/Confirmation";
 import { ControlButton } from "./ControlButton";
+import { ConfirmationButton } from "./ConfirmationButton";
 
 export default function CardControls(props) {
   const { setActiveCardIndex, activeCardIndex, index } = props;
@@ -29,22 +30,31 @@ export default function CardControls(props) {
   return (
     <Container name={index}>
       <AdmissionControls>
-        <ControlButton
+        <ConfirmationButton
           name="Accept"
           handleClick={() => handleClick("approve")}
           disabled={reject || edit}
           active={approve}
           setState={setState}
         />
-        <Confirmation display={approve} name="approve" />
-        <ControlButton
+        <Confirmation
+          display={approve}
+          name="approve"
+          acceptHandler={() => console.log("accepted.")}
+          rejectHandler={() => setState(defaultState)}
+        />
+        <ConfirmationButton
           name="Reject"
           handleClick={() => handleClick("reject")}
           disabled={approve || edit}
           active={reject}
           setState={setState}
         />
-        <Confirmation display={reject} name="reject" />
+        <Confirmation
+          display={reject}
+          name="reject"
+          rejectHandler={() => setState(defaultState)}
+        />
       </AdmissionControls>
       <ControlButton
         name="Edit"
