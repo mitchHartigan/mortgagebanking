@@ -5,7 +5,13 @@ import { EditButton } from "./EditButton";
 import { ConfirmationButton } from "./ConfirmationButton";
 
 export default function CardControls(props) {
-  const { setActiveCardIndex, activeCardIndex, index } = props;
+  const {
+    setActiveCardIndex,
+    toggleEditOn,
+    toggleEditOff,
+    activeCardIndex,
+    index,
+  } = props;
 
   const defaultState = {
     approve: false,
@@ -19,6 +25,8 @@ export default function CardControls(props) {
   function handleClick(name) {
     setState({ [name]: !state[name] });
     setActiveCardIndex(index);
+    if (name === "edit" && !edit) toggleEditOn();
+    if (name === "edit" && edit) toggleEditOff();
   }
 
   useEffect(() => {

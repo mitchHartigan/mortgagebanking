@@ -69,6 +69,6 @@ const ButtonText = styled.p`
   margin-left: 15px;
   margin-top: 14px;
   font-weight: normal;
-  color: ${(props) => (props.hovered ? "white" : "black")};
+  color: ${(props) => (props.hovered ? "#f7fafa" : "black")};
   user-select: none;
 `;

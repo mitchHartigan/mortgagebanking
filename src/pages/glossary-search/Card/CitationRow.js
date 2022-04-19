@@ -6,8 +6,10 @@ export default function CitationRow(props) {
   let dateAdded = props.cardData["Date Entered"];
   let citation = props.cardData.Citation;
 
-  if (citation === "") citation = "N/A";
-  if (dateAdded === "") dateAdded = "N/A";
+  const { editMode, setData, cardData } = props;
+
+  if (citation === "" && !editMode) citation = "N/A";
+  if (dateAdded === "" && !editMode) dateAdded = "N/A";
 
   return (
     <Container>
@@ -16,7 +18,16 @@ export default function CitationRow(props) {
           <ItemTitle>Citation</ItemTitle>
           <TitleUnderline />
         </TitleContainer>
-        <CitationText>{citation}</CitationText>
+        {!editMode && <CitationText>{citation}</CitationText>}
+        {editMode && (
+          <CitationInput
+            value={citation}
+            onChange={(evt) => {
+              console.log(evt.target.value);
+              setData({ ...cardData, Citation: evt.target.value });
+            }}
+          />
+        )}
       </CitationContainer>
 
       <DateContainer>
@@ -29,6 +40,12 @@ export default function CitationRow(props) {
     </Container>
   );
 }
+
+const CitationInput = styled.input`
+  height: 20px;
+`;
+
+const ItemInput = styled(CitationInput)``;
 
 const Container = styled.div`
   display: grid;

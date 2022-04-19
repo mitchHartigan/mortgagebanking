@@ -4,8 +4,6 @@ export const EditIcon = (props) => {
   const { invertColor, active } = props;
   const [color, setColor] = useState("#202020");
 
-  console.log("active", active);
-
   useEffect(() => {
     if (invertColor) setColor("white");
     if (!invertColor) setColor("#202020");
@@ -29,7 +27,15 @@ export const EditIcon = (props) => {
     );
   } else {
     return (
-      <p style={{ fontFamily: "Lato", fontWeight: "bold", fontSize: "17px" }}>
+      <p
+        style={{
+          fontFamily: "Lato",
+          fontWeight: "bold",
+          fontSize: "18px",
+          marginLeft: "2px",
+          marginRight: "-2px",
+        }}
+      >
         X
       </p>
     );

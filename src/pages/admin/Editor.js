@@ -6,7 +6,8 @@ import { CardFactory } from "./CardFactory/CardFactory";
 
 export default function Editor(props) {
   const [activeCardIndex, setActiveCardIndex] = useState("");
-  const { acronyms } = props;
+  const [editMode, setEditMode] = useState(false);
+  const { acronyms, setData } = props;
 
   return (
     <Container>
@@ -18,11 +19,15 @@ export default function Editor(props) {
               acronym={acronym}
               index={i}
               activeCardIndex={activeCardIndex}
+              editMode={editMode}
+              setData={setData}
             />
             <CardControls
               activeCardIndex={activeCardIndex}
               setActiveCardIndex={setActiveCardIndex}
               index={acronym._id}
+              toggleEditOn={() => setEditMode(true)}
+              toggleEditOff={() => setEditMode(false)}
             />
           </ControlsContainer>
         );

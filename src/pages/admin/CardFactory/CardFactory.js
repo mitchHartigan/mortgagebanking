@@ -1,9 +1,11 @@
 import React from "react";
 
 import { DisplayCard } from "./DisplayCard";
+import { EditCard } from "./EditCard";
 
 export const CardFactory = (props) => {
-  const { acronym, index, activeCardIndex, buttonState } = props;
+  const { acronym, index, activeCardIndex, buttonState, editMode, setData } =
+    props;
 
   const genBackground = () => {
     if (index === activeCardIndex) {
@@ -15,13 +17,26 @@ export const CardFactory = (props) => {
     }
   };
 
-  return (
-    <DisplayCard
-      cardData={acronym}
-      index={index}
-      activeCardIndex={activeCardIndex}
-      buttonState={buttonState}
-      background={genBackground()}
-    />
-  );
+  if (!editMode) {
+    return (
+      <DisplayCard
+        cardData={acronym}
+        index={index}
+        activeCardIndex={activeCardIndex}
+        buttonState={buttonState}
+        background={genBackground()}
+      />
+    );
+  } else {
+    return (
+      <EditCard
+        cardData={acronym}
+        index={index}
+        activeCardIndex={activeCardIndex}
+        buttonState={buttonState}
+        background={genBackground()}
+        setData={setData}
+      />
+    );
+  }
 };

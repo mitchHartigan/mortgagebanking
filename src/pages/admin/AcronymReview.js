@@ -11,6 +11,19 @@ export default function AcronymReview() {
   const [authenticated, setAuthenticated] = useState(false);
   const [pendingAcronyms, setPendingAcronyms] = useState([]);
 
+  function setData(cardData) {
+    console.log("cardData", cardData);
+    const indexPos = pendingAcronyms
+      .map((acronym) => {
+        return acronym._id;
+      })
+      .indexOf(cardData._id);
+
+    const newAcronyms = [...pendingAcronyms];
+    newAcronyms.splice(indexPos, 1, { ...cardData });
+    setPendingAcronyms(newAcronyms);
+  }
+
   useEffect(() => {
     async function sendToken() {
       const token = JSON.parse(localStorage.getItem("token"));
@@ -51,7 +64,7 @@ export default function AcronymReview() {
     return (
       <Container>
         <PendingAcronyms acronyms={pendingAcronyms} />
-        <Editor acronyms={pendingAcronyms} />
+        <Editor acronyms={pendingAcronyms} setData={setData} />
       </Container>
     );
   }
