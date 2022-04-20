@@ -45,5 +45,5 @@ const Container = styled.div`
 const ControlsContainer = styled.div`
   display: flex;
   flex-direction: row;
-  margin: 40px 0px 40px 0px;
+  margin: 40px 0px 10px 0px;
 `;
