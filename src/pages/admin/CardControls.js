@@ -36,7 +36,7 @@ export default function CardControls(props) {
   }, [activeCardIndex, index]);
 
   return (
-    <Container name={index}>
+    <Container name={index} approve={approve} reject={reject}>
       <AdmissionControls>
         <ConfirmationButton
           name="Accept"
@@ -85,7 +85,10 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
-  margin: -15px 0px 15px 25px;
+  margin: ${(props) =>
+    props.approve || props.reject
+      ? "-15px -350px 15px 30px"
+      : "-15px 0px 15px 30px"};
   padding: 20px 0px 35px 0px;
   height: 348px;
 `;

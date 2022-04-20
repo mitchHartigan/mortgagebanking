@@ -3,8 +3,9 @@ import styled from "styled-components";
 
 import { Redirect } from "react-router-dom";
 import { FETCH_PENDING_ACRONYMS } from "./API";
-import PendingAcronyms from "./PendingAcronyms";
 import Editor from "./Editor";
+import { Title } from "components/Title";
+import { Sidebar } from "./Sidebar";
 
 export default function AcronymReview() {
   const [requestComplete, setRequestComplete] = useState(false);
@@ -67,13 +68,17 @@ export default function AcronymReview() {
 
   if (requestComplete && authenticated) {
     return (
-      <Container>
-        <PendingAcronyms
-          acronyms={pendingAcronyms}
-          scrollToCard={scrollToCard}
-        />
-        <Editor acronyms={pendingAcronyms} setData={setData} />
-      </Container>
+      <>
+        <Sidebar acronyms={pendingAcronyms} scrollToCard={scrollToCard} />
+        <EditorContainer>
+          <HeaderContainer>
+            <Title alignTitle="center" size="lg" spanWidth="200px">
+              Acronym Submission Review
+            </Title>
+          </HeaderContainer>
+          <Editor acronyms={pendingAcronyms} setData={setData} />
+        </EditorContainer>
+      </>
     );
   }
   if (!requestComplete) {
@@ -81,10 +86,17 @@ export default function AcronymReview() {
   }
 }
 
-const Container = styled.div`
+const EditorContainer = styled.div`
   display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const HeaderContainer = styled.div`
+  display: flex;
+  width: 100%;
   flex-direction: row;
-  align-items: flex-start;
   justify-content: flex-start;
-  padding: 50px 100px 0px 100px;
+  align-items: center;
+  padding: 20px 0px 0px 0px;
 `;

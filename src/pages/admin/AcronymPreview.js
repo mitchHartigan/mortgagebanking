@@ -26,7 +26,7 @@ const Container = styled.div`
   height: 50px;
   background-color: ${(props) => props.theme.colors.offWhite};
   padding: 10px 20px 10px 20px;
-  margin: 10px 20px 10px 20px;
+  margin: 10px 0px 10px 0px;
   box-sizing: border-box;
   border-radius: 5px;
   text-overflow: ellipsis;

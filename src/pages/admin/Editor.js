@@ -39,8 +39,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-left: 450px;
-  margin-top: -40px;
+  margin-right: -170px;
 `;
 
 const ControlsContainer = styled.div`
