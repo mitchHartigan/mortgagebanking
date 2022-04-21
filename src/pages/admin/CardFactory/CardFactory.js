@@ -17,11 +17,6 @@ export const CardFactory = (props) => {
     setData,
   } = props;
 
-  console.log("=====================================");
-  console.log("CardFactory.js:");
-  console.log("rejected ac id", rejectedAcronymId);
-  console.log("current acronym id", acronym._id);
-
   const rejected = acronym._id === rejectedAcronymId;
   const accepted = acronym._id === acceptedAcronymId;
 

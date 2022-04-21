@@ -4,7 +4,7 @@ import { Confirmation } from "./CardFactory/Confirmation";
 import { EditButton } from "./EditButton";
 import { ConfirmationButton } from "./ConfirmationButton";
 
-import { REJECT_PENDING_ACRONYM } from "./API";
+import { REJECT_PENDING_ACRONYM, ACCEPT_PENDING_ACRONYM } from "./API";
 
 export default function CardControls(props) {
   const {
@@ -41,19 +41,15 @@ export default function CardControls(props) {
   };
 
   async function handleDelete(id) {
-    console.log("---------------");
-    console.log("handleDelete");
-    console.log("id param", id);
-    console.log("activeCardIndex", activeCardIndex);
-
     const deletionTarget = findAcronymById(id);
     const success = await REJECT_PENDING_ACRONYM(deletionTarget);
+    if (success) setRejectedAcronymId(id);
+  }
 
-    if (success) {
-      console.log("success!");
-      console.log("id after success", id);
-      setRejectedAcronymId(id);
-    }
+  async function handleAccept(id) {
+    const acceptTarget = findAcronymById(id);
+    const success = await ACCEPT_PENDING_ACRONYM(acceptTarget);
+    if (success) setAcceptedAcronymId(id);
   }
 
   useEffect(() => {
@@ -75,7 +71,7 @@ export default function CardControls(props) {
         <Confirmation
           display={approve}
           name="approve"
-          acceptHandler={() => console.log("accepted")}
+          acceptHandler={() => handleAccept(activeCardIndex)}
           rejectHandler={() => setState(defaultState)}
         />
         <ConfirmationButton

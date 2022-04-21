@@ -15,6 +15,18 @@ export const REJECT_PENDING_ACRONYM = async (acronym) => {
   });
 
   const json = await result.json();
-  console.log("json", json.deletionConfirmed);
   return json.deletionConfirmed;
+};
+
+export const ACCEPT_PENDING_ACRONYM = async (acronym) => {
+  const result = await fetch("http://localhost:4000/acceptPendingAcronym", {
+    method: "POST",
+    body: JSON.stringify(acronym),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  const json = await result.json();
+  console.log("json", json);
+  return json.acceptConfirmed;
 };
