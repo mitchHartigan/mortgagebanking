@@ -132,8 +132,8 @@ export default class AcronymSubmission extends React.Component {
                 <Title size="lg">Submit an Acronym</Title>
                 <CenterBlock>
                   <Description>
-                    Not finding an acronym you know exists? Submit it below and
-                    we'll add it to our database.
+                    Not finding an acronym? Submit it below and we'll add it to
+                    our database.
                   </Description>
                 </CenterBlock>
                 <DoubleInputRow>
