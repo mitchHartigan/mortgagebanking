@@ -2,7 +2,9 @@ import React from "react";
 import styled from "styled-components";
 import { FadeIn } from "components/FadeIn";
 
-export const Success = () => {
+export const Success = (props) => {
+  const { text } = props;
+
   return (
     <FadeIn visible play>
       <Container>
@@ -10,9 +12,7 @@ export const Success = () => {
           <Check src="form_check.png" alt="Form success check" />
         </Circle>
 
-        <Message>
-          Thanks for getting in touch! We'll be in contact shortly.
-        </Message>
+        <Message>{text}</Message>
       </Container>
     </FadeIn>
   );

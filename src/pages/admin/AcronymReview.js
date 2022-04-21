@@ -75,7 +75,7 @@ export default function AcronymReview() {
         <EditorContainer>
           <HeaderContainer>
             <Title alignTitle="center" size="lg" spanWidth="200px">
-              Acronym Submission Reviewer
+              Acronym Submission Review
             </Title>
           </HeaderContainer>
           <Message show={pendingAcronyms.length === 0}>
