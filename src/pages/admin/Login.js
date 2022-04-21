@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
 import { Title } from "components/Title";
 import { Redirect } from "react-router-dom";
+import { CHECK_TOKEN } from "./API";
 
 export default function Login() {
   const [formData, setFormData] = useState({ name: "", password: "" });
@@ -40,6 +41,14 @@ export default function Login() {
       setAuthenticated(true);
     }
   };
+
+  useEffect(() => {
+    async function checkToken() {
+      const validToken = await CHECK_TOKEN();
+      setAuthenticated(validToken);
+    }
+    checkToken();
+  }, []);
 
   if (!authenticated) {
     return (
