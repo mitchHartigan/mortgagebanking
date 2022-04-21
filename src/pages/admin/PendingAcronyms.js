@@ -9,6 +9,7 @@ export default function PendingAcronyms(props) {
     <Container>
       <Title>{`Pending Acronyms (${acronyms.length})`}</Title>
       <Span />
+      <Message show={acronyms.length === 0}>No pending acronyms.</Message>
       {acronyms.map((acronym) => {
         return <AcronymPreview acronym={acronym} scrollToCard={scrollToCard} />;
       })}
@@ -33,6 +34,12 @@ const Title = styled.p`
   margin: 10px 0px 10px 0px;
 `;
 
+const Message = styled.p`
+  font-family: ${(props) => props.theme.textFont};
+  font-size: ${(props) => props.theme.text.xs};
+  display: ${(props) => (props.show ? "block" : "none")};
+  margin-top: 0px;
+`;
 const Span = styled.div`
   height: 2px;
   width: 100%;

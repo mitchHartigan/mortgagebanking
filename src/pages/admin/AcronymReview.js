@@ -71,9 +71,6 @@ export default function AcronymReview() {
   if (requestComplete && authenticated) {
     return (
       <>
-        <button onClick={() => console.log("acronyms", pendingAcronyms)}>
-          log acronyms
-        </button>
         <Sidebar acronyms={pendingAcronyms} scrollToCard={scrollToCard} />
         <EditorContainer>
           <HeaderContainer>
@@ -81,6 +78,9 @@ export default function AcronymReview() {
               Acronym Submission Reviewer
             </Title>
           </HeaderContainer>
+          <Message show={pendingAcronyms.length === 0}>
+            No pending acronym submissions to review.
+          </Message>
           <Editor
             acronyms={pendingAcronyms}
             setData={setData}
@@ -94,6 +94,13 @@ export default function AcronymReview() {
     return null;
   }
 }
+
+const Message = styled.p`
+  font-family: ${(props) => props.theme.textFont};
+  font-size: ${(props) => props.theme.text.xs};
+  display: ${(props) => (props.show ? "block" : "none")};
+  margin-top: 40px;
+`;
 
 const EditorContainer = styled.div`
   display: flex;
