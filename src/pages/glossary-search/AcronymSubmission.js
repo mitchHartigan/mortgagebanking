@@ -97,7 +97,7 @@ export default class AcronymSubmission extends React.Component {
             this.setState({ accepted: true }, () => {
               setTimeout(() => {
                 this.setState({ redirect: true });
-              }, 1500);
+              }, 2000);
             });
           else this.setState({ accepted: false });
         }
