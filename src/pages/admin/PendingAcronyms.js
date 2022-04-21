@@ -7,22 +7,44 @@ export default function PendingAcronyms(props) {
 
   return (
     <Container>
-      <Title>{`Pending Acronyms (${acronyms.length})`}</Title>
-      <Span />
+      <TitleContainer>
+        <Title>{`Pending Acronyms (${acronyms.length})`}</Title>
+        <Span />
+      </TitleContainer>
       <Message show={acronyms.length === 0}>No pending acronyms.</Message>
-      {acronyms.map((acronym) => {
-        return <AcronymPreview acronym={acronym} scrollToCard={scrollToCard} />;
-      })}
+      <AcronymContainer>
+        {acronyms.map((acronym) => {
+          return (
+            <AcronymPreview acronym={acronym} scrollToCard={scrollToCard} />
+          );
+        })}
+      </AcronymContainer>
     </Container>
   );
 }
 
+const TitleContainer = styled.div`
+  height: 60px;
+  width: 305px;
+  position: fixed;
+  background-color: white;
+  z-index: 3;
+`;
+
+const AcronymContainer = styled.div`
+  margin-top: 60px;
+  display: flex;
+  flex-direction: column;
+`;
+
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  padding: 10px 30px 10px 30px;
+  justify-content: flex-start;
+  padding: 10px 30px 20px 30px;
   width: 320px;
+  max-height: 840px;
+  overflow-y: auto;
   background-color: white;
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
   border-radius: 5px;

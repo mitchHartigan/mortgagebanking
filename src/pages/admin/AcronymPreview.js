@@ -20,16 +20,19 @@ const Title = styled.h1`
   margin: 0px;
   padding: 0px;
   margin-top: 5px;
+  overflow-x: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 `;
 
 const Container = styled.div`
   height: 50px;
   background-color: ${(props) => props.theme.colors.offWhite};
   padding: 10px 20px 10px 20px;
+  max-width: 300px;
   margin: 10px 0px 10px 0px;
   box-sizing: border-box;
   border-radius: 5px;
-  text-overflow: ellipsis;
   box-shadow: 1px 2px 1px rgba(0, 0, 0, 0.25);
 
   &:hover {
