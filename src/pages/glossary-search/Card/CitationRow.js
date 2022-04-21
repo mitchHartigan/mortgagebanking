@@ -6,29 +6,50 @@ export default function CitationRow(props) {
   let dateAdded = props.cardData["Date Entered"];
   let citation = props.cardData.Citation;
 
-  if (citation === "") citation = "N/A";
-  if (dateAdded === "") dateAdded = "N/A";
+  const { editMode, setData, cardData, activeCardIndex } = props;
+  const isActiveCard = cardData._id === activeCardIndex;
+
+  if (citation === "" && !editMode) citation = "N/A";
+  if (dateAdded === "" && !editMode) dateAdded = "N/A";
 
   return (
     <Container>
       <CitationContainer>
         <TitleContainer>
           <ItemTitle>Citation</ItemTitle>
-          <TitleUnderline />
+          <TitleUnderline show={!isActiveCard} />
         </TitleContainer>
-        <CitationText>{citation}</CitationText>
+        {!isActiveCard && <CitationText>{citation}</CitationText>}
+        {isActiveCard && editMode && (
+          <CitationInput
+            value={citation}
+            onChange={(evt) => {
+              setData({ ...cardData, Citation: evt.target.value });
+            }}
+          />
+        )}
       </CitationContainer>
 
       <DateContainer>
         <TitleContainer>
           <ItemTitle>Date Added</ItemTitle>
-          <TitleUnderline />
+          <TitleUnderline show />
         </TitleContainer>
         <ItemText>{dateAdded}</ItemText>
       </DateContainer>
     </Container>
   );
 }
+
+const CitationInput = styled.input`
+  height: 20px;
+  font-family: ${(props) => props.theme.textFont};
+  font-size: ${(props) => props.theme.text.xs};
+  padding: 5px 10px 7px 5px;
+  margin-top: 1px;
+  margin-left: -7px;
+  border: 2px solid ${(props) => props.theme.colors.darkGray};
+`;
 
 const Container = styled.div`
   display: grid;
@@ -92,4 +113,5 @@ const TitleUnderline = styled.span`
   height: 2px;
   background: ${(props) => props.theme.colors.darkGray};
   margin: 0px;
+  display: ${(props) => (props.show ? "block" : "none")};
 `;

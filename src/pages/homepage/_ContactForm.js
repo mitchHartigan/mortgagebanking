@@ -126,7 +126,7 @@ export default class ContactForm extends Component {
     } else {
       return (
         <Form>
-          <Success />
+          <Success text="Thanks for getting in touch! We'll be in contact shortly." />
         </Form>
       );
     }

@@ -2,9 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import { FadeIn } from "components/FadeIn";
 
-export const Success = (props) => {
-  const { text } = props;
-
+export const Spinner = (props) => {
+  const { children } = props;
   return (
     <FadeIn visible play>
       <Container>
@@ -12,7 +11,7 @@ export const Success = (props) => {
           <Check src="form_check.png" alt="Form success check" />
         </Circle>
 
-        <Message>{text}</Message>
+        <Message>{children}</Message>
       </Container>
     </FadeIn>
   );
