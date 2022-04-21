@@ -11,6 +11,8 @@ export default function AcronymReview() {
   const [requestComplete, setRequestComplete] = useState(false);
   const [authenticated, setAuthenticated] = useState(false);
   const [pendingAcronyms, setPendingAcronyms] = useState([]);
+  const [acceptedAcronymId, setAcceptedAcronymId] = useState("");
+  const [rejectedAcronymId, setRejectedAcronymId] = useState("");
 
   function setData(cardData) {
     const indexPos = pendingAcronyms
@@ -69,6 +71,9 @@ export default function AcronymReview() {
   if (requestComplete && authenticated) {
     return (
       <>
+        <button onClick={() => console.log("acronyms", pendingAcronyms)}>
+          log acronyms
+        </button>
         <Sidebar acronyms={pendingAcronyms} scrollToCard={scrollToCard} />
         <EditorContainer>
           <HeaderContainer>

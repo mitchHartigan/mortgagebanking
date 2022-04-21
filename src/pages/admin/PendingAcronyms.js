@@ -37,5 +37,5 @@ const Span = styled.div`
   height: 2px;
   width: 100%;
   background-color: ${(props) => props.theme.colors.mainGold};
-  margin-bottom: 7px;
+  margin-bottom: 15px;
 `;

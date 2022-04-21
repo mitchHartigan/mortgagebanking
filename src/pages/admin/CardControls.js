@@ -4,6 +4,8 @@ import { Confirmation } from "./CardFactory/Confirmation";
 import { EditButton } from "./EditButton";
 import { ConfirmationButton } from "./ConfirmationButton";
 
+import { REJECT_PENDING_ACRONYM } from "./API";
+
 export default function CardControls(props) {
   const {
     setActiveCardIndex,
@@ -11,6 +13,11 @@ export default function CardControls(props) {
     toggleEditOff,
     activeCardIndex,
     index,
+    acronyms,
+    setRejectedAcronymId,
+    setAcceptedAcronymId,
+    accepted,
+    rejected,
   } = props;
 
   const defaultState = {
@@ -27,6 +34,26 @@ export default function CardControls(props) {
     setActiveCardIndex(index);
     if (name === "edit" && !edit) toggleEditOn();
     if (name === "edit" && edit) toggleEditOff();
+  }
+
+  const findAcronymById = (id) => {
+    for (let acronym of acronyms) if (acronym._id === id) return acronym;
+  };
+
+  async function handleDelete(id) {
+    console.log("---------------");
+    console.log("handleDelete");
+    console.log("id param", id);
+    console.log("activeCardIndex", activeCardIndex);
+
+    const deletionTarget = findAcronymById(id);
+    const success = await REJECT_PENDING_ACRONYM(deletionTarget);
+
+    if (success) {
+      console.log("success!");
+      console.log("id after success", id);
+      setRejectedAcronymId(id);
+    }
   }
 
   useEffect(() => {
@@ -48,7 +75,7 @@ export default function CardControls(props) {
         <Confirmation
           display={approve}
           name="approve"
-          acceptHandler={() => console.log("accepted.")}
+          acceptHandler={() => console.log("accepted")}
           rejectHandler={() => setState(defaultState)}
         />
         <ConfirmationButton
@@ -61,6 +88,7 @@ export default function CardControls(props) {
         <Confirmation
           display={reject}
           name="reject"
+          acceptHandler={() => handleDelete(activeCardIndex)}
           rejectHandler={() => setState(defaultState)}
         />
       </AdmissionControls>

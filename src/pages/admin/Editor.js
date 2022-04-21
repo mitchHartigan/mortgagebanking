@@ -7,6 +7,10 @@ import { CardFactory } from "./CardFactory/CardFactory";
 export default function Editor(props) {
   const [activeCardIndex, setActiveCardIndex] = useState("");
   const [editMode, setEditMode] = useState(false);
+
+  const [acceptedAcronymId, setAcceptedAcronymId] = useState("");
+  const [rejectedAcronymId, setRejectedAcronymId] = useState("");
+
   const { acronyms, setData } = props;
 
   return (
@@ -20,13 +24,20 @@ export default function Editor(props) {
               activeCardIndex={activeCardIndex}
               editMode={editMode}
               setData={setData}
+              acceptedAcronymId={acceptedAcronymId}
+              rejectedAcronymId={rejectedAcronymId}
             />
             <CardControls
               activeCardIndex={activeCardIndex}
               setActiveCardIndex={setActiveCardIndex}
               index={acronym._id}
+              acronyms={acronyms}
               toggleEditOn={() => setEditMode(true)}
               toggleEditOff={() => setEditMode(false)}
+              accepted={acronym._id === acceptedAcronymId}
+              rejected={acronym._id === rejectedAcronymId}
+              setAcceptedAcronymId={setAcceptedAcronymId}
+              setRejectedAcronymId={setRejectedAcronymId}
             />
           </ControlsContainer>
         );
