@@ -111,7 +111,7 @@ const Container = styled.div`
   align-items: flex-start;
   margin: ${(props) =>
     props.approve || props.reject
-      ? "-15px -350px 15px 30px"
+      ? "-15px -210px 15px 30px"
       : "-15px 0px 15px 30px"};
   padding: 20px 0px 35px 0px;
   height: 348px;

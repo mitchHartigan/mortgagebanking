@@ -1,12 +1,21 @@
-import React from "react";
-import styled from "styled-components";
+import React, { useEffect } from "react";
 
 import { Container } from "./CardContainer.styles";
+import { Spinner } from "../SpinnerFactory";
 
 export const RejectedMessage = (props) => {
+  const { setRejectedAcronymId, triggerDBUpdate } = props;
+
+  useEffect(() => {
+    setTimeout(async () => {
+      await triggerDBUpdate();
+      setRejectedAcronymId("");
+    }, 1500);
+  }, []);
+
   return (
     <Container>
-      <p>This acronym has been rejected.</p>
+      <Spinner>Successfully removed this submission.</Spinner>
     </Container>
   );
 };

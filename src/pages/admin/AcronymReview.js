@@ -11,8 +11,6 @@ export default function AcronymReview() {
   const [requestComplete, setRequestComplete] = useState(false);
   const [authenticated, setAuthenticated] = useState(false);
   const [pendingAcronyms, setPendingAcronyms] = useState([]);
-  const [acceptedAcronymId, setAcceptedAcronymId] = useState("");
-  const [rejectedAcronymId, setRejectedAcronymId] = useState("");
 
   function setData(cardData) {
     const indexPos = pendingAcronyms
@@ -31,36 +29,38 @@ export default function AcronymReview() {
     cardTarget.scrollIntoView({ behavior: "smooth", block: "center" });
   }
 
+  async function fetchAcronyms() {
+    const acronyms = await FETCH_PENDING_ACRONYMS();
+    console.log(acronyms);
+    setPendingAcronyms(acronyms);
+  }
+
+  async function sendToken() {
+    const token = JSON.parse(localStorage.getItem("token"));
+
+    if (!token) setRequestComplete(true);
+
+    const payload = { token: token };
+
+    const result = await fetch(
+      "https://md5rhmga23.execute-api.us-west-2.amazonaws.com/production/checkAuthentication",
+      {
+        method: "POST",
+        body: JSON.stringify(payload),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    const json = await result.json();
+
+    setAuthenticated(json.validToken);
+    setRequestComplete(true);
+  }
+
   useEffect(() => {
-    async function sendToken() {
-      const token = JSON.parse(localStorage.getItem("token"));
-
-      if (!token) setRequestComplete(true);
-
-      const payload = { token: token };
-
-      const result = await fetch(
-        "https://md5rhmga23.execute-api.us-west-2.amazonaws.com/production/checkAuthentication",
-        {
-          method: "POST",
-          body: JSON.stringify(payload),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-
-      const json = await result.json();
-
-      setAuthenticated(json.validToken);
-      setRequestComplete(true);
-    }
     sendToken();
-    async function fetchAcronyms() {
-      const acronyms = await FETCH_PENDING_ACRONYMS();
-      console.log(acronyms);
-      setPendingAcronyms(acronyms);
-    }
     fetchAcronyms();
   }, []);
 
@@ -78,10 +78,14 @@ export default function AcronymReview() {
         <EditorContainer>
           <HeaderContainer>
             <Title alignTitle="center" size="lg" spanWidth="200px">
-              Acronym Submission Review
+              Acronym Submission Reviewer
             </Title>
           </HeaderContainer>
-          <Editor acronyms={pendingAcronyms} setData={setData} />
+          <Editor
+            acronyms={pendingAcronyms}
+            setData={setData}
+            triggerDBUpdate={fetchAcronyms}
+          />
         </EditorContainer>
       </>
     );

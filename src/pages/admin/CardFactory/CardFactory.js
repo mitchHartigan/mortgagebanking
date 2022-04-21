@@ -21,10 +21,10 @@ export const CardFactory = (props) => {
   const accepted = acronym._id === acceptedAcronymId;
 
   if (accepted) {
-    return <ApprovedMessage />;
+    return <ApprovedMessage {...props} />;
   }
   if (rejected) {
-    return <RejectedMessage />;
+    return <RejectedMessage {...props} />;
   }
   if (!editMode && !accepted && !rejected) {
     return (

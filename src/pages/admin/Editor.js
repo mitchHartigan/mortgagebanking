@@ -11,7 +11,7 @@ export default function Editor(props) {
   const [acceptedAcronymId, setAcceptedAcronymId] = useState("");
   const [rejectedAcronymId, setRejectedAcronymId] = useState("");
 
-  const { acronyms, setData } = props;
+  const { acronyms, setData, triggerDBUpdate } = props;
 
   return (
     <Container>
@@ -26,6 +26,9 @@ export default function Editor(props) {
               setData={setData}
               acceptedAcronymId={acceptedAcronymId}
               rejectedAcronymId={rejectedAcronymId}
+              setAcceptedAcronymId={setAcceptedAcronymId}
+              setRejectedAcronymId={setRejectedAcronymId}
+              triggerDBUpdate={triggerDBUpdate}
             />
             <CardControls
               activeCardIndex={activeCardIndex}

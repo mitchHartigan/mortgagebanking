@@ -15,4 +15,8 @@ export const Icon = (props) => {
   if (name === "Edit") {
     return <EditIcon invertColor={hovered} active={active} />;
   }
+  if (name === "Approved") {
+  }
+  if (name === "Rejected") {
+  }
 };

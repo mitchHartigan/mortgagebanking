@@ -1,16 +1,21 @@
-import React from "react";
-import styled from "styled-components";
+import React, { useEffect } from "react";
 
 import { Container } from "./CardContainer.styles";
+import { Spinner } from "../SpinnerFactory";
 
 export const ApprovedMessage = (props) => {
-  function delayedDelete() {
-    //set timeout...
-  }
+  const { setAcceptedAcronymId, triggerDBUpdate } = props;
+
+  useEffect(() => {
+    setTimeout(async () => {
+      await triggerDBUpdate();
+      setAcceptedAcronymId("");
+    }, 1500);
+  }, []);
 
   return (
     <Container>
-      <p>This acronym has been approved.</p>
+      <Spinner>Successfully approved this acronym.</Spinner>
     </Container>
   );
 };

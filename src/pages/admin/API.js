@@ -27,6 +27,5 @@ export const ACCEPT_PENDING_ACRONYM = async (acronym) => {
     },
   });
   const json = await result.json();
-  console.log("json", json);
   return json.acceptConfirmed;
 };
