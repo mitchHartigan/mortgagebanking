@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Confirmation } from "./CardFactory/Confirmation";
-import { EditButton } from "./EditButton";
+import { EditControls } from "./EditControls";
 import { ConfirmationButton } from "./ConfirmationButton";
 
 import { REJECT_PENDING_ACRONYM, ACCEPT_PENDING_ACRONYM } from "./API";
@@ -16,8 +16,6 @@ export default function CardControls(props) {
     acronyms,
     setRejectedAcronymId,
     setAcceptedAcronymId,
-    accepted,
-    rejected,
   } = props;
 
   const defaultState = {
@@ -88,7 +86,7 @@ export default function CardControls(props) {
           rejectHandler={() => setState(defaultState)}
         />
       </AdmissionControls>
-      <EditButton
+      <EditControls
         name="Edit"
         handleClick={() => handleClick("edit")}
         disabled={approve || reject}
