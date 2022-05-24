@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
-import { Icon } from "./IconFactory";
+import { Icon } from "./icons/IconFactory";
 
 const colors = {
   Accept: "#198754",
@@ -42,28 +42,30 @@ export const EditControls = (props) => {
   } else {
     return (
       <Container>
-        <Button
+        <ActiveEditButton
           name={"Save"}
           active={hoveredButton === "save"}
           onClick={() => {}}
           onMouseEnter={() => setHoveredButton("save")}
           onMouseLeave={() => setHoveredButton("")}
         >
-          <Icon name="Accept" hovered={hoveredButton === "save"} />
-          <ButtonText hovered={hoveredButton === "save"}>Save Edits</ButtonText>
-        </Button>
-        <Button
+          <Icon name="Save" hovered={hoveredButton === "save"} />
+          <ButtonText hovered={hoveredButton === "save"}>
+            Save Changes
+          </ButtonText>
+        </ActiveEditButton>
+        <ActiveEditButton
           name={"Discard"}
           active={""}
           onClick={() => {}}
           onMouseEnter={() => setHoveredButton("discard")}
           onMouseLeave={() => setHoveredButton("")}
         >
-          <Icon name="Reject" hovered={hoveredButton === "discard"} />
+          <Icon name="Discard" hovered={hoveredButton === "discard"} />
           <ButtonText hovered={hoveredButton === "discard"}>
-            Discard Edits
+            Discard Changes
           </ButtonText>
-        </Button>
+        </ActiveEditButton>
       </Container>
     );
   }
@@ -83,7 +85,7 @@ const Button = styled.div`
   outline: none;
   padding-left: 10px;
   border-radius: 5px;
-  width: 140px;
+  width: 130px;
   height: 35px;
   color: #202020;
   cursor: pointer;
@@ -98,6 +100,10 @@ const Button = styled.div`
     background-color: ${(props) => colors[props.name]};
     color: white;
   }
+`;
+
+const ActiveEditButton = styled(Button)`
+  width: 170px;
 `;
 
 const ButtonText = styled.p`

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
-import { Icon } from "./IconFactory";
+import { Icon } from "./icons/IconFactory";
 
 const colors = {
   Accept: "#198754",
