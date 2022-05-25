@@ -28,12 +28,12 @@ export const EditControls = (props) => {
         active={hoveredButton === "edit" || active}
         onClick={() => {
           setState({ [name]: ![name] });
-          handleClick();
+          handleClick("edit");
         }}
         onMouseEnter={() => setHoveredButton("edit")}
         onMouseLeave={() => setHoveredButton("")}
       >
-        <Icon name={name} hovered={hoveredButton === "edit"} active={active} />
+        <Icon name="Edit" hovered={hoveredButton === "edit"} active={active} />
         <ButtonText active={active} hovered={hoveredButton === "edit"}>
           {genButtonText()}
         </ButtonText>

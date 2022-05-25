@@ -8,9 +8,11 @@ import Title from "../glossary-search/Card/Title";
 
 export default function Card(props) {
   const { cardData, index, activeCardIndex } = props;
+  console.log("index", index);
+  console.log("activeCardIndex", activeCardIndex);
 
   return (
-    <Container>
+    <Container highlight={index === activeCardIndex}>
       <Title
         cardData={cardData}
         index={index}
@@ -31,7 +33,9 @@ const Container = styled.div`
   background: white;
   box-sizing: border-box;
   padding: 20px 60px 10px 60px;
-  box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 4px 3px
+    ${({ highlight }) =>
+      highlight ? "rgba(225, 169, 21, 0.4)" : "rgba(0, 0, 0, 0.3)"};
   border-radius: 10px;
   margin: 0px 0px 30px 0px;
   opacity: ${(props) => (props.inactive ? "0.4" : "1")};

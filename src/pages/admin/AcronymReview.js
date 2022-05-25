@@ -31,7 +31,6 @@ export default function AcronymReview() {
 
   async function fetchAcronyms() {
     const acronyms = await FETCH_PENDING_ACRONYMS();
-    console.log(acronyms);
     setPendingAcronyms(acronyms);
   }
 

@@ -11,6 +11,7 @@ export default function CardControls(props) {
     setActiveCardIndex,
     toggleEditOn,
     toggleEditOff,
+    saveChanges,
     activeCardIndex,
     index,
     acronyms,
@@ -32,6 +33,7 @@ export default function CardControls(props) {
     setActiveCardIndex(index);
     if (name === "edit" && !edit) toggleEditOn();
     if (name === "edit" && edit) toggleEditOff();
+    // if (name === "save") saveChanges();
   }
 
   const findAcronymById = (id) => {
@@ -88,7 +90,7 @@ export default function CardControls(props) {
       </AdmissionControls>
       <EditControls
         name="Edit"
-        handleClick={() => handleClick("edit")}
+        handleClick={handleClick}
         disabled={approve || reject}
         active={edit}
         setState={setState}
