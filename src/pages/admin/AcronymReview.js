@@ -34,6 +34,12 @@ export default function AcronymReview() {
     setPendingAcronyms(acronyms);
   }
 
+  async function postAcronynms() {
+    const acronyms = pendingAcronyms;
+    const result = await POST_PENDING_ACRONYMS(acronyms);
+    console.log(result);
+  }
+
   async function sendToken() {
     const token = JSON.parse(localStorage.getItem("token"));
 
@@ -84,6 +90,7 @@ export default function AcronymReview() {
             acronyms={pendingAcronyms}
             setData={setData}
             triggerDBUpdate={fetchAcronyms}
+            triggerLocalUpdate={postAcronynms}
           />
         </EditorContainer>
       </>

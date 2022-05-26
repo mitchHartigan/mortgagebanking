@@ -9,10 +9,10 @@ export const FETCH_PENDING_ACRONYMS = async () => {
   if (json.pendingAcronyms) return json.pendingAcronyms;
 };
 
-export const UPDATE_PENDING_ACRONYM = async (acronym) => {
-  const result = await fetch(`${URL}/pendingAcronyms`, {
+export const POST_PENDING_ACRONYMS = async (acronyms) => {
+  const result = await fetch(`${URL}/uploadPendingAcronyms`, {
     method: "POST",
-    body: JSON.stringify(acronym),
+    body: JSON.stringify(acronyms),
     headers: {
       "Content-Type": "application/json",
     },
