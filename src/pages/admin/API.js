@@ -1,6 +1,5 @@
-const URL = "http://localhost:4000";
-// const URL =
-//   "https://md5rhmga23.execute-api.us-west-2.amazonaws.com/production/pendingAcronyms";
+// const URL = "http://localhost:4000";
+const URL = "https://md5rhmga23.execute-api.us-west-2.amazonaws.com/production";
 
 export const FETCH_PENDING_ACRONYMS = async () => {
   const result = await fetch(`${URL}/pendingAcronyms`);
