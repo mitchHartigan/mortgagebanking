@@ -56,6 +56,7 @@ export const EditControls = (props) => {
           active={hoveredButton === "save"}
           onClick={() => {
             postAcronyms();
+            handleClick("edit");
           }}
           onMouseEnter={() => setHoveredButton("save")}
           onMouseLeave={() => setHoveredButton("")}
@@ -68,7 +69,10 @@ export const EditControls = (props) => {
         <ActiveEditButton
           name={"Discard"}
           active={""}
-          onClick={() => {}}
+          onClick={() => {
+            fetchAcronyms();
+            handleClick("edit");
+          }}
           onMouseEnter={() => setHoveredButton("discard")}
           onMouseLeave={() => setHoveredButton("")}
         >
