@@ -12,7 +12,16 @@ const colors = {
 };
 
 export const EditControls = (props) => {
-  const { handleClick, name, disabled, active, setState } = props;
+  const {
+    handleClick,
+    name,
+    disabled,
+    active,
+    setState,
+    fetchAcronyms,
+    postAcronyms,
+  } = props;
+
   const [hoveredButton, setHoveredButton] = useState(false);
 
   function genButtonText() {
@@ -45,7 +54,9 @@ export const EditControls = (props) => {
         <ActiveEditButton
           name={"Save"}
           active={hoveredButton === "save"}
-          onClick={() => {}}
+          onClick={() => {
+            postAcronyms();
+          }}
           onMouseEnter={() => setHoveredButton("save")}
           onMouseLeave={() => setHoveredButton("")}
         >

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
 import { Redirect } from "react-router-dom";
-import { FETCH_PENDING_ACRONYMS } from "./API";
+import { FETCH_PENDING_ACRONYMS, POST_PENDING_ACRONYMS } from "./API";
 import Editor from "./Editor";
 import { Title } from "components/Title";
 import { Sidebar } from "./Sidebar";
@@ -89,8 +89,8 @@ export default function AcronymReview() {
           <Editor
             acronyms={pendingAcronyms}
             setData={setData}
-            triggerDBUpdate={fetchAcronyms}
-            triggerLocalUpdate={postAcronynms}
+            fetchAcronyms={fetchAcronyms}
+            postAcronyms={postAcronynms}
           />
         </EditorContainer>
       </>
