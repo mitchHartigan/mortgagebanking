@@ -59,7 +59,7 @@ export const EditControls = (props) => {
             updateAcronym(activeCardIndex);
             handleClick("edit");
           }}
-          onMouseEnter={() => setHoveredButton("save")}
+          onMouseOver={() => setHoveredButton("save")}
           onMouseLeave={() => setHoveredButton("")}
         >
           <Icon name="Save" hovered={hoveredButton === "save"} />
@@ -74,7 +74,7 @@ export const EditControls = (props) => {
             fetchAcronyms();
             handleClick("edit");
           }}
-          onMouseEnter={() => setHoveredButton("discard")}
+          onMouseOver={() => setHoveredButton("discard")}
           onMouseLeave={() => setHoveredButton("")}
         >
           <Icon name="Discard" hovered={hoveredButton === "discard"} />
@@ -120,6 +120,7 @@ const Button = styled.div`
 
 const ActiveEditButton = styled(Button)`
   width: 170px;
+  margin-right: -50px;
 `;
 
 const ButtonText = styled.p`
