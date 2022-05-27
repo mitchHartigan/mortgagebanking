@@ -4,10 +4,10 @@ import styled from "styled-components";
 const Title = (props) => {
   const { name } = props;
 
-  if (name === "approve")
+  if (name === "publish")
     return (
       <PromptTitle>
-        Accept this acronym into production environment?
+        Publish this acronym to the production environment?
       </PromptTitle>
     );
 

@@ -8,7 +8,7 @@ import { DiscardIcon } from "./DiscardIcon";
 
 export const Icon = (props) => {
   const { name, hovered, active } = props;
-  if (name === "Accept") {
+  if (name === "Publish") {
     return <ApprovedIcon invertColor={hovered || active} />;
   }
   if (name === "Reject") {
