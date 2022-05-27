@@ -157,7 +157,7 @@ export default class AcronymSubmission extends React.Component {
                 <DoubleInputRow>
                   <Input
                     name="Acronym"
-                    label="Acronym Name"
+                    label="Acronym"
                     leftInputMargin
                     onChange={this.updateFormData}
                     invalid={AcronymErr}
