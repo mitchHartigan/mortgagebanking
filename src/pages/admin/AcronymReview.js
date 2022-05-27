@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
 import { Redirect } from "react-router-dom";
-import { FETCH_PENDING_ACRONYMS, POST_PENDING_ACRONYMS } from "./API";
+import { FETCH_PENDING_ACRONYMS, UPDATE_PENDING_ACRONYM } from "./API";
 import Editor from "./Editor";
 import { Title } from "components/Title";
 import { Sidebar } from "./Sidebar";
@@ -32,11 +32,18 @@ export default function AcronymReview() {
   async function fetchAcronyms() {
     const acronyms = await FETCH_PENDING_ACRONYMS();
     setPendingAcronyms(acronyms);
+    console.log(acronyms);
   }
 
-  async function postAcronynms() {
-    const acronyms = pendingAcronyms;
-    const result = await POST_PENDING_ACRONYMS(acronyms);
+  async function updateAcronym(activeCardIndex) {
+    let updatedAcronym;
+
+    for (let acronym of pendingAcronyms) {
+      if (acronym._id === activeCardIndex) updatedAcronym = acronym;
+    }
+    console.log(updatedAcronym);
+    console.log("faking POSTING to backend....");
+    const result = await UPDATE_PENDING_ACRONYM(updatedAcronym);
     console.log(result);
   }
 
@@ -90,7 +97,7 @@ export default function AcronymReview() {
             acronyms={pendingAcronyms}
             setData={setData}
             fetchAcronyms={fetchAcronyms}
-            postAcronyms={postAcronynms}
+            updateAcronym={updateAcronym}
           />
         </EditorContainer>
       </>

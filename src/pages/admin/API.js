@@ -1,5 +1,5 @@
-// const URL = "http://localhost:4000";
-const URL = "https://md5rhmga23.execute-api.us-west-2.amazonaws.com/production";
+const URL = "http://localhost:4000";
+// const URL = "https://md5rhmga23.execute-api.us-west-2.amazonaws.com/production";
 
 export const FETCH_PENDING_ACRONYMS = async () => {
   const result = await fetch(`${URL}/pendingAcronyms`);
@@ -8,10 +8,10 @@ export const FETCH_PENDING_ACRONYMS = async () => {
   if (json.pendingAcronyms) return json.pendingAcronyms;
 };
 
-export const POST_PENDING_ACRONYMS = async (acronyms) => {
-  const result = await fetch(`${URL}/uploadPendingAcronyms`, {
+export const UPDATE_PENDING_ACRONYM = async (acronym) => {
+  const result = await fetch(`${URL}/updateEditedAcronym`, {
     method: "POST",
-    body: JSON.stringify(acronyms),
+    body: JSON.stringify(acronym),
     headers: {
       "Content-Type": "application/json",
     },

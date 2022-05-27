@@ -11,7 +11,7 @@ export default function Editor(props) {
   const [acceptedAcronymId, setAcceptedAcronymId] = useState("");
   const [rejectedAcronymId, setRejectedAcronymId] = useState("");
 
-  const { acronyms, setData, fetchAcronyms, postAcronyms } = props;
+  const { acronyms, setData, fetchAcronyms, updateAcronym } = props;
 
   return (
     <Container>
@@ -42,7 +42,7 @@ export default function Editor(props) {
               setAcceptedAcronymId={setAcceptedAcronymId}
               setRejectedAcronymId={setRejectedAcronymId}
               fetchAcronyms={fetchAcronyms}
-              postAcronyms={postAcronyms}
+              updateAcronym={updateAcronym}
             />
           </ControlsContainer>
         );

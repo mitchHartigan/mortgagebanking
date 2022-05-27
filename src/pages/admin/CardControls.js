@@ -12,7 +12,7 @@ export default function CardControls(props) {
     toggleEditOn,
     toggleEditOff,
     fetchAcronyms,
-    postAcronyms,
+    updateAcronym,
     activeCardIndex,
     index,
     acronyms,
@@ -96,7 +96,8 @@ export default function CardControls(props) {
         active={edit}
         setState={setState}
         fetchAcronyms={fetchAcronyms}
-        postAcronyms={postAcronyms}
+        updateAcronym={updateAcronym}
+        activeCardIndex={activeCardIndex}
       />
     </Container>
   );

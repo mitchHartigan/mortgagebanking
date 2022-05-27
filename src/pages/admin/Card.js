@@ -8,8 +8,6 @@ import Title from "../glossary-search/Card/Title";
 
 export default function Card(props) {
   const { cardData, index, activeCardIndex } = props;
-  console.log("index", index);
-  console.log("activeCardIndex", activeCardIndex);
 
   return (
     <Container highlight={index === activeCardIndex}>

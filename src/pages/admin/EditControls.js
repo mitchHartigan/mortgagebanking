@@ -19,7 +19,8 @@ export const EditControls = (props) => {
     active,
     setState,
     fetchAcronyms,
-    postAcronyms,
+    updateAcronym,
+    activeCardIndex,
   } = props;
 
   const [hoveredButton, setHoveredButton] = useState(false);
@@ -55,7 +56,7 @@ export const EditControls = (props) => {
           name={"Save"}
           active={hoveredButton === "save"}
           onClick={() => {
-            postAcronyms();
+            updateAcronym(activeCardIndex);
             handleClick("edit");
           }}
           onMouseEnter={() => setHoveredButton("save")}
