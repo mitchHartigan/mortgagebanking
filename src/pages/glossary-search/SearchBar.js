@@ -52,7 +52,7 @@ export default class SearchBar extends Component {
         break;
 
       default:
-        updateCursor(2);
+        updateCursor(0);
     }
   };
 
