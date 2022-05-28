@@ -7,6 +7,7 @@ import Description from "../../glossary-search/Card/Description";
 import DefinitionRow from "../../glossary-search/Card/DefinitionRow";
 import CitationRow from "../../glossary-search/Card/CitationRow";
 import Title from "../../glossary-search/Card/Title";
+import AuthorRow from "pages/glossary-search/Card/AuthorRow.js";
 
 export const DisplayCard = (props) => {
   const {
@@ -36,6 +37,7 @@ export const DisplayCard = (props) => {
       <DefinitionRow cardData={cardData} />
       <Description cardData={cardData} />
       <CitationRow cardData={cardData} />
+      <AuthorRow cardData={cardData} />
     </Container>
   );
 };
