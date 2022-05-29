@@ -36,7 +36,6 @@ export default class AcronymSubmission extends React.Component {
       },
       submitted: false,
       accepted: false,
-      redirect: false,
     };
   }
 
@@ -101,12 +100,7 @@ export default class AcronymSubmission extends React.Component {
 
           const json = await result.json();
 
-          if (json.accepted)
-            this.setState({ accepted: true }, () => {
-              setTimeout(() => {
-                this.setState({ redirect: true });
-              }, 5000);
-            });
+          if (json.accepted) this.setState({ accepted: true });
           else this.setState({ accepted: false });
         }
       }
@@ -132,87 +126,84 @@ export default class AcronymSubmission extends React.Component {
     } = this.state.formErrors;
     const { submitted, accepted, redirect } = this.state;
 
-    if (!redirect) {
-      return (
-        <Container>
-          <BackButton location="resources" text="< Back to Resources" />
-          <Form>
-            {!accepted && (
-              <>
-                <Title size="lg">Submit an Acronym</Title>
-                <CenterBlock>
-                  <Description>
-                    Not finding an acronym? Submit it below and we'll add it to
-                    our database.
-                  </Description>
-                </CenterBlock>
-                <DoubleInputRow>
-                  <Input
-                    name="authorName"
-                    label="Name or Organization"
-                    onChange={this.updateFormData}
-                    invalid={nameErr}
-                    leftInputMargin
-                    whiteBackground
-                  />
-                  <Input
-                    name="authorEmail"
-                    label="Email"
-                    onChange={this.updateFormData}
-                    whiteBackground
-                    invalid={emailErr}
-                  />
-                </DoubleInputRow>
-                <Span />
-                <DoubleInputRow>
-                  <Input
-                    name="Acronym"
-                    label="Acronym"
-                    leftInputMargin
-                    onChange={this.updateFormData}
-                    invalid={AcronymErr}
-                    whiteBackground
-                  />
-                  <Input
-                    name="Text"
-                    label="Acronym Definition"
-                    onChange={this.updateFormData}
-                    invalid={TextErr}
-                    whiteBackground
-                  />
-                </DoubleInputRow>
-                <TextArea
-                  name="Description"
-                  label="Description of use (if applicable)"
+    return (
+      <Container>
+        <BackButton location="resources" text="< Back to Resources" />
+        <Form>
+          {!accepted && (
+            <>
+              <Title size="lg">Submit an Acronym</Title>
+              <CenterBlock>
+                <Description>
+                  Not finding an acronym? Submit it below and we'll add it to
+                  our database.
+                </Description>
+              </CenterBlock>
+              <DoubleInputRow>
+                <Input
+                  name="authorName"
+                  label="Name or Organization"
                   onChange={this.updateFormData}
+                  invalid={nameErr}
+                  leftInputMargin
                   whiteBackground
                 />
                 <Input
-                  name="Citation"
-                  label="Publishing Organization (Name or Link)"
+                  name="authorEmail"
+                  label="Email"
                   onChange={this.updateFormData}
-                  invalid={CitationErr}
+                  whiteBackground
+                  invalid={emailErr}
+                />
+              </DoubleInputRow>
+              <Span />
+              <DoubleInputRow>
+                <Input
+                  name="Acronym"
+                  label="Acronym"
+                  leftInputMargin
+                  onChange={this.updateFormData}
+                  invalid={AcronymErr}
                   whiteBackground
                 />
-              </>
-            )}
-            {accepted && (
-              <Success
-                text="Successful submission for approval."
-                acronymSubmitted
+                <Input
+                  name="Text"
+                  label="Acronym Definition"
+                  onChange={this.updateFormData}
+                  invalid={TextErr}
+                  whiteBackground
+                />
+              </DoubleInputRow>
+              <TextArea
+                name="Description"
+                label="Description of use (if applicable)"
+                onChange={this.updateFormData}
+                whiteBackground
               />
-            )}
-            <CenterBlock>
-              {!submitted && <SubmitButton onClick={this.handleSubmit} />}
-              {submitted && !accepted && <Spinner />}
-            </CenterBlock>
-          </Form>
-          <Footer slim />
-          <Navbar alwaysDisplay />
-        </Container>
-      );
-    }
-    return <Redirect to="/resources" />;
+              <Input
+                name="Citation"
+                label="Publishing Organization (Name or Link)"
+                onChange={this.updateFormData}
+                invalid={CitationErr}
+                whiteBackground
+              />
+            </>
+          )}
+          {accepted && (
+            <Success
+              text="Successful submission for approval."
+              acronymSubmitted
+            />
+          )}
+          <CenterBlock>
+            {!submitted && <SubmitButton onClick={this.handleSubmit} />}
+            {submitted && !accepted && <Spinner />}
+          </CenterBlock>
+        </Form>
+        <Footer slim />
+        <Navbar alwaysDisplay />
+      </Container>
+    );
   }
 }
 
