@@ -41,8 +41,14 @@ export default class AcronymSubmission extends React.Component {
   }
 
   handleSubmit = () => {
-    const { authorName, authorEmail, Acronym, Text, Description, Citation } =
-      this.state.form;
+    const {
+      authorName,
+      authorEmail,
+      Acronym,
+      Text,
+      Description,
+      Citation,
+    } = this.state.form;
 
     this.setState(
       {
@@ -94,13 +100,12 @@ export default class AcronymSubmission extends React.Component {
           );
 
           const json = await result.json();
-          console.log(json);
 
           if (json.accepted)
             this.setState({ accepted: true }, () => {
               setTimeout(() => {
                 this.setState({ redirect: true });
-              }, 2000);
+              }, 5000);
             });
           else this.setState({ accepted: false });
         }
@@ -118,8 +123,13 @@ export default class AcronymSubmission extends React.Component {
   };
 
   render() {
-    const { nameErr, emailErr, AcronymErr, TextErr, CitationErr } =
-      this.state.formErrors;
+    const {
+      nameErr,
+      emailErr,
+      AcronymErr,
+      TextErr,
+      CitationErr,
+    } = this.state.formErrors;
     const { submitted, accepted, redirect } = this.state;
 
     if (!redirect) {
@@ -186,7 +196,12 @@ export default class AcronymSubmission extends React.Component {
                 />
               </>
             )}
-            {accepted && <Success text="New acronym submitted successfully." />}
+            {accepted && (
+              <Success
+                text="Successful submission for approval."
+                acronymSubmitted
+              />
+            )}
             <CenterBlock>
               {!submitted && <SubmitButton onClick={this.handleSubmit} />}
               {submitted && !accepted && <Spinner />}
@@ -200,6 +215,13 @@ export default class AcronymSubmission extends React.Component {
     return <Redirect to="/resources" />;
   }
 }
+
+const SubmissionText = styled.p`
+  font-family: ${({ theme }) => theme.textFont};
+  font-size: ${({ theme }) => theme.text.xs};
+  text-align: center;
+  margin: 0px;
+`;
 
 const Span = styled.div`
   width: 100%;
