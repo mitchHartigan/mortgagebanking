@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Confirmation } from "./CardFactory/Confirmation";
-import { EditButton } from "./EditButton";
+import { EditControls } from "./EditControls";
 import { ConfirmationButton } from "./ConfirmationButton";
 
 import { REJECT_PENDING_ACRONYM, ACCEPT_PENDING_ACRONYM } from "./API";
@@ -11,29 +11,30 @@ export default function CardControls(props) {
     setActiveCardIndex,
     toggleEditOn,
     toggleEditOff,
+    fetchAcronyms,
+    updateAcronym,
     activeCardIndex,
     index,
     acronyms,
     setRejectedAcronymId,
     setAcceptedAcronymId,
-    accepted,
-    rejected,
   } = props;
 
   const defaultState = {
-    approve: false,
+    publish: false,
     reject: false,
     edit: false,
   };
 
   const [state, setState] = useState(defaultState);
-  const { approve, reject, edit } = state;
+  const { publish, reject, edit } = state;
 
   function handleClick(name) {
     setState({ [name]: !state[name] });
     setActiveCardIndex(index);
     if (name === "edit" && !edit) toggleEditOn();
     if (name === "edit" && edit) toggleEditOff();
+    // if (name === "save") saveChanges();
   }
 
   const findAcronymById = (id) => {
@@ -46,7 +47,7 @@ export default function CardControls(props) {
     if (success) setRejectedAcronymId(id);
   }
 
-  async function handleAccept(id) {
+  async function handlePublish(id) {
     const acceptTarget = findAcronymById(id);
     const success = await ACCEPT_PENDING_ACRONYM(acceptTarget);
     if (success) setAcceptedAcronymId(id);
@@ -59,25 +60,25 @@ export default function CardControls(props) {
   }, [activeCardIndex, index]);
 
   return (
-    <Container name={index} approve={approve} reject={reject}>
+    <Container name={index} publish={publish} reject={reject}>
       <AdmissionControls>
         <ConfirmationButton
-          name="Accept"
-          handleClick={() => handleClick("approve")}
+          name="Publish"
+          handleClick={() => handleClick("publish")}
           disabled={reject || edit}
-          active={approve}
+          active={publish}
           setState={setState}
         />
         <Confirmation
-          display={approve}
-          name="approve"
-          acceptHandler={() => handleAccept(activeCardIndex)}
+          display={publish}
+          name="publish"
+          acceptHandler={() => handlePublish(activeCardIndex)}
           rejectHandler={() => setState(defaultState)}
         />
         <ConfirmationButton
           name="Reject"
           handleClick={() => handleClick("reject")}
-          disabled={approve || edit}
+          disabled={publish || edit}
           active={reject}
           setState={setState}
         />
@@ -88,12 +89,15 @@ export default function CardControls(props) {
           rejectHandler={() => setState(defaultState)}
         />
       </AdmissionControls>
-      <EditButton
+      <EditControls
         name="Edit"
-        handleClick={() => handleClick("edit")}
-        disabled={approve || reject}
+        handleClick={handleClick}
+        disabled={publish || reject}
         active={edit}
         setState={setState}
+        fetchAcronyms={fetchAcronyms}
+        updateAcronym={updateAcronym}
+        activeCardIndex={activeCardIndex}
       />
     </Container>
   );
@@ -110,30 +114,9 @@ const Container = styled.div`
   justify-content: space-between;
   align-items: flex-start;
   margin: ${(props) =>
-    props.approve || props.reject
+    props.publish || props.reject
       ? "-15px -210px 15px 30px"
       : "-15px 0px 15px 30px"};
   padding: 20px 0px 35px 0px;
   height: 348px;
-`;
-
-const ApproveButton = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  margin: 15px 0px 15px 0px;
-  outline: none;
-  padding-left: 10px;
-  border-radius: 5px;
-  width: 130px;
-  height: 35px;
-  /* border: 2px solid #198754; */
-  cursor: pointer;
-  background-color: white;
-  box-shadow: 1px 2px rgba(0, 0, 0, 0.25);
-
-  &:hover {
-    background-color: #e1a915;
-    color: white;
-  }
 `;

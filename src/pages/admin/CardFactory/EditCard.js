@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import styled from "styled-components";
-
 import { Container } from "./CardContainer.styles.js";
 
 import Description from "../../glossary-search/Card/Description";

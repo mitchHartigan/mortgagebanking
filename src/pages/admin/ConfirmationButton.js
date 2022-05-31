@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
-import { Icon } from "./IconFactory";
+import { Icon } from "./icons/IconFactory";
 
 const colors = {
-  Accept: "#198754",
+  Publish: "#198754",
   Reject: "#dc3545",
   Edit: "#e1a915",
 };

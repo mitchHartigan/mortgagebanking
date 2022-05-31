@@ -4,11 +4,11 @@ import { Container } from "./CardContainer.styles";
 import { Spinner } from "../SpinnerFactory";
 
 export const RejectedMessage = (props) => {
-  const { setRejectedAcronymId, triggerDBUpdate } = props;
+  const { setRejectedAcronymId, fetchAcronyms } = props;
 
   useEffect(() => {
     setTimeout(async () => {
-      await triggerDBUpdate();
+      await fetchAcronyms();
       setRejectedAcronymId("");
     }, 1500);
   }, []);

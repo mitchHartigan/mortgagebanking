@@ -32,7 +32,6 @@ export default function Login() {
     );
 
     const json = await result.json();
-    console.log("json", json);
 
     setServerMessage(json.serverMessage);
 
