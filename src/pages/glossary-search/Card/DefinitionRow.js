@@ -5,47 +5,85 @@ export default function DefinitionRow(props) {
   let definition = props.cardData.Text;
   let acronym = props.cardData.Acronym;
 
-  const { editMode, setData, cardData, activeCardIndex } = props;
+  const { editMode, acronymEditor, setData, cardData, activeCardIndex } = props;
   const isActiveCard = cardData._id === activeCardIndex;
 
   if (definition === "" && !editMode) definition = "N/A";
   if (acronym === "" && !editMode) acronym = "N/A";
 
-  return (
-    <Container>
-      <DefinitionContainer>
-        <TitleContainer>
-          <ItemTitle>Definition</ItemTitle>
-          <TitleUnderline show={!isActiveCard} />
-        </TitleContainer>
-        {!isActiveCard && <ItemText>{definition}</ItemText>}
-        {isActiveCard && editMode && (
-          <TitleInput
-            value={definition}
-            onChange={(evt) => {
-              setData({ ...cardData, Text: evt.target.value });
-            }}
-          />
-        )}
-      </DefinitionContainer>
+  if (!acronymEditor) {
+    return (
+      <Container>
+        <DefinitionContainer acronymEditor={acronymEditor}>
+          <TitleContainer>
+            <ItemTitle>Definition</ItemTitle>
+            <TitleUnderline show={!isActiveCard} />
+          </TitleContainer>
+          {!isActiveCard && <ItemText>{definition}</ItemText>}
+          {isActiveCard && editMode && (
+            <TitleInput
+              value={definition}
+              onChange={(evt) => {
+                setData({ ...cardData, Text: evt.target.value });
+              }}
+            />
+          )}
+        </DefinitionContainer>
 
-      <AcronymContainer>
-        <TitleContainer>
-          <ItemTitle>Acronym</ItemTitle>
-          <TitleUnderline show={!isActiveCard} />
-        </TitleContainer>
-        {!isActiveCard && <Acronym>{acronym}</Acronym>}
-        {isActiveCard && editMode && (
-          <AcronymInput
-            value={acronym}
-            onChange={(evt) => {
-              setData({ ...cardData, Acronym: evt.target.value });
-            }}
-          />
-        )}
-      </AcronymContainer>
-    </Container>
-  );
+        <AcronymContainer acronymEditor={acronymEditor}>
+          <TitleContainer>
+            <ItemTitle>Acronym</ItemTitle>
+            <TitleUnderline show={!isActiveCard} />
+          </TitleContainer>
+          {!isActiveCard && <Acronym>{acronym}</Acronym>}
+          {isActiveCard && editMode && (
+            <AcronymInput
+              value={acronym}
+              onChange={(evt) => {
+                setData({ ...cardData, Acronym: evt.target.value });
+              }}
+            />
+          )}
+        </AcronymContainer>
+      </Container>
+    );
+  } else {
+    return (
+      <Container>
+        <AcronymContainer acronymEditor={acronymEditor}>
+          <TitleContainer>
+            <ItemTitle>Acronym</ItemTitle>
+            <TitleUnderline show={!isActiveCard} />
+          </TitleContainer>
+          {!isActiveCard && <Acronym>{acronym}</Acronym>}
+          {isActiveCard && editMode && (
+            <AcronymInput
+              value={acronym}
+              onChange={(evt) => {
+                setData({ ...cardData, Acronym: evt.target.value });
+              }}
+            />
+          )}
+        </AcronymContainer>
+
+        <DefinitionContainer acronymEditor={acronymEditor}>
+          <TitleContainer>
+            <ItemTitle>Definition</ItemTitle>
+            <TitleUnderline show={!isActiveCard} />
+          </TitleContainer>
+          {!isActiveCard && <ItemText>{definition}</ItemText>}
+          {isActiveCard && editMode && (
+            <TitleInput
+              value={definition}
+              onChange={(evt) => {
+                setData({ ...cardData, Text: evt.target.value });
+              }}
+            />
+          )}
+        </DefinitionContainer>
+      </Container>
+    );
+  }
 }
 
 const TitleInput = styled.input`
@@ -69,29 +107,32 @@ const AcronymInput = styled(TitleInput)`
 const Container = styled.div`
   display: grid;
   grid-template-columns: 70% 5% 25%;
+  grid-template-rows: 1fr;
   width: 100%;
   margin: 30px 0px 25px 0px;
 `;
 
 const DefinitionContainer = styled.div`
-  grid-column: 1 / 2;
+  grid-column: ${({ acronymEditor }) => (acronymEditor ? "3 / 4" : "1 / 2")};
   height: 100%;
   align-self: start;
   display: flex;
-  justify-self: start;
+  justify-self: ${({ acronymEditor }) => (acronymEditor ? "end" : "start")};
   flex-direction: column;
   text-overflow: wrap;
-  align-items: flex-start;
+  align-items: ${({ acronymEditor }) =>
+    acronymEditor ? "flex-end" : "flex-start"};
 `;
 
 const AcronymContainer = styled.div`
-  grid-column: 3 / 4;
+  grid-column: ${({ acronymEditor }) => (acronymEditor ? "1 / 2" : "3 / 4")};
   height: 100%;
   align-self: start;
   display: flex;
-  justify-self: end;
+  justify-self: ${({ acronymEditor }) => (acronymEditor ? "start" : "end")};
   flex-direction: column;
-  align-items: flex-end;
+  align-items: ${({ acronymEditor }) =>
+    acronymEditor ? "flex-start" : "flex-end"};
 `;
 
 const TitleContainer = styled.div`

@@ -34,7 +34,7 @@ export const DisplayCard = (props) => {
         editMode={false}
         disableHighlights
       />
-      <DefinitionRow cardData={cardData} />
+      <DefinitionRow cardData={cardData} acronymEditor />
       <Description cardData={cardData} />
       <CitationRow cardData={cardData} />
       <AuthorRow cardData={cardData} />
