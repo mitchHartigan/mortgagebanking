@@ -19,7 +19,9 @@ export default function DefinitionRow(props) {
             <ItemTitle>Definition</ItemTitle>
             <TitleUnderline show={!isActiveCard} />
           </TitleContainer>
-          {!isActiveCard && <ItemText>{definition}</ItemText>}
+          {!isActiveCard && (
+            <ItemText acronymEditor={acronymEditor}>{definition}</ItemText>
+          )}
           {isActiveCard && editMode && (
             <TitleInput
               value={definition}
@@ -55,7 +57,9 @@ export default function DefinitionRow(props) {
             <ItemTitle>Acronym</ItemTitle>
             <TitleUnderline show={!isActiveCard} />
           </TitleContainer>
-          {!isActiveCard && <Acronym>{acronym}</Acronym>}
+          {!isActiveCard && (
+            <Acronym acronymEditor={acronymEditor}>{acronym}</Acronym>
+          )}
           {isActiveCard && editMode && (
             <AcronymInput
               value={acronym}
@@ -71,7 +75,9 @@ export default function DefinitionRow(props) {
             <ItemTitle>Definition</ItemTitle>
             <TitleUnderline show={!isActiveCard} />
           </TitleContainer>
-          {!isActiveCard && <ItemText>{definition}</ItemText>}
+          {!isActiveCard && (
+            <ItemText acronymEditor={acronymEditor}>{definition}</ItemText>
+          )}
           {isActiveCard && editMode && (
             <TitleInput
               value={definition}
@@ -161,11 +167,12 @@ const ItemText = styled.p`
     font-size: ${(props) => props.theme.text.xxs};
   }
   word-break: break-word;
+  ${({ acronymEditor }) => (acronymEditor ? "text-align: right" : "")}
 `;
 
 const Acronym = styled(ItemText)`
   width: 100%;
-  text-align: right;
+  text-align: ${({ acronymEditor }) => (acronymEditor ? "left" : "right")};
 `;
 
 const TitleUnderline = styled.span`
