@@ -34,7 +34,7 @@ function App() {
             <ULICalculator />
           </Route>
 
-          <Route path="/search-glossary">
+          <Route path="/glossary-search">
             <SearchGlossary />
           </Route>
 

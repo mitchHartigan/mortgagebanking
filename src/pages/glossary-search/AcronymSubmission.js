@@ -40,14 +40,8 @@ export default class AcronymSubmission extends React.Component {
   }
 
   handleSubmit = () => {
-    const {
-      authorName,
-      authorEmail,
-      Acronym,
-      Text,
-      Description,
-      Citation,
-    } = this.state.form;
+    const { authorName, authorEmail, Acronym, Text, Description, Citation } =
+      this.state.form;
 
     this.setState(
       {
@@ -117,18 +111,16 @@ export default class AcronymSubmission extends React.Component {
   };
 
   render() {
-    const {
-      nameErr,
-      emailErr,
-      AcronymErr,
-      TextErr,
-      CitationErr,
-    } = this.state.formErrors;
+    const { nameErr, emailErr, AcronymErr, TextErr, CitationErr } =
+      this.state.formErrors;
     const { submitted, accepted, redirect } = this.state;
 
     return (
       <Container>
-        <BackButton location="resources" text="< Back to Resources" />
+        <BackButton
+          location="glossary-search"
+          text="< Back to Glossary Search"
+        />
         <Form>
           {!accepted && (
             <>
@@ -206,13 +198,6 @@ export default class AcronymSubmission extends React.Component {
     );
   }
 }
-
-const SubmissionText = styled.p`
-  font-family: ${({ theme }) => theme.textFont};
-  font-size: ${({ theme }) => theme.text.xs};
-  text-align: center;
-  margin: 0px;
-`;
 
 const Span = styled.div`
   width: 100%;

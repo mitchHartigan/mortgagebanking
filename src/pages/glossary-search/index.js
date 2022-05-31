@@ -1,5 +1,6 @@
 import React from "react";
-import styled, { ThemeConsumer } from "styled-components";
+import styled from "styled-components";
+import { Redirect } from "react-router-dom";
 
 import { ScrollToTopOnMount } from "components/ScrollToTopOnMount";
 import { Title } from "components/Title";
@@ -28,6 +29,7 @@ export default class index extends React.Component {
       completedQuery: false,
       highlightedCardIndex: 0,
       scrollToCardId: "",
+      redirect: false,
     };
   }
 
@@ -146,6 +148,10 @@ export default class index extends React.Component {
     this.setState({ viewAllResultsFocused: !this.state.viewAllResultsFocused });
   };
 
+  toggleRedirect = () => {
+    this.setState({ redirect: true });
+  };
+
   render() {
     const {
       query,
@@ -157,6 +163,7 @@ export default class index extends React.Component {
       loadingResults,
       completedQuery,
       highlightedCardIndex,
+      redirect,
     } = this.state;
 
     const resultsContainerProps = {
@@ -193,30 +200,34 @@ export default class index extends React.Component {
       viewAllResultsFocused: viewAllResultsFocused,
     };
 
-    return (
-      <Container>
-        {""}
-        <ScrollToTopOnMount />
-        <BackButtonContainer>
-          <BackButton
-            onClick={this.props.toggleGlossary}
-          >{`< Resources`}</BackButton>
-          <SubmitAcronymButton>Submit an Acronym</SubmitAcronymButton>
-        </BackButtonContainer>
+    if (!redirect) {
+      return (
+        <Container>
+          {""}
+          <ScrollToTopOnMount />
+          <BackButtonContainer>
+            <BackButton
+              onClick={this.toggleRedirect}
+            >{`< Resources`}</BackButton>
+            <SubmitAcronymButton>Submit an Acronym</SubmitAcronymButton>
+          </BackButtonContainer>
 
-        <ContentContainer>
-          <Title size="xl" styles={TitleStylesOverride}>
-            Acronym Glossary
-          </Title>
-          <Sidebar {...sidebarProps} />
-          <ResultsContainer {...resultsContainerProps} />
-          <Cards {...cardsProps} />
-        </ContentContainer>
+          <ContentContainer>
+            <Title size="xl" styles={TitleStylesOverride}>
+              Acronym Glossary
+            </Title>
+            <Sidebar {...sidebarProps} />
+            <ResultsContainer {...resultsContainerProps} />
+            <Cards {...cardsProps} />
+          </ContentContainer>
 
-        <Footer slim />
-        <Navbar alwaysDisplay />
-      </Container>
-    );
+          <Footer slim />
+          <Navbar alwaysDisplay />
+        </Container>
+      );
+    } else {
+      return <Redirect to="/resources" />;
+    }
   }
 }
 

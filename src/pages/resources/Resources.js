@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import ReactGA from "react-ga";
+import { Redirect } from "react-router-dom";
 
 import { Title } from "components/Title";
 import LibraryCard from "./_LibraryCard";
@@ -8,8 +10,6 @@ import CalculatorCard from "./_CalculatorCard";
 import Navbar from "components/navbar";
 import { Subtext } from "components/Subtext";
 import { ScrollToTopOnMount } from "components/ScrollToTopOnMount";
-import ReactGA from "react-ga";
-import GlossarySearch from "../glossary-search/index";
 import { Footer } from "components/Footer";
 
 export default function Resources() {
@@ -49,7 +49,7 @@ export default function Resources() {
       </Container>
     );
   } else {
-    return <GlossarySearch toggleGlossary={toggleGlossary} />;
+    return <Redirect to="/glossary-search" />;
   }
 }
 
