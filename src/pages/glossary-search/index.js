@@ -111,11 +111,16 @@ export default class index extends React.Component {
           )
             .then((results) => results.json())
             .then((results) => {
-              this.setState({
-                results: results,
-                loadingResults: false,
-                completedQuery: true,
-              });
+              this.setState(
+                {
+                  results: results,
+                  loadingResults: false,
+                  completedQuery: true,
+                },
+                () => {
+                  if (results.length > 0) this.updateCursor(2);
+                }
+              );
             })
             .catch(() => this.setState({ loadingResults: false, results: [] }));
         }
@@ -124,6 +129,7 @@ export default class index extends React.Component {
   };
 
   updateCursor = (pos) => {
+    console.log("cursorPos", pos);
     this.setState({ cursor: pos });
   };
 
