@@ -74,7 +74,7 @@ export default class AcronymSubmission extends React.Component {
           const newAcronym = {
             Acronym: Acronym,
             Text: Text,
-            Description: Description,
+            "Description of use": Description,
             Citation: Citation,
             "Date Entered": dateStr,
             authorName: authorName,

@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 export default function Description(props) {
-  let description = props.cardData.Description;
+  let description = props.cardData["Description of use"];
 
   const { editMode, setData, cardData, activeCardIndex } = props;
   if (description === "" && !editMode) description = "No description provided.";
