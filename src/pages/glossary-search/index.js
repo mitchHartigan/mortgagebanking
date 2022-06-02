@@ -1,5 +1,6 @@
 import React from "react";
-import styled, { ThemeConsumer } from "styled-components";
+import styled from "styled-components";
+import { Redirect } from "react-router-dom";
 
 import { ScrollToTopOnMount } from "components/ScrollToTopOnMount";
 import { Title } from "components/Title";
@@ -9,6 +10,7 @@ import Sidebar from "./Sidebar";
 import Cards from "./Cards";
 import { reverseArray } from "./_utils";
 import { Footer } from "components/Footer";
+import SubmitAcronymButton from "./SubmitAcronymButton";
 
 import { API_FETCH_RESULTS } from "./API";
 
@@ -27,6 +29,7 @@ export default class index extends React.Component {
       completedQuery: false,
       highlightedCardIndex: 0,
       scrollToCardId: "",
+      redirect: false,
     };
   }
 
@@ -110,11 +113,16 @@ export default class index extends React.Component {
           )
             .then((results) => results.json())
             .then((results) => {
-              this.setState({
-                results: results,
-                loadingResults: false,
-                completedQuery: true,
-              });
+              this.setState(
+                {
+                  results: results,
+                  loadingResults: false,
+                  completedQuery: true,
+                },
+                () => {
+                  if (results.length > 0) this.updateCursor(2);
+                }
+              );
             })
             .catch(() => this.setState({ loadingResults: false, results: [] }));
         }
@@ -123,6 +131,7 @@ export default class index extends React.Component {
   };
 
   updateCursor = (pos) => {
+    console.log("cursorPos", pos);
     this.setState({ cursor: pos });
   };
 
@@ -139,6 +148,10 @@ export default class index extends React.Component {
     this.setState({ viewAllResultsFocused: !this.state.viewAllResultsFocused });
   };
 
+  toggleRedirect = () => {
+    this.setState({ redirect: true });
+  };
+
   render() {
     const {
       query,
@@ -150,6 +163,7 @@ export default class index extends React.Component {
       loadingResults,
       completedQuery,
       highlightedCardIndex,
+      redirect,
     } = this.state;
 
     const resultsContainerProps = {
@@ -186,29 +200,34 @@ export default class index extends React.Component {
       viewAllResultsFocused: viewAllResultsFocused,
     };
 
-    return (
-      <Container>
-        {""}
-        <ScrollToTopOnMount />
-        <BackButtonContainer>
-          <BackButton
-            onClick={this.props.toggleGlossary}
-          >{`< Resources`}</BackButton>
-        </BackButtonContainer>
+    if (!redirect) {
+      return (
+        <Container>
+          {""}
+          <ScrollToTopOnMount />
+          <BackButtonContainer>
+            <BackButton
+              onClick={this.toggleRedirect}
+            >{`< Resources`}</BackButton>
+            <SubmitAcronymButton>Submit an Acronym</SubmitAcronymButton>
+          </BackButtonContainer>
 
-        <ContentContainer>
-          <Title size="xl" styles={TitleStylesOverride}>
-            Acronym Glossary
-          </Title>
-          <Sidebar {...sidebarProps} />
-          <ResultsContainer {...resultsContainerProps} />
-          <Cards {...cardsProps} />
-        </ContentContainer>
+          <ContentContainer>
+            <Title size="xl" styles={TitleStylesOverride}>
+              Acronym Glossary
+            </Title>
+            <Sidebar {...sidebarProps} />
+            <ResultsContainer {...resultsContainerProps} />
+            <Cards {...cardsProps} />
+          </ContentContainer>
 
-        <Footer slim />
-        <Navbar alwaysDisplay />
-      </Container>
-    );
+          <Footer slim />
+          <Navbar alwaysDisplay />
+        </Container>
+      );
+    } else {
+      return <Redirect to="/resources" />;
+    }
   }
 }
 
@@ -216,8 +235,8 @@ const BackButtonContainer = styled.div`
   width: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
-  padding-left: 4vw;
+  justify-content: space-between;
+  padding: 0vh 4vw 0vh 4vw;
   box-sizing: border-box;
   margin-top: 9vh;
 

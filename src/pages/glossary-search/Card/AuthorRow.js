@@ -2,54 +2,30 @@ import React from "react";
 import styled from "styled-components";
 import CitationText from "./CitationText";
 
-export default function CitationRow(props) {
-  let dateAdded = props.cardData["Date Entered"];
-  let citation = props.cardData.Citation;
-
-  const { editMode, setData, cardData, activeCardIndex } = props;
-  const isActiveCard = cardData._id === activeCardIndex;
-
-  if (citation === "" && !editMode) citation = "N/A";
-  if (dateAdded === "" && !editMode) dateAdded = "N/A";
+export default function AuthorRow(props) {
+  const { editMode, cardData, activeCardIndex } = props;
+  const { authorName, authorEmail } = cardData;
 
   return (
     <Container>
-      <CitationContainer>
+      <AuthorNameContainer>
         <TitleContainer>
-          <ItemTitle>Citation</ItemTitle>
-          <TitleUnderline show={!isActiveCard} />
-        </TitleContainer>
-        {!isActiveCard && <CitationText>{citation}</CitationText>}
-        {isActiveCard && editMode && (
-          <CitationInput
-            value={citation}
-            onChange={(evt) => {
-              setData({ ...cardData, Citation: evt.target.value });
-            }}
-          />
-        )}
-      </CitationContainer>
-
-      <DateContainer>
-        <TitleContainer>
-          <ItemTitle>Date Added</ItemTitle>
+          <ItemTitle>Submitter Name</ItemTitle>
           <TitleUnderline show />
         </TitleContainer>
-        <ItemText>{dateAdded}</ItemText>
-      </DateContainer>
+        <CitationText>{authorName}</CitationText>
+      </AuthorNameContainer>
+
+      <EmailContainer>
+        <TitleContainer>
+          <ItemTitle>Submitter Email</ItemTitle>
+          <TitleUnderline show />
+        </TitleContainer>
+        <ItemText>{authorEmail}</ItemText>
+      </EmailContainer>
     </Container>
   );
 }
-
-const CitationInput = styled.input`
-  height: 20px;
-  font-family: ${(props) => props.theme.textFont};
-  font-size: ${(props) => props.theme.text.xs};
-  padding: 5px 10px 7px 5px;
-  margin-top: 1px;
-  margin-left: -7px;
-  border: 2px solid ${(props) => props.theme.colors.darkGray};
-`;
 
 const Container = styled.div`
   display: grid;
@@ -58,7 +34,7 @@ const Container = styled.div`
   margin: 25px 0px 25px 0px;
 `;
 
-const CitationContainer = styled.div`
+const AuthorNameContainer = styled.div`
   grid-column: 1 / 2;
   align-self: start;
   justify-self: start;
@@ -68,7 +44,7 @@ const CitationContainer = styled.div`
   align-items: flex-start;
 `;
 
-const DateContainer = styled.div`
+const EmailContainer = styled.div`
   grid-column: 3 / 4;
   align-self: start;
   justify-self: end;

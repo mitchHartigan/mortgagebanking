@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import { Title } from "components/Title";
-import { DisabledButton } from "./DisabledButton";
 import { CenterBlock } from "components/CenterBlock";
 import { Subtext } from "components/Subtext";
 import { Button } from "components/Button";

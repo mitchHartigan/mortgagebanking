@@ -2,9 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import { FadeIn } from "components/FadeIn";
 
-export const Success = (props) => {
-  const { text, acronymSubmitted } = props;
-
+export const Spinner = (props) => {
+  const { children } = props;
   return (
     <FadeIn visible play>
       <Container>
@@ -12,27 +11,11 @@ export const Success = (props) => {
           <Check src="form_check.png" alt="Form success check" />
         </Circle>
 
-        <Message>{text}</Message>
-        {acronymSubmitted && (
-          <SubmissionMessage>
-            Thank you for your contribution. Your submission will be included in
-            the glossary soon. Contact us if you have an acronym list and are
-            interested in making a bulk contribution. Together our lists can be
-            a better resource for all.
-          </SubmissionMessage>
-        )}
+        <Message>{children}</Message>
       </Container>
     </FadeIn>
   );
 };
-
-const SubmissionMessage = styled.p`
-  font-family: ${({ theme }) => theme.textFont};
-  font-size: ${({ theme }) => theme.text.xs};
-  text-align: center;
-  line-height: 28px;
-  margin: 0px;
-`;
 
 const Container = styled.div`
   display: flex;
@@ -44,7 +27,7 @@ const Container = styled.div`
 
 const Message = styled.p`
   font-family: ${(props) => props.theme.textFont};
-  font-size: ${(props) => props.theme.text.lg};
+  font-size: ${(props) => props.theme.text.md};
   text-align: ${(props) => props.alignment};
   color: ${(props) => props.theme.colors.darkGray};
   margin-top: 10%;

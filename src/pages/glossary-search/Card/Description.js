@@ -3,16 +3,40 @@ import styled from "styled-components";
 
 export default function Description(props) {
   let description = props.cardData["Description of use"];
-  if (description === "") description = "No description provided.";
+
+  const { editMode, setData, cardData, activeCardIndex } = props;
+  if (description === "" && !editMode) description = "No description provided.";
+
+  const isActiveCard = cardData._id === activeCardIndex;
 
   return (
     <Container>
       <Title>Description of Use</Title>
-      <Underline />
-      <Text description={description}>{description}</Text>
+      <Underline show={!isActiveCard} />
+      {!isActiveCard && <Text description={description}>{description}</Text>}
+      {isActiveCard && editMode && (
+        <TextInput
+          value={description}
+          onChange={(evt) =>
+            setData({ ...cardData, Description: evt.target.value })
+          }
+        />
+      )}
     </Container>
   );
 }
+
+const TextInput = styled.textarea`
+  width: 100%;
+  min-height: 44px;
+  font-family: ${(props) => props.theme.textFont};
+  font-size: ${(props) => props.theme.text.xs};
+  padding: 5px 10px 7px 5px;
+  margin-top: 1px;
+  margin-left: -7px;
+  border: 2px solid ${(props) => props.theme.colors.darkGray};
+  outline: none;
+`;
 
 const Container = styled.div`
   display: flex;
@@ -59,4 +83,5 @@ const Underline = styled.span`
   height: 2px;
   background: ${(props) => props.theme.colors.darkGray};
   margin: 0px;
+  display: ${(props) => (props.show ? "block" : "none")};
 `;
