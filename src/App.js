@@ -14,6 +14,7 @@ import Articles from "pages/articles";
 import Admin from "pages/admin/index";
 import AcronymReview from "pages/admin/AcronymReview";
 import AcronymSubmission from "pages/glossary-search/AcronymSubmission";
+import Chart from "pages/chart/index";
 
 function App() {
   return (
@@ -60,6 +61,10 @@ function App() {
 
           <Route path="/acronym-editor">
             <AcronymReview />
+          </Route>
+
+          <Route path="/chart">
+            <Chart />
           </Route>
         </Switch>
       </BrowserRouter>
