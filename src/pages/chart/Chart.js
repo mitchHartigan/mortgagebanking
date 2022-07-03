@@ -1,20 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 import { GridCell } from "./GridCell";
+import { CriteriaCell } from "./CriteriaCell";
+import { ConclusionCell } from "./ConclusionCell";
 
 export default function Chart(props) {
   const { data } = props;
   const Columns = data[0].data;
-
-  const rows = ["Alaska"];
-  const columns = [
-    "State",
-    "Role",
-    "Collateral Type",
-    "Company License",
-    "Branch License",
-    "Additional Notes",
-  ];
 
   return (
     <Container>
@@ -31,14 +23,25 @@ export default function Chart(props) {
         );
       })}
       {Columns.map((obj) => {
-        return (
-          <GridCell
-            row="2/3"
-            column={`${data.indexOf(obj) + 1}/${data.indexOf(obj) + 2}`}
-          >
-            {obj.name}
-          </GridCell>
-        );
+        if (obj.type === "conclusion") {
+          return (
+            <ConclusionCell
+              row="2/3"
+              column={`${data.indexOf(obj) + 1}/${data.indexOf(obj) + 2}`}
+              conclusionData={obj.data}
+            >
+              {obj.name}
+            </ConclusionCell>
+          );
+        } else {
+          return (
+            <CriteriaCell
+              row="2/3"
+              column={`${data.indexOf(obj) + 1}/${data.indexOf(obj) + 2}`}
+              criteriaData={obj.data}
+            />
+          );
+        }
       })}
     </Container>
   );
