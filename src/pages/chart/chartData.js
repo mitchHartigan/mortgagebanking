@@ -1,4 +1,4 @@
-export const children = [
+export const data = [
   {
     name: "Alaska",
     type: "criteria",
@@ -100,7 +100,7 @@ export const children = [
       },
       {
         name: "Branch License",
-        type: "criteriaa",
+        type: "criteria",
         children: [
           {
             name: "Broker",

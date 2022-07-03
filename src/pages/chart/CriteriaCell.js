@@ -3,7 +3,6 @@ import styled from "styled-components";
 
 export function CriteriaCell(props) {
   const { column, row, criteriaData } = props;
-  console.log("peen", criteriaData);
 
   if (criteriaData !== undefined) {
     return (

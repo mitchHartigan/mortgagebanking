@@ -1,17 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { data } from "./chartData.js";
 
 import Chart from "./Chart";
 
 export default function Index() {
-  const [chartData, setChartData] = useState([]);
-  const [rows, setRows] = useState(["Alaska"]);
-  const [columns, setColumns] = useState([]);
-
   useEffect(() => {
     const States = data;
-    const Columns = States[0].data;
+    const Columns = States[0].children;
 
     for (let state of States) {
       console.log(state.name);
@@ -21,6 +17,8 @@ export default function Index() {
       console.log(column.name);
     }
   }, []);
+
+  console.log("data from index", data);
 
   return (
     <Container>

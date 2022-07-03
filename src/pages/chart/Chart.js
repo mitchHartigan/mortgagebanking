@@ -6,7 +6,8 @@ import { ConclusionCell } from "./ConclusionCell";
 
 export default function Chart(props) {
   const { data } = props;
-  const Columns = data[0].data;
+  const Columns = data[0].children;
+  console.log("p", data[0].children);
 
   return (
     <Container>
@@ -24,11 +25,12 @@ export default function Chart(props) {
       })}
       {Columns.map((obj) => {
         if (obj.type === "conclusion") {
+          console.log("obj", obj);
           return (
             <ConclusionCell
               row="2/3"
               column={`${data.indexOf(obj) + 1}/${data.indexOf(obj) + 2}`}
-              conclusionData={obj.data}
+              data={obj}
             >
               {obj.name}
             </ConclusionCell>
@@ -38,7 +40,7 @@ export default function Chart(props) {
             <CriteriaCell
               row="2/3"
               column={`${data.indexOf(obj) + 1}/${data.indexOf(obj) + 2}`}
-              criteriaData={obj.data}
+              criteriaData={obj.children}
             />
           );
         }
