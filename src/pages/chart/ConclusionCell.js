@@ -100,9 +100,6 @@ export function ConclusionCell(props) {
     ],
   };
 
-  console.log("ayy lmao, evaluating these objects");
-  console.log(hasSameProperties(schema, dataset));
-
   if (conclusionData !== undefined) {
     return (
       <Container column={column} row={row}>

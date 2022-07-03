@@ -1,12 +1,12 @@
-export const data = [
+export const children = [
   {
     name: "Alaska",
     type: "criteria",
-    data: [
+    children: [
       {
         name: "Role",
         type: "criteria",
-        data: [
+        children: [
           {
             name: "Broker",
             type: "criteria",
@@ -17,11 +17,11 @@ export const data = [
       {
         name: "Collateral Type",
         type: "criteria",
-        data: [
+        children: [
           {
             name: "Broker",
             type: "criteria",
-            data: [
+            children: [
               { name: "Commercial/Multifamily", type: "criteria" },
               { name: "Residential 1-4 Business Purpose", type: "criteria" },
             ],
@@ -29,7 +29,7 @@ export const data = [
           {
             name: "Lender",
             type: "criteria",
-            data: [
+            children: [
               { name: "Commercial/Multifamily", type: "criteria" },
               { name: "Residential 1-4 Business Purpose", type: "criteria" },
             ],
@@ -38,12 +38,12 @@ export const data = [
       },
       {
         name: "Company License",
-        type: "conclusion",
-        data: [
+        type: "criteria",
+        children: [
           {
             name: "Broker",
             type: "criteria",
-            data: [
+            children: [
               {
                 name: "Commercial/Multifamily",
                 type: "conclusion",
@@ -71,7 +71,7 @@ export const data = [
           {
             name: "Lender",
             type: "criteria",
-            data: [
+            children: [
               {
                 name: "Commercial/Multifamily",
                 type: "conclusion",
@@ -100,12 +100,12 @@ export const data = [
       },
       {
         name: "Branch License",
-        type: "conclusion",
-        data: [
+        type: "criteriaa",
+        children: [
           {
             name: "Broker",
             type: "criteria",
-            data: [
+            children: [
               {
                 name: "Commercial/Multifamily",
                 type: "conclusion",
@@ -129,7 +129,7 @@ export const data = [
           {
             name: "Lender",
             type: "criteria",
-            data: [
+            children: [
               {
                 name: "Commercial/Multifamily",
                 type: "conclusion",
@@ -155,11 +155,11 @@ export const data = [
       {
         name: "Originator License",
         type: "conclusion",
-        data: [
+        children: [
           {
             name: "Broker",
             type: "criteria",
-            data: [
+            children: [
               {
                 name: "Commercial/Multifamily",
                 type: "conclusion",
@@ -185,7 +185,7 @@ export const data = [
           {
             name: "Lender",
             type: "criteria",
-            data: [
+            children: [
               {
                 name: "Commercial/Multifamily",
                 type: "conclusion",
