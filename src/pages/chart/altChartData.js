@@ -1,17 +1,18 @@
 export const data = [
   {
     name: "Alaska",
+    type: "State",
     children: [
       {
         name: "Broker",
         type: "Role",
         children: [
           {
-            type: "Collateral Type",
             name: "Commercial/Multifamily",
+            type: "Collateral Type",
             children: [
               {
-                name: "Company License",
+                type: "Company License",
                 body:
                   "Defined conduct appears to be outside the scope of Alaska Secure and Fair Enforcement for Mortgage Licensing Act of 2010 and the Alaska Real Estate Broker law.",
               },
@@ -22,7 +23,7 @@ export const data = [
             type: "Collateral Type",
             children: [
               {
-                name: "Company License",
+                type: "Company License",
                 body:
                   "Defined conduct appears to be outside the scope of Alaska Secure and Fair Enforcement for Mortgage Licensing Act of 2010 and the Alaska Real Estate Broker law.",
               },

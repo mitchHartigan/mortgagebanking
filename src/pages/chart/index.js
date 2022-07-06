@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { data } from "./chartData.js";
 
 import Chart from "./Chart";
+import Conclusion from "./Conclusion.js";
 
 export default function Index() {
   useEffect(() => {
@@ -23,6 +24,7 @@ export default function Index() {
   return (
     <Container>
       <Chart data={data}></Chart>
+      <Conclusion />
     </Container>
   );
 }
