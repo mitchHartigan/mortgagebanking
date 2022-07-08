@@ -1,52 +1,35 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { GridCell } from "./GridCell";
-import { CriteriaCell } from "./CriteriaCell";
-import { ConclusionCell } from "./ConclusionCell";
+
+import { data } from "./altChartData";
 
 export default function Chart(props) {
-  const { data } = props;
-  const Columns = data[0].children;
-  console.log("p", data[0].children);
+  const [coordinates, setCoordinates] = useState([]);
 
-  return (
-    <Container>
-      {Columns.map((column) => {
-        return (
-          <GridCell
-            row="1/2"
-            column={`${Columns.indexOf(column) + 1}/${
-              Columns.indexOf(column) + 2
-            }`}
-          >
-            {column.name}
-          </GridCell>
-        );
-      })}
-      {Columns.map((obj) => {
-        if (obj.type === "conclusion") {
-          console.log("obj", obj);
-          return (
-            <ConclusionCell
-              row="2/3"
-              column={`${data.indexOf(obj) + 1}/${data.indexOf(obj) + 2}`}
-              data={obj}
-            >
-              {obj.name}
-            </ConclusionCell>
-          );
+  const findObjRowSize = async (obj) => {
+    let value = 0;
+
+    async function findSmallestChildren(objArray) {
+      objArray.forEach((obj) => {
+        const hasChildren = obj.children && obj.children.length > 0;
+
+        if (hasChildren) {
+          findSmallestChildren(obj.children);
         } else {
-          return (
-            <CriteriaCell
-              row="2/3"
-              column={`${data.indexOf(obj) + 1}/${data.indexOf(obj) + 2}`}
-              criteriaData={obj.children}
-            />
-          );
+          value = value + 1;
         }
-      })}
-    </Container>
-  );
+      });
+    }
+
+    await findSmallestChildren(obj.children);
+    return value;
+  };
+
+  useEffect(async () => {
+    console.log(await findObjRowSize(data[0]));
+  });
+
+  return <Container>chart.</Container>;
 }
 
 const Container = styled.div`

@@ -12,7 +12,7 @@ export default function Index() {
   return (
     <Container>
       <Row />
-      {/* <Conclusion /> */}
+      <Chart />
     </Container>
   );
 }
