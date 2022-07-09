@@ -5,6 +5,7 @@ import { data } from "./altChartData";
 
 export default function Chart(props) {
   const [coordinates, setCoordinates] = useState([]);
+  const [canonicalData, setCanonicalData] = useState([]);
 
   const findObjRowSize = async (obj) => {
     let value = 0;
@@ -33,13 +34,11 @@ export default function Chart(props) {
 
   async function genCoordinateArray(objArray) {
     const genColumnCoords = async (objArray) => {
-      let columnCoords = [];
       let cursor = 1;
+      let rowMaxHeight = 1;
 
       objArray.forEach(async (obj, i) => {
         const objRowSize = await findObjRowSize(obj);
-        console.log("obj", obj);
-        console.log("objRowSize", objRowSize);
 
         const objCoords = [cursor, cursor + objRowSize];
         cursor = cursor + objRowSize;
@@ -54,9 +53,82 @@ export default function Chart(props) {
     return await genColumnCoords(objArray);
   }
 
+  const genChartFriendlyData = async (objArray) => {
+    const chartFriendlyData = [];
+
+    const parseObjects = async (objArray) => {
+      const newArr = [];
+
+      if (objArray && objArray.length) {
+        objArray.forEach((obj) => {
+          newArr.push(obj);
+
+          if (obj.children && obj.children.length > 0) {
+            chartFriendlyData.push(newArr);
+            parseObjects(obj.children);
+          }
+        });
+      }
+    };
+
+    await parseObjects(objArray);
+
+    console.log("chartFriendlyData", chartFriendlyData);
+    return chartFriendlyData;
+  };
+
+  const populateCanonicalDataArray = async (objArray, canonicalData) => {
+    const data = canonicalData;
+
+    const parseObjects = async (objArray) => {
+      console.log("objArray", objArray);
+      objArray.forEach((obj) => {
+        if (obj.level || obj.level === 0) {
+          data[obj.level].push(obj);
+        }
+        if (obj.children) parseObjects(obj.children);
+      });
+    };
+
+    await parseObjects(objArray);
+    console.log("canonical data", data);
+    return data;
+  };
+
+  const genCanonicalDataArray = (level) => {
+    const canonicalArr = [];
+
+    for (let i = 0; i <= level; i++) {
+      canonicalArr.push([]);
+    }
+
+    return canonicalArr;
+  };
+
+  const findLowestLevel = async (objArray) => {
+    let lowestLevel = 0;
+
+    const parseHierarchy = async (objArray) => {
+      objArray.forEach((obj) => {
+        if (obj.level > lowestLevel) lowestLevel = obj.level;
+        if (obj.children && obj.children.length > 0) {
+          parseHierarchy(obj.children);
+        }
+      });
+    };
+
+    await parseHierarchy(objArray);
+    return lowestLevel;
+  };
+
   useEffect(async () => {
-    console.log(await findObjRowSize(data[0]));
+    // console.log(await findObjRowSize(data[0]));
     console.log(await genCoordinateArray(data));
+    // genChartFriendlyData(data);
+    // const lowestLevel = await findLowestLevel(data);
+    // console.log("lowestLevel", lowestLevel);
+    // const canonicalData = genCanonicalDataArray(lowestLevel);
+    // await populateCanonicalDataArray(data, canonicalData);
   });
 
   return <Container>chart.</Container>;
