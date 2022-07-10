@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-export default function CellContainer(props) {
+export default function Cell(props) {
   const { coords, name, type, body, column } = props;
 
   return (
@@ -13,10 +13,13 @@ export default function CellContainer(props) {
 
 const Container = styled.div`
   display: flex;
+  justify-content: center;
   grid-row: ${({ coords }) => `${coords[0]}/${coords[1]}`};
   grid-column: $ ${({ column }) => `${column}`};
   flex-direction: row;
   border: 1px solid black;
+  align-items: center;
   min-width: 75px;
   min-height: 75px;
+  padding: 10px;
 `;

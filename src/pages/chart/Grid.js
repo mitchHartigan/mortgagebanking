@@ -1,18 +1,16 @@
 import React from "react";
 import styled from "styled-components";
 
-import CellContainer from "./CellContainer";
+import Cell from "./Cell";
 
 export default function Grid(props) {
   const { data } = props;
-  console.log("data babyyy", data);
 
   return (
     <Container data={data}>
       {data.map((columnArr, i) => {
         return columnArr.map((obj) => {
-          console.log("obj", obj);
-          return <CellContainer {...obj} column={i} />;
+          return <Cell {...obj} column={i} />;
         });
       })}
     </Container>
@@ -21,14 +19,13 @@ export default function Grid(props) {
 
 function genRows(data) {
   let rowStr = "";
-  data.forEach((column) => {
+  data.forEach(() => {
     rowStr = rowStr + "1fr ";
   });
-  console.log(rowStr);
   return rowStr;
 }
 
 const Container = styled.div`
   display: grid;
-  /* grid-template-rows: ${({ data }) => genRows(data)}; */
+  grid-template-rows: ${({ data }) => genRows(data)};
 `;
