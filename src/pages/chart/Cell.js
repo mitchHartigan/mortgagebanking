@@ -2,10 +2,10 @@ import React from "react";
 import styled from "styled-components";
 
 export default function Cell(props) {
-  const { coords, name, type, body, column } = props;
+  const { coords, name, type, body, column, isTitle } = props;
 
   return (
-    <Container coords={coords} column={column}>
+    <Container coords={coords} isTitle={isTitle} column={column}>
       {name || body}
     </Container>
   );
@@ -14,7 +14,8 @@ export default function Cell(props) {
 const Container = styled.div`
   display: flex;
   justify-content: center;
-  grid-row: ${({ coords }) => `${coords[0]}/${coords[1]}`};
+  grid-row: ${({ coords, isTitle }) =>
+    isTitle ? `1 /2 ` : `${coords[0]}/${coords[1]}`};
   grid-column: $ ${({ column }) => `${column}`};
   flex-direction: row;
   border: 1px solid black;

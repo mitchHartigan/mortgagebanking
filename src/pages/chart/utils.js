@@ -19,12 +19,24 @@ export const findObjRowSize = async (obj) => {
   return value;
 };
 
+export const genTitleRowArray = (canonicalData) => {
+  const titleRowArray = [];
+
+  canonicalData.forEach((column) => {
+    console.log("column", column);
+    titleRowArray.push(column[0].type);
+  });
+
+  console.log(titleRowArray);
+  return titleRowArray;
+};
+
 export const populateCanonicalArrayCoords = async (canonicalData) => {
-  let leafCursor = 1;
+  let leafCursor = 2;
   let newData = canonicalData;
 
   for (let [i, array] of canonicalData.entries()) {
-    let cursor = 1;
+    let cursor = 2;
 
     for (let [x, obj] of array.entries()) {
       const objRowSize = await findObjRowSize(obj);

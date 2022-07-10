@@ -9,6 +9,7 @@ import {
   populateCanonicalDataArray,
   findLowestLevel,
   genCanonicalDataArray,
+  genTitleRowArray,
 } from "./utils";
 
 export default class Chart extends React.Component {
@@ -17,6 +18,7 @@ export default class Chart extends React.Component {
 
     this.state = {
       data: [],
+      titleData: [],
     };
   }
 
@@ -30,13 +32,13 @@ export default class Chart extends React.Component {
 
   async componentDidMount() {
     const data = await this.setup();
-    this.setState({ data: data });
+    this.setState({ data: data, titleData: genTitleRowArray(data) });
   }
 
   render() {
     return (
       <Container>
-        <Grid data={this.state.data} />
+        <Grid data={this.state.data} titleData={this.state.titleData} />
       </Container>
     );
   }

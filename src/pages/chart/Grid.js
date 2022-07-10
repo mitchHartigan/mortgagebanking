@@ -5,10 +5,13 @@ import Cell from "./Cell";
 import { nanoid } from "nanoid";
 
 export default function Grid(props) {
-  const { data } = props;
+  const { data, titleData } = props;
 
   return (
     <Container data={data}>
+      {titleData.map((title, i) => {
+        return <Cell name={title} isTitle column={i} key={nanoid()} />;
+      })}
       {data.map((columnArr, i) => {
         return columnArr.map((obj) => {
           return <Cell {...obj} column={i} key={nanoid()} />;
