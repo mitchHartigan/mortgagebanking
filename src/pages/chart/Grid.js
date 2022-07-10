@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 import Cell from "./Cell";
+import { nanoid } from "nanoid";
 
 export default function Grid(props) {
   const { data } = props;
@@ -10,7 +11,7 @@ export default function Grid(props) {
     <Container data={data}>
       {data.map((columnArr, i) => {
         return columnArr.map((obj) => {
-          return <Cell {...obj} column={i} />;
+          return <Cell {...obj} column={i} key={nanoid()} />;
         });
       })}
     </Container>

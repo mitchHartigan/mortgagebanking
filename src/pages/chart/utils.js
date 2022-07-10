@@ -52,7 +52,6 @@ export const populateCanonicalDataArray = async (objArray, canonicalData) => {
   const data = canonicalData;
 
   const parseObjects = async (objArray) => {
-    console.log("objArray", objArray);
     objArray.forEach((obj) => {
       if (obj.level || obj.level === 0) {
         data[obj.level].push(obj);
