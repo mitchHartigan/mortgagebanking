@@ -1,13 +1,20 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
+import Grid from "./Grid";
+
 import { data } from "./altChartData";
 
-export default function Chart(props) {
-  const [coordinates, setCoordinates] = useState([]);
-  const [canonicalData, setCanonicalData] = useState([]);
+export default class Chart extends React.Component {
+  constructor(props) {
+    super(props);
 
-  const findObjRowSize = async (obj) => {
+    this.state = {
+      data: [],
+    };
+  }
+
+  findObjRowSize = async (obj) => {
     let value = 0;
 
     async function findSmallestChildren(objArray) {
@@ -25,14 +32,10 @@ export default function Chart(props) {
     }
 
     await findSmallestChildren(obj.children);
-
-    // minimum row size for an object is one. Objects with no children
-    // (before this check) have a row size of 0.
-    // if (value === 0) value = 1;
     return value;
   };
 
-  async function populateCanonicalArrayCoords(canonicalData) {
+  populateCanonicalArrayCoords = async (canonicalData) => {
     let leafCursor = 1;
     let newData = canonicalData;
 
@@ -40,7 +43,7 @@ export default function Chart(props) {
       let cursor = 1;
 
       for (let [x, obj] of array.entries()) {
-        const objRowSize = await findObjRowSize(obj);
+        const objRowSize = await this.findObjRowSize(obj);
 
         if (objRowSize === 0) {
           const objCoords = [leafCursor, leafCursor + 1];
@@ -57,77 +60,11 @@ export default function Chart(props) {
         }
       }
     }
-    console.log("nd", newData);
-  }
 
-  // async function genCoordinateArray(objArray, canonicalData) {
-  //   let leafCursor = 1;
-  //   let newData = canonicalData;
-
-  //   const genColumnCoords = async (objArray) => {
-  //     let cursor = 1;
-
-  //     objArray.forEach(async (obj, i) => {
-  //       let objRowSize = await findObjRowSize(obj);
-
-  //       if (objRowSize === 0) {
-  //         const objCoords = [leafCursor, leafCursor + 1];
-  //         leafCursor = leafCursor + 1;
-
-  //         const updatedObj = { ...newData[obj.level][i] };
-  //         updatedObj.coords = objCoords;
-
-  //         newData[obj.level].splice(i, 1, updatedObj);
-  //         console.log("newData after splice", newData);
-  //       } else {
-  //         const objCoords = [cursor, cursor + objRowSize];
-  //         cursor = cursor + objRowSize;
-  //         // console.log("i", i);
-  //         // console.log("b", newData[obj.level][i]);
-  //         const updatedObj = { ...newData[obj.level][i] };
-  //         updatedObj.coords = objCoords;
-  //         console.log("updatedObj", updatedObj);
-
-  //         newData[obj.level].splice(i, 1, updatedObj);
-  //         console.log("newData after splice", newData);
-  //         // console.log(objCoords);
-  //       }
-
-  //       if (obj.children && obj.children.length > 0) {
-  //         return genColumnCoords(obj.children);
-  //       }
-  //     });
-  //   };
-
-  //   await genColumnCoords(objArray);
-  //   return newData;
-  // }
-
-  const genChartFriendlyData = async (objArray) => {
-    const chartFriendlyData = [];
-
-    const parseObjects = async (objArray) => {
-      const newArr = [];
-
-      if (objArray && objArray.length) {
-        objArray.forEach((obj) => {
-          newArr.push(obj);
-
-          if (obj.children && obj.children.length > 0) {
-            chartFriendlyData.push(newArr);
-            parseObjects(obj.children);
-          }
-        });
-      }
-    };
-
-    await parseObjects(objArray);
-
-    console.log("chartFriendlyData", chartFriendlyData);
-    return chartFriendlyData;
+    return newData;
   };
 
-  const populateCanonicalDataArray = async (objArray, canonicalData) => {
+  populateCanonicalDataArray = async (objArray, canonicalData) => {
     const data = canonicalData;
 
     const parseObjects = async (objArray) => {
@@ -145,7 +82,7 @@ export default function Chart(props) {
     return data;
   };
 
-  const genCanonicalDataArray = (level) => {
+  genCanonicalDataArray = (level) => {
     const canonicalArr = [];
 
     for (let i = 0; i <= level; i++) {
@@ -155,7 +92,7 @@ export default function Chart(props) {
     return canonicalArr;
   };
 
-  const findLowestLevel = async (objArray) => {
+  findLowestLevel = async (objArray) => {
     let lowestLevel = 0;
 
     const parseHierarchy = async (objArray) => {
@@ -171,31 +108,38 @@ export default function Chart(props) {
     return lowestLevel;
   };
 
-  useEffect(async () => {
-    // console.log(await findObjRowSize(data[0]));
-    // genChartFriendlyData(data);
-    const lowestLevel = await findLowestLevel(data);
-    // console.log("lowestLevel", lowestLevel);
-    let canonicalData = genCanonicalDataArray(lowestLevel);
-    canonicalData = await populateCanonicalDataArray(data, canonicalData);
-    // console.log("cdata", canonicalData);
+  setup = async () => {
+    const lowestLevel = await this.findLowestLevel(data);
+    let canonicalData = await this.genCanonicalDataArray(lowestLevel);
+    console.log(canonicalData);
+    canonicalData = await this.populateCanonicalDataArray(data, canonicalData);
+    console.log(canonicalData);
+    canonicalData = await this.populateCanonicalArrayCoords(
+      canonicalData,
+      data
+    );
+    console.log("cd", canonicalData);
+    return canonicalData;
+  };
 
-    populateCanonicalArrayCoords(canonicalData, data);
-    // const spell = await genCoordinateArray(data, canonicalData);
-    // setCanonicalData(spell);
-  }, []);
+  async componentDidMount() {
+    const data = await this.setup();
+    console.log("data bitch.......", data);
+    this.setState({ data: data });
+  }
 
-  return (
-    <Container>
-      <button onClick={() => console.log("ps", canonicalData)}>
-        Log Chart Data
-      </button>
-    </Container>
-  );
+  render() {
+    return (
+      <Container>
+        <Grid data={this.state.data} />
+      </Container>
+    );
+  }
 }
 
 const Container = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 `;
