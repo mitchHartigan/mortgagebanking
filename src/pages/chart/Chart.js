@@ -28,30 +28,80 @@ export default function Chart(props) {
 
     // minimum row size for an object is one. Objects with no children
     // (before this check) have a row size of 0.
-    if (value === 0) value = 1;
+    // if (value === 0) value = 1;
     return value;
   };
 
-  async function genCoordinateArray(objArray) {
-    const genColumnCoords = async (objArray) => {
-      let cursor = 1;
-      let rowMaxHeight = 1;
+  async function populateCanonicalArrayCoords(canonicalData) {
+    let leafCursor = 1;
+    let newData = canonicalData;
 
-      objArray.forEach(async (obj, i) => {
+    for (let [i, array] of canonicalData.entries()) {
+      let cursor = 1;
+
+      for (let [x, obj] of array.entries()) {
         const objRowSize = await findObjRowSize(obj);
 
-        const objCoords = [cursor, cursor + objRowSize];
-        cursor = cursor + objRowSize;
-        console.log(objCoords);
-
-        if (obj.children && obj.children.length > 0) {
-          return genColumnCoords(obj.children);
+        if (objRowSize === 0) {
+          const objCoords = [leafCursor, leafCursor + 1];
+          leafCursor = leafCursor + 1;
+          const updatedObj = { ...newData[i][x] };
+          updatedObj.coords = objCoords;
+          newData[i].splice(x, 1, updatedObj);
+        } else {
+          const objCoords = [cursor, cursor + objRowSize];
+          cursor = cursor + objRowSize;
+          const updatedObj = { ...newData[i][x] };
+          updatedObj.coords = objCoords;
+          newData[i].splice(x, 1, updatedObj);
         }
-      });
-    };
-
-    return await genColumnCoords(objArray);
+      }
+    }
+    console.log("nd", newData);
   }
+
+  // async function genCoordinateArray(objArray, canonicalData) {
+  //   let leafCursor = 1;
+  //   let newData = canonicalData;
+
+  //   const genColumnCoords = async (objArray) => {
+  //     let cursor = 1;
+
+  //     objArray.forEach(async (obj, i) => {
+  //       let objRowSize = await findObjRowSize(obj);
+
+  //       if (objRowSize === 0) {
+  //         const objCoords = [leafCursor, leafCursor + 1];
+  //         leafCursor = leafCursor + 1;
+
+  //         const updatedObj = { ...newData[obj.level][i] };
+  //         updatedObj.coords = objCoords;
+
+  //         newData[obj.level].splice(i, 1, updatedObj);
+  //         console.log("newData after splice", newData);
+  //       } else {
+  //         const objCoords = [cursor, cursor + objRowSize];
+  //         cursor = cursor + objRowSize;
+  //         // console.log("i", i);
+  //         // console.log("b", newData[obj.level][i]);
+  //         const updatedObj = { ...newData[obj.level][i] };
+  //         updatedObj.coords = objCoords;
+  //         console.log("updatedObj", updatedObj);
+
+  //         newData[obj.level].splice(i, 1, updatedObj);
+  //         console.log("newData after splice", newData);
+  //         // console.log(objCoords);
+  //       }
+
+  //       if (obj.children && obj.children.length > 0) {
+  //         return genColumnCoords(obj.children);
+  //       }
+  //     });
+  //   };
+
+  //   await genColumnCoords(objArray);
+  //   return newData;
+  // }
 
   const genChartFriendlyData = async (objArray) => {
     const chartFriendlyData = [];
@@ -123,15 +173,25 @@ export default function Chart(props) {
 
   useEffect(async () => {
     // console.log(await findObjRowSize(data[0]));
-    console.log(await genCoordinateArray(data));
     // genChartFriendlyData(data);
-    // const lowestLevel = await findLowestLevel(data);
+    const lowestLevel = await findLowestLevel(data);
     // console.log("lowestLevel", lowestLevel);
-    // const canonicalData = genCanonicalDataArray(lowestLevel);
-    // await populateCanonicalDataArray(data, canonicalData);
-  });
+    let canonicalData = genCanonicalDataArray(lowestLevel);
+    canonicalData = await populateCanonicalDataArray(data, canonicalData);
+    // console.log("cdata", canonicalData);
 
-  return <Container>chart.</Container>;
+    populateCanonicalArrayCoords(canonicalData, data);
+    // const spell = await genCoordinateArray(data, canonicalData);
+    // setCanonicalData(spell);
+  }, []);
+
+  return (
+    <Container>
+      <button onClick={() => console.log("ps", canonicalData)}>
+        Log Chart Data
+      </button>
+    </Container>
+  );
 }
 
 const Container = styled.div`
