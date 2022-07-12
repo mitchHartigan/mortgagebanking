@@ -10,6 +10,7 @@ import {
   findLowestLevel,
   genCanonicalDataArray,
   genTitleRowArray,
+  parseDuplicateCellData,
 } from "./utils";
 
 export default class Chart extends React.Component {
@@ -27,6 +28,7 @@ export default class Chart extends React.Component {
     let canonicalData = await genCanonicalDataArray(lowestLevel);
     canonicalData = await populateCanonicalDataArray(data, canonicalData);
     canonicalData = await populateCanonicalArrayCoords(canonicalData, data);
+    console.log(await parseDuplicateCellData(canonicalData));
     return canonicalData;
   };
 

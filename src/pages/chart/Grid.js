@@ -2,6 +2,8 @@ import React from "react";
 import styled from "styled-components";
 
 import Cell from "./Cell";
+import TitleCell from "./TitleCell";
+
 import { nanoid } from "nanoid";
 
 export default function Grid(props) {
@@ -10,7 +12,7 @@ export default function Grid(props) {
   return (
     <Container data={data}>
       {titleData.map((title, i) => {
-        return <Cell name={title} isTitle column={i} key={nanoid()} />;
+        return <TitleCell name={title} isTitle column={i} key={nanoid()} />;
       })}
       {data.map((columnArr, i) => {
         return columnArr.map((obj) => {
@@ -22,7 +24,7 @@ export default function Grid(props) {
 }
 
 function genRows(data) {
-  let rowStr = "";
+  let rowStr = "50px ";
   data.forEach(() => {
     rowStr = rowStr + "1fr ";
   });

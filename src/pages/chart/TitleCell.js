@@ -14,14 +14,11 @@ export default function Cell(props) {
 const Container = styled.div`
   display: flex;
   justify-content: center;
-  grid-row: ${({ coords, isTitle }) =>
-    isTitle ? `1 /2 ` : `${coords[0]}/${coords[1]}`};
+  grid-row: 1 / 2;
   grid-column: $ ${({ column }) => `${column}`};
   flex-direction: row;
-  outline: ${({ isTitle }) => (isTitle ? `` : ` 1px solid black`)};
+  border-bottom: 2px solid black;
   align-items: center;
-  min-width: 125px;
-  min-height: 75px;
-  padding: 10px;
   font-family: ${({ theme }) => theme.textFont};
+  font-size: ${({ theme }) => theme.text.md};
 `;

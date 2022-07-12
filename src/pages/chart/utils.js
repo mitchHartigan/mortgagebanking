@@ -31,6 +31,72 @@ export const genTitleRowArray = (canonicalData) => {
   return titleRowArray;
 };
 
+// export async function parseDuplicateCellData(canonicalData) {
+//   for (let [i, column] of canonicalData.entries()) {
+//     if (i + 1 === canonicalData.length) {
+//       let cursor;
+//       for (let [x, obj] of column.entries()) {
+//         let previousItem = column[x - 1];
+//         let currentItem = column[x];
+//         if (
+//           previousItem &&
+//           currentItem &&
+//           previousItem.body === currentItem.body
+//         ) {
+//           if (cursor) previousItem = canonicalData[i][cursor];
+//           // update previousBody coords to cover current obj coords.
+//           // remove current duplicate item.
+//           canonicalData[i][x].coords = [
+//             previousItem.coords[0],
+//             currentItem.coords[1],
+//           ];
+//           console.log("updated", canonicalData[i][x]);
+//           canonicalData[i].splice(x, 1);
+//           console.log("duplicate!");
+//         } else {
+//           cursor = undefined;
+//           console.log("not duplicate");
+//         }
+//       }
+//     }
+//   }
+//   return canonicalData;
+// }
+
+export async function parseDuplicateCellData(canonicalData) {
+  for (let [i, column] of canonicalData.entries()) {
+    if (i + 1 === canonicalData.length) {
+      const newColumn = await parseDuplicates(column);
+      console.log("newColumn", newColumn);
+      canonicalData.splice(i, 1, newColumn);
+      console.log("asldfkjasd", canonicalData);
+    }
+  }
+  return canonicalData;
+}
+
+const parseDuplicates = async (columnArr) => {
+  let completed = false;
+
+  for (let [i, obj] of columnArr.entries()) {
+    let currentItem = columnArr[i];
+    let nextItem = columnArr[i + 1];
+
+    if (currentItem && nextItem && nextItem.body === currentItem.body) {
+      console.log("yep!");
+      columnArr[i].coords = [
+        columnArr[i].coords[0],
+        columnArr[i + 1].coords[1],
+      ];
+      columnArr.splice(i + 1, 1);
+      parseDuplicates(columnArr);
+    } else {
+      console.log("spliced column arr?", columnArr);
+      return columnArr;
+    }
+  }
+};
+
 export const populateCanonicalArrayCoords = async (canonicalData) => {
   let leafCursor = 2;
   let newData = canonicalData;
