@@ -66,18 +66,18 @@ export const genTitleRowArray = (canonicalData) => {
 export async function parseDuplicateCellData(canonicalData) {
   for (let [i, column] of canonicalData.entries()) {
     if (i + 1 === canonicalData.length) {
-      const newColumn = await parseDuplicates(column);
-      console.log("newColumn", newColumn);
-      canonicalData.splice(i, 1, newColumn);
-      console.log("asldfkjasd", canonicalData);
+      await parseDuplicates(column, (newColumn) => {
+        console.log("newColumn", newColumn);
+        canonicalData.splice(i, 1, newColumn);
+        console.log("asldfkjasd", canonicalData);
+      });
     }
   }
   return canonicalData;
 }
 
-const parseDuplicates = async (columnArr) => {
-  let completed = false;
-
+const parseDuplicates = async (column, callback) => {
+  let columnArr = column;
   for (let [i, obj] of columnArr.entries()) {
     let currentItem = columnArr[i];
     let nextItem = columnArr[i + 1];
@@ -89,10 +89,10 @@ const parseDuplicates = async (columnArr) => {
         columnArr[i + 1].coords[1],
       ];
       columnArr.splice(i + 1, 1);
-      parseDuplicates(columnArr);
+      parseDuplicates(columnArr, () => {});
     } else {
       console.log("spliced column arr?", columnArr);
-      return columnArr;
+      callback(columnArr);
     }
   }
 };
