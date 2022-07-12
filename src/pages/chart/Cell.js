@@ -14,6 +14,7 @@ export default function Cell(props) {
 const Container = styled.div`
   display: flex;
   justify-content: center;
+  box-sizing: border-box;
   grid-row: ${({ coords, isTitle }) =>
     isTitle ? `1 /2 ` : `${coords[0]}/${coords[1]}`};
   grid-column: $ ${({ column }) => `${column}`};
