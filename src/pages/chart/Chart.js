@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 import Grid from "./Grid";
-import { data } from "./chartData";
+import { data } from "./davidData";
 
 import {
   populateCanonicalArrayCoords,
