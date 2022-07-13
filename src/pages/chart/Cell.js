@@ -17,12 +17,13 @@ const Container = styled.div`
   box-sizing: border-box;
   grid-row: ${({ coords, isTitle }) =>
     isTitle ? `1 /2 ` : `${coords[0]}/${coords[1]}`};
-  grid-column: $ ${({ column }) => `${column}`};
+  /* grid-column: ${({ column }) => `${column}`}; */
   flex-direction: row;
   outline: ${({ isTitle }) => (isTitle ? `` : ` 1px solid black`)};
   align-items: center;
-  min-width: 125px;
+  min-width: 150px;
   min-height: 75px;
-  padding: 10px;
+  max-width: 500px;
+  padding: 25px;
   font-family: ${({ theme }) => theme.textFont};
 `;

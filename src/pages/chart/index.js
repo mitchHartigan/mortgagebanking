@@ -13,4 +13,8 @@ export default function Index() {
 
 const Container = styled.div`
   display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
 `;
