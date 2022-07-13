@@ -25,5 +25,6 @@ const Container = styled.div`
   min-height: 75px;
   max-width: 500px;
   padding: 25px;
+  text-align: center;
   font-family: ${({ theme }) => theme.textFont};
 `;
