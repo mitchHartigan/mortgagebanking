@@ -1,4 +1,7 @@
 export const findObjRowSize = async (obj) => {
+  /* Check how many children a given element in our objArray
+  has recursively. Ie, a branch with 2 sub-branches, each with
+  2 leaves, will return a size of 4. */
   let value = 0;
 
   async function findSmallestChildren(objArray) {
@@ -20,50 +23,20 @@ export const findObjRowSize = async (obj) => {
 };
 
 export const genTitleRowArray = (canonicalData) => {
+  /* Create a seperate array containing just the 
+  column titles to render as the column titles*/
   const titleRowArray = [];
 
   canonicalData.forEach((column) => {
-    console.log("column", column);
     titleRowArray.push(column[0].type);
   });
 
-  console.log(titleRowArray);
   return titleRowArray;
 };
 
-// export async function parseDuplicateCellData(canonicalData) {
-//   for (let [i, column] of canonicalData.entries()) {
-//     if (i + 1 === canonicalData.length) {
-//       let cursor;
-//       for (let [x, obj] of column.entries()) {
-//         let previousItem = column[x - 1];
-//         let currentItem = column[x];
-//         if (
-//           previousItem &&
-//           currentItem &&
-//           previousItem.body === currentItem.body
-//         ) {
-//           if (cursor) previousItem = canonicalData[i][cursor];
-//           // update previousBody coords to cover current obj coords.
-//           // remove current duplicate item.
-//           canonicalData[i][x].coords = [
-//             previousItem.coords[0],
-//             currentItem.coords[1],
-//           ];
-//           console.log("updated", canonicalData[i][x]);
-//           canonicalData[i].splice(x, 1);
-//           console.log("duplicate!");
-//         } else {
-//           cursor = undefined;
-//           console.log("not duplicate");
-//         }
-//       }
-//     }
-//   }
-//   return canonicalData;
-// }
-
 export async function parseDuplicateCellData(canonicalData) {
+  /* Calls a recursive function to eleminate duplicate cell data for the last 
+  row of canonical data, which is the lowest level in the data hierarchy.*/
   for (let [i, column] of canonicalData.entries()) {
     if (i + 1 === canonicalData.length) {
       await parseDuplicates(column, (newColumn) => {
@@ -83,7 +56,6 @@ const parseDuplicates = async (column, callback) => {
     let nextItem = columnArr[i + 1];
 
     if (currentItem && nextItem && nextItem.body === currentItem.body) {
-      console.log("yep!");
       columnArr[i].coords = [
         columnArr[i].coords[0],
         columnArr[i + 1].coords[1],
@@ -91,7 +63,6 @@ const parseDuplicates = async (column, callback) => {
       columnArr.splice(i + 1, 1);
       parseDuplicates(columnArr, () => {});
     } else {
-      console.log("spliced column arr?", columnArr);
       callback(columnArr);
     }
   }
