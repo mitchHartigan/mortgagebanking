@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 import Grid from "./Grid";
-import { data } from "./davidData";
+import { data } from "./chartData";
 
 import {
   populateCanonicalArrayCoords,
@@ -11,6 +11,8 @@ import {
   genCanonicalDataArray,
   genTitleRowArray,
   parseDuplicateCellData,
+  parseNonTreeData,
+  populateNonTreeCanonicalData,
 } from "./utils";
 
 export default class Chart extends React.Component {
@@ -25,10 +27,16 @@ export default class Chart extends React.Component {
 
   setup = async () => {
     const lowestLevel = await findLowestLevel(data);
+    const nonTreeDataArr = await parseNonTreeData(data);
     let canonicalData = await genCanonicalDataArray(lowestLevel);
     canonicalData = await populateCanonicalDataArray(data, canonicalData);
     canonicalData = await populateCanonicalArrayCoords(canonicalData, data);
-    console.log(await parseDuplicateCellData(canonicalData));
+    canonicalData = await populateNonTreeCanonicalData(
+      canonicalData,
+      nonTreeDataArr,
+      lowestLevel
+    );
+    console.log(await parseDuplicateCellData(canonicalData, data));
     return canonicalData;
   };
 

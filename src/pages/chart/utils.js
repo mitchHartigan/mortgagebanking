@@ -34,15 +34,15 @@ export const genTitleRowArray = (canonicalData) => {
   return titleRowArray;
 };
 
-export async function parseDuplicateCellData(canonicalData) {
+export async function parseDuplicateCellData(canonicalData, data) {
   /* Calls a recursive function to eleminate duplicate cell data for the last 
   row of canonical data, which is the lowest level in the data hierarchy.*/
+  const leavesColumn = await findLowestLevel(data);
+
   for (let [i, column] of canonicalData.entries()) {
-    if (i + 1 === canonicalData.length) {
+    if (i === leavesColumn) {
       await parseDuplicates(column, (newColumn) => {
-        console.log("newColumn", newColumn);
         canonicalData.splice(i, 1, newColumn);
-        console.log("asldfkjasd", canonicalData);
       });
     }
   }
@@ -111,6 +111,42 @@ export const populateCanonicalDataArray = async (objArray, canonicalData) => {
 
   await parseObjects(objArray);
   return data;
+};
+
+export const parseNonTreeData = async (objArray) => {
+  const tempData = [];
+
+  objArray.forEach((obj) => {
+    if (!obj.children) {
+      tempData.push(obj);
+    }
+  });
+
+  return tempData;
+};
+
+export const populateNonTreeCanonicalData = (
+  canonicalData,
+  nonTreeDataArr,
+  lowestLevel
+) => {
+  nonTreeDataArr.forEach((obj) => {
+    const updatedObj = { ...obj, coords: [2, findRowHeight(canonicalData)] };
+    canonicalData.push([updatedObj]);
+  });
+
+  return canonicalData;
+};
+
+export const findRowHeight = (canonicalData) => {
+  let rowHeight = 1;
+
+  canonicalData.forEach((columnArr) => {
+    if (columnArr.length > rowHeight) rowHeight = columnArr.length;
+  });
+
+  // accouting for title row and offset by one.
+  return rowHeight + 2;
 };
 
 export const genCanonicalDataArray = (level) => {

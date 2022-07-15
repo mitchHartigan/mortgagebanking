@@ -98,4 +98,8 @@ export const data = [
       },
     ],
   },
+  {
+    name: "Additional Notes",
+    type: "Additional Notes",
+  },
 ];
