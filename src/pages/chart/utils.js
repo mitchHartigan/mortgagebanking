@@ -71,12 +71,15 @@ const parseDuplicates = async (column, callback) => {
   }
 };
 
-export const populateCanonicalArrayCoords = async (canonicalData) => {
-  let leafCursor = 2;
+export const populateCanonicalArrayCoords = async (
+  canonicalData,
+  rowHeightOffset
+) => {
+  let leafCursor = 2 + rowHeightOffset;
   let newData = canonicalData;
 
   for (let [i, array] of canonicalData.entries()) {
-    let cursor = 2;
+    let cursor = 2 + rowHeightOffset;
 
     for (let [x, obj] of array.entries()) {
       const objRowSize = await findObjRowSize(obj);
@@ -131,10 +134,13 @@ export const parseNonTreeData = async (objArray) => {
 export const populateNonTreeCanonicalData = (
   canonicalData,
   nonTreeDataArr,
-  lowestLevel
+  rowOffset
 ) => {
   nonTreeDataArr.forEach((obj) => {
-    const updatedObj = { ...obj, coords: [2, findRowHeight(canonicalData)] };
+    const updatedObj = {
+      ...obj,
+      coords: [rowOffset, findRowHeight(canonicalData) + rowOffset],
+    };
     canonicalData.push([updatedObj]);
   });
 
@@ -152,8 +158,6 @@ export const findRowHeight = (canonicalData) => {
   return rowHeight + 2;
 };
 
-// we're writing findColumns to replace the level param
-// passed in here.
 export const genCanonicalDataArray = (level) => {
   const canonicalArr = [];
 
@@ -164,9 +168,27 @@ export const genCanonicalDataArray = (level) => {
   return canonicalArr;
 };
 
+export const createCanonicalData = (
+  chartCellWidth,
+  rowCellHeight,
+  apiData
+) => {};
+
+export const findRowCellHeight = (canonicalData, rowOffset) => {
+  let longestColumnLength = canonicalData.length;
+
+  for (let columnArr of canonicalData) {
+    let length = columnArr.length;
+    if (length > longestColumnLength) longestColumnLength = length;
+  }
+
+  if (rowOffset == 0) return longestColumnLength + 2;
+  return longestColumnLength + 1;
+};
+
 export const findColumns = async (apiData) => {
   const keys = Object.keys(apiData);
-  const lengthArr = [];
+  let overallLength = 0;
 
   for (let key of keys) {
     let length = 0;
@@ -178,10 +200,10 @@ export const findColumns = async (apiData) => {
         length = length + 1;
       }
     }
-    lengthArr.push(length);
+    overallLength = length;
   }
 
-  return lengthArr;
+  return overallLength;
 };
 
 // refactor to take lowest level of an object instead? if no children, return 1.
