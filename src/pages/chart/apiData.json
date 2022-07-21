@@ -177,5 +177,132 @@
         }
       ]
     }
+  ],
+  "Arizona": [
+    {
+      "name": "Arizona",
+      "type": "State",
+      "level": 0,
+      "children": [
+        {
+          "name": "Broker",
+          "type": "Role",
+          "level": 1,
+          "children": [
+            {
+              "name": "Commercial/Multifamily",
+              "type": "Collateral Type",
+              "level": 2,
+              "children": [
+                {
+                  "type": "Company License",
+                  "level": 3,
+                  "body": "Arizona license required Commercial Mortgage Broker license 16 Commercial Mortgage Banker license 17 Mortgage Broker license 18 or Mortgage Banker license 19",
+                  "children": [
+                    {
+                      "type": "Branch License",
+                      "level": 4,
+                      "body": "Branch license required.",
+                      "children": [
+                        {
+                          "type": "Originator License",
+                          "level": 5,
+                          "body": "Branch license follows company license type."
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "Resident 1-4 Business Purpose",
+              "type": "Collateral Type",
+              "level": 2,
+              "children": [
+                {
+                  "type": "Company License",
+                  "level": 3,
+                  "body": "Arizona license required Mortgage Broker license 22 Or Mortgage Banker license 23.",
+                  "children": [
+                    {
+                      "type": "Branch License",
+                      "level": 4,
+                      "body": "Branch license required.",
+                      "children": [
+                        {
+                          "type": "Originator License",
+                          "level": 5,
+                          "body": "Branch license follows company license type."
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Lender",
+          "type": "Role",
+          "level": 1,
+          "children": [
+            {
+              "name": "Commercial/Multifamily",
+              "type": "Collateral Type",
+              "level": 2,
+              "children": [
+                {
+                  "type": "Company License",
+                  "level": 3,
+                  "body": "Wholesale exemption available if using Arizona licensed mortgage broker, no place of business in Arizona, no direct or indirect solicitation of Arizona residents for mortgage loans, and no participation in the negotiation of mortgage loans 2425 Otherwise, Arizona license required: Commercial Mortgage Banker license 26 Mortgage Broker license 27 or Mortgage Banker license 28",
+                  "children": [
+                    {
+                      "type": "Branch License",
+                      "level": 4,
+                      "body": "Branch license required [2] [9] unless company exempt.",
+                      "children": [
+                        {
+                          "type": "Originator License",
+                          "level": 5,
+                          "body": "Branch license follows company license type."
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "Resident 1-4 Business Purpose",
+              "type": "Collateral Type",
+              "level": 2,
+              "children": [
+                {
+                  "type": "Company License",
+                  "level": 3,
+                  "body": "Wholesale exemption available if using Arizona licensed mortgage broker, no place of business in Arizona, no direct or indirect solicitation of Arizona residents for mortgage loans, and no participation in the negotiation of mortgage loans. 31 Otherwise requires an Arizona Mortgage Banker license 32",
+                  "children": [
+                    {
+                      "type": "Branch License",
+                      "level": 4,
+                      "body": "Branch license required [2] [9] unless company exempt.",
+                      "children": [
+                        {
+                          "type": "Originator License",
+                          "level": 5,
+                          "body": "Branch license follows company license type."
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
   ]
 }

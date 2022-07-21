@@ -65,24 +65,24 @@ export default class Chart extends React.Component {
     return canonicalData;
   };
 
-  setup = async () => {
-    const lowestLevel = await findLowestLevel(data);
-    const nonTreeDataArr = await parseNonTreeData(data);
-    // const chartCellWidth = await findColumns(apiData);
-    let canonicalData = await genCanonicalDataArray(lowestLevel);
-    canonicalData = await populateCanonicalDataArray(data, canonicalData);
-    canonicalData = await populateCanonicalArrayCoords(canonicalData, data);
-    canonicalData = await populateNonTreeCanonicalData(
-      canonicalData,
-      nonTreeDataArr,
-      2
-    );
-    // console.log(await parseDuplicateCellData(canonicalData, data));
-    canonicalData = await parseDuplicateCellData(canonicalData, data);
-    // console.log(findRowCellHeight(canonicalData));
-    // console.log("canonicalData", canonicalData);
-    return canonicalData;
-  };
+  // setup = async () => {
+  //   const lowestLevel = await findLowestLevel(data);
+  //   const nonTreeDataArr = await parseNonTreeData(data);
+  //   // const chartCellWidth = await findColumns(apiData);
+  //   let canonicalData = await genCanonicalDataArray(lowestLevel);
+  //   canonicalData = await populateCanonicalDataArray(data, canonicalData);
+  //   canonicalData = await populateCanonicalArrayCoords(canonicalData, data);
+  //   canonicalData = await populateNonTreeCanonicalData(
+  //     canonicalData,
+  //     nonTreeDataArr,
+  //     2
+  //   );
+  //   // console.log(await parseDuplicateCellData(canonicalData, data));
+  //   canonicalData = await parseDuplicateCellData(canonicalData, data);
+  //   // console.log(findRowCellHeight(canonicalData));
+  //   // console.log("canonicalData", canonicalData);
+  //   return canonicalData;
+  // };
 
   async componentDidMount() {
     const data = await this.genCanonicalData(apiData);
@@ -103,4 +103,5 @@ const Container = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  margin: 10px 0px 100px 0px;
 `;

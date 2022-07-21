@@ -20,10 +20,11 @@ const Container = styled.div`
   flex-direction: row;
   outline: ${({ isTitle }) => (isTitle ? `` : ` 1px solid black`)};
   align-items: center;
-  min-width: 150px;
+  min-width: 100px;
   min-height: 75px;
-  max-width: 500px;
+  max-width: 400px;
   padding: 25px;
   text-align: center;
   font-family: ${({ theme }) => theme.textFont};
+  line-height: 23px;
 `;
