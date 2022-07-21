@@ -34,20 +34,18 @@ export const genTitleRowArray = (canonicalData) => {
   return titleRowArray;
 };
 
-// Should this work for duplicate entries outside a hierarchy? Eg, if we had
-// 2 'Additional Notes' columns in one row...
 export async function parseDuplicateCellData(canonicalData, data) {
   /* Calls a recursive function to eleminate duplicate cell data for the last 
   row of canonical data, which is the lowest level in the data hierarchy.*/
 
-  const leavesColumn = await findLowestLevel(data);
+  // const leavesColumn = await findLowestLevel(data);
 
   for (let [i, column] of canonicalData.entries()) {
-    if (i === leavesColumn) {
-      await parseDuplicates(column, (newColumn) => {
-        canonicalData.splice(i, 1, newColumn);
-      });
-    }
+    // if (i === leavesColumn) {
+    await parseDuplicates(column, (newColumn) => {
+      canonicalData.splice(i, 1, newColumn);
+    });
+    // }
   }
   return canonicalData;
 }
@@ -58,7 +56,13 @@ const parseDuplicates = async (column, callback) => {
     let currentItem = columnArr[i];
     let nextItem = columnArr[i + 1];
 
-    if (currentItem && nextItem && nextItem.body === currentItem.body) {
+    if (
+      currentItem &&
+      nextItem &&
+      currentItem.body &&
+      nextItem.body &&
+      nextItem.body === currentItem.body
+    ) {
       columnArr[i].coords = [
         columnArr[i].coords[0],
         columnArr[i + 1].coords[1],
@@ -212,6 +216,7 @@ export const findColumns = async (apiData) => {
 // refactor to take lowest level of an object instead? if no children, return 1.
 // Actually, we're expecting this to return 0 elsewhere in the application.
 export const findLowestLevel = async (objArray) => {
+  console.log("objArray", objArray);
   let lowestLevel = 0;
 
   const parseHierarchy = async (objArray) => {
