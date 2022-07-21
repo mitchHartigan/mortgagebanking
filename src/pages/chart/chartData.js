@@ -17,8 +17,7 @@ export const data = [
               {
                 type: "Company License",
                 level: 3,
-                body:
-                  "Defined conduct appears to be outside the scope of Alaska Secure and Fair Enforcement for Mortgage Licensing Act of 2010 and the Alaska Real Estate Broker law.",
+                body: "Defined conduct appears to be outside the scope of Alaska Secure and Fair Enforcement for Mortgage Licensing Act of 2010 and the Alaska Real Estate Broker law.",
               },
             ],
           },
@@ -30,8 +29,7 @@ export const data = [
               {
                 type: "Company License",
                 level: 3,
-                body:
-                  "Defined conduct appears to be outside the scope of Alaska Secure and Fair Enforcement for Mortgage Licensing Act of 2010 and the Alaska Real Estate Broker law.",
+                body: "Defined conduct appears to be outside the scope of Alaska Secure and Fair Enforcement for Mortgage Licensing Act of 2010 and the Alaska Real Estate Broker law.",
               },
             ],
           },
@@ -43,8 +41,7 @@ export const data = [
               {
                 type: "Company License",
                 level: 3,
-                body:
-                  "Defined conduct appears to be outside the scope of Alaska Secure and Fair Enforcement for Mortgage Licensing Act of 2010 and the Alaska Real Estate Broker law.",
+                body: "Defined conduct appears to be outside the scope of Alaska Secure and Fair Enforcement for Mortgage Licensing Act of 2010 and the Alaska Real Estate Broker law.",
               },
             ],
           },
@@ -63,8 +60,7 @@ export const data = [
               {
                 type: "Company License",
                 level: 3,
-                body:
-                  "Defined conduct appears to be outside the scope of Alaska Secure and Fair Enforcement for Mortgage Licensing Act of 2010 and the Alaska Real Estate Broker law.",
+                body: "Defined conduct appears to be outside the scope of Alaska Secure and Fair Enforcement for Mortgage Licensing Act of 2010 and the Alaska Real Estate Broker law.",
               },
             ],
           },
@@ -76,8 +72,7 @@ export const data = [
               {
                 type: "Company License",
                 level: 3,
-                body:
-                  "Defined conduct appears to be outside the scope of Alaska Secure and Fair Enforcement for Mortgage Licensing Act of 2010 and the Alaska Real Estate Broker law.",
+                body: "Defined conduct appears to be outside the scope of Alaska Secure and Fair Enforcement for Mortgage Licensing Act of 2010 and the Alaska Real Estate Broker law.",
               },
             ],
           },
@@ -89,8 +84,7 @@ export const data = [
               {
                 type: "Company License",
                 level: 3,
-                body:
-                  "Defined conduct appears to be outside the scope of Alaska Secure and Fair Enforcement for Mortgage Licensing Act of 2010 and the Alaska Real Estate Broker law.",
+                body: "Defined conduct appears to be outside the scope of Alaska Secure and Fair Enforcement for Mortgage Licensing Act of 2010 and the Alaska Real Estate Broker law.",
               },
             ],
           },
@@ -101,5 +95,9 @@ export const data = [
   {
     name: "Additional Notes",
     type: "Additional Notes",
+  },
+  {
+    name: "Sale",
+    type: "Sale",
   },
 ];

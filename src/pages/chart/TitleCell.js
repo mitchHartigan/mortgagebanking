@@ -15,10 +15,11 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
   grid-row: 1 / 2;
-  grid-column: $ ${({ column }) => `${column}`};
+  /* grid-column: $ ${({ column }) => `${column}`}; */
   flex-direction: row;
   border-bottom: 2px solid black;
   align-items: center;
   font-family: ${({ theme }) => theme.textFont};
   font-size: ${({ theme }) => theme.text.md};
+  padding: 20px 40px 20px 40px;
 `;
