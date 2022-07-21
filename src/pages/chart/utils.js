@@ -136,10 +136,13 @@ export const populateNonTreeCanonicalData = (
   nonTreeDataArr,
   rowOffset
 ) => {
+  let xCoord = rowOffset;
+  if (rowOffset === 0) xCoord = 2;
+
   nonTreeDataArr.forEach((obj) => {
     const updatedObj = {
       ...obj,
-      coords: [rowOffset, findRowHeight(canonicalData) + rowOffset],
+      coords: [xCoord, findRowHeight(canonicalData) + rowOffset],
     };
     canonicalData.push([updatedObj]);
   });
