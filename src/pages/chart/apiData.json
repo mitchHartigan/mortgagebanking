@@ -304,5 +304,132 @@
         }
       ]
     }
+  ],
+  "Idaho": [
+    {
+      "name": "Idaho",
+      "type": "State",
+      "level": 0,
+      "children": [
+        {
+          "name": "Broker",
+          "type": "Role",
+          "level": 1,
+          "children": [
+            {
+              "name": "Commercial/Multifamily",
+              "type": "Collateral Type",
+              "level": 2,
+              "children": [
+                {
+                  "type": "Company License",
+                  "level": 3,
+                  "body": "May not take advance fee prior to commitment by exempt party or until after loan closes, unless licensed as Idaho mortgage broker or mortgage banker.",
+                  "children": [
+                    {
+                      "type": "Branch License",
+                      "level": 4,
+                      "body": "Outside scope of license.",
+                      "children": [
+                        {
+                          "type": "Originator License",
+                          "level": 5,
+                          "body": "Conduct appears to be outside the scope of defined Mortgage Loan Originator activities."
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "Resident 1-4 Business Purpose",
+              "type": "Collateral Type",
+              "level": 2,
+              "children": [
+                {
+                  "type": "Company License",
+                  "level": 3,
+                  "body": "Idaho Mortgage Broker license.",
+                  "children": [
+                    {
+                      "type": "Branch License",
+                      "level": 4,
+                      "body": "Branch license required.",
+                      "children": [
+                        {
+                          "type": "Originator License",
+                          "level": 5,
+                          "body": "Idaho Mortgage Loan Originator license."
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Lender",
+          "type": "Role",
+          "level": 1,
+          "children": [
+            {
+              "name": "Commercial/Multifamily",
+              "type": "Collateral Type",
+              "level": 2,
+              "children": [
+                {
+                  "type": "Company License",
+                  "level": 3,
+                  "body": "May not take advance fee until after loan closes, unless licensed as Idaho mortgage banker.",
+                  "children": [
+                    {
+                      "type": "Branch License",
+                      "level": 4,
+                      "body": "Outside scope of license.",
+                      "children": [
+                        {
+                          "type": "Originator License",
+                          "level": 5,
+                          "body": "Conduct appears to be outside the scope of defined Mortgage Loan Originator activities."
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "Resident 1-4 Business Purpose",
+              "type": "Collateral Type",
+              "level": 2,
+              "children": [
+                {
+                  "type": "Company License",
+                  "level": 3,
+                  "body": "Idaho Mortgage Banker License.",
+                  "children": [
+                    {
+                      "type": "Branch License",
+                      "level": 4,
+                      "body": "Branch license required.",
+                      "children": [
+                        {
+                          "type": "Originator License",
+                          "level": 5,
+                          "body": "Idaho Mortgage Loan Originator license."
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
   ]
 }
