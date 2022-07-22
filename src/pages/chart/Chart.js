@@ -2,8 +2,6 @@ import React from "react";
 import styled from "styled-components";
 
 import Grid from "./Grid";
-// import { data } from "./chartData";
-// import apiData from "./apiData.json";
 
 import {
   populateCanonicalArrayCoords,
@@ -14,7 +12,6 @@ import {
   parseDuplicateCellData,
   parseNonTreeData,
   populateNonTreeCanonicalData,
-  findColumns,
   findRowCellHeight,
 } from "./utils";
 
@@ -35,6 +32,7 @@ export default class Chart extends React.Component {
 
     data = await data.json();
     delete data[0]._id;
+    console.log("dataaaaa", data[0]);
     return data[0];
   };
 

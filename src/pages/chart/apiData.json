@@ -23,7 +23,7 @@
                     {
                       "type": "Branch License",
                       "level": 4,
-                      "body": "Outside scope of license.",
+                      "body": "Outside scope of license [].",
                       "children": [
                         {
                           "type": "Originator License",
@@ -197,7 +197,7 @@
                 {
                   "type": "Company License",
                   "level": 3,
-                  "body": "Arizona license required Commercial Mortgage Broker license 16 Commercial Mortgage Banker license 17 Mortgage Broker license 18 or Mortgage Banker license 19",
+                  "body": "Arizona license required Commercial Mortgage Broker license [] Commercial Mortgage Banker license 17 Mortgage Broker license 18 or Mortgage Banker license 19",
                   "children": [
                     {
                       "type": "Branch License",
