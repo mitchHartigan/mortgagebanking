@@ -2,8 +2,8 @@ import React from "react";
 import styled from "styled-components";
 
 import Grid from "./Grid";
-import { data } from "./chartData";
-import apiData from "./apiData.json";
+// import { data } from "./chartData";
+// import apiData from "./apiData.json";
 
 import {
   populateCanonicalArrayCoords,
@@ -28,6 +28,16 @@ export default class Chart extends React.Component {
     };
   }
 
+  fetchData = async () => {
+    let data = await fetch(
+      "https://md5rhmga23.execute-api.us-west-2.amazonaws.com/production/chartData"
+    );
+
+    data = await data.json();
+    delete data[0]._id;
+    return data[0];
+  };
+
   genCanonicalData = async (apiData) => {
     const states = Object.keys(apiData);
     let canonicalData = [];
@@ -35,7 +45,6 @@ export default class Chart extends React.Component {
 
     for (let state of states) {
       const stateArr = apiData[state];
-      console.log("stateArr", stateArr);
       const lowestLevel = await findLowestLevel(stateArr);
       const nonTreeDataArr = await parseNonTreeData(stateArr);
       let canonicalRowData = await genCanonicalDataArray(lowestLevel);
@@ -47,7 +56,6 @@ export default class Chart extends React.Component {
         canonicalRowData,
         rowOffset
       );
-      console.log("canonicalRowData", canonicalRowData);
       canonicalRowData = await populateNonTreeCanonicalData(
         canonicalRowData,
         nonTreeDataArr,
@@ -61,30 +69,11 @@ export default class Chart extends React.Component {
       rowOffset = rowOffset + rowHeight;
       canonicalData.push(canonicalRowData);
     }
-    console.log("cd baby", canonicalData);
     return canonicalData;
   };
 
-  // setup = async () => {
-  //   const lowestLevel = await findLowestLevel(data);
-  //   const nonTreeDataArr = await parseNonTreeData(data);
-  //   // const chartCellWidth = await findColumns(apiData);
-  //   let canonicalData = await genCanonicalDataArray(lowestLevel);
-  //   canonicalData = await populateCanonicalDataArray(data, canonicalData);
-  //   canonicalData = await populateCanonicalArrayCoords(canonicalData, data);
-  //   canonicalData = await populateNonTreeCanonicalData(
-  //     canonicalData,
-  //     nonTreeDataArr,
-  //     2
-  //   );
-  //   // console.log(await parseDuplicateCellData(canonicalData, data));
-  //   canonicalData = await parseDuplicateCellData(canonicalData, data);
-  //   // console.log(findRowCellHeight(canonicalData));
-  //   // console.log("canonicalData", canonicalData);
-  //   return canonicalData;
-  // };
-
   async componentDidMount() {
+    const apiData = await this.fetchData();
     const data = await this.genCanonicalData(apiData);
     this.setState({ data: data, titleData: genTitleRowArray(data[0]) });
   }
