@@ -16,7 +16,6 @@ export default function Grid(props) {
           return <TitleCell name={title} isTitle column={i} key={nanoid()} />;
         })}
         {data.map((row) => {
-          console.log("row", row);
           return row.map((columnArr, i) => {
             return columnArr.map((obj) => {
               return <Cell {...obj} column={i} key={nanoid()} />;
@@ -26,16 +25,8 @@ export default function Grid(props) {
       </Container>
     );
   }
-  return <p>uh oh</p>;
+  return <p>Loading...</p>;
 }
-
-// function genRows(data) {
-//   let rowStr = "50px ";
-//   data[0].forEach(() => {
-//     rowStr = rowStr + "1fr ";
-//   });
-//   return rowStr;
-// }
 
 const Container = styled.div`
   display: grid;

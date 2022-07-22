@@ -4,11 +4,7 @@ import styled from "styled-components";
 export default function Cell(props) {
   const { coords, name, type, body, column, isTitle } = props;
 
-  return (
-    <Container coords={coords} isTitle={isTitle} column={column}>
-      {name || body}
-    </Container>
-  );
+  return <Container {...props}>{name || body}</Container>;
 }
 
 const Container = styled.div`
@@ -26,5 +22,6 @@ const Container = styled.div`
   padding: 25px;
   text-align: center;
   font-family: ${({ theme }) => theme.textFont};
+  font-size: ${({ name }) => (name ? "16px" : "14px")};
   line-height: 23px;
 `;
