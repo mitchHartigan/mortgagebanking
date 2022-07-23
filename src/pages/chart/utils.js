@@ -193,6 +193,14 @@ export const findRowCellHeight = (canonicalData, rowOffset) => {
   return longestColumnLength + 1;
 };
 
+export const findChartHeight = (canonicalData) => {
+  let height = 0;
+  canonicalData.forEach((row) => {
+    height = height + findRowCellHeight(row);
+  });
+  return height;
+};
+
 export const findColumns = async (apiData) => {
   const keys = Object.keys(apiData);
   let overallLength = 0;
@@ -216,7 +224,6 @@ export const findColumns = async (apiData) => {
 // refactor to take lowest level of an object instead? if no children, return 1.
 // Actually, we're expecting this to return 0 elsewhere in the application.
 export const findLowestLevel = async (objArray) => {
-  console.log("objArray", objArray);
   let lowestLevel = 0;
 
   const parseHierarchy = async (objArray) => {
