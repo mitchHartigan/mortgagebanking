@@ -4,14 +4,23 @@ import styled from "styled-components";
 export default function Cell(props) {
   const { coords, name, type, body, column, isTitle } = props;
   const [cellWidth, setCellWidth] = useState();
+  const [cellHeight, setCellHeight] = useState();
   const containerRef = useRef();
 
   useEffect(() => {
-    setCellWidth(containerRef.current.offsetWidth);
+    const width = containerRef.current.offsetWidth;
+    const height = containerRef.current.offsetHeight;
+    setCellWidth(width);
+    setCellHeight(height);
 
     window.addEventListener("resize", () => {
-      setCellWidth(containerRef.current.offsetWidth);
+      setCellWidth(width);
+      setCellHeight(height);
     });
+
+    return () => {
+      window.removeEventListener("resize", () => {});
+    };
   });
 
   return (
@@ -21,10 +30,9 @@ export default function Cell(props) {
       isTitle={isTitle}
       column={column}
     >
-      <FixedCell cellWidth={cellWidth}>
+      <FixedCell cellWidth={cellWidth} cellHeight={cellHeight}>
         <Text>{name || body}</Text>
       </FixedCell>
-      <Text>{name || body}</Text>
     </Container>
   );
 }
@@ -36,7 +44,10 @@ const FixedCell = styled.div`
   justify-content: center;
   align-items: center;
   width: ${({ cellWidth }) => `${cellWidth}px`};
-  background-color: lightblue;
+  height: ${({ cellHeight }) => `${cellHeight}px`};
+  border: 1px solid black;
+  background-color: ${({ theme }) => theme.colors.offWhite};
+  box-sizing: border-box;
 `;
 
 const Text = styled.p`
