@@ -13,7 +13,10 @@ import {
   parseNonTreeData,
   populateNonTreeCanonicalData,
   findRowCellHeight,
+  parseCitations,
 } from "./utils";
+
+import dummyData from "./apiData.json";
 
 export default class Chart extends React.Component {
   constructor(props) {
@@ -43,6 +46,7 @@ export default class Chart extends React.Component {
 
     for (let state of states) {
       const stateArr = apiData[state];
+      parseCitations(apiData);
       const lowestLevel = await findLowestLevel(stateArr);
       const nonTreeDataArr = await parseNonTreeData(stateArr);
       let canonicalRowData = await genCanonicalDataArray(lowestLevel);
@@ -71,7 +75,7 @@ export default class Chart extends React.Component {
   };
 
   async componentDidMount() {
-    const apiData = await this.fetchData();
+    const apiData = dummyData;
     const data = await this.genCanonicalData(apiData);
     this.setState({ data: data, titleData: genTitleRowArray(data[0]) });
   }

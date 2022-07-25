@@ -238,3 +238,34 @@ export const findLowestLevel = async (objArray) => {
   await parseHierarchy(objArray);
   return lowestLevel;
 };
+
+export const parseCitations = async (objArray) => {
+  const citationIds = [];
+  const keys = Object.keys(objArray);
+
+  const parseHierarchy = async (objArray) => {
+    objArray.forEach((obj) => {
+      if (obj.body) {
+        const text = obj.body;
+        const splitArr = text.split("[");
+        if (splitArr.length > 1) {
+          const potentialKeyword = splitArr[1].split("]");
+
+          if (potentialKeyword[0].length >= 20) {
+            citationIds.push(potentialKeyword[0]);
+          }
+        }
+      }
+      if (obj.children && obj.children.length > 0) {
+        parseHierarchy(obj.children);
+      }
+      return;
+    });
+  };
+
+  for (let key of keys) {
+    await parseHierarchy(objArray[key]);
+  }
+
+  return citationIds;
+};
