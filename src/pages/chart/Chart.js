@@ -39,6 +39,21 @@ export default class Chart extends React.Component {
     return data[0];
   };
 
+  fetchCitations = async (apiData) => {
+    let data = await fetch(
+      "https://md5rhmga23.execute-api.us-west-2.amazonaws.com/production/chartCitations",
+      {
+        method: "POST",
+        body: { citations: await parseCitations(apiData) },
+        mode: "no-cors",
+      }
+    );
+
+    data = await data.json();
+    console.log("citations data", data);
+    return data;
+  };
+
   genCanonicalData = async (apiData) => {
     const states = Object.keys(apiData);
     let canonicalData = [];
@@ -76,6 +91,7 @@ export default class Chart extends React.Component {
 
   async componentDidMount() {
     const apiData = dummyData;
+    await this.fetchCitations(apiData);
     const data = await this.genCanonicalData(apiData);
     this.setState({ data: data, titleData: genTitleRowArray(data[0]) });
   }
