@@ -269,3 +269,25 @@ export const parseCitations = async (objArray) => {
 
   return citationIds;
 };
+
+// export const populateCitations = (citationsObj, objArray) => {
+//   // console.log("citationsObj", citationsObj);
+//   // console.log(objArray);
+//   const ids = Object.keys(citationsObj);
+
+//   const parseHierarchy = async (objArray) => {
+//     const states = Object.keys(objArray);
+//     for (let state of states) {
+//       console.log(objArray[state]);
+
+//       for (let obj of objArray[state]) {
+//         for (let id of ids) {
+//           let index = -1;
+//           if (obj.name.search(id) !== -1) {
+//           }
+//         }
+//       }
+//     }
+//   };
+//   parseHierarchy(objArray);
+// };

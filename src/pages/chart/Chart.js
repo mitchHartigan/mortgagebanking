@@ -25,6 +25,7 @@ export default class Chart extends React.Component {
     this.state = {
       data: undefined,
       titleData: [],
+      citations: {},
     };
   }
 
@@ -39,19 +40,15 @@ export default class Chart extends React.Component {
     return data[0];
   };
 
-  fetchCitations = async (apiData) => {
+  fetchCitations = async () => {
     let data = await fetch(
-      "https://md5rhmga23.execute-api.us-west-2.amazonaws.com/production/chartCitations",
-      {
-        method: "POST",
-        body: { citations: await parseCitations(apiData) },
-        mode: "no-cors",
-      }
+      "https://md5rhmga23.execute-api.us-west-2.amazonaws.com/production/chartCitations"
     );
 
     data = await data.json();
-    console.log("citations data", data);
-    return data;
+    delete data[0]._id;
+    console.log("citations from fetch", data[0]);
+    return data[0];
   };
 
   genCanonicalData = async (apiData) => {
@@ -91,15 +88,26 @@ export default class Chart extends React.Component {
 
   async componentDidMount() {
     const apiData = dummyData;
-    await this.fetchCitations(apiData);
+    const citations = await this.fetchCitations();
+    console.log("hello", citations);
     const data = await this.genCanonicalData(apiData);
-    this.setState({ data: data, titleData: genTitleRowArray(data[0]) });
+    this.setState({
+      data: data,
+      titleData: genTitleRowArray(data[0]),
+      citations: citations,
+    });
   }
 
   render() {
+    console.log("this.state.citations", this.state.citations);
+
     return (
       <Container>
-        <Grid data={this.state.data} titleData={this.state.titleData} />
+        <Grid
+          data={this.state.data}
+          titleData={this.state.titleData}
+          citations={this.state.citations}
+        />
       </Container>
     );
   }

@@ -8,18 +8,33 @@ import { nanoid } from "nanoid";
 import { findChartHeight } from "./utils";
 
 export default function Grid(props) {
-  const { data, titleData } = props;
+  const { data, titleData, citations } = props;
 
-  if (data) {
+  if (data && citations) {
     return (
       <Container {...props}>
         {titleData.map((title, i) => {
-          return <TitleCell name={title} isTitle column={i} key={nanoid()} />;
+          return (
+            <TitleCell
+              name={title}
+              isTitle
+              column={i}
+              key={nanoid()}
+              citations={citations}
+            />
+          );
         })}
         {data.map((row) => {
           return row.map((columnArr, i) => {
             return columnArr.map((obj) => {
-              return <Cell {...obj} column={i} key={nanoid()} />;
+              return (
+                <Cell
+                  {...obj}
+                  column={i}
+                  key={nanoid()}
+                  citations={citations}
+                />
+              );
             });
           });
         })}

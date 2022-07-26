@@ -6,3 +6,7 @@
    array exist outside the hierarchy. For example, Additional Notes that apply to the entire state.
 4. Data hierarchy of each state is in the right shape to line up each column. Eg, Arizona and Idaho both have 4 levels of hierarchy, with
    the same object types at each level.
+
+# Citations Assumptions
+
+1. Citations object returned with ids in the correct order. Ie, the first citation key:value pair in the object is citation 1.
